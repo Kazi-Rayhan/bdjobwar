@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2022 at 08:50 PM
+-- Generation Time: Apr 24, 2022 at 07:31 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -126,7 +126,32 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (52, 6, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}', 9),
 (53, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 0, 0, 0, NULL, 10),
 (54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
-(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12);
+(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
+(56, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(57, 8, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(58, 8, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{}', 3),
+(59, 8, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(60, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(69, 10, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(70, 10, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 5),
+(71, 10, 'user_id', 'text', 'User Id', 0, 1, 1, 1, 1, 1, '{}', 2),
+(72, 10, 'category_id', 'text', 'Category Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(73, 10, 'subject_id', 'text', 'Subject Id', 1, 1, 1, 1, 1, 1, '{}', 4),
+(74, 10, 'exam_date', 'timestamp', 'Exam Date', 0, 1, 1, 1, 1, 1, '{}', 6),
+(75, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 7),
+(76, 10, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(77, 10, 'exam_belongsto_category_relationship', 'relationship', 'categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Category\",\"table\":\"categories\",\"type\":\"belongsTo\",\"column\":\"category_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 9),
+(78, 10, 'exam_belongsto_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 10),
+(79, 10, 'exam_belongsto_subject_relationship', 'relationship', 'subjects', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Subject\",\"table\":\"subjects\",\"type\":\"belongsTo\",\"column\":\"subject_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 11),
+(80, 12, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(81, 12, 'user_id', 'text', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(82, 12, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 3),
+(83, 12, 'price', 'text', 'Price', 1, 1, 1, 1, 1, 1, '{}', 4),
+(84, 12, 'duration', 'text', 'Duration (days)', 1, 1, 1, 1, 1, 1, '{}', 5),
+(85, 12, 'type', 'checkbox', 'Type', 1, 1, 1, 1, 1, 1, '{}', 6),
+(86, 12, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 7),
+(87, 12, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(88, 12, 'package_belongsto_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 9);
 
 -- --------------------------------------------------------
 
@@ -162,7 +187,35 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2022-04-21 12:19:20', '2022-04-21 12:19:20'),
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2022-04-21 12:19:21', '2022-04-21 12:19:21'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2022-04-21 12:19:21', '2022-04-21 12:19:21'),
-(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2022-04-21 12:19:21', '2022-04-21 12:19:21');
+(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2022-04-21 12:19:21', '2022-04-21 12:19:21'),
+(8, 'subjects', 'subjects', 'Name', 'Subjects', 'voyager-list-add', 'App\\Models\\Subject', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-04-23 20:26:19', '2022-04-23 20:28:26'),
+(10, 'exams', 'exams', 'Exam', 'Exams', NULL, 'App\\Models\\Exam', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-04-23 22:24:42', '2022-04-23 23:11:56'),
+(12, 'packages', 'packages', 'Package', 'Packages', 'voyager-upload', 'App\\Models\\Package', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-04-23 23:23:31', '2022-04-23 23:29:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exams`
+--
+
+CREATE TABLE `exams` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `category_id` int(20) UNSIGNED NOT NULL,
+  `subject_id` bigint(20) UNSIGNED NOT NULL,
+  `exam_date` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `exams`
+--
+
+INSERT INTO `exams` (`id`, `name`, `user_id`, `category_id`, `subject_id`, `exam_date`, `created_at`, `updated_at`) VALUES
+(2, 'Model test', 1, 1, 1, '2022-04-24 05:06:00', '2022-04-23 23:06:00', '2022-04-23 23:11:18'),
+(3, 'Final Exam', 1, 2, 1, '2022-04-29 05:12:00', '2022-04-23 23:12:24', '2022-04-23 23:12:24');
 
 -- --------------------------------------------------------
 
@@ -227,19 +280,22 @@ CREATE TABLE `menu_items` (
 --
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
-(1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2022-04-21 12:19:20', '2022-04-21 12:19:20', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 5, '2022-04-21 12:19:20', '2022-04-21 12:19:20', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2022-04-21 12:19:20', '2022-04-21 12:19:20', 'voyager.users.index', NULL),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 2, '2022-04-21 12:19:20', '2022-04-21 12:19:20', 'voyager.roles.index', NULL),
+(1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 4, '2022-04-21 12:19:20', '2022-04-23 20:31:03', 'voyager.dashboard', NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 6, '2022-04-21 12:19:20', '2022-04-23 20:31:03', 'voyager.media.index', NULL),
+(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 1, '2022-04-21 12:19:20', '2022-04-23 20:31:05', 'voyager.users.index', NULL),
+(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 5, '2022-04-21 12:19:20', '2022-04-23 20:31:03', 'voyager.roles.index', NULL),
 (5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2022-04-21 12:19:20', '2022-04-21 12:19:20', NULL, NULL),
-(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 10, '2022-04-21 12:19:20', '2022-04-21 12:19:20', 'voyager.menus.index', NULL),
-(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 11, '2022-04-21 12:19:20', '2022-04-21 12:19:20', 'voyager.database.index', NULL),
-(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 12, '2022-04-21 12:19:20', '2022-04-21 12:19:20', 'voyager.compass.index', NULL),
-(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 13, '2022-04-21 12:19:20', '2022-04-21 12:19:20', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 14, '2022-04-21 12:19:20', '2022-04-21 12:19:20', 'voyager.settings.index', NULL),
-(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 8, '2022-04-21 12:19:21', '2022-04-21 12:19:21', 'voyager.categories.index', NULL),
-(12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 6, '2022-04-21 12:19:21', '2022-04-21 12:19:21', 'voyager.posts.index', NULL),
-(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2022-04-21 12:19:21', '2022-04-21 12:19:21', 'voyager.pages.index', NULL);
+(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2022-04-21 12:19:20', '2022-04-23 20:30:43', 'voyager.menus.index', NULL),
+(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2022-04-21 12:19:20', '2022-04-23 20:30:43', 'voyager.database.index', NULL),
+(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2022-04-21 12:19:20', '2022-04-23 20:30:43', 'voyager.compass.index', NULL),
+(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2022-04-21 12:19:20', '2022-04-23 20:30:43', 'voyager.bread.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2022-04-21 12:19:20', '2022-04-23 20:30:43', 'voyager.settings.index', NULL),
+(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 2, '2022-04-21 12:19:21', '2022-04-23 20:31:05', 'voyager.categories.index', NULL),
+(12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 7, '2022-04-21 12:19:21', '2022-04-23 20:31:03', 'voyager.posts.index', NULL),
+(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 8, '2022-04-21 12:19:21', '2022-04-23 20:31:03', 'voyager.pages.index', NULL),
+(14, 1, 'Subjects', '', '_self', 'voyager-list-add', NULL, NULL, 3, '2022-04-23 20:26:20', '2022-04-23 20:31:03', 'voyager.subjects.index', NULL),
+(16, 1, 'Exams', '', '_self', NULL, NULL, NULL, 11, '2022-04-23 22:24:42', '2022-04-23 22:24:42', 'voyager.exams.index', NULL),
+(17, 1, 'Packages', '', '_self', 'voyager-upload', NULL, NULL, 12, '2022-04-23 23:23:31', '2022-04-23 23:23:31', 'voyager.packages.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -285,7 +341,36 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (25, '2016_01_01_000000_create_pages_table', 2),
 (26, '2016_01_01_000000_create_posts_table', 2),
 (27, '2016_02_15_204651_create_categories_table', 2),
-(28, '2017_04_11_000000_alter_post_nullable_fields_table', 2);
+(28, '2017_04_11_000000_alter_post_nullable_fields_table', 2),
+(29, '2022_04_24_021745_create_subjects_table', 3),
+(30, '2022_04_24_023630_create_exams_table', 4),
+(31, '2022_04_24_025313_create_exams_table', 5),
+(32, '2022_04_24_031842_create_exams_table', 6),
+(33, '2022_04_24_051427_create_packages_table', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `packages`
+--
+
+CREATE TABLE `packages` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `duration` int(11) NOT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `packages`
+--
+
+INSERT INTO `packages` (`id`, `user_id`, `title`, `price`, `duration`, `type`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Silver', '120', 120, 1, '2022-04-23 23:29:22', '2022-04-23 23:29:22');
 
 -- --------------------------------------------------------
 
@@ -385,7 +470,22 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (37, 'read_pages', 'pages', '2022-04-21 12:19:21', '2022-04-21 12:19:21'),
 (38, 'edit_pages', 'pages', '2022-04-21 12:19:21', '2022-04-21 12:19:21'),
 (39, 'add_pages', 'pages', '2022-04-21 12:19:21', '2022-04-21 12:19:21'),
-(40, 'delete_pages', 'pages', '2022-04-21 12:19:21', '2022-04-21 12:19:21');
+(40, 'delete_pages', 'pages', '2022-04-21 12:19:21', '2022-04-21 12:19:21'),
+(41, 'browse_subjects', 'subjects', '2022-04-23 20:26:19', '2022-04-23 20:26:19'),
+(42, 'read_subjects', 'subjects', '2022-04-23 20:26:19', '2022-04-23 20:26:19'),
+(43, 'edit_subjects', 'subjects', '2022-04-23 20:26:19', '2022-04-23 20:26:19'),
+(44, 'add_subjects', 'subjects', '2022-04-23 20:26:19', '2022-04-23 20:26:19'),
+(45, 'delete_subjects', 'subjects', '2022-04-23 20:26:19', '2022-04-23 20:26:19'),
+(51, 'browse_exams', 'exams', '2022-04-23 22:24:42', '2022-04-23 22:24:42'),
+(52, 'read_exams', 'exams', '2022-04-23 22:24:42', '2022-04-23 22:24:42'),
+(53, 'edit_exams', 'exams', '2022-04-23 22:24:42', '2022-04-23 22:24:42'),
+(54, 'add_exams', 'exams', '2022-04-23 22:24:42', '2022-04-23 22:24:42'),
+(55, 'delete_exams', 'exams', '2022-04-23 22:24:42', '2022-04-23 22:24:42'),
+(56, 'browse_packages', 'packages', '2022-04-23 23:23:31', '2022-04-23 23:23:31'),
+(57, 'read_packages', 'packages', '2022-04-23 23:23:31', '2022-04-23 23:23:31'),
+(58, 'edit_packages', 'packages', '2022-04-23 23:23:31', '2022-04-23 23:23:31'),
+(59, 'add_packages', 'packages', '2022-04-23 23:23:31', '2022-04-23 23:23:31'),
+(60, 'delete_packages', 'packages', '2022-04-23 23:23:31', '2022-04-23 23:23:31');
 
 -- --------------------------------------------------------
 
@@ -442,7 +542,22 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (37, 1),
 (38, 1),
 (39, 1),
-(40, 1);
+(40, 1),
+(41, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1),
+(56, 1),
+(57, 1),
+(58, 1),
+(59, 1),
+(60, 1);
 
 -- --------------------------------------------------------
 
@@ -550,6 +665,27 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', '', '', 'text', 1, 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'B.C.S', 'bcs_exam', '2022-04-23 20:29:08', '2022-04-23 20:29:08');
 
 -- --------------------------------------------------------
 
@@ -670,6 +806,15 @@ ALTER TABLE `data_types`
   ADD UNIQUE KEY `data_types_slug_unique` (`slug`);
 
 --
+-- Indexes for table `exams`
+--
+ALTER TABLE `exams`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `category_id` (`category_id`),
+  ADD KEY `exams_user_id_foreign` (`user_id`),
+  ADD KEY `exams_subject_id_foreign` (`subject_id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -695,6 +840,13 @@ ALTER TABLE `menu_items`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `packages`
+--
+ALTER TABLE `packages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `packages_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `pages`
@@ -754,6 +906,12 @@ ALTER TABLE `settings`
   ADD UNIQUE KEY `settings_key_unique` (`key`);
 
 --
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `translations`
 --
 ALTER TABLE `translations`
@@ -790,13 +948,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `exams`
+--
+ALTER TABLE `exams`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -814,13 +978,19 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `packages`
+--
+ALTER TABLE `packages`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -832,7 +1002,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -857,6 +1027,12 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `translations`
@@ -887,10 +1063,24 @@ ALTER TABLE `data_rows`
   ADD CONSTRAINT `data_rows_data_type_id_foreign` FOREIGN KEY (`data_type_id`) REFERENCES `data_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `exams`
+--
+ALTER TABLE `exams`
+  ADD CONSTRAINT `exams_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `exams_subject_id_foreign` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `exams_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `menu_items`
 --
 ALTER TABLE `menu_items`
   ADD CONSTRAINT `menu_items_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `packages`
+--
+ALTER TABLE `packages`
+  ADD CONSTRAINT `packages_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `permission_role`
