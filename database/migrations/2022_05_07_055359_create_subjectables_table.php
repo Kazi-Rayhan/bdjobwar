@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePackagesTable extends Migration
+class CreateSubjectablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('subjectables', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->bigInteger('price')->nullable();
-            $table->integer('duration')->nullable();
-            $table->boolean('paid')->default(false);
+            $table->foreignId('subject_id')
+                ->constrained('subjects')
+                ->cascadeOnDelete();
+            $table->foreignId('subjectable_id');
+            $table->string('subjectable_type');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreatePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('subjectables');
     }
 }
