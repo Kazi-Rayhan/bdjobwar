@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\UserMeta;
 use Illuminate\Support\Facades\Route;
 
 /*

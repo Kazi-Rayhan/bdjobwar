@@ -43,5 +43,12 @@ class User extends \TCG\Voyager\Models\User
         'email_verified_at' => 'datetime',
     ];
 
-   
+    public function information(){
+        return $this->hasOne(UserMeta::class,'user_id');
+    }
+    public function scopeCustomer($query)
+    {
+        $ids = UserMeta::select('user_id')->get()->pluck('user_id')->toArray();
+        return $query->where('active', 1)->where('role_id',2)->whereNotIn('id',$ids);
+    }
 }

@@ -240,7 +240,7 @@ $dataType->getTranslatedAttribute('display_name_singular'))
         const id = date.getFullYear() + '' + date.getMonth() + '' + date.getDay() + '' + (Math.floor(Math
             .random() * (9999 - 10000)) + 9999)
         $('#id input[type=text]').val(id);
-        $('#expired_date_field input[type=date]').prop('readonly', true);
+        $('#expired_date_field input[name=expired_at]').prop('readonly', true);
         $('#price_toggle .toggle').prop('disabled', true)
         $('#duration_toggle .toggle').prop('disabled', true)
 
