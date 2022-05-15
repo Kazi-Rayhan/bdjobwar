@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Models\UserMeta;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('question/{exam}', [PageController::class, 'question'])->name('question');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
