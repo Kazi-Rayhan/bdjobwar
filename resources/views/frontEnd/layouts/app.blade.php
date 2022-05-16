@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Uttara-university - LMS & Online Courses Html Template</title>
+    <title>BD Job War</title>
     <link rel=icon href="{{asset('frontEnd-assets/img/favicon.png')}}" sizes="20x20" type="image/png">
 
     <!-- Stylesheet -->
@@ -72,7 +72,7 @@
                     </button>
                 </div>
                 <div class="logo">
-                    <a href="index.html"><img src="{{asset('frontEnd-assets/img/logo.png')}}" alt="img"></a>
+                    <a href="index.html"><h3 style="font-family:sans">BD JOB WAR</h3></a>
                 </div>
                 <div class="collapse navbar-collapse" id="edumint_main_menu">
                     <ul class="navbar-nav text-right menu-open">
@@ -80,10 +80,10 @@
                             <a href="#">Home</a>
               
                         </li>
-                        <li class="menu-item-has-children">
+                        {{-- <li class="menu-item-has-children">
                             <a href="#">Exam</a>
                           
-                        </li>
+                        </li> --}}
                         <!-- <li class="menu-item-has-children">
                             <a href="#">Instructors</a>
                             <ul class="sub-menu">
@@ -91,15 +91,15 @@
                                 <li><a href="single-team.html">Instructors Single</a></li>
                             </ul>
                         </li> -->
-                        <li class="menu-item-has-children">
+                        {{-- <li class="menu-item-has-children">
                             <a href="#">About</a>
                 
                         </li>
                         <li class="menu-item-has-children">
                             <a href="#">Blog</a>
                 
-                        </li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        </li> --}}
+                        {{-- <li><a href="contact.html">Contact Us</a></li> --}}
                     </ul>
                 </div>
             </div>
@@ -140,17 +140,16 @@
                         <div class="widget widget_nav_menu">
                             <h4 class="widget-title">Categorys</h4>
                             <ul>
-                                <li><a href="course.html">Branding design</a></li>
-                                <li><a href="course.html">Ui/Ux designing </a></li>
-                                <li><a href="course.html">Make Elements</a></li>
-                                <li><a href="course.html">Business</a></li>
-                                <li><a href="course.html">Graphics design</a></li>
+                                <li><a href="course.html">BCS</a></li>
+                                <li><a href="course.html">Job Exam </a></li>
+                                <li><a href="course.html">Teacher Registration</a></li>
+                                
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6">
                         <div class="widget widget_nav_menu">
-                            <h4 class="widget-title">Uttara </h4>
+                            <h4 class="widget-title">BD JOB WAR </h4>
                             <ul>
                                 <li><a href="course.html">Exam</a></li>
                                 <li><a href="team.html">Instructors</a></li>
@@ -196,7 +195,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 align-self-center">
-                        <a href="index.html"><img src="{{asset('frontEnd-assets/img/footer-logo.png')}}" alt="img"></a>
+                        <a href="index.html"><h3 class="text-light" style="font-family:sans">BD JOB WAR</h3></a>
                     </div>
                     <div class="col-md-8 text-md-right align-self-center mt-lg-0 mt-3">
                         <!-- <p>© 2021 MaanTheme. All Rights Reserved.</p> -->

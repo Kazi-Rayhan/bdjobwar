@@ -23,8 +23,8 @@ class CreateExamsTable extends Migration
             $table->dateTime('from')->nullable();
             $table->dateTime('to')->nullable();
             $table->integer('duration');
-            $table->tinyInteger('point', false, true)->default(1);
-            $table->integer('minimum_to_pass', false, true)->default(33);
+            $table->tinyInteger('point')->default(1);
+            $table->integer('minimum_to_pass')->default(33);
             $table->timestamps();
         });
     }

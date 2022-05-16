@@ -16,9 +16,9 @@
                         </div>
                         <div class="col-lg-6 order-lg-1 mt-5 mt-lg-0 align-self-center">
                             <div class="banner-inner style-white text-center text-lg-left">
-                                <h6 class="al-animate-1 sub-title">EDUCATION FOR EVERYONE</h6>
-                                <h1 class="al-animate-2 title">Classical Education For The Future</h1>
-                                <p class="al-animate-3">we believe everyone should have the opportunity to create progress through technology and develop the skills of tomorrow. assessments, learning</p>
+                                <h6 class="al-animate-1 sub-title">BSC Exam</h6>
+                                <h1 class="al-animate-2 title">Preprae for the life biggest exam</h1>
+                                <p class="al-animate-3">We have 100+ BSC exam prepartion exam and much more to help you achive you dream</p>
                                 <a class="btn btn-white al-animate-4" href="course.html">Read More</a>
                             </div>
                         </div>
@@ -33,38 +33,22 @@
                         </div>
                         <div class="col-lg-6 order-lg-1 mt-5 mt-lg-0 align-self-center">
                             <div class="banner-inner style-white text-center text-lg-left">
-                                <h6 class="b-animate-1 sub-title">EDUCATION FOR EVERYONE</h6>
-                                <h1 class="b-animate-2 title">Classical Education For The Future</h1>
-                                <p>we believe everyone should have the opportunity to create progress through technology and develop the skills of tomorrow. assessments, learning</p>
+                                <h6 class="b-animate-1 sub-title">University Admission Test </h6>
+                                <h1 class="b-animate-2 title">Change the course of you life</h1>
+                                <p>Prepare for admission tests with our 500 + exam and get the best education this country has to offer</p>
                                 <a class="btn btn-white b-animate-3" href="course.html">Read More</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-9 order-lg-12 align-self-center">
-                            <div class="thumb banner-animate-thumb pl-5" style="background-image: url('{{asset('frontEnd-assets/img/banner/3.png')}}');">
-                                <img src="{{asset('frontEnd-assets/img/banner/1.png')}}" alt="img">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 order-lg-1 mt-5 mt-lg-0 align-self-center">
-                            <div class="banner-inner style-white text-center text-lg-left">
-                                <h6 class="b-animate-1 sub-title">EDUCATION FOR EVERYONE</h6>
-                                <h1 class="b-animate-2 title">Classical Education For The Future</h1>
-                                <p>we believe everyone should have the opportunity to create progress through technology and develop the skills of tomorrow. assessments, learning</p>
-                                <a class="btn btn-white b-animate-3" href="course.html">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
             </div>
         </div>
     </div>
     <!-- banner end -->   
 
     <!-- intro area start -->
-    <div class="intro-area pd-top-90">
+    {{-- <div class="intro-area pd-top-90">
         <div class="container">
             <div class="intro-slider owl-carousel">
                 @foreach($categories as $category)
@@ -85,11 +69,11 @@
          
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- intro area end -->
 
     <!-- about area start -->
-    <div class="about-area pd-top-90 pd-bottom-90">
+    {{-- <div class="about-area pd-top-90 pd-bottom-90">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 order-lg-12">
@@ -119,7 +103,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- about area end -->
 
     <!-- course section start -->
@@ -180,10 +164,10 @@
                             <div class="btn-area">
                                 <div class="row">
                                     <div class="col-6 align-self-center">
-                                        <span class="price">$ {{$exam->price}}</span>
+                                        <span class="price">BDT {{$exam->price}}</span>
                                     </div>
                                     <div class="col-6 align-self-center text-right">
-                                        <a class="btn btn-border-base b-animate-3" href="{{ route('question',$exam)}}">Questions</a>
+                                        <a class="btn btn-border-base b-animate-3" href="{{ route('question',$exam)}}">Start Exam</a>
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +371,7 @@
                 <div class="col-xl-6 col-lg-7 col-md-11">
                     <div class="section-title text-center">
                         <h5 class="sub-title">Why Choose Us</h5>
-                        <h2 class="title">Why study with us?</h2>
+                       
                     </div>
                 </div>
             </div>

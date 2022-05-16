@@ -9,6 +9,9 @@ class Question extends Model
 {
     use HasFactory;
 
+    public function exams(){
+        return $this->belongsToMany(Exam::class);
+    }
     public function choices()
     {
         return $this->hasMany(Choice::class,'question_id');

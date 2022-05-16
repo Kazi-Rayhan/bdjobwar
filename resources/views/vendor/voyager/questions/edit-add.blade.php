@@ -106,7 +106,9 @@ $add = is_null($dataTypeContent->getKey());
                                     @endif
                                 </div>
                             @endforeach
-
+                            @if(request()->exam)
+                            <input type="hidden" name="exam" value="{{request()->exam}}">
+                            @endif
                             <div class="col-md-12 col-sm-12">
                                 <hr>
                                 <div class="row">
@@ -366,5 +368,11 @@ $add = is_null($dataTypeContent->getKey());
 
     
 </script>
+@if(request()->exam)
+<script>
+   
+    $('#exams').hide();
+</script>
+@endif
 
 @stop

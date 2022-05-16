@@ -17,6 +17,7 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
+use App\Models\Exam;
 
 class QuestionsVoyagerController extends VoyagerBaseController
 {
@@ -456,11 +457,16 @@ class QuestionsVoyagerController extends VoyagerBaseController
             }
             $data->choices()->create($option);
         }
+        $exam = Exam::find($request->exam);
+        if($exam){
+            $data->exams()->attach($exam);
+            
+        }
         event(new BreadDataAdded($dataType, $data));
 
         if (!$request->has('_tagging')) {
-            if (auth()->user()->can('browse', $data)) {
-                $redirect = redirect()->route("voyager.{$dataType->slug}.index");
+            if (auth()->user()->can('create', $data)) {
+                $redirect = redirect()->route("voyager.{$dataType->slug}.create");
             } else {
                 $redirect = redirect()->back();
             }
