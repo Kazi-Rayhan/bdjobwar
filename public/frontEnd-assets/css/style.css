@@ -116,7 +116,7 @@ h4,
 h5,
 h6 {
   color: var(--heading-color);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 p {
@@ -3287,4 +3287,8 @@ ul {
 .footer-bottom p {
   margin-bottom: 0;
   color: #fff;
+}
+.queston{
+  font-size: 15px;
+  margin: 0;
 }

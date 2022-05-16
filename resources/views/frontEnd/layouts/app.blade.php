@@ -78,42 +78,26 @@
                     <ul class="navbar-nav text-right menu-open">
                         <li class="menu-item-has-children current-menu-item">
                             <a href="#">Home</a>
-                            <ul class="sub-menu">
-                                <li><a href="home-1.html">Home 01</a></li>
-                                <li><a href="home-2.html">Home 02</a></li>
-                            </ul>
+              
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="#">Course</a>
-                            <ul class="sub-menu">
-                                <li><a href="course.html">Course</a></li>
-                                <li><a href="course-single.html">Course Single</a></li>
-                            </ul>
+                            <a href="#">Exam</a>
+                          
                         </li>
-                        <li class="menu-item-has-children">
+                        <!-- <li class="menu-item-has-children">
                             <a href="#">Instructors</a>
                             <ul class="sub-menu">
                                 <li><a href="team.html">Instructors</a></li>
                                 <li><a href="single-team.html">Instructors Single</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li class="menu-item-has-children">
-                            <a href="#">Pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="team.html">Instructors</a></li>
-                                <li><a href="single-team.html">Instructors Single</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                                <li><a href="signin.html">Sign In</a></li>
-                                <li><a href="signup.html">Sign Up</a></li>
-                            </ul>
+                            <a href="#">About</a>
+                
                         </li>
                         <li class="menu-item-has-children">
                             <a href="#">Blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="single-blog.html">Blog Details</a></li>
-                            </ul>
+                
                         </li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
@@ -168,7 +152,7 @@
                         <div class="widget widget_nav_menu">
                             <h4 class="widget-title">Uttara </h4>
                             <ul>
-                                <li><a href="course.html">Course</a></li>
+                                <li><a href="course.html">Exam</a></li>
                                 <li><a href="team.html">Instructors</a></li>
                                 <li><a href="signin.html">Sign In </a></li>
                                 <li><a href="signup.html">Sign Up</a></li>

@@ -128,8 +128,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title style-white text-md-right text-center">
-                        <h5 class="sub-title">New Courses</h5>
-                        <h2 class="title">Featured Courses</h2>
+                        <h5 class="sub-title">New Exams</h5>
+                        <h2 class="title">Featured Exams</h2>
                     </div>
                 </div>
             </div>
@@ -422,7 +422,7 @@
                             <img src="{{asset('frontEnd-assets/img/icon/3.png')}}" alt="img">
                         </div>
                         <div class="details">
-                            <h5>Course Facilities</h5>
+                            <h5>Online Exam Facilities</h5>
                             <p>we believe everyone should have the to create</p>
                             <a class="read-more-text" href="course-single.html">Read More <i class="la la-arrow-right"></i></a>
                         </div>
