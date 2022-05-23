@@ -24,3 +24,7 @@ Route::get('question/{exam}', [PageController::class, 'question'])->name('questi
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+Route::get('/test', function () {
+    return view('frontEnd.test');
+});
+
