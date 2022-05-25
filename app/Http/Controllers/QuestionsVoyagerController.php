@@ -397,6 +397,11 @@ class QuestionsVoyagerController extends VoyagerBaseController
 
     public function create(Request $request)
     {
+        $exam = new Exam;
+        if($request->has('exam')){
+            $exam = Exam::whereId($request->exam)->first();
+        }
+  
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -427,7 +432,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','exam'));
     }
 
     /**
@@ -439,6 +444,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
      */
     public function store(Request $request)
     {
+  
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -452,8 +458,8 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $model->answer = $request->answer;
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, $model );
         foreach($request->options as $option){
-            if($option['type'] == 'image'){
-                $option['choice'] =  $option['choice']->store('choices');
+            if($option['type'] == 'image' || $option['type'] == 'both'){
+                $option['choice_image'] =  $option['choice_image']->store('choices');
             }
             $data->choices()->create($option);
         }
@@ -1009,15 +1015,14 @@ class QuestionsVoyagerController extends VoyagerBaseController
 
     public function validateBread($data, $rows, $name = null, $id = null)
     {
-
+   
         $rules = [];
         $messages = [];
         $customAttributes = [];
         $is_update = $name && $id;
 
         $rules['answer'] = 'required';
-        $rules['options.*.choice'] = 'required';
-        $messages['options.*.choice.required'] = 'Choice is missing';
+     
 
         $fieldsWithValidationRules = $this->getFieldsWithValidationRules($rows);
 

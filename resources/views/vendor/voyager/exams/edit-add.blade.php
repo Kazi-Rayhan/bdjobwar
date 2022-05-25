@@ -23,6 +23,7 @@ $dataType->getTranslatedAttribute('display_name_singular'))
 
 @section('content')
 <div class="page-content edit-add container-fluid">
+
     <div class="row">
         <div class="col-md-12">
 

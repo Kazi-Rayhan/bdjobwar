@@ -22,7 +22,17 @@ $add = is_null($dataTypeContent->getKey());
 
 @section('content')
     <div class="page-content edit-add container-fluid">
+    @if(!$edit)
         <div class="row">
+            @foreach ($exam->questions as $question)
+                <div class="col-md-12">
+                    <x-questionAdmin :question="$question" :index="$loop->iteration" />
+                </div>
+            @endforeach
+        </div>
+        @endif
+        <div class="row">
+
             <div class="col-md-12">
 
                 <div class="panel panel-bordered">
@@ -74,9 +84,7 @@ $add = is_null($dataTypeContent->getKey());
                                     {{ $row->slugify }}
                                     <label class="control-label"
                                         for="name">{{ $row->getTranslatedAttribute('display_name') }}</label>
-                                    @include(
-                                        'voyager::multilingual.input-hidden-bread-edit-add'
-                                    )
+                                    @include('voyager::multilingual.input-hidden-bread-edit-add')
                                     @if (isset($row->details->view))
                                         @include($row->details->view, [
                                             'row' => $row,
@@ -88,10 +96,7 @@ $add = is_null($dataTypeContent->getKey());
                                             'options' => $row->details,
                                         ])
                                     @elseif ($row->type == 'relationship')
-                                        @include(
-                                            'voyager::formfields.relationship',
-                                            ['options' => $row->details]
-                                        )
+                                        @include('voyager::formfields.relationship', ['options' => $row->details])
                                     @else
                                         {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
                                     @endif
@@ -106,8 +111,8 @@ $add = is_null($dataTypeContent->getKey());
                                     @endif
                                 </div>
                             @endforeach
-                            @if(request()->exam)
-                            <input type="hidden" name="exam" value="{{request()->exam}}">
+                            @if (request()->exam)
+                                <input type="hidden" name="exam" value="{{ request()->exam }}">
                             @endif
                             <div class="col-md-12 col-sm-12">
                                 <hr>
@@ -123,44 +128,106 @@ $add = is_null($dataTypeContent->getKey());
                                                 class="btn btn-primary btn-sm">+ Add text option</button>
                                             <button type="button" onClick="addOption('image')" class="btn btn-info btn-sm">+
                                                 Add image option</button>
+
+                                            <button type="button" onClick="addOption('both')" class="btn btn-info btn-sm">+
+                                                Add both option</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="options">
-                                    @if($dataTypeContent->choices->count())
-                                        @foreach ($dataTypeContent->choices as $choice )
-                                            @if($choice->type = 'text')
+                                    @if ($dataTypeContent->choices->count())
+                                        @foreach ($dataTypeContent->choices as $choice)
+                                            @if ($choice->type == 'text')
                                                 <div class="row">
-            <div class="col-lg-12">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="answer" value="{{$choice->index}}" @if($choice->index == $dataTypeContent->answer) checked="true" @endif aria-label="...">
-                    </span>
-                    <input type="text" name="options[{{$choice->index}}][choice]" class="form-control" value="{{$choice->choice}}">
-                    <input type="hidden" name="options[{{$choice->index}}][type]" class="form-control" value="text">
-                    <input type="hidden" name="options[{{$choice->index}}][index]" class="form-control" value="{{$choice->index}}">
-                    <span class="input-group-addon">
-                        <button type="button" onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i class="voyager-trash"></i></button>
-                    </span>
-                </div>
-            </div>
-        </div>
-                                            @else
-                                            <div class="row">
-            <div class="col-lg-12">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="answer" value="{{$choice->index}}" @if($choice->index == $dataTypeContent->answer) checked="true" @endif aria-label="...">
-                    </span>
-                    <input type="file" name="options[{{$choice->index}}][choice]" class="form-control" aria-label="...">
-                    <input type="hidden" name="options[{{$choice->index}}][type]" class="form-control" value="text">
-                    <input type="hidden" name="options[{{$choice->index}}][index]" class="form-control" value="{{$choice->index}}">
-                    <span class="input-group-addon">
-                        <button type="button" onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i class="voyager-trash"></i></button>
-                    </span>
-                </div>
-            </div>
-        </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <input type="radio" name="answer"
+                                                                    value="{{ $choice->index }}"
+                                                                    @if ($choice->index == $dataTypeContent->answer) checked="true" @endif
+                                                                    aria-label="...">
+                                                            </span>
+                                                            <input type="text"
+                                                                name="options[{{ $choice->index }}][choice_text]"
+                                                                class="form-control"
+                                                                value="{{ $choice->choice_text }}">
+                                                            <input type="hidden"
+                                                                name="options[{{ $choice->index }}][type]"
+                                                                class="form-control" value="text">
+                                                            <input type="hidden"
+                                                                name="options[{{ $choice->index }}][index]"
+                                                                class="form-control" value="{{ $choice->index }}">
+                                                            <span class="input-group-addon">
+                                                                <button type="button"
+                                                                    onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i
+                                                                        class="voyager-trash"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @elseif ($choice->type == 'image')
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <input type="radio" name="answer"
+                                                                    value="{{ $choice->index }}"
+                                                                    @if ($choice->index == $dataTypeContent->answer) checked="true" @endif
+                                                                    aria-label="...">
+                                                            </span>
+                                                            <input type="file"
+                                                                name="options[{{ $choice->index }}][choice_image]"
+                                                                class="form-control" aria-label="...">
+                                                            <input type="hidden"
+                                                                name="options[{{ $choice->index }}][type]"
+                                                                class="form-control" value="text">
+                                                            <input type="hidden"
+                                                                name="options[{{ $choice->index }}][index]"
+                                                                class="form-control" value="{{ $choice->index }}">
+                                                            <span class="input-group-addon">
+                                                                <button type="button"
+                                                                    onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i
+                                                                        class="voyager-trash"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <img src="{{ voyager::image($choice->choice_image) }}" alt="">
+                                                    </div>
+                                                </div>
+                                            @elseif ($choice->type == 'both')
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <input type="radio" name="answer" value="` + index + `"
+                                                                    aria-label="..."     @if ($choice->index == $dataTypeContent->answer) checked="true" @endif>
+                                                            </span>
+                                                            <input type="text"
+                                                                name="options[{{ $choice->index }}][choice_text]"
+                                                                class="form-control" aria-label="..."
+                                                                value="{{ $choice->choice_text }}">
+                                                            <input type="hidden"
+                                                                name="options[{{ $choice->index }}][type]"
+                                                                class="form-control" value="both">
+                                                            <input type="hidden"
+                                                                name="options[{{ $choice->index }}[index]"
+                                                                class="form-control" value="{{ $choice->index }}">
+                                                            <span class="input-group-addon">
+                                                                <button type="button"
+                                                                    onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i
+                                                                        class="voyager-trash"></i></button>
+                                                            </span>
+                                                        </div>
+                                                        <br>
+                                                        <p>Upload Image here </p>
+                                                        <input type="file"
+                                                            name="options[{{ $choice->index }}][choice_image]"
+                                                            class="form-control" aria-label="...">
+                                                        <a href="{{ Storage::url($choice->choice_image) }}"
+                                                            target="_blank">View Image</a>
+                                                    </div>
+                                                </div>
                                             @endif
                                         @endforeach
                                     @endif
@@ -191,6 +258,7 @@ $add = is_null($dataTypeContent->getKey());
                 </form>
 
             </div>
+
         </div>
     </div>
 </div>
@@ -302,18 +370,37 @@ $add = is_null($dataTypeContent->getKey());
     });
 </script>
 <script>
-    
-    
-    
+    const toggleDescription = has_description => {
+        if (has_description.checked) {
+            $('#qImage').show(500)
+            $('#qDesc').show(500)
+        } else {
+            $('#qImage').hide(500)
+            $('#qDesc').hide(500)
+        }
+    }
+
+    $('document').ready(() => {
+        toggleDescription($('input[name=has_description]')[0]);
+    });
 
 
+    $('input[name=has_description]').change((event) => {
+        toggleDescription(event.target);
+    })
+</script>
+<script>
     function addOption(type) {
         switch (type) {
             case 'text':
                 textField();
                 break;
             case 'image':
-                imageField()
+                imageField();
+                break;
+
+            case 'both':
+                bothField();
                 break;
 
             default:
@@ -321,20 +408,21 @@ $add = is_null($dataTypeContent->getKey());
                 break;
         }
     }
-    let index = {{rand(100,500)}};
+    let index = {{ rand(100, 500) }};
+
     function textField() {
-       index++;
-            const div = document.createElement('div');
-            div.innerHTML = `
+        index++;
+        const div = document.createElement('div');
+        div.innerHTML = `
         <div class="row">
             <div class="col-lg-12">
                 <div class="input-group">
                     <span class="input-group-addon">
-                        <input type="radio" name="answer" value="`+index+`" aria-label="...">
+                        <input type="radio" name="answer" value="` + index + `" aria-label="...">
                     </span>
-                    <input type="text" name="options[`+index+`][choice]" class="form-control" aria-label="...">
-                    <input type="hidden" name="options[`+index+`][type]" class="form-control" value="text">
-                    <input type="hidden" name="options[`+index+`][index]" class="form-control" value="`+index+`">
+                    <input type="text" name="options[` + index + `][choice_text]" class="form-control" aria-label="...">
+                    <input type="hidden" name="options[` + index + `][type]" class="form-control" value="text">
+                    <input type="hidden" name="options[` + index + `][index]" class="form-control" value="` + index + `">
                     <span class="input-group-addon">
                         <button type="button" onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i class="voyager-trash"></i></button>
                     </span>
@@ -342,37 +430,59 @@ $add = is_null($dataTypeContent->getKey());
             </div>
         </div>
     `
-            document.getElementById('options').append(div)
+        document.getElementById('options').append(div)
     }
 
     function imageField() {
         index++;
         const div = document.createElement('div');
-            div.innerHTML = `<div class="row">
+        div.innerHTML = `<div class="row">
             <div class="col-lg-12">
                 <div class="input-group">
                     <span class="input-group-addon">
-                        <input type="radio" name="answer" value="`+index+`" aria-label="...">
+                        <input type="radio" name="answer" value="` + index + `" aria-label="...">
                     </span>
-                    <input type="file" name="options[`+index+`][choice]" class="form-control" aria-label="...">
-                    <input type="hidden" name="options[`+index+`][type]" class="form-control" value="image">
-                    <input type="hidden" name="options[`+index+`][index]" class="form-control" value="`+index+`">
+                    <input type="file" name="options[` + index + `][choice_image]" class="form-control" aria-label="...">
+                    <input type="hidden" name="options[` + index + `][type]" class="form-control" value="image">
+                    <input type="hidden" name="options[` + index + `][index]" class="form-control" value="` + index + `">
                     <span class="input-group-addon">
                         <button type="button" onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i class="voyager-trash"></i></button>
                     </span>
                 </div>
             </div>
         </div>`;
-            document.getElementById('options').append(div)
+        document.getElementById('options').append(div)
     }
 
-    
+
+    function bothField() {
+        index++;
+        const div = document.createElement('div');
+        div.innerHTML = `<div class="row">
+            <div class="col-lg-12">
+                    <div class="input-group">
+                    <span class="input-group-addon">
+                        <input type="radio" name="answer" value="` + index + `" aria-label="...">
+                    </span>
+                    <input type="text" name="options[` + index + `][choice_text]" class="form-control" aria-label="...">
+                    <input type="hidden" name="options[` + index + `][type]" class="form-control" value="both">
+                    <input type="hidden" name="options[` + index + `][index]" class="form-control" value="` + index + `">
+                    <span class="input-group-addon">
+                        <button type="button" onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i class="voyager-trash"></i></button>
+                    </span>
+                </div>
+                <br>
+                <p>Upload Image here</p>
+                 <input type="file" name="options[` + index + `][choice_image]" class="form-control" aria-label="...">
+            </div>
+        </div>`;
+        document.getElementById('options').append(div)
+    }
 </script>
-@if(request()->exam)
-<script>
-   
-    $('#exams').hide();
-</script>
+@if (request()->exam)
+    <script>
+        $('#exams').hide();
+    </script>
 @endif
 
 @stop
