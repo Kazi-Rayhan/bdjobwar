@@ -3,7 +3,7 @@
   color: #015b25 !important;
 }
 .bg-success{
-  background-color: #019b0e !important;
+  background-color: #015b25 !important;
 }
 .text-danger{
   color: #ff0000 !important;
@@ -147,6 +147,13 @@
 .slider a img{
   height: 100%;
   width: 100%;
+}
+@media screen and (max-width: 768px) {
+ 
+    .slider{
+      height: 30vh;
+    }
+  
 }
 /* slider section end */
 /* Live section start */
@@ -322,3 +329,17 @@
 }
 
 /* footer end */
+/* bradcam area start */
+.bradcam{
+  background-color: #0b2e13;
+}
+.bradcam-active-btn{
+  color: #777;
+}
+.bradcam-active-btn:hover{
+  color: #777;
+}
+/* bradcam area end */
+.custom-reg-btn{
+  font-size: 13px;
+}

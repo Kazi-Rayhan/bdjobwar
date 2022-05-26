@@ -1,223 +1,193 @@
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<!DOCTYPE html>
-<html lang="zxx">
-
-<!-- Mirrored from maantheme.com/uttara-university/home-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 May 2022 19:02:36 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BD Job War</title>
-    <link rel=icon href="{{asset('frontEnd-assets/img/favicon.png')}}" sizes="20x20" type="image/png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="{{asset('frontEnd-assets/css/vendor.css')}}">
-    <link rel="stylesheet" href="{{asset('frontEnd-assets/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('frontEnd-assets/css/responsive.css')}}">
-
+    <script src="https://kit.fontawesome.com/10ec6aaa98.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="{{asset('frontEnd-assets/css/style.css')}}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
-
-    <!-- preloader area start -->
-    <!-- <div class="preloader" id="preloader">
-        <div class="preloader-inner">
-            <div class="spinner">
-                <div class="dot1"></div>
-                <div class="dot2"></div>
-            </div>
+   
+<!-- top nav -->
+<nav class="top-nav" style="background-image: url({{asset('frontEnd-assets/img/Top.png')}})">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-between">
+        <div class="d-flex flex-wrap company-info">
+            <p>রবিবার, ২২ মে ২০২২</p>
+            <p><i class="fas fa-envelope"></i> info@quizcarnival.com</p>
+            <p><i class="fas fa-phone-alt"></i>  01748545139</p>
         </div>
-    </div> -->
-    <!-- preloader area end -->
-    <div class="body-overlay" id="body-overlay"></div>
-
-    <!-- navbar start -->
-    <div class="navbar-area">
-        <!-- navbar top start -->
-        <div class="navbar-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 align-self-center text-md-left text-center">
-                        <ul>
-                            <li><p><i class="fa fa-phone"></i> +11 0259 3654 2360</p></li>
-                            <li><p><i class="fa fa-envelope-o"></i>  info@website.com</p></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 d-none d-md-inline-block">
-                        <ul class="topbar-right social-media text-md-right text-center">
-                            <li>
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="d-flex flex-wrap top-btns">
+          <a class="terms-btn" href="">Terms of use</a>
+          <a class="cart-btn" href=""><i class="fas fa-shopping-cart"></i> CART</a>
         </div>
-        <nav class="navbar navbar-area-1 navbar-area navbar-expand-lg">
-            <div class="container nav-container">
-                <div class="responsive-mobile-menu">
-                    <button class="menu toggle-btn d-block d-lg-none" data-target="#edumint_main_menu" 
-                    aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="icon-left"></span>
-                        <span class="icon-right"></span>
-                    </button>
-                </div>
-                <div class="logo">
-                    <a href="index.html"><h3 style="font-family:sans">BD JOB WAR</h3></a>
-                </div>
-                <div class="collapse navbar-collapse" id="edumint_main_menu">
-                    <ul class="navbar-nav text-right menu-open">
-                        <li class="menu-item-has-children current-menu-item">
-                            <a href="#">Home</a>
-              
-                        </li>
-                        {{-- <li class="menu-item-has-children">
-                            <a href="#">Exam</a>
-                          
-                        </li> --}}
-                        <!-- <li class="menu-item-has-children">
-                            <a href="#">Instructors</a>
-                            <ul class="sub-menu">
-                                <li><a href="team.html">Instructors</a></li>
-                                <li><a href="single-team.html">Instructors Single</a></li>
-                            </ul>
-                        </li> -->
-                        {{-- <li class="menu-item-has-children">
-                            <a href="#">About</a>
-                
-                        </li>
-                        <li class="menu-item-has-children">
-                            <a href="#">Blog</a>
-                
-                        </li> --}}
-                        {{-- <li><a href="contact.html">Contact Us</a></li> --}}
-                    </ul>
-                </div>
-            </div>
-        </nav>
     </div>
-    @yield('content')
-
-        <!-- footer area start -->
-        <footer class="footer-area bg-overlay-rgba" style="background-image: url('{{asset('frontEnd-assets/img/other/1.png')}}');">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="widget widget_contact">
-                            <h4 class="widget-title">Contact Us</h4>
-                            <ul class="details">
-                                <li><i class="fa fa-map-marker"></i> 500 Treat Ave, Suite 200 San Francisco CA 94110</li>
-                                <li><i class="fa fa-envelope"></i> info.contact@gmail.com</li>
-                                <li><i class="fa fa-phone"></i> 012 345 678 9101</li>
-                            </ul>
-                            <ul class="social-media">
-                                <li>
-                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget-title">Categorys</h4>
-                            <ul>
-                                <li><a href="course.html">BCS</a></li>
-                                <li><a href="course.html">Job Exam </a></li>
-                                <li><a href="course.html">Teacher Registration</a></li>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget-title">BD JOB WAR </h4>
-                            <ul>
-                                <li><a href="course.html">Exam</a></li>
-                                <li><a href="team.html">Instructors</a></li>
-                                <li><a href="signin.html">Sign In </a></li>
-                                <li><a href="signup.html">Sign Up</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 pl-lg-5 pr-5 pr-lg-0">
-                        <div class="widget widget_instagram">
-                            <h4 class="widget-title">Gallery</h4>
-                            <div class="instagram-inner">
-                                <div class="row custom-gutters-10">
-                                    <div class="col-6">
-                                        <div class="thumb">
-                                            <a href="gallery.html"><img src="{{asset('frontEnd-assets/img/instagram/1.png')}}" alt="img"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="thumb">
-                                            <a href="gallery.html"><img src="{{asset('frontEnd-assets/img/instagram/2.png')}}" alt="img"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="thumb">
-                                            <a href="gallery.html"><img src="{{asset('frontEnd-assets/img/instagram/3.png')}}" alt="img"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="thumb">
-                                            <a href="gallery.html"><img src="{{asset('frontEnd-assets/img/instagram/4.png')}}" alt="img"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 align-self-center">
-                        <a href="index.html"><h3 class="text-light" style="font-family:sans">BD JOB WAR</h3></a>
-                    </div>
-                    <div class="col-md-8 text-md-right align-self-center mt-lg-0 mt-3">
-                        <!-- <p>© 2021 MaanTheme. All Rights Reserved.</p> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer area end -->
-
-    <!-- back to top area start -->
-    <div class="back-to-top">
-        <span class="back-top"><i class="fa fa-angle-up"></i></span>
+  </div>
+</nav>
+<!-- top nav end-->
+<!-- mid nav start -->
+<nav class="mid-nav py-4">
+  <div class="container d-flex justify-content-between flex-wrap">
+    <div class="brand">
+        <a class="navbar-brand" href="#">
+              <img src="{{asset('frontEnd-assets/img/logo.png')}}" alt="">
+        </a>
     </div>
-    <!-- back to top area end -->
+    <div class="d-flex flex-wrap">
+    <a class="g-play me-5 pe-5 pt-3" href=""><img src="{{asset('frontEnd-assets/img/PlayStore.png')}}" height="30" alt=""> DOWNLOAD APP</a>
+    <div class="">
+    <div class="input-group mb-3 pt-2">
+      <input type="text" class="top-search" placeholder="Search..." aria-label="" aria-describedby="button-addon2">
+      <button class="top-search-btn" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+    </div>
+    </div>
+    </div>
+  </div>
+</nav>
+
+<!-- mid nav end -->
+<!-- Main Nav start -->
+<nav class="navbar navbar-expand-lg navbar-light py-3 main-nav" style="background-image: url({{asset('frontEnd-assets/img/Menu.png')}})">
+  <div class="container">
+  
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link nav-active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Package</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Live section</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Courses</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Published books</a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="auth-item">
+          <a class="nav-link" aria-current="page" href="#">Sing In</a>
+        </li>
+        <li class="auth-item">
+          <a class="nav-link" href="{{route('register')}}">Sing Up</a>
+        </li>
 
 
-    <!-- all plugins here -->
-    <script src="{{asset('frontEnd-assets/js/vendor.js')}}"></script>
-    <!-- main js  -->
-    <script src="{{asset('frontEnd-assets/js/main.js')}}"></script>
+      </ul>
+   
+    </div>
+  </div>
+</nav>
+<!-- Main Nav end -->
+<main>
+@yield('content')
+</main>
+<!-- footer section start-->
+<footer>
+    <div class="">
+      <div class="row">
+          <div class="col-md-3 mt-3 footer-info">
+                <div class="brand">
+                  <a class="navbar-brand" href="#">
+                        <img src="{{asset('frontEnd-assets/img/logo.png')}}" alt="">
+                  </a>
+                  <p class="location">Barishal,  Bangladesh</p>
+                  <div class="contact">
+                  <p class=""><i class="fas fa-phone-alt text-danger"></i>+88 01*******</p>
+                  <p class=""><i class="far fa-envelope text-danger"></i>test@test.com</p>
+                  </div>
+                </div>
+                    
+            </div>
+            <div class="col-md-8 bg-footer ">
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="populer-course">
+                            <h5 class="mt-3">Populer Courses</h5>
+                            <a href="">
+                              <p>Daily quiz-01</p>
+                            </a>
+                            <a href="">
+                              <p>Daily quiz-02</p>
+                            </a>
+                            <a href="">
+                              <p>Daily quiz-03</p>
+                            </a>
+                    </div>
+                    <div class="populer-course">
+                            <h5 class="mt-3">Populer Package</h5>
+                            <a href="">
+                              <p>Monthly</p>
+                            </a>
+                            <a href="">
+                              <p>Three monts</p>
+                            </a>
+                            <a href="">
+                              <p>Six months</p>
+                            </a>
+                            <a href="">
+                              <p>Yearly</p>
+                            </a>
+                    </div>
+                    <div class="populer-course">
+                            <h5 class="mt-3">Job Guidline</h5>
+                            <a href="">
+                              <p>BCS</p>
+                            </a>
+                            <a href="">
+                              <p>Bank</p>
+                            </a>
+                            <a href="">
+                              <p>Focus Writing</p>
+                            </a>
+                            <a href="">
+                              <p>Yearly</p>
+                            </a>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="d-flex justify-content-around flex-wrap mid-nav">
+       <div class="social">
+        <p class="text-danger mt-2">Stay with us</p>
+          <p><a class="text-decoration-none  text-primary" href=""><i class="fab fa-facebook-f fs-3 me-2"></i></a> <a class="text-decoration-none text-danger" href=""><i class="fab fa-youtube fs-3"></i></a></p>
+        </div>
+   
+      <div class="payment-method">
+        <img class="" src="{{asset('frontEnd-assets/img/ssl.png')}}" alt="">
+      </div>
+      </div>
+      <div class="row">
+          <div class="col-md-3 mt-3 footer-info">
+            <p class="copy-write">Copyright © All Rights Reserved by 2022-2024 Quiz Carnival</p>
+                    
+            </div>
+            <div class="col-md-8 bg-footer dev-team">
+             <p class="text-white mt-2 text-center">Developed By <a class="text-decoration-none text-danger" href="">Wizerd</a></p>
+            </div>
+      </div>
+    </div>
+</footer>
+<!-- footer section end -->
+@yield('js')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-<!-- Mirrored from maantheme.com/uttara-university/home-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 May 2022 19:03:02 GMT -->
 </html>

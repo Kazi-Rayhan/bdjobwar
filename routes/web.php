@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [PageController::class, 'home'])->name('home');
+// Route::get('/register', [PageController::class, 'register'])->name('register');
 Route::get('question/{exam}', [PageController::class, 'question'])->name('question');
 
 Route::group(['prefix' => 'admin'], function () {
@@ -28,3 +29,7 @@ Route::get('/test', function () {
     return view('frontEnd.test');
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
