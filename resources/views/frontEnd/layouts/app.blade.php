@@ -66,7 +66,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link nav-active" aria-current="page" href="#">Home</a>
+          <a class="nav-link nav-active" aria-current="page" href="{{route('home_page')}}">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Package</a>
@@ -84,7 +84,7 @@
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="auth-item">
-          <a class="nav-link" aria-current="page" href="#">Sing In</a>
+          <a class="nav-link" aria-current="page" href="{{route('login')}}">Sing In</a>
         </li>
         <li class="auth-item">
           <a class="nav-link" href="{{route('register')}}">Sing Up</a>

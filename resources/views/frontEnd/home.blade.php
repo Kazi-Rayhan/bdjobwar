@@ -18,13 +18,20 @@
                 <h6 class="mt-5 fw-bold live-exam-heading mb-4">
                 <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">Live testing in progress</span>
                 </h6>
+                @foreach($liveExams as $exam)
                 <div class="live-exam mb-5">
-                    <h6 class="live-exam-name"><a href="">Special tests</a></h6>
-                    <p class="live-exam-category"><a href="">Model test-2</a></p>
-                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span>| To <span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM</span></p>
-                    <a class="test-btn" href="">Give the test</a>
+                    <h6 class="live-exam-name"><a href="">{{$exam->title}}</a></h6>
+                     <div class="d-flex flex-wrap col-4">
+                       @foreach($exam->categories as $category)
+                     <p class="live-exam-category me-2"><a href="">{{$category->name}}</a></p>
+                     @endforeach
+
+                     </div>
+                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M ,Y ') }} </span>| To <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M ,Y') }}</span></p>
+                    <a class="test-btn" href="{{route('question',$exam)}}">Give the test</a>
                 </div>
-                <div class="live-exam mb-5">
+                @endforeach
+                <!-- <div class="live-exam mb-5">
                     <h6 class="live-exam-name"><a href="">44th BCS Prelim Final Model Test</a></h6>
                     <p class="live-exam-category"><a href="">Model test-2</a></p>
                     <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span>| To <span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM</span></p>
@@ -35,20 +42,26 @@
                     <p class="live-exam-category"><a href="">Model test-2</a></p>
                     <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span>| To <span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM</span></p>
                     <a class="test-btn" href="">Give the test</a>
-                </div>
+                </div> -->
             </div>
             <div class="col-md-4 ms-md-5 ps-md-5">
                 <h6 class="mt-5 fw-bold live-exam-heading mb-4">
                 <i class="fas fa-file-invoice fs-3 text-muted"></i> <span class="text-success">Upcoming tests</span>
                 </h6>
+                @foreach($upcommingTests as $upcommingTest)
                 <div class="card mb-3 col-12" style="">
                   <div class="card-body">
-                    <h6 class="up-exam-title"><a href="">44th BCS Prelim Final Model Test</a></h6>
-                    <h6 class="up-exam-subtitle mb-2 text-muted my-3"><a class="" href="">Model test-2</a></h6>
-                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span>| To <span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM</span></p>
+                    <h6 class="up-exam-title"><a href="">{{$upcommingTest->title}}</a></h6>
+                   <div class="d-flex flex-wrap ">
+                     @foreach($upcommingTest->categories as $category)
+                   <h6 class="up-exam-subtitle mb-2 text-muted my-3 pe-2"><a class="" href="">{{$category->name}}</a></h6>
+                    @endforeach
+                   </div>
+                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($upcommingTest->from)->format('d M ,Y ') }} </span>| To <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($upcommingTest->to)->format('d M ,Y') }}</span></p>
                   </div>
                 </div>
-                <div class="card mb-3 col-12" >
+                @endforeach
+                <!-- <div class="card mb-3 col-12" >
                   <div class="card-body">
                     <h6 class="up-exam-title"><a href="">44th BCS Prelim Final Model Test</a></h6>
                     <h6 class="up-exam-subtitle mb-2 text-muted my-3"><a class="" href="">Model test-2</a></h6>
@@ -61,7 +74,7 @@
                     <h6 class="up-exam-subtitle mb-2 text-muted my-3"><a class="" href="">Model test-2</a></h6>
                     <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span>| To <span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM</span></p>
                   </div>
-                </div>
+                </div> -->
    
             </div>
           </div>

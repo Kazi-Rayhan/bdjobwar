@@ -2,7 +2,17 @@
 
 @section('content')
 <!-- bratcam area  start-->
-@include('frontEnd.layouts.bradcam')
+<section class="bradcam">
+<div class="container">
+<h3 class="text-white pt-5 pb-3">Log In</h3>
+    <p class="pb-5 text-white">
+        <a href="{{route('home_page')}}" class="text-decoration-none bradcam-active-btn pe-2">Home</a>
+         / 
+         <a href="" class="text-decoration-none text-white ps-2">Log In</a>
+    </p>
+</div>
+
+</section>
 <!-- bratcam area  end-->
 <div class="container my-5 py-5">
     <div class="row justify-content-center">
