@@ -8,8 +8,10 @@ use App\Models\Exam;
 use App\Models\Package;
 use App\Models\Question;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -70,6 +72,22 @@ class DatabaseSeeder extends Seeder
         ]);
    
         \App\Models\User::factory(100)->hasInformation(1)->create();
+        User::create([
+            'name'=>'Kazi Rayhan Reza',
+            'role_id'=>1,
+            'email'=>'rayhan@admin.com',
+            'phone'=>'01795560431',
+            'password'=>Hash::make('password'),
+            'active'=>true
+        ]);
+        User::create([
+            'name'=>'Ahmed Tamim',
+            'role_id'=>1,
+            'email'=>'tamim@admin.com',
+            'phone'=>'01305065919',
+            'password'=>Hash::make('password'),
+            'active'=>true
+        ]);
         Exam::factory(20)->hasCategories(5)->hasSubjects(5)->has(Question::factory(100)->hasChoices(4))->create();
         Question::all()->map(function($question){
             $index = 1;
