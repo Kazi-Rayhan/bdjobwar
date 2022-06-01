@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\DashboardController;
 use App\Models\UserMeta;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'home'])->name('home_page');
 Route::get('/register', [PageController::class, 'register'])->name('register');
 Route::get('question/{exam}', [PageController::class, 'question'])->name('question');
+Route::get('/index', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
