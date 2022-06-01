@@ -46,6 +46,8 @@ class User extends \TCG\Voyager\Models\User
     public function information(){
         return $this->hasOne(UserMeta::class,'user_id');
     }
+
+   
     public function scopeCustomer($query)
     {
         $ids = UserMeta::select('user_id')->get()->pluck('user_id')->toArray();

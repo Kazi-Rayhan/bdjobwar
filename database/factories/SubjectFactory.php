@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-class QuestionFactory extends Factory
+use Illuminate\Support\Str;
+class SubjectFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,10 +14,8 @@ class QuestionFactory extends Factory
     public function definition()
     {
         return [
-            'level'=>['easy','normal','hard'][rand(0,2)],
-            'title'=>$this->faker->sentence(),
-            'answer'=>rand(1,4),
-            'has_description'=>false
+            'name'=> $this->faker->word(),
+            'slug'=>$this->faker->unique()->slug(),
         ];
     }
 }

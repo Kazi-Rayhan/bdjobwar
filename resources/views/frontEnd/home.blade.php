@@ -3,7 +3,7 @@
 <!-- Slider section start -->
 <section class="slider">
   <a href="">
-    <img src="{{asset('frontEnd-assets/img/slider.png')}}" alt="">
+    <img src="{{asset('frontEnd-assets/img/slider.png')}}" alt="" width="100%" style="object-fit:cover">
   </a>
 </section>
 <!-- Slider section end -->

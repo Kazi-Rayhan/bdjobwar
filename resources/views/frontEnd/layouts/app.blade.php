@@ -40,7 +40,7 @@
   <div class="container d-flex justify-content-between flex-wrap">
     <div class="brand">
         <a class="navbar-brand" href="#">
-              <img src="{{asset('frontEnd-assets/img/logo.png')}}" alt="">
+              <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="60" width="60" style="object-fit:contain" alt="">
         </a>
     </div>
     <div class="d-flex flex-wrap">
@@ -107,7 +107,7 @@
           <div class="col-md-3 mt-3 footer-info">
                 <div class="brand">
                   <a class="navbar-brand" href="#">
-                        <img src="{{asset('frontEnd-assets/img/logo.png')}}" alt="">
+                        <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="60" width="60" style="object-fit:contain" alt="">
                   </a>
                   <p class="location">Barishal,  Bangladesh</p>
                   <div class="contact">

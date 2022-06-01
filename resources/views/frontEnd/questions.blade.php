@@ -79,7 +79,7 @@
                                                                     id="choice{{ $question->id }}{{ $loop->iteration }}">
                                                                    <label class="form-check-label ms-3"
                                                                     for="choice{{ $question->id }}{{ $loop->iteration }}">
-                                                                    {{ $choice->choice }}
+                                                                    {{ $choice->choice_text }}
                                                                 </label>
                                                             </div>
                                                         @endforeach

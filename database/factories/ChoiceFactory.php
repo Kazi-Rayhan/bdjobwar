@@ -14,7 +14,8 @@ class ChoiceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'index'=>rand(1,4),
+            'choice_text'=>$this->faker->sentence(),
         ];
     }
 }

@@ -22,15 +22,7 @@ $add = is_null($dataTypeContent->getKey());
 
 @section('content')
     <div class="page-content edit-add container-fluid">
-    @if(!$edit)
-        <div class="row">
-            @foreach ($exam->questions as $question)
-                <div class="col-md-12">
-                    <x-questionAdmin :question="$question" :index="$loop->iteration" />
-                </div>
-            @endforeach
-        </div>
-        @endif
+
         <div class="row">
 
             <div class="col-md-12">
@@ -114,132 +106,104 @@ $add = is_null($dataTypeContent->getKey());
                             @if (request()->exam)
                                 <input type="hidden" name="exam" value="{{ request()->exam }}">
                             @endif
-                            <div class="col-md-12 col-sm-12">
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-8 col-sm-8">
-                                        <h3>
-                                            Add Options
-                                        </h3>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <div>
-                                            <button type="button" onClick="addOption('text')"
-                                                class="btn btn-primary btn-sm">+ Add text option</button>
-                                            <button type="button" onClick="addOption('image')" class="btn btn-info btn-sm">+
-                                                Add image option</button>
 
-                                            <button type="button" onClick="addOption('both')" class="btn btn-info btn-sm">+
-                                                Add both option</button>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    @if ($edit)
+                                    @foreach( $dataTypeContent->choices as $choice)
+                                    <div class="accordion" id="accordionChoice{{$choice->index}}">
+                                        <div class="card">
+                                            <div class="card-header" id="heading0{{$choice->index}}">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="choice{{$choice->index}}">Choice</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">{{$choice->label}}</div>
+                                                         <input type="hidden" name="options[{{$choice->index}}][index]" class="form-control" value="{{$choice->index}}">
+                                                       
+                                                        <input type="hidden" class="form-control" id="choice{{$choice->index}}Id"  placeholder="Enter choice {{$choice->label}}" name="options[{{$choice->index}}][id]" value="{{$choice->id}}">
+                                                        <input type="text" class="form-control" id="choice{{$choice->index}}"  placeholder="Enter choice {{$choice->label}}" name="options[{{$choice->index}}][choice_text]" value="{{$choice->choice_text}}">
+                                                        <div class="input-group-addon"><input name="answer" @if($dataTypeContent->answer == $choice->index) checked='true' @endif value="{{$choice->index}}" type="radio">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                    data-target="#collapse0{{$choice->index}}" aria-expanded="true"
+                                                    aria-controls="collapse0{{$choice->index}}">
+                                                    Add Image with option {{$choice->label}} (if necessary) 
+                                                </button>
+
+
+                                            </div>
+
+                                            <div id="collapse0{{$choice->index}}" class="collapse " aria-labelledby="heading0{{$choice->index}}"
+                                                data-parent="#accordionChoice{{$choice->index}}">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label 
+                                                            for="choiceImage{{$choice->index}}">Image {{$choice->label}}</label>
+
+                                                        <input type="file" class="form-control" id="choiceImage{{$choice->index}}" name="options[{{$choice->index}}][choice_image]"
+                                                            placeholder="Enter choice">
+                                                        @if($choice->choice_image)
+                                                        <img src="{{Voyager::image($choice->choice_image)}}" height="80" style="object-fit:cover" alt="">
+                                                        @endif
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="options">
-                                    @if ($dataTypeContent->choices->count())
-                                        @foreach ($dataTypeContent->choices as $choice)
-                                            @if ($choice->type == 'text')
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <input type="radio" name="answer"
-                                                                    value="{{ $choice->index }}"
-                                                                    @if ($choice->index == $dataTypeContent->answer) checked="true" @endif
-                                                                    aria-label="...">
-                                                            </span>
-                                                            <input type="text"
-                                                                name="options[{{ $choice->index }}][choice_text]"
-                                                                class="form-control"
-                                                                value="{{ $choice->choice_text }}">
-                                                            <input type="hidden"
-                                                                name="options[{{ $choice->index }}][type]"
-                                                                class="form-control" value="text">
-                                                            <input type="hidden"
-                                                                name="options[{{ $choice->index }}][index]"
-                                                                class="form-control" value="{{ $choice->index }}">
-                                                            <span class="input-group-addon">
-                                                                <button type="button"
-                                                                    onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i
-                                                                        class="voyager-trash"></i></button>
-                                                            </span>
+                                    @endforeach
+                                    @else
+                                    @foreach([1=>'A',2=>'B',3=>'C',4=>'D'] as $key=>$value)
+                                    <div class="accordion" id="accordionChoice{{$key}}">
+                                        <div class="card">
+                                            <div class="card-header" id="heading0{{$key}}">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="choice{{$key}}">Choice</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">{{$value}}</div>
+                                                         <input type="hidden" name="options[{{$key}}][index]" class="form-control" value="{{$key}}">
+                                                        <input type="text" class="form-control" id="choice{{$key}}"
+                                                            placeholder="Enter choice {{$value}}" name="options[{{$key}}][choice_text]">
+                                                        <div class="input-group-addon"><input name="answer" value="{{$key}}" type="radio">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @elseif ($choice->type == 'image')
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <input type="radio" name="answer"
-                                                                    value="{{ $choice->index }}"
-                                                                    @if ($choice->index == $dataTypeContent->answer) checked="true" @endif
-                                                                    aria-label="...">
-                                                            </span>
-                                                            <input type="file"
-                                                                name="options[{{ $choice->index }}][choice_image]"
-                                                                class="form-control" aria-label="...">
-                                                            <input type="hidden"
-                                                                name="options[{{ $choice->index }}][type]"
-                                                                class="form-control" value="text">
-                                                            <input type="hidden"
-                                                                name="options[{{ $choice->index }}][index]"
-                                                                class="form-control" value="{{ $choice->index }}">
-                                                            <span class="input-group-addon">
-                                                                <button type="button"
-                                                                    onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i
-                                                                        class="voyager-trash"></i></button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <img src="{{ voyager::image($choice->choice_image) }}" alt="">
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                    data-target="#collapse0{{$key}}" aria-expanded="true"
+                                                    aria-controls="collapse0{{$key}}">
+                                                    Add Image with option {{$value}} (if necessary) 
+                                                </button>
+
+
+                                            </div>
+
+                                            <div id="collapse0{{$key}}" class="collapse " aria-labelledby="heading0{{$key}}"
+                                                data-parent="#accordionChoice{{$key}}">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label 
+                                                            for="choiceImage{{$key}}">Image {{$value}}</label>
+
+                                                        <input type="file" class="form-control" id="choiceImage{{$key}}" name="options[{{$key}}][choice_image]"
+                                                            placeholder="Enter choice">
+
                                                     </div>
                                                 </div>
-                                            @elseif ($choice->type == 'both')
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <input type="radio" name="answer" value="` + index + `"
-                                                                    aria-label="..."     @if ($choice->index == $dataTypeContent->answer) checked="true" @endif>
-                                                            </span>
-                                                            <input type="text"
-                                                                name="options[{{ $choice->index }}][choice_text]"
-                                                                class="form-control" aria-label="..."
-                                                                value="{{ $choice->choice_text }}">
-                                                            <input type="hidden"
-                                                                name="options[{{ $choice->index }}][type]"
-                                                                class="form-control" value="both">
-                                                            <input type="hidden"
-                                                                name="options[{{ $choice->index }}[index]"
-                                                                class="form-control" value="{{ $choice->index }}">
-                                                            <span class="input-group-addon">
-                                                                <button type="button"
-                                                                    onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i
-                                                                        class="voyager-trash"></i></button>
-                                                            </span>
-                                                        </div>
-                                                        <br>
-                                                        <p>Upload Image here </p>
-                                                        <input type="file"
-                                                            name="options[{{ $choice->index }}][choice_image]"
-                                                            class="form-control" aria-label="...">
-                                                        <a href="{{ Storage::url($choice->choice_image) }}"
-                                                            target="_blank">View Image</a>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
                                     @endif
+
+
                                 </div>
-
-
-
-
-
                             </div>
 
                         </div><!-- panel-body -->
+
 
                         <div class="panel-footer">
                         @section('submit-buttons')
@@ -260,6 +224,15 @@ $add = is_null($dataTypeContent->getKey());
             </div>
 
         </div>
+        @if (!$edit)
+            <div class="row">
+                @foreach ($exam->questions as $question)
+                    <div class="col-md-12">
+                        <x-questionAdmin :question="$question" :index="$loop->iteration" />
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 </div>
 

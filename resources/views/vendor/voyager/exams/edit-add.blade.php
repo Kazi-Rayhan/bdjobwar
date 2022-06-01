@@ -275,7 +275,7 @@ $dataType->getTranslatedAttribute('display_name_singular'))
         $('#id input[type=text]').prop('readonly', true);
         const date = new Date()
         const id = 'EXM'+date.getFullYear() + '' + (Math.floor(Math
-            .random() * (99999 - 100000)) + 99999)
+            .random() * (99999 - 999999)) + 99999)
         $('#id input[type=text]').val(id);
       
     });

@@ -18,6 +18,7 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use App\Models\Exam;
+use Error;
 
 class QuestionsVoyagerController extends VoyagerBaseController
 {
@@ -283,6 +284,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
 
     public function edit(Request $request, $id)
     {
+        
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -325,6 +327,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         if (view()->exists("voyager::$slug.edit-add")) {
             $view = "voyager::$slug.edit-add";
         }
+        
 
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
     }
@@ -332,6 +335,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
     // POST BR(E)AD
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -340,6 +344,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $id = $id instanceof \Illuminate\Database\Eloquent\Model ? $id->{$id->getKeyName()} : $id;
 
         $model = app($dataType->model_name);
+        $model->answer = $request->answer;
         $query = $model->query();
         if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
             $query = $query->{$dataType->scope}();
@@ -363,7 +368,22 @@ class QuestionsVoyagerController extends VoyagerBaseController
             });
         $original_data = clone ($data);
 
-        $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+       $data = $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+
+       foreach($request->options as $option){
+            $choice = Choice::find($option->id);
+        if(array_key_exists('choice_image',$option)){
+            
+            $option['choice_image'] =  $option['choice_image']->store('choices');
+        }
+   
+        $data->choices()->create($option);
+    }
+    $exam = Exam::find($request->exam);
+    if($exam){
+        $data->exams()->attach($exam);
+        
+    }
 
         // Delete Images
         $this->deleteBreadImages($original_data, $to_remove);
@@ -375,7 +395,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         } else {
             $redirect = redirect()->back();
         }
-
+       
         return $redirect->with([
             'message'    => __('voyager::generic.successfully_updated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
@@ -445,6 +465,8 @@ class QuestionsVoyagerController extends VoyagerBaseController
     public function store(Request $request)
     {
   
+        try{
+        DB::beginTransaction();
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -458,9 +480,11 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $model->answer = $request->answer;
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, $model );
         foreach($request->options as $option){
-            if($option['type'] == 'image' || $option['type'] == 'both'){
+            
+            if(array_key_exists('choice_image',$option)){
                 $option['choice_image'] =  $option['choice_image']->store('choices');
             }
+       
             $data->choices()->create($option);
         }
         $exam = Exam::find($request->exam);
@@ -469,7 +493,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
             
         }
         event(new BreadDataAdded($dataType, $data));
-
+        DB::commit();
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('create', $data)) {
                 $redirect = redirect()->route("voyager.{$dataType->slug}.create");
@@ -484,6 +508,13 @@ class QuestionsVoyagerController extends VoyagerBaseController
         } else {
             return response()->json(['success' => true, 'data' => $data]);
         }
+    }catch(Exception $e){
+        DB::rollBack();
+        return redirect()->back()->withErrors($e->getMessage());
+    }catch(Error $e){
+        DB::rollBack();
+        return redirect()->back()->withErrors($e->getMessage());
+    }
     }
 
     //***************************************
@@ -1022,6 +1053,8 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $is_update = $name && $id;
 
         $rules['answer'] = 'required';
+        $rules['options.*.choice_text'] = 'required';
+        
      
 
         $fieldsWithValidationRules = $this->getFieldsWithValidationRules($rows);

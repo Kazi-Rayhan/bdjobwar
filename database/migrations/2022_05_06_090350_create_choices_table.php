@@ -18,7 +18,7 @@ class CreateChoicesTable extends Migration
             $table->foreignId('question_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->string('index')->unique('question_id');
+            $table->string('index');
             $table->string('choice');
             $table->enum('type', ['text', 'image']);
             $table->timestamps();
