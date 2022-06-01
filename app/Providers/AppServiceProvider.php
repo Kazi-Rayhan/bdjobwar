@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Actions\CreateQuestionAction;
 use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Facades\Voyager;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Voyager::addAction(CreateQuestionAction::class);
+        Paginator::useBootstrap();
     }
 }

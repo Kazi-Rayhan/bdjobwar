@@ -22,9 +22,9 @@
 <nav class="top-nav" style="background-image: url({{asset('frontEnd-assets/img/Top.png')}})">
   <div class="container">
     <div class="d-flex flex-wrap justify-content-between">
-        <div class="d-flex flex-wrap company-info">
+        <div class="d-flex flex-wrap justify-content-center company-info">
             <p>রবিবার, ২২ মে ২০২২</p>
-            <p><i class="fas fa-envelope"></i> info@quizcarnival.com</p>
+            <p><i class="fas fa-envelope"></i> info@bdjobwar.com</p>
             <p><i class="fas fa-phone-alt"></i>  01748545139</p>
         </div>
         <div class="d-flex flex-wrap top-btns">
@@ -118,8 +118,8 @@
                     
             </div>
             <div class="col-md-8 bg-footer ">
-                <div class="d-flex flex-wrap justify-content-around">
-                    <div class="populer-course">
+                <div class="row justify-content-around">
+                    <div class="col-md-3 populer-course pe-5">
                             <h5 class="mt-3">Populer Courses</h5>
                             <a href="">
                               <p>Daily quiz-01</p>
@@ -131,7 +131,7 @@
                               <p>Daily quiz-03</p>
                             </a>
                     </div>
-                    <div class="populer-course">
+                    <div class="col-md-3 populer-course pe-5">
                             <h5 class="mt-3">Populer Package</h5>
                             <a href="">
                               <p>Monthly</p>
@@ -146,7 +146,7 @@
                               <p>Yearly</p>
                             </a>
                     </div>
-                    <div class="populer-course">
+                    <div class="col-md-3 populer-course pe-5">
                             <h5 class="mt-3">Job Guidline</h5>
                             <a href="">
                               <p>BCS</p>

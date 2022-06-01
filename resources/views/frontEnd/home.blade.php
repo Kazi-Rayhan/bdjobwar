@@ -31,6 +31,7 @@
                     <a class="test-btn" href="{{route('question',$exam)}}">Give the test</a>
                 </div>
                 @endforeach
+                {!! $liveExams->links() !!}
                 <!-- <div class="live-exam mb-5">
                     <h6 class="live-exam-name"><a href="">44th BCS Prelim Final Model Test</a></h6>
                     <p class="live-exam-category"><a href="">Model test-2</a></p>
@@ -61,6 +62,9 @@
                   </div>
                 </div>
                 @endforeach
+                {!! $upcommingTests->links() !!}
+                
+          
                 <!-- <div class="card mb-3 col-12" >
                   <div class="card-body">
                     <h6 class="up-exam-title"><a href="">44th BCS Prelim Final Model Test</a></h6>
@@ -271,7 +275,7 @@
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Job-Solution.png')}}" alt="">
+        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Bank_Prep.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
@@ -286,7 +290,7 @@
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Job-Solution.png')}}" alt="">
+        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Other.png')}}" alt="">
         </a>
       </div>
    </div>
@@ -296,22 +300,22 @@
 <section class="mt-4">
   <div class="bg-danger">
     <div class="d-flex justify-content-around flex-wrap pb-4">
-      <div class="subscribers mt-3">
+      <div class="subscribers mt-3 pe-5">
         <i class="fas fa-users text-white d-block d-flex justify-content-center fs-1"></i>
         <p class="text-white mt-2">Subscribers</p>
         <h5 class="text-white fw-bold text-center">540</h5>
       </div>
-      <div class="subscribers mt-3">
+      <div class="subscribers mt-3 pe-5">
         <i class="far fa-file-alt text-white d-block d-flex justify-content-center fs-1"></i>
         <p class="text-white mt-2">Model tests</p>
         <h5 class="text-white fw-bold text-center">320</h5>
       </div>
-      <div class="subscribers mt-3">
+      <div class="subscribers mt-3 pe-5">
         <i class="far fa-question-circle text-white d-block d-flex justify-content-center fs-1"></i>
         <p class="text-white mt-2">Question number</p>
         <h5 class="text-white fw-bold text-center">4540</h5>
       </div>
-      <div class="subscribers mt-3">
+      <div class="subscribers mt-3 pe-5">
         <i class="fas fa-chalkboard text-white d-block d-flex justify-content-center fs-1"></i>
         <p class="text-white mt-2">Course number</p>
         <h5 class="text-white fw-bold text-center">14</h5>

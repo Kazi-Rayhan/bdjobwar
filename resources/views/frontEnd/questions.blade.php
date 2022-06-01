@@ -64,7 +64,7 @@
                             <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
 
                                 <div class="row">
-                                    @foreach ($exam->questions as $question)
+                                    @foreach ($questions as $question)
                                         <div class="col-12 col-md-6 mt-2 mb-3">
                                             <div class="card single-course-inner">
                                                 <form action="">
@@ -74,10 +74,10 @@
                                                     <div class="d-flex flex-wrap mb-5">
                                                         @foreach ($question->choices as $choice)
                                                             <div class="form-check col-12 col-md-6 p-3">
-                                                                <input class="form-check-input mt-2 ms-2" type="radio"
+                                                                <input class="form-check-input  mt-2 ms-2" type="radio"
                                                                     value="" name="choice{{ $question->id }}"
                                                                     id="choice{{ $question->id }}{{ $loop->iteration }}">
-                                                                   <label class="form-check-label ms-3"
+                                                                   <label class="form-check-label d-block ms-5"
                                                                     for="choice{{ $question->id }}{{ $loop->iteration }}">
                                                                     {{ $choice->choice_text }}
                                                                 </label>
@@ -90,6 +90,7 @@
 
                                         </div>
                                     @endforeach
+                                    {!! $questions->links() !!}
                                 </div>
                             </div>
                         </div>

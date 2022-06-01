@@ -36,6 +36,13 @@
   margin: 0 !important;
   padding: 6px !important;
 }
+@media screen and (max-width: 768px) {
+ 
+  .top-btns{
+   margin-left: 40px !important;
+  }
+
+}
 .terms-btn{
   margin-top: 0px !important;
   margin-right:10px;

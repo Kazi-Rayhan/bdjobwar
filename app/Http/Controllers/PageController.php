@@ -14,8 +14,8 @@ class PageController extends Controller
         $categories=Category::whereNull('parent_id')->latest()->get();
       
         $now = Carbon::now()->toDateString();
-        $liveExams=Exam::latest()->whereDate('from', $now)->orWhereDate('to',$now)->get();
-        $upcommingTests=Exam::latest()->where('from', '>', $now)->where('to','>',$now)->get();
+        $liveExams=Exam::latest()->whereDate('from', $now)->orWhereDate('to',$now)->paginate(5);
+        $upcommingTests=Exam::latest()->where('from', '>', $now)->where('to','>',$now)->paginate(5);
         // dd($upcommingTests);
         // $liveExams=Exam::latest()->get();
         return view('frontEnd/home',compact('categories','liveExams','upcommingTests'));
@@ -23,7 +23,8 @@ class PageController extends Controller
     public function question(Exam $exam)
     {
         $exams=Exam::whereNotIn('id',[$exam->id])->get();
+        $questions=$exam->questions()->paginate(10);
         
-        return view('frontEnd/questions',compact('exam','exams'));
+        return view('frontEnd/questions',compact('exam','exams','questions'));
     }
 }
