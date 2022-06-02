@@ -27,4 +27,19 @@ class PageController extends Controller
         
         return view('frontEnd/questions',compact('exam','exams','questions'));
     }
+    public function exams(Request $request)
+    {
+        $categories=Category::all();
+        // dd($categories->exams);
+        $exams = Exam::latest()->paginate(10);
+      
+ 
+        return view('frontEnd/exams',compact('categories','exams'));
+    }
+    public function categoryExam(Category $cat)
+    {
+        $categories=Category::all();
+        // return $category->exams;
+        return view('frontEnd/category_exam',compact('cat','categories'));
+    }
 }

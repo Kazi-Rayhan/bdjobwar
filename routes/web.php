@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', [PageController::class, 'home'])->name('home_page');
 Route::get('/register', [PageController::class, 'register'])->name('register');
+Route::get('/exam', [PageController::class, 'exams'])->name('exams');
+Route::get('/category/exam/{cat}', [PageController::class, 'categoryExam'])->name('categoryExam');
 Route::get('question/{exam}', [PageController::class, 'question'])->name('question');
 Route::get('/index', [DashboardController::class, 'dashboard'])->name('dashboard');
 

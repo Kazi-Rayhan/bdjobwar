@@ -23,5 +23,13 @@ class Exam extends Model
     {
         return $this->belongsToMany(Question::class);
     }
+    function scopeFilter($query, array $filter)
+    {
+        $query->when($filter['categories'] ?? false, function ($query, $category) {
+            $query->whereHas('categories', function ($query) use ($category) {
+                $query->where('categories.slug', $category);
+            });
+        });
+    }
 
 }

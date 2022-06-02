@@ -31,7 +31,7 @@
                     <a class="test-btn" href="{{route('question',$exam)}}">Give the test</a>
                 </div>
                 @endforeach
-                {!! $liveExams->links() !!}
+               
                 <!-- <div class="live-exam mb-5">
                     <h6 class="live-exam-name"><a href="">44th BCS Prelim Final Model Test</a></h6>
                     <p class="live-exam-category"><a href="">Model test-2</a></p>
@@ -62,8 +62,8 @@
                   </div>
                 </div>
                 @endforeach
-                {!! $upcommingTests->links() !!}
-                
+        
+                <a class="test-btn" href="{{route('exams')}}">See more</a>
           
                 <!-- <div class="card mb-3 col-12" >
                   <div class="card-body">
