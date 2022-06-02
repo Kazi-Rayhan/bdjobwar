@@ -39,31 +39,20 @@
 
                         <div class="row mb-4 px-4">
 
-                            <div class="col-md-9">
-                                <input id="email" type="phone" placeholder="Mobile number" class="form-control py-2 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-3 mt-2">
-                                <a class="btn-danger" id="otp-btn" style="cursor:pointer">OTP send</a>
-                            </div>
-                        </div>
-
-                        <div class="row mb-4 px-4" id="otpDiv" style="display:none">
-
                             <div class="col-md-12">
-                                <input id="otp" type="number" placeholder="Write OTP" class="form-control py-2 @error('otp') is-invalid @enderror" name="otp" value="{{ old('otp') }}" required autocomplete="otp">
-                                @error('otp')
+                                <input id="phone" type="phone" placeholder="Phone number" class="form-control py-2 @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-            
+                            {{-- <div class="col-md-3 mt-2">
+                                <a class="btn-danger" id="otp-btn" style="cursor:pointer">OTP send</a>
+                            </div> --}}
                         </div>
+
+                      
  
                         <div class="row mb-4 px-4">
 
@@ -99,13 +88,4 @@
     </div>
 </div>
 @endsection
-@section('js')
-<script>
-    document.getElementById("otp-btn").addEventListener("click", function() {
-        const div=document.getElementById("otpDiv");
-        // console.log(otpDiv);
-        div.style.display = "block"; 
-    }); 
-</script>
 
-@endsection
