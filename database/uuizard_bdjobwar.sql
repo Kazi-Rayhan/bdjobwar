@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 01, 2022 at 02:39 PM
+-- Generation Time: Jun 02, 2022 at 07:04 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -13383,7 +13383,7 @@ CREATE TABLE `users` (
   `role_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -13500,7 +13500,8 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `phone`, `email`, `avatar`, `email
 (99, 2, 'Brisa Stanton', '1-737-533-9240', 'shanie.anderson@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'pphTTiieyw', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
 (100, 2, 'Hazel Murray', '+1.228.833.9787', 'fahey.edwardo@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ukGwiG7Ctu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
 (101, 1, 'Kazi Rayhan Reza', '01795560431', 'rayhan@admin.com', 'users/default.png', NULL, '$2y$10$HBpsySA/OfiiFntD88zhVOCZOMHbqa4DF2xgMunpRDHXdTXQuVfbq', NULL, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(102, 1, 'Ahmed Tamim', '01305065919', 'tamim@admin.com', 'users/default.png', NULL, '$2y$10$YT8p9QCjXV02QudSh2JPKunBxPU4Z4Hr5RUm7flK1yqZ0JVc.bHnq', NULL, NULL, '2022-06-01 08:32:55', '2022-06-01 08:32:55', 1);
+(102, 1, 'Ahmed Tamim', '01305065919', 'tamim@admin.com', 'users/default.png', NULL, '$2y$10$YT8p9QCjXV02QudSh2JPKunBxPU4Z4Hr5RUm7flK1yqZ0JVc.bHnq', NULL, NULL, '2022-06-01 08:32:55', '2022-06-01 08:32:55', 1),
+(103, 2, 'Hannah Cobb', '01711115465', NULL, 'users/default.png', NULL, '$2y$10$QGzDK/uDcwaliGMk3S2JyeZYKFOcq26GIx8hNFIaI7BKdWgNLlEOu', NULL, NULL, '2022-06-02 00:54:11', '2022-06-02 00:54:11', 1);
 
 -- --------------------------------------------------------
 
@@ -13811,7 +13812,6 @@ ALTER TABLE `translations`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_phone_unique` (`phone`),
-  ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD KEY `users_role_id_foreign` (`role_id`);
 
 --
@@ -13970,7 +13970,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- Constraints for dumped tables
