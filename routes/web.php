@@ -17,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
+
 Route::get('/', [PageController::class, 'home'])->name('home_page');
 Route::get('/register', [PageController::class, 'register'])->name('register');
 Route::get('/exam', [PageController::class, 'exams'])->name('exams');
@@ -31,9 +30,9 @@ Route::get('download/{notice}', [HomeController::class, 'download'])->name('down
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-Route::get('/test', function () {
-    return view('frontEnd.test');
-});
+// Route::get('/test', function () {
+//     return view('frontEnd.test');
+// });
 
 
 Auth::routes();
