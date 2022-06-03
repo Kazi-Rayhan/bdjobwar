@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Package;
 use App\Models\Exam;
+use App\Models\Notice;
 use Illuminate\Support\Carbon;
 
 class PageController extends Controller
@@ -16,9 +18,11 @@ class PageController extends Controller
         $now = Carbon::now()->toDateString();
         $liveExams=Exam::latest()->whereDate('from', $now)->orWhereDate('to',$now)->paginate(5);
         $upcommingTests=Exam::latest()->where('from', '>', $now)->where('to','>',$now)->paginate(5);
+        $packages=Package::all();
+        $notices=Notice::latest()->get();
         // dd($upcommingTests);
         // $liveExams=Exam::latest()->get();
-        return view('frontEnd/home',compact('categories','liveExams','upcommingTests'));
+        return view('frontEnd/home',compact('categories','liveExams','upcommingTests','packages','notices'));
     }
     public function question(Exam $exam)
     {

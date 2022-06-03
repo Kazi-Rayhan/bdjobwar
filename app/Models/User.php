@@ -53,4 +53,9 @@ class User extends \TCG\Voyager\Models\User
         $ids = UserMeta::select('user_id')->get()->pluck('user_id')->toArray();
         return $query->where('active', 1)->where('role_id',2)->whereNotIn('id',$ids);
     }
+    
+    public function package()
+    {
+        return $this->belongsTo(Package::class,'package_id');
+    }
 }

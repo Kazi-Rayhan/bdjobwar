@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Models\UserMeta;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,8 @@ Route::get('/register', [PageController::class, 'register'])->name('register');
 Route::get('/exam', [PageController::class, 'exams'])->name('exams');
 Route::get('/category/exam/{cat}', [PageController::class, 'categoryExam'])->name('categoryExam');
 Route::get('question/{exam}', [PageController::class, 'question'])->name('question');
-Route::get('/index', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('download/{notice}', [HomeController::class, 'download'])->name('download');
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
@@ -36,4 +38,9 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+    Route::get('/home', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/package-buy/{package}', [HomeController::class, 'packageBuy'])->name('packageBuy');
+    Route::get('/package-info', [HomeController::class, 'packageInfo'])->name('packageInfo');
+});

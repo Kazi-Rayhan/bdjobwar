@@ -118,18 +118,16 @@
                 <h6 class="mt-5 fw-bold live-exam-heading mb-4">
                 <i class="fas fa-file-invoice fs-3 text-muted"></i> <span class="text-success">Notice board</span>
                 </h6>
+                @foreach($notices as $notice)
                 <div class="card mb-3 col-md-12" style="">
                   <div class="card-body">
-                    <h6 class="up-exam-title"><a href="">44th BCS Prelim Final Model Test</a></h6>
-                    <p class="live-exam-date pt-2"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span></p>
+
+                    <h6 class="up-exam-title"><a href="{{$notice->fileLink}}">{{$notice->title}}</a></h6>
+                    <p class="live-exam-date pt-2"><span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($notice->created_at)->format('d M ,Y ') }} </span></p>
                   </div>
                 </div>
-                <div class="card mb-3 col-md-12" style="">
-                  <div class="card-body">
-                    <h6 class="up-exam-title"><a href="">44th BCS Prelim Final Model Test</a></h6>
-                    <p class="live-exam-date pt-2"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span></p>
-                  </div>
-                </div>
+                @endforeach
+
      
 
             </div>
@@ -145,7 +143,36 @@
   </div>
    <div class="container">
     <div class="row mt-5">
+       @foreach($packages as $package)
       <div class="col-md-3 mb-5 ">
+        <div class="card package">
+          <div class="card-header bg-success text-center text-white">
+            <div class="d-flex justify-content-center">
+            <i class="fas fa-box-open bg-white text-danger rounded-circle p-2 fs-3"></i> <h5 class="mt-2 ps-2">{{$package->title}}</h5>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-success ps-3 border-bottom pb-2">Premium features :</h5>
+          <ul class="premium-feature">
+            <li><span>Question bank searchs</span></li>
+            <li><span>All routine-based test</span></li>
+            <li><span>Question bank searchs</span></li>
+            <li><span>All routine-based test</span></li>
+            
+          </ul>
+          
+          </div>
+          <div class="card-footer bg-success">
+          <div class="d-flex justify-content-center">
+            <a href="#" class="valid-btn d-block">Expiration : {{$package->duration}} days</a>
+          </div>
+          <h5 class="text-white text-center my-3">subscription fees : {{$package->price}} BDT</h5>
+          </div>
+        </div>
+        <a href="{{route('packageBuy',$package)}}" class="details-btn">Details</a>
+      </div>
+      @endforeach
+      <!-- <div class="col-md-3 mb-5 ">
         <div class="card package">
           <div class="card-header bg-success text-center text-white">
             <div class="d-flex justify-content-center">
@@ -225,34 +252,7 @@
           </div>
         </div>
         <a href="" class="details-btn">Details</a>
-      </div>
-      <div class="col-md-3 mb-5 ">
-        <div class="card package">
-          <div class="card-header bg-success text-center text-white">
-            <div class="d-flex justify-content-center">
-            <i class="fas fa-box-open bg-white text-danger rounded-circle p-2 fs-3"></i> <h5 class="mt-2 ps-2">Monthly</h5>
-            </div>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-success ps-3 border-bottom pb-2">Premium features :</h5>
-          <ul class="premium-feature">
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            
-          </ul>
-          
-          </div>
-          <div class="card-footer bg-success">
-          <div class="d-flex justify-content-center">
-            <a href="#" class="valid-btn d-block">Expiration : 30 days</a>
-          </div>
-          <h5 class="text-white text-center my-3">subscription fees : 100 BDT</h5>
-          </div>
-        </div>
-        <a href="" class="details-btn">Details</a>
-      </div>
+      </div> -->
     </div>
    </div>
 </section>
