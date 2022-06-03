@@ -47,9 +47,9 @@
                                     </span>
                                 @enderror
                             </div>
-                            {{-- <div class="col-md-3 mt-2">
-                                <a class="btn-danger" id="otp-btn" style="cursor:pointer">OTP send</a>
-                            </div> --}}
+                            <!-- <div class="col-md-3 mt-2">
+                                <a href="#" class="btn-danger" id="otp-btn" style="cursor:pointer">OTP send</a>
+                            </div>  -->
                         </div>
 
                       
