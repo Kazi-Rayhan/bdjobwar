@@ -18,7 +18,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card shadow-lg">
-                <div class="card-header py-3 bg-success text-white fs-5">{{ __('Registration Form') }}</div>
+                <div class="card-header py-3 bg-success text-white fs-5">{{ __('OTP Form') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('checkOtp') }}">
