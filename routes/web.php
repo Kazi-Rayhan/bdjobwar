@@ -27,21 +27,18 @@ Route::get('/category/exam/{cat}', [PageController::class, 'categoryExam'])->nam
 Route::get('question/{exam}', [PageController::class, 'question'])->name('question');
 Route::get('download/{notice}', [HomeController::class, 'download'])->name('download');
 
-Route::get('/otpSend', [AuthenticateController::class, 'otpSend'])->name('otpSend');
-Route::post('/checkOtp', [AuthenticateController::class, 'checkOtp'])->name('checkOtp');
-Route::get('/otp', [AuthenticateController::class, 'otp'])->name('otp');
+Route::get('/verify/otp/send', [AuthenticateController::class, 'otpSend'])->name('otpSend');
+Route::post('/verify/otp/check', [AuthenticateController::class, 'checkOtp'])->name('checkOtp');
+Route::get('/verify', [AuthenticateController::class, 'otp'])->name('otp');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-// Route::get('/test', function () {
-//     return view('frontEnd.test');
-// });
 
 
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','verified']], function () {
   
     Route::get('/home', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/package-buy/{package}', [HomeController::class, 'packageBuy'])->name('packageBuy');

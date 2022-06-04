@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,11 +19,7 @@ class User extends \TCG\Voyager\Models\User
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'phone',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -30,6 +27,7 @@ class User extends \TCG\Voyager\Models\User
      * @var array<int, string>
      */
     protected $hidden = [
+        'otp',
         'password',
         'remember_token',
     ];
@@ -40,7 +38,7 @@ class User extends \TCG\Voyager\Models\User
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime',
     ];
 
     public function information(){
@@ -57,5 +55,22 @@ class User extends \TCG\Voyager\Models\User
     public function package()
     {
         return $this->belongsTo(Package::class,'package_id');
+    }
+
+    public function verify($otp){
+        //check if otp is valid
+        if(!$this->otp_sent_at > now()->addMinutes(-2)) throw new Exception('Otp is expired request new otp');
+        //match the otp with user otp
+        if($this->otp != $otp) throw new Exception('Otp do not match');
+        //if nothing happen then update the phone verrified at
+        $this->update([
+            'phone_verified_at' => now()
+        ]);
+     } 
+
+    public function verified():bool
+    {
+       return $this->phone_verified_at != null ? true : false;
+    
     }
 }

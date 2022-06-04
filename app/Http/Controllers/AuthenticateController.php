@@ -6,18 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Facades\SMS\Sms;
 use Error;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticateController extends Controller
 {
-    public function otpCode(string $phone, $user)
-    {
-        session()->forget('otp');
-        $otp = rand(10000, 99999);
-        
-        Session::put('otp', $otp);
-        session()->put('user_id',$user->id);
-        SMS::compose($user->phone,$otp)->send();
-    }
     public function otp()
     {
         return view('auth.otp');
@@ -25,19 +18,28 @@ class AuthenticateController extends Controller
     public function otpSend()
     {
 
-        $user = Auth()->user();
+        $user = auth()->user();
       
-        $this->otpCode($user->phone, $user);
+        SMS::otp($user)->send();
         return back();
        
     
     }
     public function checkOtp(Request $request)
-    {
-        if ($request->otp == session()->get('otp')) {
-            session()->forget('otp');
+    {   
+
+        $request->validate([
+            "otp"=>'required'
+        ]);
+        try{
+            Auth::user()->verify($request->otp);
             return redirect(route('dashboard'));
+        }catch(Exception $e){
+            return redirect()->back()->withErrors($e->getMessage());
+        }catch(Error $e){
+            return redirect()->back()->withErrors($e->getMessage());
+
         }
-        return redirect(route('otp'));
+       
     }
 }
