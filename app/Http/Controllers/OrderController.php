@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Package;
 use Illuminate\Http\Request;
-
+use Error;
+use Exception;
 class OrderController extends Controller
 {
     /**
@@ -22,9 +24,9 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Package $package)
     {
-        //
+      return view('frontEnd.order',compact('package'));
     }
 
     /**
@@ -33,9 +35,29 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request ,Package $package)
     {
-        //
+      
+        $request->validate([
+            "trnxId"=>'required'
+        ]);
+        try{
+            $order=new Order;
+            $order->user_id=Auth()->user()->id;
+            $order->method=0;
+            $order->trnxId=$request->trnxId;
+            $order->status='0';
+            $package->orders()->save($order);
+            SMS::compose(Auth()->user()->phone,'Thanks, your transaction id is pending');
+            return redirect()->back();
+        }catch(Exception $e){
+            return redirect()->back()->withErrors($e->getMessage());
+        }catch(Error $e){
+            return redirect()->back()->withErrors($e->getMessage());
+
+        }
+
+      
     }
 
     /**

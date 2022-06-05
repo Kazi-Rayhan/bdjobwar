@@ -169,7 +169,7 @@
           <h5 class="text-white text-center my-3">subscription fees : {{$package->price}} BDT</h5>
           </div>
         </div>
-        <a href="{{route('packageBuy',$package)}}" class="details-btn">Details</a>
+        <a href="{{route('orderCreate',$package)}}" class="details-btn">Buy</a>
       </div>
       @endforeach
       <!-- <div class="col-md-3 mb-5 ">
