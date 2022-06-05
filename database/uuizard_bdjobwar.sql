@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 02, 2022 at 07:04 AM
+-- Generation Time: Jun 05, 2022 at 05:39 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -47,7 +47,7 @@ INSERT INTO `categoriables` (`id`, `category_id`, `categoriable_id`, `categoriab
 (4, 4, 1, 'App\\Models\\Exam', NULL, NULL),
 (5, 5, 1, 'App\\Models\\Exam', NULL, NULL),
 (6, 6, 2, 'App\\Models\\Exam', NULL, NULL),
-(7, 7, 2, 'App\\Models\\Exam', NULL, NULL),
+(7, 6, 2, 'App\\Models\\Exam', NULL, NULL),
 (8, 8, 2, 'App\\Models\\Exam', NULL, NULL),
 (9, 9, 2, 'App\\Models\\Exam', NULL, NULL),
 (10, 10, 2, 'App\\Models\\Exam', NULL, NULL),
@@ -168,10 +168,10 @@ INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_a
 (3, NULL, 1, 'vitae', 'eum-explicabo-eum-facere-ipsa-similique-dignissimos-nisi', '2022-06-01 08:32:55', '2022-06-01 08:32:55'),
 (4, NULL, 1, 'earum', 'laudantium-impedit-cupiditate-minima-ut-molestiae-mollitia-magni', '2022-06-01 08:32:55', '2022-06-01 08:32:55'),
 (5, NULL, 1, 'sunt', 'vitae-voluptates-nihil-tempore', '2022-06-01 08:32:55', '2022-06-01 08:32:55'),
-(6, NULL, 1, 'beatae', 'tempora-delectus-est-ipsa-voluptas', '2022-06-01 08:32:56', '2022-06-01 08:32:56'),
+(6, 3, 1, 'beatae', 'tempora-delectus-est-ipsa-voluptas', '2022-06-01 08:32:56', '2022-06-01 08:32:56'),
 (7, NULL, 1, 'enim', 'animi-ea-eos-in-quae-deserunt-laborum', '2022-06-01 08:32:56', '2022-06-01 08:32:56'),
 (8, NULL, 1, 'ullam', 'recusandae-nemo-animi-iusto-accusamus-eaque', '2022-06-01 08:32:56', '2022-06-01 08:32:56'),
-(9, NULL, 1, 'et', 'enim-qui-delectus-non-et-rem', '2022-06-01 08:32:56', '2022-06-01 08:32:56'),
+(9, 3, 1, 'et', 'enim-qui-delectus-non-et-rem', '2022-06-01 08:32:56', '2022-06-01 08:32:56'),
 (10, NULL, 1, 'qui', 'aut-quidem-ut-molestias-quidem-vel-sed', '2022-06-01 08:32:56', '2022-06-01 08:32:56'),
 (11, NULL, 1, 'et', 'dolores-praesentium-unde-vitae-molestiae-repudiandae', '2022-06-01 08:32:57', '2022-06-01 08:32:57'),
 (12, NULL, 1, 'itaque', 'et-et-ea-est-quis-sapiente', '2022-06-01 08:32:58', '2022-06-01 08:32:58'),
@@ -8435,7 +8435,12 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (102, 7, 'minius_mark', 'number', 'Negative Point', 0, 0, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required|integer\"},\"display\":{\"width\":4},\"default\":0}', 11),
 (103, 13, 'description', 'text_area', 'Description', 0, 0, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"nullable\"},\"display\":{\"width\":8,\"id\":\"qDesc\"}}', 7),
 (104, 13, 'has_description', 'checkbox', 'Has Description', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":2},\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 5),
-(105, 13, 'image', 'image', 'Image', 0, 0, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"nullable|mimes:jpeg,jpg,png|max:1000\"},\"display\":{\"width\":4,\"id\":\"qImage\"}}', 6);
+(105, 13, 'image', 'image', 'Image', 0, 0, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"nullable|mimes:jpeg,jpg,png|max:1000\"},\"display\":{\"width\":4,\"id\":\"qImage\"}}', 6),
+(106, 17, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(107, 17, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '{}', 2),
+(108, 17, 'file', 'file', 'File', 1, 1, 1, 1, 1, 1, '{}', 3),
+(109, 17, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(110, 17, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5);
 
 -- --------------------------------------------------------
 
@@ -8476,7 +8481,9 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (9, 'user_metas', 'user-metas', 'Customer Information', 'Customer Informations', NULL, 'App\\Models\\UserMeta', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-05-10 04:14:04', '2022-05-12 01:48:15'),
 (10, 'packages', 'packages', 'Package', 'Packages', 'voyager-treasure-open', 'App\\Models\\Package', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"title\",\"order_direction\":\"desc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-05-10 04:34:54', '2022-05-10 04:52:44'),
 (12, 'subjects', 'subjects', 'Subject', 'Subjects', 'voyager-book', 'App\\Models\\Subject', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"name\",\"order_direction\":\"desc\",\"default_search_key\":\"name\",\"scope\":null}', '2022-05-10 05:27:37', '2022-05-10 05:30:54'),
-(13, 'questions', 'questions', 'Question', 'Questions', 'voyager-question', 'App\\Models\\Question', NULL, '\\App\\Http\\Controllers\\QuestionsVoyagerController', NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"title\",\"order_direction\":\"desc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-05-11 13:25:02', '2022-05-31 12:13:33');
+(13, 'questions', 'questions', 'Question', 'Questions', 'voyager-question', 'App\\Models\\Question', NULL, '\\App\\Http\\Controllers\\QuestionsVoyagerController', NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"title\",\"order_direction\":\"desc\",\"default_search_key\":\"title\",\"scope\":null}', '2022-05-11 13:25:02', '2022-05-31 12:13:33'),
+(14, 'notice', 'notice', 'Notice', 'Notices', 'voyager-file-text', 'App\\Notice', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null}', '2022-06-02 23:24:22', '2022-06-02 23:24:22'),
+(17, 'notices', 'notices', 'Notice', 'Notices', 'voyager-file-text', 'App\\Models\\Notice', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-06-02 23:32:26', '2022-06-03 02:39:49');
 
 -- --------------------------------------------------------
 
@@ -10631,7 +10638,9 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (18, 1, 'Admins', '', '_self', 'voyager-person', '#000000', 17, 1, '2022-05-10 05:05:05', '2022-05-10 05:05:16', 'voyager.users.index', '{\"key\":\"role_id\",\"filter\":\"contains\",\"s\":\"Administrator\"}'),
 (19, 1, 'Subjects', '', '_self', 'voyager-book', NULL, NULL, 4, '2022-05-10 05:27:37', '2022-05-10 05:37:24', 'voyager.subjects.index', NULL),
 (21, 1, 'Publish', '#', '_self', 'voyager-news', '#000000', NULL, 8, '2022-05-10 05:36:54', '2022-05-16 04:09:12', NULL, ''),
-(22, 1, 'Questions', '', '_self', 'voyager-question', NULL, NULL, 7, '2022-05-11 13:25:02', '2022-05-16 04:09:12', 'voyager.questions.index', NULL);
+(22, 1, 'Questions', '', '_self', 'voyager-question', NULL, NULL, 7, '2022-05-11 13:25:02', '2022-05-16 04:09:12', 'voyager.questions.index', NULL),
+(23, 1, 'Notices', '', '_self', 'voyager-file-text', NULL, NULL, 11, '2022-06-02 23:24:22', '2022-06-02 23:24:22', 'voyager.notice.index', NULL),
+(24, 1, 'Notices', '', '_self', 'voyager-file-text', NULL, NULL, 12, '2022-06-02 23:32:26', '2022-06-02 23:32:26', 'voyager.notices.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -10688,7 +10697,50 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (76, '2022_05_06_104157_create_categoriables_table', 1),
 (77, '2022_05_07_055359_create_subjectables_table', 1),
 (78, '2022_05_07_085738_add_infinite_to_packages_table', 1),
-(79, '2022_05_07_110936_add_infinite_to_user_metas_table', 1);
+(79, '2022_05_07_110936_add_infinite_to_user_metas_table', 1),
+(80, '2022_06_05_030105_create_orders_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notices`
+--
+
+CREATE TABLE `notices` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `notices`
+--
+
+INSERT INTO `notices` (`id`, `title`, `file`, `created_at`, `updated_at`) VALUES
+(1, 'Saepe voluptas qui s', '[{\"download_link\":\"notices\\\\June2022\\\\PNx6bYSecODCp0Ufg13k.sql\",\"original_name\":\"rjzkqcgs_beautisian.sql\"}]', '2022-06-02 23:33:04', '2022-06-02 23:33:04'),
+(2, 'Et sint animi sit e', '[{\"download_link\":\"notices\\\\June2022\\\\CRKBwpEvmVkUlWGoexxj.zip\",\"original_name\":\"icons.zip\"}]', '2022-06-02 23:33:53', '2022-06-02 23:33:53'),
+(4, 'Commodi aliquip cons', '[{\"download_link\":\"notices\\\\June2022\\\\3PqNYGc0f5QNZSHaQKXn.sql\",\"original_name\":\"allomydo_doctor.sql\"}]', '2022-06-03 02:40:21', '2022-06-03 02:40:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `orderable_id` bigint(20) UNSIGNED NOT NULL,
+  `orderable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` bigint(20) UNSIGNED NOT NULL,
+  `method` tinyint(4) NOT NULL,
+  `trnxId` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('0','1','2') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -10698,6 +10750,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `packages` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` bigint(20) DEFAULT NULL,
   `duration` int(11) DEFAULT NULL,
@@ -10711,12 +10764,11 @@ CREATE TABLE `packages` (
 -- Dumping data for table `packages`
 --
 
-INSERT INTO `packages` (`id`, `title`, `price`, `duration`, `paid`, `created_at`, `updated_at`, `infinite_duration`) VALUES
-(1, ' 1 Month', 200, 30, 1, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
-(2, ' 3 Month', 500, 90, 1, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
-(3, ' 6 Month', 800, 180, 1, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
-(4, ' 12 Month', 1200, 365, 1, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
-(5, 'Free', 0, NULL, 0, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1);
+INSERT INTO `packages` (`id`, `user_id`, `title`, `price`, `duration`, `paid`, `created_at`, `updated_at`, `infinite_duration`) VALUES
+(1, 103, ' 1 Month', 200, 30, 1, '2022-06-01 08:32:53', '2022-06-02 21:34:41', 0),
+(3, NULL, ' 6 Month', 800, 180, 1, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
+(4, NULL, ' 12 Month', 1200, 365, 1, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
+(5, NULL, 'Free', 0, NULL, 0, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1);
 
 -- --------------------------------------------------------
 
@@ -10841,7 +10893,17 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (62, 'read_questions', 'questions', '2022-05-11 13:25:02', '2022-05-11 13:25:02'),
 (63, 'edit_questions', 'questions', '2022-05-11 13:25:02', '2022-05-11 13:25:02'),
 (64, 'add_questions', 'questions', '2022-05-11 13:25:02', '2022-05-11 13:25:02'),
-(65, 'delete_questions', 'questions', '2022-05-11 13:25:02', '2022-05-11 13:25:02');
+(65, 'delete_questions', 'questions', '2022-05-11 13:25:02', '2022-05-11 13:25:02'),
+(66, 'browse_notice', 'notice', '2022-06-02 23:24:22', '2022-06-02 23:24:22'),
+(67, 'read_notice', 'notice', '2022-06-02 23:24:22', '2022-06-02 23:24:22'),
+(68, 'edit_notice', 'notice', '2022-06-02 23:24:22', '2022-06-02 23:24:22'),
+(69, 'add_notice', 'notice', '2022-06-02 23:24:22', '2022-06-02 23:24:22'),
+(70, 'delete_notice', 'notice', '2022-06-02 23:24:22', '2022-06-02 23:24:22'),
+(71, 'browse_notices', 'notices', '2022-06-02 23:32:26', '2022-06-02 23:32:26'),
+(72, 'read_notices', 'notices', '2022-06-02 23:32:26', '2022-06-02 23:32:26'),
+(73, 'edit_notices', 'notices', '2022-06-02 23:32:26', '2022-06-02 23:32:26'),
+(74, 'add_notices', 'notices', '2022-06-02 23:32:26', '2022-06-02 23:32:26'),
+(75, 'delete_notices', 'notices', '2022-06-02 23:32:26', '2022-06-02 23:32:26');
 
 -- --------------------------------------------------------
 
@@ -10939,7 +11001,17 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (64, 1),
 (64, 3),
 (65, 1),
-(65, 3);
+(65, 3),
+(66, 1),
+(67, 1),
+(68, 1),
+(69, 1),
+(70, 1),
+(71, 1),
+(72, 1),
+(73, 1),
+(74, 1),
+(75, 1);
 
 -- --------------------------------------------------------
 
@@ -13385,123 +13457,126 @@ CREATE TABLE `users` (
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
-  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `phone_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `settings` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `active` tinyint(3) UNSIGNED DEFAULT '1'
+  `active` tinyint(3) UNSIGNED DEFAULT '1',
+  `otp_sent_at` timestamp NULL DEFAULT NULL,
+  `otp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `phone`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `active`) VALUES
-(1, 2, 'Isac Dooley Sr.', '+1 (228) 828-6046', 'schultz.francesco@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4Sh45O009Y', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(2, 2, 'Dr. Hilbert Wuckert', '+1.667.774.7572', 'wkris@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'IOcW6pBiyX', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(3, 2, 'Florine Hettinger', '+1-816-265-3160', 'xveum@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'fr0UhWDkYh', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(4, 2, 'Melany Dare', '920.882.0121', 'wehner.buster@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'XtcW3D5UfN', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(5, 2, 'Elisabeth Botsford', '(838) 630-1141', 'qyost@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Ee54v7WJ6V', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(6, 2, 'Jerald Spinka', '(940) 585-3957', 'corwin.liza@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'JRoAPhd6QE', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(7, 2, 'Mrs. Cora Champlin', '+1.501.596.0517', 'guadalupe22@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Mq3b0RRFFb', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(8, 2, 'Jerald Hagenes', '610-464-5654', 'zadams@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Es7kvEpuZ3', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(9, 2, 'Dr. Jarrod Walsh Sr.', '1-256-864-0967', 'hauck.ada@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Eu4zkgKVma', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(10, 2, 'Mr. Grover Ankunding', '+1-603-950-9271', 'hettie.anderson@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'yk1pMseXNL', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(11, 2, 'Tatum Stanton', '626-788-5364', 'fcrooks@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'y4eY05Kzo6', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(12, 2, 'Carmen Wilderman', '919.755.9322', 'arlene47@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '0fZx2mgBzT', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(13, 2, 'Rozella Mann', '1-631-215-8595', 'yokon@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4R2cB3I3CU', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(14, 2, 'Eunice Friesen', '256.519.1258', 'mertie25@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'g7OE8JruhT', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(15, 2, 'Damian Fritsch', '320.930.2032', 'wilford.grimes@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'cctcp5snAQ', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(16, 2, 'Dereck Gusikowski', '1-269-854-3786', 'harley21@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'hHB51nnCKJ', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(17, 2, 'Dr. Vilma Kuvalis Jr.', '(984) 201-4199', 'keeling.bridgette@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '41emA19zwQ', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(18, 2, 'Johnny Metz V', '+1.279.748.6740', 'ashly32@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'SCEnUoMvBS', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(19, 2, 'Twila Parisian', '1-323-217-3826', 'flegros@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'pIK8tvZtnL', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(20, 2, 'Miss Margarita Kris', '+1.909.657.3000', 'batz.otilia@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'XUM5UFf3CO', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(21, 2, 'Kathryne Hettinger', '1-612-770-0870', 'noelia.cassin@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'puEQ6uaO9t', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-(22, 2, 'Mrs. Zetta Spencer V', '828-668-3473', 'juwan18@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'CnQrfQXzYT', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(23, 2, 'Stacey Weimann', '+1.228.318.7247', 'hortense.considine@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Unr2SESlnU', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(24, 2, 'Hans Brakus', '341-742-9618', 'ssauer@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'DHeM2S91fi', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(25, 2, 'Grayce Nolan', '+1-815-830-9617', 'lorine90@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'rxuVUsdr2R', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(26, 2, 'Zion Ondricka', '1-786-993-9930', 'crooks.shane@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'bhoqqIoy8Z', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(27, 2, 'Dr. Sherman Walker', '430.681.9941', 'wilbert74@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'lqgH2NiWB3', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(28, 2, 'Bud Schmidt', '+14696497370', 'brady75@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '49Qkt3PdgI', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(29, 2, 'Mr. Celestino Russel Sr.', '+1-463-908-1998', 'harvey.cecil@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'koaBUgpCVu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(30, 2, 'Salma Stroman', '+1-551-448-5064', 'keely.beatty@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YvONjuwFMS', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(31, 2, 'Deborah Rolfson III', '1-463-738-2785', 'chowe@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'eX9xbzRoCM', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(32, 2, 'Beatrice Connelly', '607-682-4059', 'kris.henriette@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'gLWGApq2jl', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(33, 2, 'Mrs. Marian Raynor PhD', '985-775-0111', 'olson.litzy@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '46iiIZ8eD6', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(34, 2, 'Harold Dickinson', '+1-657-830-6819', 'alittle@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'exGhmkN3I5', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(35, 2, 'Jacey Macejkovic', '1-903-752-3894', 'colby86@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'U6JhqB21xQ', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(36, 2, 'Mrs. Daija Medhurst', '651-966-6949', 'constance.collier@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'FSRgrdw6sf', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(37, 2, 'Miss Greta Witting', '1-408-748-1979', 'ada09@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'vI9ZMMVXBH', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(38, 2, 'Marilyne Gulgowski', '917.730.6090', 'kasandra44@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'H1xIreBY7T', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(39, 2, 'Prof. Adrian Walsh', '(903) 320-0510', 'gregorio.kassulke@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'HMle45R7Co', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(40, 2, 'Mrs. Alivia Dicki', '(859) 589-7162', 'leland41@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'wbhCU0iS6M', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(41, 2, 'Rhiannon Veum', '386.435.9818', 'luettgen.mable@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'lquyuQVAGA', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(42, 2, 'Tara Kertzmann', '+1.309.381.9984', 'elmo.nikolaus@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'EWRDiLH8c6', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(43, 2, 'Dr. Shane Spencer DDS', '+1 (251) 248-7664', 'wmclaughlin@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4L7Y46a3Bg', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(44, 2, 'Giuseppe Rohan', '534-776-7064', 'xwindler@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'l7y3KyJTQE', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(45, 2, 'Miss Fabiola Hayes Sr.', '+1 (510) 827-1574', 'fgaylord@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'cmrEN828hX', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(46, 2, 'Dr. Audrey Sawayn DDS', '1-706-837-2097', 'antonina.schamberger@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '8PWdlGZJdG', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(47, 2, 'Prof. Annamarie Von IV', '+1 (210) 430-5021', 'reichert.maxwell@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'bihpPKjUS9', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(48, 2, 'Dovie Prohaska', '(972) 955-3176', 'berta.bashirian@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qE9JcYhIDx', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(49, 2, 'Keyshawn Howe', '+1-850-373-8087', 'sabrina.damore@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'iUYnRiE9Cg', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(50, 2, 'Mohamed Quitzon', '872-926-6569', 'destinee11@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'U4lUQ9oKB4', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(51, 2, 'Mr. Jerrod Padberg', '480.476.4555', 'abednar@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'MPuYp0WJZD', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(52, 2, 'Deborah Carter', '1-706-439-7137', 'jude.lehner@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'RtQYdpxhfk', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(53, 2, 'Melba Muller', '272-902-8569', 'novella.hilpert@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'VQnpqnAJjk', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(54, 2, 'Prof. Orlo Gleichner', '+1-325-989-3407', 'gwendolyn.ferry@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'HSPc32yrsm', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(55, 2, 'Osvaldo Blick', '402-533-6927', 'rbernhard@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PMewhuXSbZ', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(56, 2, 'Prof. Kade Ziemann', '1-253-203-4962', 'tyler56@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'GsVBlANQTW', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(57, 2, 'Ansley Heller IV', '+1-743-589-9792', 'dorothy.zieme@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'nWKPb584SM', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(58, 2, 'Miss Jade Runte DDS', '+1.281.478.9103', 'akoch@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'go5cr6WXhe', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(59, 2, 'Malika Ruecker', '+1-864-435-1609', 'una44@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'czlFtwGUhf', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(60, 2, 'Miss Katrina Dickens III', '+1-740-303-6516', 'mason75@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'OT2tOUxzFw', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(61, 2, 'Mr. Bryce Volkman IV', '856-704-7613', 'tatyana.mills@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zU7veBCtzT', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(62, 2, 'Esteban Wisoky', '+18284017894', 'nayeli21@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'xs9yJBlyOu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(63, 2, 'Dr. Rhianna Quigley PhD', '(831) 542-0640', 'granville.lesch@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '484CuSEbv8', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(64, 2, 'Dr. Baylee Sipes MD', '+13075534940', 'lavina03@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Y9Nl4u0eo5', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(65, 2, 'Ellsworth Pouros', '+1 (646) 575-2449', 'dtremblay@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'oYl7wsY6kE', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(66, 2, 'Dr. Kasandra Schuster DVM', '228-664-2248', 'auer.elijah@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '3KwI1lyXfI', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(67, 2, 'Skylar Franecki', '+14259136641', 'sporer.jazmyne@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '8vfP6qzFGu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(68, 2, 'Lester Brekke DDS', '(402) 777-1397', 'georgette86@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'yTUSUOBKXp', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(69, 2, 'Berry Hickle', '+1.404.996.7470', 'fberge@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '66TcigFRAS', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(70, 2, 'Amelia Hagenes PhD', '513-228-8906', 'margarette.cronin@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'xprmzyp2WS', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(71, 2, 'Maud Dickens', '+1-650-891-7523', 'doyle.wisoky@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'XvkVctVWAi', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(72, 2, 'Mr. Allen Schimmel', '(520) 631-4227', 'bradford78@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'C9HTAxrJo4', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(73, 2, 'Angel Cormier Sr.', '947-571-1220', 'patrick90@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'KHMubgRRtk', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(74, 2, 'Daron Volkman', '(541) 227-7407', 'bernard28@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'oZAmczuAQu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(75, 2, 'Kristina McLaughlin', '857-593-5120', 'pschumm@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'rpQUCAJP0r', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(76, 2, 'Jerad Buckridge', '+1-361-795-0273', 'sipes.kay@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'QVQ43IxW7T', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(77, 2, 'Ms. Carrie Windler DDS', '1-847-242-9053', 'oconnell.leann@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'm2AQRwZFRY', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(78, 2, 'Mr. Gilberto Pacocha IV', '+1.743.714.0118', 'patricia47@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ipcqEkdG70', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(79, 2, 'Paul Armstrong', '+1 (364) 241-5048', 'kris.louvenia@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'FiBOlT1DeL', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(80, 2, 'Shane Willms', '425-836-8528', 'nnikolaus@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'eBjGBNMNfW', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(81, 2, 'Zoe Kreiger', '1-951-470-6976', 'zwisoky@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'GwmiMQMI5n', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(82, 2, 'Celestino Greenfelder', '+19809757936', 'bahringer.clementine@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'WfHsqFSn09', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(83, 2, 'Prof. Marshall Konopelski', '+13205521445', 'schmitt.virginia@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'q2HMDh5kh2', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(84, 2, 'Prof. Clementina Beahan III', '925-606-2649', 'aniyah33@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'bUukcqGf78', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(85, 2, 'Ardith Bailey', '+1.480.580.0577', 'gibson.jamir@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '04Gs1pXf3V', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(86, 2, 'Trey DuBuque DVM', '435.349.0542', 'buster.powlowski@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'n3tZqU0Bz0', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(87, 2, 'Mr. Samir Homenick', '+16179980462', 'joelle19@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'QLcw7Xv7ii', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(88, 2, 'Janis Bruen', '512-908-1320', 'lraynor@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qrxAxFtghY', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(89, 2, 'Mireya West', '1-708-480-5095', 'reynolds.hipolito@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'coZYgocstd', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(90, 2, 'Prof. Ericka Schamberger', '(863) 919-2785', 'wilford.koch@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'kvrXajw92t', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(91, 2, 'Dorris Wunsch', '+1.973.344.8727', 'crist.oral@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zF74fdAfzs', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(92, 2, 'Prof. Armand Kuhn V', '440-985-6444', 'nat.tremblay@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'QJOyVVMwGp', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(93, 2, 'Prof. Annie Kuhlman Sr.', '(812) 589-1340', 'keira40@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'uIbfHfeii1', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(94, 2, 'Candida Rempel', '+1 (657) 849-3575', 'vmurray@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Qj9nWdnVR2', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(95, 2, 'Prof. Rosemarie O\'Hara', '219.863.1420', 'willms.mose@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'OwiG4VajJ5', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(96, 2, 'Elwyn Lang V', '940.959.5209', 'adelia01@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'NtM25t4rhc', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(97, 2, 'Mr. Bobbie Hodkiewicz III', '(339) 221-1212', 'yroob@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qenvuoPRXp', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(98, 2, 'Mrs. Hannah Hagenes', '732.730.9371', 'xbradtke@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9CYgPdsbHh', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(99, 2, 'Brisa Stanton', '1-737-533-9240', 'shanie.anderson@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'pphTTiieyw', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(100, 2, 'Hazel Murray', '+1.228.833.9787', 'fahey.edwardo@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ukGwiG7Ctu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(101, 1, 'Kazi Rayhan Reza', '01795560431', 'rayhan@admin.com', 'users/default.png', NULL, '$2y$10$HBpsySA/OfiiFntD88zhVOCZOMHbqa4DF2xgMunpRDHXdTXQuVfbq', NULL, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-(102, 1, 'Ahmed Tamim', '01305065919', 'tamim@admin.com', 'users/default.png', NULL, '$2y$10$YT8p9QCjXV02QudSh2JPKunBxPU4Z4Hr5RUm7flK1yqZ0JVc.bHnq', NULL, NULL, '2022-06-01 08:32:55', '2022-06-01 08:32:55', 1),
-(103, 2, 'Hannah Cobb', '01711115465', NULL, 'users/default.png', NULL, '$2y$10$QGzDK/uDcwaliGMk3S2JyeZYKFOcq26GIx8hNFIaI7BKdWgNLlEOu', NULL, NULL, '2022-06-02 00:54:11', '2022-06-02 00:54:11', 1);
+INSERT INTO `users` (`id`, `role_id`, `name`, `phone`, `email`, `avatar`, `phone_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `active`, `otp_sent_at`, `otp`) VALUES
+(1, 1, 'Isac Dooley Sr.', '+1 (228) 828-6046', 'admin@admin.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$wSEFTRjzRVhANIV1HXaQJu895LvFBEnVb5J1msi29/RCiyB075Cce', 'zhdJ7tllFJWEpeHjcNfaBsygS05eB8vd2W3yUJYDj88vXLyByfmm6S7B5XCb', NULL, '2022-06-01 08:32:53', '2022-06-03 04:23:01', 1, NULL, NULL),
+(2, 2, 'Dr. Hilbert Wuckert', '+1.667.774.7572', 'wkris@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'IOcW6pBiyX', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(3, 2, 'Florine Hettinger', '+1-816-265-3160', 'xveum@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'fr0UhWDkYh', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(4, 2, 'Melany Dare', '920.882.0121', 'wehner.buster@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'XtcW3D5UfN', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(5, 2, 'Elisabeth Botsford', '(838) 630-1141', 'qyost@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Ee54v7WJ6V', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(6, 2, 'Jerald Spinka', '(940) 585-3957', 'corwin.liza@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'JRoAPhd6QE', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(7, 2, 'Mrs. Cora Champlin', '+1.501.596.0517', 'guadalupe22@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Mq3b0RRFFb', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(8, 2, 'Jerald Hagenes', '610-464-5654', 'zadams@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Es7kvEpuZ3', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(9, 2, 'Dr. Jarrod Walsh Sr.', '1-256-864-0967', 'hauck.ada@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Eu4zkgKVma', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(10, 2, 'Mr. Grover Ankunding', '+1-603-950-9271', 'hettie.anderson@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'yk1pMseXNL', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(11, 2, 'Tatum Stanton', '626-788-5364', 'fcrooks@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'y4eY05Kzo6', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(12, 2, 'Carmen Wilderman', '919.755.9322', 'arlene47@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '0fZx2mgBzT', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(13, 2, 'Rozella Mann', '1-631-215-8595', 'yokon@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4R2cB3I3CU', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(14, 2, 'Eunice Friesen', '256.519.1258', 'mertie25@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'g7OE8JruhT', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(15, 2, 'Damian Fritsch', '320.930.2032', 'wilford.grimes@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'cctcp5snAQ', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(16, 2, 'Dereck Gusikowski', '1-269-854-3786', 'harley21@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'hHB51nnCKJ', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(17, 2, 'Dr. Vilma Kuvalis Jr.', '(984) 201-4199', 'keeling.bridgette@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '41emA19zwQ', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(18, 2, 'Johnny Metz V', '+1.279.748.6740', 'ashly32@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'SCEnUoMvBS', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(19, 2, 'Twila Parisian', '1-323-217-3826', 'flegros@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'pIK8tvZtnL', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(20, 2, 'Miss Margarita Kris', '+1.909.657.3000', 'batz.otilia@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'XUM5UFf3CO', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(21, 2, 'Kathryne Hettinger', '1-612-770-0870', 'noelia.cassin@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'puEQ6uaO9t', NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1, NULL, NULL),
+(22, 2, 'Mrs. Zetta Spencer V', '828-668-3473', 'juwan18@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'CnQrfQXzYT', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(23, 2, 'Stacey Weimann', '+1.228.318.7247', 'hortense.considine@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Unr2SESlnU', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(24, 2, 'Hans Brakus', '341-742-9618', 'ssauer@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'DHeM2S91fi', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(25, 2, 'Grayce Nolan', '+1-815-830-9617', 'lorine90@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'rxuVUsdr2R', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(26, 2, 'Zion Ondricka', '1-786-993-9930', 'crooks.shane@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'bhoqqIoy8Z', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(27, 2, 'Dr. Sherman Walker', '430.681.9941', 'wilbert74@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'lqgH2NiWB3', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(28, 2, 'Bud Schmidt', '+14696497370', 'brady75@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '49Qkt3PdgI', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(29, 2, 'Mr. Celestino Russel Sr.', '+1-463-908-1998', 'harvey.cecil@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'koaBUgpCVu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(30, 2, 'Salma Stroman', '+1-551-448-5064', 'keely.beatty@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YvONjuwFMS', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(31, 2, 'Deborah Rolfson III', '1-463-738-2785', 'chowe@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'eX9xbzRoCM', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(32, 2, 'Beatrice Connelly', '607-682-4059', 'kris.henriette@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'gLWGApq2jl', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(33, 2, 'Mrs. Marian Raynor PhD', '985-775-0111', 'olson.litzy@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '46iiIZ8eD6', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(34, 2, 'Harold Dickinson', '+1-657-830-6819', 'alittle@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'exGhmkN3I5', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(35, 2, 'Jacey Macejkovic', '1-903-752-3894', 'colby86@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'U6JhqB21xQ', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(36, 2, 'Mrs. Daija Medhurst', '651-966-6949', 'constance.collier@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'FSRgrdw6sf', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(37, 2, 'Miss Greta Witting', '1-408-748-1979', 'ada09@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'vI9ZMMVXBH', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(38, 2, 'Marilyne Gulgowski', '917.730.6090', 'kasandra44@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'H1xIreBY7T', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(39, 2, 'Prof. Adrian Walsh', '(903) 320-0510', 'gregorio.kassulke@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'HMle45R7Co', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(40, 2, 'Mrs. Alivia Dicki', '(859) 589-7162', 'leland41@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'wbhCU0iS6M', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(41, 2, 'Rhiannon Veum', '386.435.9818', 'luettgen.mable@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'lquyuQVAGA', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(42, 2, 'Tara Kertzmann', '+1.309.381.9984', 'elmo.nikolaus@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'EWRDiLH8c6', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(43, 2, 'Dr. Shane Spencer DDS', '+1 (251) 248-7664', 'wmclaughlin@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4L7Y46a3Bg', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(44, 2, 'Giuseppe Rohan', '534-776-7064', 'xwindler@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'l7y3KyJTQE', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(45, 2, 'Miss Fabiola Hayes Sr.', '+1 (510) 827-1574', 'fgaylord@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'cmrEN828hX', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(46, 2, 'Dr. Audrey Sawayn DDS', '1-706-837-2097', 'antonina.schamberger@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '8PWdlGZJdG', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(47, 2, 'Prof. Annamarie Von IV', '+1 (210) 430-5021', 'reichert.maxwell@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'bihpPKjUS9', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(48, 2, 'Dovie Prohaska', '(972) 955-3176', 'berta.bashirian@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qE9JcYhIDx', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(49, 2, 'Keyshawn Howe', '+1-850-373-8087', 'sabrina.damore@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'iUYnRiE9Cg', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(50, 2, 'Mohamed Quitzon', '872-926-6569', 'destinee11@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'U4lUQ9oKB4', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(51, 2, 'Mr. Jerrod Padberg', '480.476.4555', 'abednar@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'MPuYp0WJZD', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(52, 2, 'Deborah Carter', '1-706-439-7137', 'jude.lehner@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'RtQYdpxhfk', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(53, 2, 'Melba Muller', '272-902-8569', 'novella.hilpert@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'VQnpqnAJjk', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(54, 2, 'Prof. Orlo Gleichner', '+1-325-989-3407', 'gwendolyn.ferry@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'HSPc32yrsm', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(55, 2, 'Osvaldo Blick', '402-533-6927', 'rbernhard@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PMewhuXSbZ', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(56, 2, 'Prof. Kade Ziemann', '1-253-203-4962', 'tyler56@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'GsVBlANQTW', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(57, 2, 'Ansley Heller IV', '+1-743-589-9792', 'dorothy.zieme@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'nWKPb584SM', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(58, 2, 'Miss Jade Runte DDS', '+1.281.478.9103', 'akoch@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'go5cr6WXhe', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(59, 2, 'Malika Ruecker', '+1-864-435-1609', 'una44@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'czlFtwGUhf', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(60, 2, 'Miss Katrina Dickens III', '+1-740-303-6516', 'mason75@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'OT2tOUxzFw', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(61, 2, 'Mr. Bryce Volkman IV', '856-704-7613', 'tatyana.mills@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zU7veBCtzT', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(62, 2, 'Esteban Wisoky', '+18284017894', 'nayeli21@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'xs9yJBlyOu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(63, 2, 'Dr. Rhianna Quigley PhD', '(831) 542-0640', 'granville.lesch@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '484CuSEbv8', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(64, 2, 'Dr. Baylee Sipes MD', '+13075534940', 'lavina03@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Y9Nl4u0eo5', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(65, 2, 'Ellsworth Pouros', '+1 (646) 575-2449', 'dtremblay@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'oYl7wsY6kE', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(66, 2, 'Dr. Kasandra Schuster DVM', '228-664-2248', 'auer.elijah@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '3KwI1lyXfI', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(67, 2, 'Skylar Franecki', '+14259136641', 'sporer.jazmyne@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '8vfP6qzFGu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(68, 2, 'Lester Brekke DDS', '(402) 777-1397', 'georgette86@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'yTUSUOBKXp', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(69, 2, 'Berry Hickle', '+1.404.996.7470', 'fberge@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '66TcigFRAS', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(70, 2, 'Amelia Hagenes PhD', '513-228-8906', 'margarette.cronin@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'xprmzyp2WS', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(71, 2, 'Maud Dickens', '+1-650-891-7523', 'doyle.wisoky@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'XvkVctVWAi', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(72, 2, 'Mr. Allen Schimmel', '(520) 631-4227', 'bradford78@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'C9HTAxrJo4', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(73, 2, 'Angel Cormier Sr.', '947-571-1220', 'patrick90@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'KHMubgRRtk', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(74, 2, 'Daron Volkman', '(541) 227-7407', 'bernard28@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'oZAmczuAQu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(75, 2, 'Kristina McLaughlin', '857-593-5120', 'pschumm@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'rpQUCAJP0r', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(76, 2, 'Jerad Buckridge', '+1-361-795-0273', 'sipes.kay@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'QVQ43IxW7T', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(77, 2, 'Ms. Carrie Windler DDS', '1-847-242-9053', 'oconnell.leann@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'm2AQRwZFRY', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(78, 2, 'Mr. Gilberto Pacocha IV', '+1.743.714.0118', 'patricia47@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ipcqEkdG70', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(79, 2, 'Paul Armstrong', '+1 (364) 241-5048', 'kris.louvenia@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'FiBOlT1DeL', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(80, 2, 'Shane Willms', '425-836-8528', 'nnikolaus@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'eBjGBNMNfW', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(81, 2, 'Zoe Kreiger', '1-951-470-6976', 'zwisoky@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'GwmiMQMI5n', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(82, 2, 'Celestino Greenfelder', '+19809757936', 'bahringer.clementine@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'WfHsqFSn09', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(83, 2, 'Prof. Marshall Konopelski', '+13205521445', 'schmitt.virginia@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'q2HMDh5kh2', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(84, 2, 'Prof. Clementina Beahan III', '925-606-2649', 'aniyah33@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'bUukcqGf78', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(85, 2, 'Ardith Bailey', '+1.480.580.0577', 'gibson.jamir@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '04Gs1pXf3V', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(86, 2, 'Trey DuBuque DVM', '435.349.0542', 'buster.powlowski@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'n3tZqU0Bz0', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(87, 2, 'Mr. Samir Homenick', '+16179980462', 'joelle19@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'QLcw7Xv7ii', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(88, 2, 'Janis Bruen', '512-908-1320', 'lraynor@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qrxAxFtghY', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(89, 2, 'Mireya West', '1-708-480-5095', 'reynolds.hipolito@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'coZYgocstd', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(90, 2, 'Prof. Ericka Schamberger', '(863) 919-2785', 'wilford.koch@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'kvrXajw92t', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(91, 2, 'Dorris Wunsch', '+1.973.344.8727', 'crist.oral@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zF74fdAfzs', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(92, 2, 'Prof. Armand Kuhn V', '440-985-6444', 'nat.tremblay@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'QJOyVVMwGp', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(93, 2, 'Prof. Annie Kuhlman Sr.', '(812) 589-1340', 'keira40@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'uIbfHfeii1', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(94, 2, 'Candida Rempel', '+1 (657) 849-3575', 'vmurray@example.com', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Qj9nWdnVR2', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(95, 2, 'Prof. Rosemarie O\'Hara', '219.863.1420', 'willms.mose@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'OwiG4VajJ5', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(96, 2, 'Elwyn Lang V', '940.959.5209', 'adelia01@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'NtM25t4rhc', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(97, 2, 'Mr. Bobbie Hodkiewicz III', '(339) 221-1212', 'yroob@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qenvuoPRXp', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(98, 2, 'Mrs. Hannah Hagenes', '732.730.9371', 'xbradtke@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9CYgPdsbHh', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(99, 2, 'Brisa Stanton', '1-737-533-9240', 'shanie.anderson@example.org', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'pphTTiieyw', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(100, 2, 'Hazel Murray', '+1.228.833.9787', 'fahey.edwardo@example.net', 'users/default.png', '2022-06-01 08:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ukGwiG7Ctu', NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(101, 1, 'Kazi Rayhan Reza', '01795560430', 'rayhan@admin.com', 'users/default.png', NULL, '$2y$10$HBpsySA/OfiiFntD88zhVOCZOMHbqa4DF2xgMunpRDHXdTXQuVfbq', NULL, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1, NULL, NULL),
+(112, 2, 'Ahmed', '01305065919', NULL, 'users/default.png', NULL, '$2y$10$JR9ypCwWjZDE6nujMOufFOBGe1KjrdjXFAOhPRB/7m6w4Hb2EZvUG', NULL, NULL, '2022-06-03 11:04:12', '2022-06-03 11:04:12', 1, NULL, NULL),
+(113, 2, 'Claire Barlow', '01713425640', NULL, 'users/default.png', NULL, '$2y$10$AOTNwMahRCWKtPXQHu.mheVZfF/0Yw7wMDT/1aXCqnfJ98mdj4ELG', NULL, NULL, '2022-06-04 10:44:51', '2022-06-04 10:44:51', 1, NULL, NULL),
+(115, 2, 'Inez Mccall', '01795560431', NULL, 'users/default.png', '2022-06-04 12:18:53', '$2y$10$vg81C1wopAnu8Rcy4OWbPOC7C5p8qWh9KxRKEZEdPThi.zrVsUJlq', NULL, NULL, '2022-06-04 12:11:55', '2022-06-04 12:18:53', 1, '2022-06-04 12:18:35', 50896);
 
 -- --------------------------------------------------------
 
@@ -13526,9 +13601,7 @@ CREATE TABLE `user_metas` (
 
 INSERT INTO `user_metas` (`id`, `user_id`, `package_id`, `is_paid`, `expired_at`, `created_at`, `updated_at`, `infinite_duration`) VALUES
 ('2022060169089', 1, 5, 0, NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
-('2022060183922', 2, 2, 1, '2022-08-30', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060170011', 3, 4, 1, '2023-06-01', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
-('2022060192217', 4, 2, 1, '2022-08-30', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060163009', 5, 1, 1, '2022-07-01', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060124773', 6, 3, 1, '2022-11-28', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060165405', 7, 1, 1, '2022-07-01', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
@@ -13537,10 +13610,8 @@ INSERT INTO `user_metas` (`id`, `user_id`, `package_id`, `is_paid`, `expired_at`
 ('2022060140765', 10, 1, 1, '2022-07-01', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060153872', 11, 5, 0, NULL, '2022-06-01 08:32:53', '2022-06-01 08:32:53', 1),
 ('2022060130138', 12, 3, 1, '2022-11-28', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
-('2022060120604', 13, 2, 1, '2022-08-30', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060124876', 14, 1, 1, '2022-07-01', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060178912', 15, 4, 1, '2023-06-01', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
-('2022060189467', 16, 2, 1, '2022-08-30', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060164680', 17, 4, 1, '2023-06-01', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060124609', 18, 3, 1, '2022-11-28', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
 ('2022060194591', 19, 3, 1, '2022-11-28', '2022-06-01 08:32:53', '2022-06-01 08:32:53', 0),
@@ -13555,8 +13626,6 @@ INSERT INTO `user_metas` (`id`, `user_id`, `package_id`, `is_paid`, `expired_at`
 ('2022060147193', 28, 1, 1, '2022-07-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060192633', 29, 5, 0, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
 ('2022060127207', 30, 3, 1, '2022-11-28', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
-('2022060118700', 31, 2, 1, '2022-08-30', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
-('2022060117473', 32, 2, 1, '2022-08-30', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060147545', 33, 1, 1, '2022-07-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060124354', 34, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060183877', 35, 3, 1, '2022-11-28', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
@@ -13566,7 +13635,6 @@ INSERT INTO `user_metas` (`id`, `user_id`, `package_id`, `is_paid`, `expired_at`
 ('2022060189297', 39, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060191014', 40, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060176654', 41, 5, 0, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-('2022060139041', 42, 2, 1, '2022-08-30', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060152776', 43, 5, 0, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
 ('2022060113018', 44, 3, 1, '2022-11-28', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060199210', 45, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
@@ -13599,22 +13667,17 @@ INSERT INTO `user_metas` (`id`, `user_id`, `package_id`, `is_paid`, `expired_at`
 ('2022060163386', 72, 3, 1, '2022-11-28', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060124457', 73, 5, 0, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
 ('2022060151430', 74, 3, 1, '2022-11-28', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
-('2022060123731', 75, 2, 1, '2022-08-30', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060158528', 76, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
-('2022060192562', 77, 2, 1, '2022-08-30', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060114191', 78, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060199612', 79, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060110157', 80, 1, 1, '2022-07-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060158785', 81, 5, 0, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
 ('2022060141056', 82, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060149119', 83, 1, 1, '2022-07-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
-('2022060188390', 84, 2, 1, '2022-08-30', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060168476', 85, 1, 1, '2022-07-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060183910', 86, 5, 0, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-('2022060158461', 87, 2, 1, '2022-08-30', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060140591', 88, 5, 0, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
 ('2022060199770', 89, 5, 0, NULL, '2022-06-01 08:32:54', '2022-06-01 08:32:54', 1),
-('2022060144562', 90, 2, 1, '2022-08-30', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060199689', 91, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060180630', 92, 3, 1, '2022-11-28', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
 ('2022060162711', 93, 4, 1, '2023-06-01', '2022-06-01 08:32:54', '2022-06-01 08:32:54', 0),
@@ -13718,10 +13781,24 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notices`
+--
+ALTER TABLE `notices`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `packages`
 --
 ALTER TABLE `packages`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`) USING BTREE;
 
 --
 -- Indexes for table `pages`
@@ -13812,6 +13889,7 @@ ALTER TABLE `translations`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_phone_unique` (`phone`),
+  ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD KEY `users_role_id_foreign` (`role_id`);
 
 --
@@ -13856,13 +13934,13 @@ ALTER TABLE `choices`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `exams`
@@ -13892,13 +13970,25 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+
+--
+-- AUTO_INCREMENT for table `notices`
+--
+ALTER TABLE `notices`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -13916,7 +14006,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -13970,7 +14060,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- Constraints for dumped tables
@@ -14005,6 +14095,12 @@ ALTER TABLE `exam_question`
 --
 ALTER TABLE `menu_items`
   ADD CONSTRAINT `menu_items_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `permission_role`
