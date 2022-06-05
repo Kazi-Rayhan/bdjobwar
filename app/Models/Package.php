@@ -10,5 +10,10 @@ class Package extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function orders()
+    {
+        return $this->morphMany(Order::class, 'orderable');
+    }
     
 }

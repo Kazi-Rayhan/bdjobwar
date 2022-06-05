@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckIfSubscribed;
 use App\Http\Middleware\Verify;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -64,6 +65,5 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => Verify::class,
-
     ];
 }

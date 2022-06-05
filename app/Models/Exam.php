@@ -32,4 +32,13 @@ class Exam extends Model
         });
     }
 
+    
+    public function orders()
+    {
+        return $this->morphMany(Order::class, 'orderable');
+    }
+
+    
+    
+
 }

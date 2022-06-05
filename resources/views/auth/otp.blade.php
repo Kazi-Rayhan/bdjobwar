@@ -50,7 +50,7 @@
                                 </button>
                             </div>
                             <div class="col-3 ">
-                             <a class="btn btn-success px-3" href="{{route('otpSend')}}">Send OTP</a>
+                             <a class="btn btn-success px-3"  href="{{route('otpSend')}}">Send OTP</a>
                             </div>
                         </div>
                     </form>
