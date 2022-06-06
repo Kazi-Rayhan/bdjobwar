@@ -27,7 +27,7 @@
                         <div class="row mb-4 px-4 pt-4">
 
                             <div class="col-md-12">
-                                <input id="otp" placeholder="Please write your OTP" type="number" class="form-control py-2 @error('otp') is-invalid @enderror" name="otp" value="" required autocomplete="otp" autofocus>
+                                <input id="otp" placeholder="Please write your OTP" type="number" class="form-control py-2 @error('otp') is-invalid @enderror" name="otp" @if(App::environment('local'))  value="{{auth()->user()->otp}}"  @endif required autocomplete="otp" autofocus>
 
                                 @error('otp')
                                     <span class="invalid-feedback" role="alert">

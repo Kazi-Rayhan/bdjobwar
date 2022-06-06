@@ -10,6 +10,14 @@ class Exam extends Model
 {
     use HasFactory;
 
+    public function information(){
+        return [
+            'title'=> $this->title,
+            'type'=> 'Exam',
+            'price'=> $this->price
+        ];
+    }
+
     public function subjects()
     {
         return $this->morphToMany(Subject::class,'subjectable');

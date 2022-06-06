@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exam;
 use App\Models\Order;
 use App\Models\Package;
+use App\Services\OrderServices;
 use Illuminate\Http\Request;
 use Error;
 use Exception;
+use Illuminate\Support\Facades\DB;
+use SMS;
 class OrderController extends Controller
 {
     /**
@@ -24,9 +28,18 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Package $package)
+    public function create($type,$id)
     {
-      return view('frontEnd.order',compact('package'));
+        $data = [];
+        switch ($type) {
+            case 'package':
+                $data = Package::find($id);
+                break;
+            case 'exam':
+                $data = Exam::find($id);
+                break;
+        }
+      return view('frontEnd.order',compact('data','type','id'));
     }
 
     /**
@@ -35,24 +48,23 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request ,Package $package)
+    public function store(Request $request)
     {
       
         $request->validate([
             "trnxId"=>'required'
         ]);
         try{
-            $order=new Order;
-            $order->user_id=Auth()->user()->id;
-            $order->method=0;
-            $order->trnxId=$request->trnxId;
-            $order->status='0';
-            $package->orders()->save($order);
+            DB::transaction();
+            OrderServices::make($request->type,$request->id,$request->trnxId)->save();
             SMS::compose(Auth()->user()->phone,'Thanks, your transaction id is pending');
+            DB::commit();
             return redirect()->back();
         }catch(Exception $e){
+            DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
         }catch(Error $e){
+            DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
 
         }

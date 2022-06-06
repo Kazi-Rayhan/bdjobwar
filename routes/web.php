@@ -32,8 +32,7 @@ Route::get('/verify/otp/send', [AuthenticateController::class, 'otpSend'])->name
 Route::post('/verify/otp/check', [AuthenticateController::class, 'checkOtp'])->name('checkOtp');
 Route::get('/verify', [AuthenticateController::class, 'otp'])->name('otp');
 
-Route::get('/order/create/{package}', [OrderController::class, 'create'])->name('orderCreate');
-Route::post('/order/store/{package}', [OrderController::class, 'store'])->name('orderStore');
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
@@ -43,11 +42,11 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','verified']], function () {
-  
     Route::get('/home', [DashboardController::class, 'dashboard'])->name('dashboard');
-    // Route::get('/package-buy/{package}', [HomeController::class, 'packageBuy'])->name('packageBuy');
     Route::get('/package-info', [HomeController::class, 'packageInfo'])->name('packageInfo');
+});
 
-  
-
+Route::group(['prefix'=>'order','middleware'=>['auth']],function(){
+    Route::get('/create/{type}/{id}', [OrderController::class, 'create'])->name('orderCreate');
+    Route::post('/store', [OrderController::class, 'store'])->name('orderStore');
 });

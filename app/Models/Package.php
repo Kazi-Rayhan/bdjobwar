@@ -11,6 +11,15 @@ class Package extends Model
 
     protected $guarded = [];
 
+    public function information(){
+        return [
+            'title'=> $this->title,
+            'type'=> 'Package',
+            'price'=> $this->price
+        ];
+    }
+
+
     public function orders()
     {
         return $this->morphMany(Order::class, 'orderable');
