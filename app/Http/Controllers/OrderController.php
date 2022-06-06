@@ -59,7 +59,10 @@ class OrderController extends Controller
             OrderServices::make($request->type,$request->id,$request->trnxId)->save();
             SMS::compose(Auth()->user()->phone,'Thanks, your transaction id is pending');
             DB::commit();
-            return redirect()->back();
+            
+        return redirect()
+            ->back()
+            ->with('success', 'Order created successfully');
         }catch(Exception $e){
             // return $e->getMessage();
             DB::rollBack();

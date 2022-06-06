@@ -15,4 +15,8 @@ class Order extends Model
     {
         return $this->morphTo();
     }
+    // public function types()
+    // {
+    //     return $this->hasMany(Order::class, 'orderable_id');
+    // }
 }

@@ -52,9 +52,9 @@
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
-    <a class="nav-link" href="{{route('packageInfo')}}">
+    <a class="nav-link" href="{{route('orders')}}">
         <i class="fas fa-fw fa-table"></i>
-        <span>Package</span></a>
+        <span>Orders</span></a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

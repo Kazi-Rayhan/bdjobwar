@@ -31,22 +31,17 @@ class HomeController extends Controller
     // {
     //     return view('home');
     // }
-    public function packageBuy(Package $package)
-    {
+    // public function packageBuy(Package $package)
+    // {
    
-        User::where('id',auth()->id())->update([
-            'package_id'=> $package->id,
+    //     User::where('id',auth()->id())->update([
+    //         'package_id'=> $package->id,
 
-         ]);
-        return back();
+    //      ]);
+    //     return back();
   
-    }
-    public function packageInfo()
-    {
+    // }
 
-       
-		return view('dashboard.package');
-    }
     public function download(Notice $notice)
     
     {

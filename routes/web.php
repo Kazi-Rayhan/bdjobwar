@@ -43,7 +43,8 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','verified']], function () {
     Route::get('/home', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('/package-info', [HomeController::class, 'packageInfo'])->name('packageInfo');
+    Route::get('/orders', [DashboardController::class, 'orders'])->name('orders');
+    Route::get('/invoice/{order}', [DashboardController::class, 'invoice'])->name('invoice');
 });
 
 Route::group(['prefix'=>'order','middleware'=>['auth']],function(){
