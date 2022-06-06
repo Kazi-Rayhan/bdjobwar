@@ -55,15 +55,17 @@ class OrderController extends Controller
             "trnxId"=>'required'
         ]);
         try{
-            DB::transaction();
+            DB::beginTransaction();
             OrderServices::make($request->type,$request->id,$request->trnxId)->save();
             SMS::compose(Auth()->user()->phone,'Thanks, your transaction id is pending');
             DB::commit();
             return redirect()->back();
         }catch(Exception $e){
+            // return $e->getMessage();
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
         }catch(Error $e){
+            // return $e->getMessage();
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
 
