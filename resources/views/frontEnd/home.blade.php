@@ -35,15 +35,9 @@
       </div>
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="fas fa-users fs-3 text-muted"></i> <span class="text-success">Live Examinees</span>
+          <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">Recently Closed</span>
         </h6>
-        <ul class="list-group ">
-          @foreach($liveExaminees as $examinee)
-          <li class="list-group-item bg-transparent">
-            {{App\Models\User::find($examinee->user_id)->name}} - {{App\Models\Exam::find($examinee->exam_id)->title}}
-          </li>
-          @endforeach
-        </ul>
+      
       </div>
 
     </div>
