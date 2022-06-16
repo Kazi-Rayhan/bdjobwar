@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('orderable_type');
             $table->unsignedBigInteger('price');
             $table->tinyInteger('method');
+            $table->string('account');
             $table->string('trnxId');
             $table->enum('status',[0,1,2]);
             $table->timestamps();

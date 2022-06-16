@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Choice;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -371,13 +372,13 @@ class QuestionsVoyagerController extends VoyagerBaseController
        $data = $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
        foreach($request->options as $option){
-            $choice = Choice::find($option->id);
+            $choice = Choice::find($option['id']);
         if(array_key_exists('choice_image',$option)){
             
             $option['choice_image'] =  $option['choice_image']->store('choices');
         }
    
-        $data->choices()->create($option);
+        $data->choices()->updateOrCreate(['id'=>$option['id']],$option);
     }
     $exam = Exam::find($request->exam);
     if($exam){

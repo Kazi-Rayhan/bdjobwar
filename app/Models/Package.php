@@ -19,7 +19,6 @@ class Package extends Model
         ];
     }
 
-
     public function orders()
     {
         return $this->morphMany(Order::class, 'orderable');

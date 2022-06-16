@@ -17,9 +17,11 @@ class CreateExamUserTable extends Migration
             $table->id();
             $table->foreignId('exam_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->text('answers');
-            $table->bigInteger('total_mark');
-            $table->timestamp('expire_at');
+            $table->text('answers')->nullable();
+            $table->integer('total')->nullable();
+            $table->integer('wrong_answers')->nullable();
+            $table->integer('empty_answers')->nullable();
+            $table->timestamp('expire_at')->nullable();
             $table->timestamps();
         });
     }

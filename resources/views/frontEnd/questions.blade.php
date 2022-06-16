@@ -1,18 +1,8 @@
 @extends('frontEnd.layouts.app')
 @section('content')
-<!-- bratcam area  start-->
-<section class="bradcam">
-<div class="container">
-<h3 class="text-white pt-5 pb-3">{{$exam->title}}</h3>
-    <p class="pb-5 text-white">
-        <a href="{{route('home_page')}}" class="text-decoration-none bradcam-active-btn pe-2">Home</a>
-         
-    </p>
-</div>
 
-</section>
-<!-- bratcam area  end-->
-
+<form action="{{route('exam.store',$exam->uuid)}}" method="post">
+    @csrf
     <div class="main-blog-area mb-5">
         <div class="container">
             <div class="">
@@ -25,82 +15,188 @@
 
                     <div class="course-details-page">
                         <div class="course-details-meta-list">
-                            <div class="row">
-                                <div class="col-6 mt-4 mt-md-0 ">
+                            <table class="table mt-5 w-75 mx-auto">
+                                <tr>
+                                    <th>Full Mark :</th>
+                                    <td>
+                                        {{$exam->questions->count() * $exam->point}}
+                                    </td>
 
-                                    <div class="align-self-center text-start ms-4">
-                                        <span class=" d-block">Minimum to pass : {{ $exam->minimum_to_pass }} %</span>
-                                        <span class=" d-block">Start date:
-                                            {{ \Carbon\Carbon::parse($exam->from)->format('d M ,Y') }}</span>
-                                        <span class=" d-block">End date :
-                                            {{ \Carbon\Carbon::parse($exam->to)->format('d M ,Y') }}</span>
+                                    <th>Questions :</th>
+                                    <td>
+                                        {{$exam->questions->count()}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Mark Per Questions :</th>
+                                    <td>
+                                        {{ $exam->point }}
+                                    </td>
 
-                                    </div>
+                                    <th>Negative Mark :</th>
+                                    <td>
+                                        {{ $exam->minius_mark }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Minimum to pass :</th>
+                                    <td>
+                                        {{$exam->minimum_to_pass}}
+                                    </td>
 
+                                    <th>Duration :</th>
+                                    <td> {{$exam->duration}} Miniute</td>
+                                </tr>
+                                <tr>
+                                    <th>Subjects :</th>
+                                    <td colspan="3">{{join(', ',$exam->subjects->pluck('name')->toArray())}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Categories :</th>
+                                    <td colspan="3">{{join(', ',$exam->categories->pluck('name')->toArray())}}</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">
+                                        Time left :
+                                    </th>
+                                    <td colspan="2">
+                                        <span id="countdown">
 
-                                </div>
-                                <div class="col-6 mt-4 mt-md-0 ">
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
 
-                                    <div class="text-end me-4">
-                                        <span class=" d-block">Full-mark :
-                                            {{ $exam->point * $exam->questions->count() }} </span>
-                                        <span class="d-block">Point : {{ $exam->point }}</span>
-                                        <span class="d-block">Negative Point : {{ $exam->minius_mark }}</span>
-                                        <span class="d-block">Duration: {{ $exam->duration }}</span>
-                                    </div>
-
-
-                                </div>
-                                <!-- <div class="col-md-3 mt-4 mt-md-0 align-self-center text-md-right">
-                                        <div class="enrole-inner">
-                                            <strong>Free</strong>
-                                            <a class="btn btn-base" href="#">Get Enroll</a>
-                                        </div>
-                                    </div> -->
-                            </div>
                         </div>
 
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                        <div class="mt-5 border border-dark shadow" style="height:700px;overflow:scroll">
+                            <div class="p-2" id="tab1">
 
-                                <div class="row">
+                                <div class="row row-cols-1 gap-5 ">
                                     @foreach ($questions as $question)
-                                        <div class="col-12 col-md-6 mt-2 mb-3">
-                                            <div class="card single-course-inner">
-                                                <form action="">
+                                    <div class="">
+                                        <div class="card single-course-inner border border-dark">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h4 class="card-title  text-dark  fw-semibold py-3 ps-3">
+                                                    <span class="text-dark">{{ $loop->iteration }}.</span> {{ $question->title }}
+                                                </h4>
+                                                @if($question->has_description)
+                                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-description="{{Voyager::image($question->image)}}" data-bs-description="{{$question->description}}">
+                                                    Details
+                                                </button>
+                                                @endif
+                                            </div>
+                                            <div class=" mb-5">
+                                                @foreach ($question->choices as $choice)
+                                                <div class="d-flex justify-content-between align-items-center border border-bottom-dark pt-2 " >
+                                                    <div class="form-check p-3">
+                                                        <div>
+                                                            <input class="form-check-input bg-secondary  mt-2 ms-2 choice" type="radio" value="{{$choice->index}}" name="choice[{{ $question->id }}]" id="choice{{ $question->id }}{{ $loop->iteration }}">
+                                                            <label class="form-check-label d-block ms-5" for="choice{{ $question->id }}{{ $loop->iteration }}">
+                                                                <strong style="font-size: 20px;">{{$choice::LABEL[$choice->index]}} . </strong> {{ $choice->choice_text }}
+                                                            </label>
+                                                        </div>
 
-                                                    <h4 class="card-title bg-success text-white fw-semibold py-3 ps-3">
-                                                        <span>{{ $loop->iteration }}.</span> {{ $question->title }}</h4>
-                                                    <div class="d-flex flex-wrap mb-5">
-                                                        @foreach ($question->choices as $choice)
-                                                            <div class="form-check col-12 col-md-6 p-3">
-                                                                <input class="form-check-input  mt-2 ms-2" type="radio"
-                                                                    value="" name="choice{{ $question->id }}"
-                                                                    id="choice{{ $question->id }}{{ $loop->iteration }}">
-                                                                   <label class="form-check-label d-block ms-5"
-                                                                    for="choice{{ $question->id }}{{ $loop->iteration }}">
-                                                                    {{ $choice->choice_text }}
-                                                                </label>
-                                                            </div>
-                                                        @endforeach
                                                     </div>
+                                                    <div class="text-center mb-2">
+                                                        <img class="" src="https://images.pexels.com/photos/3781338/pexels-photo-3781338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="100px" height="100px" style="object-fit:cover ;" alt="">
 
-                                                </form>
+                                                    </div>
+                                                </div>
+                                                @endforeach
                                             </div>
 
+
                                         </div>
+
+                                    </div>
                                     @endforeach
-                                    {!! $questions->links() !!}
+
                                 </div>
+                                <div class="d-flex justify-content-center my-3">
+                                    <button class="btn btn-lg btn-success" type="submit">SUBMIT</button>
+                                </div>
+
                             </div>
                         </div>
-                      
+
                     </div>
                 </div>
-           
-        </div>
-      
-    </div>
-    </div>
 
+            </div>
+
+        </div>
+    </div>
+</form>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+
+        </div>
+    </div>
+</div>
+@endsection
+@section('js')
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("{{auth()->user()->exams()->find($exam)->pivot->expire_at}}").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = Date.now();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("countdown").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+
+        // If the count down is over, write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>
+<script>
+    var exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', function(event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var description = button.getAttribute('data-bs-description')
+        var image = button.getAttribute('data-bs-image')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        if(image){
+          const img =  document.createElement('img');
+          img.setAttribute('src',image);
+        }
+        var modalBody = exampleModal.querySelector('.modal-body')
+        
+        modalBody.textContent = description;
+        modalBody.append(img);
+    })
+</script>
+<script>
+    $('.choice').click((e)=>{
+        console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].classList.add('bg-info'));
+    });
+</script>
 @endsection

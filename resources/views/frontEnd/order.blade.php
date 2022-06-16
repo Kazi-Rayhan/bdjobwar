@@ -23,12 +23,25 @@
                 <div class="card-body d-flex justify-content-center align-items-center " >
                     <form action="{{ route('orderStore') }}" class="w-75" method="POST">
                         @csrf
-                        <div class="form-group ">
-                            <label for="exampleInputEmail1" class="mb-3">Transaction Id</label>
-                            <input type="hidden" name="type" value="{{$type}}">
+                         <input type="hidden" name="type" value="{{$type}}">
                             <input type="hidden" name="id" value="{{$id}}">
-                            <input type="text" name="trnxId" class="form-control border border-dark " id="trnxId" required
-                                placeholder="Enter Transaction Id">
+                            <div class="form-group ">
+                            <label for="exampleInputAccount" class="mb-3">Account :</label>
+                           
+                            <input type="text" name="account" class="form-control border border-dark " id="exampleInputAccount" required
+                                placeholder="Enter account number">
+                            @error('account')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+                        <div class="form-group mt-2 ">
+                            <label for="exampleInputTransaction" class="mb-3">Transaction Id</label>
+                           
+                            <input type="text" name="trnxId" class="form-control border border-dark " id="exampleInputTransaction" required
+                                placeholder="Enter Transaction ID">
                             @error('trnxId')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -37,8 +50,17 @@
 
                         </div>
 
+                        <div class="form-group mt-2 ">
+                            <label for="exampleInputPrice" class="mb-3">Price</label>
+                           
+                            <input type="text" class="form-control border border-dark " readonly id="exampleInputPrice" 
+                                value="{{$data->information()['price']}} BDT">
+                           
 
-                        <button type="submit" class="btn btn-outline-dark mt-3">Pay</button>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-outline-dark mt-3">Pay </button>
                     </form>
                 </div>
             </div>

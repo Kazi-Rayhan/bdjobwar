@@ -8,324 +8,260 @@
 </section>
 <!-- Slider section end -->
 <!-- Live section start -->
-<section class="live-section" style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
+<section class="live-section" id="live-section" style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
   <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
-    <h1>Live Section</h1>
+    <h1 class="text-uppercase" style="font-weight:700 ;">Live Section</h1>
   </div>
-        <div class="container">
-           <div class="row">
-            <div class="col-md-6">
-                <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-                <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">Live testing in progress</span>
-                </h6>
-                @foreach($liveExams as $exam)
-                <div class="live-exam mb-5">
-                    <h6 class="live-exam-name"><a href="">{{$exam->title}}</a></h6>
-                     <div class="d-flex flex-wrap col-4">
-                       @foreach($exam->categories as $category)
-                     <p class="live-exam-category me-2"><a href="">{{$category->name}}</a></p>
-                     @endforeach
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+          <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">Live Exams</span>
+        </h6>
+        @foreach($liveExams as $exam)
+        <div class=" mb-4 card bg-transparent  rounded shadow">
+          <div class="card-body">
+            <h6>{{$exam->title}}</h6>
 
-                     </div>
-                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M ,Y ') }} </span>| To <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M ,Y') }}</span></p>
-                    <a class="test-btn" href="{{route('question',$exam)}}">Give the test</a>
-                </div>
-                @endforeach
-               
-                <!-- <div class="live-exam mb-5">
-                    <h6 class="live-exam-name"><a href="">44th BCS Prelim Final Model Test</a></h6>
-                    <p class="live-exam-category"><a href="">Model test-2</a></p>
-                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span>| To <span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM</span></p>
-                    <a class="test-btn" href="">Give the test</a>
-                </div>
-                <div class="live-exam mb-5">
-                  <h6 class="live-exam-name"><a href="">Special tests</a></h6>
-                    <p class="live-exam-category"><a href="">Model test-2</a></p>
-                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span>| To <span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM</span></p>
-                    <a class="test-btn" href="">Give the test</a>
-                </div> -->
+            <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
+
+            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;">
+              <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M , Y ') }} </span> <span>To</span> <span> <i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M , Y') }}</span>
             </div>
-            <div class="col-md-4 ms-md-5 ps-md-5">
-                <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-                <i class="fas fa-file-invoice fs-3 text-muted"></i> <span class="text-success">Upcoming tests</span>
-                </h6>
-                @foreach($upcommingTests as $upcommingTest)
-                <div class="card mb-3 col-12" style="">
-                  <div class="card-body">
-                    <h6 class="up-exam-title"><a href="">{{$upcommingTest->title}}</a></h6>
-                   <div class="d-flex flex-wrap ">
-                     @foreach($upcommingTest->categories as $category)
-                   <h6 class="up-exam-subtitle mb-2 text-muted my-3 pe-2"><a class="" href="">{{$category->name}}</a></h6>
-                    @endforeach
-                   </div>
-                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($upcommingTest->from)->format('d M ,Y ') }} </span>| To <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($upcommingTest->to)->format('d M ,Y') }}</span></p>
-                  </div>
-                </div>
-                @endforeach
-        
-                <a class="test-btn" href="{{route('exams')}}">See more</a>
-          
-                <!-- <div class="card mb-3 col-12" >
-                  <div class="card-body">
-                    <h6 class="up-exam-title"><a href="">44th BCS Prelim Final Model Test</a></h6>
-                    <h6 class="up-exam-subtitle mb-2 text-muted my-3"><a class="" href="">Model test-2</a></h6>
-                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span>| To <span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM</span></p>
-                  </div>
-                </div>
-                <div class="card mb-3 col-12" >
-                  <div class="card-body">
-                    <h6 class="up-exam-title"><a href="">44th BCS Prelim Final Model Test</a></h6>
-                    <h6 class="up-exam-subtitle mb-2 text-muted my-3"><a class="" href="">Model test-2</a></h6>
-                    <p class="live-exam-date"><span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM </span>| To <span><i class="far fa-calendar-alt"></i> 22 May, 2022 10:00 AM</span></p>
-                  </div>
-                </div> -->
-   
-            </div>
+            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">Start Exam</a>
           </div>
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-              <i class="fas fa-poll-h fs-3 text-muted"></i> <span class="text-success">Latest results</span>
-                </h6>
-              <table class="table table-striped">
-                  <thead class="text-muted">
-                    <tr>
-                      <th scope="col">Exam name</th>
-                      <th scope="col">Subjects</th>
-                      <th scope="col">Result</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-muted">
-                    <tr>
-                      <td>Model test-1</td>
-                      <td>BCS Prelim all subjects</td>
-                      <td><a href="" class="btn-danger">See</a></td>
-                    </tr>
-                    <tr>
-                      <td>Model test-2</td>
-                      <td>BCS Prelim all subjects</td>
-                      <td><a href="" class="btn-danger">See</a></td>
-                    </tr>
-                    <tr>
-                      <td>Model test-3</td>
-                      <td>BCS Prelim all subjects</td>
-                      <td><a href="" class="btn-danger">See</a></td>
-                    </tr>
-                  </tbody>
-              </table>
-            </div>
-            <div class="col-md-4 ms-md-5 ps-md-5 mb-4">
-                <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-                <i class="fas fa-file-invoice fs-3 text-muted"></i> <span class="text-success">Notice board</span>
-                </h6>
-                @foreach($notices as $notice)
-                <div class="card mb-3 col-md-12" style="">
-                  <div class="card-body">
-
-                    <h6 class="up-exam-title"><a href="{{$notice->fileLink}}">{{$notice->title}}</a></h6>
-                    <p class="live-exam-date pt-2"><span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($notice->created_at)->format('d M ,Y ') }} </span></p>
-                  </div>
-                </div>
-                @endforeach
-
-     
-
-            </div>
-          </div>
-          
+        </div>
+        @endforeach
       </div>
+      <div class="col-md-6">
+        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+          <i class="fas fa-users fs-3 text-muted"></i> <span class="text-success">Live Examinees</span>
+        </h6>
+        <ul class="list-group ">
+          @foreach($liveExaminees as $examinee)
+          <li class="list-group-item bg-transparent">
+            {{App\Models\User::find($examinee->user_id)->name}} - {{App\Models\Exam::find($examinee->exam_id)->title}}
+          </li>
+          @endforeach
+        </ul>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+          <i class="fas fa-chess fs-3 text-muted"></i> <span class="text-success">This Week Top</span>
+        </h6>
+        <table class="table table-striped table-light">
+          <thead class="text-muted">
+            <tr>
+              <th scope="col">Position</th>
+              <th scope="col">Name</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody class="">
+            @foreach($topStudents as $pos => $student)
+            <tr>
+              <td>{{$pos+1}}</td>
+              <td>{{$student->user->name}}</td>
+              <td>{{$student->total}}</td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6 mb-4">
+        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+          <i class="fas fa-poll fs-3 text-muted"></i> <span class="text-success">Latest Exam Result</span>
+        </h6>
+        <table class="table table-striped table-light">
+          <thead class="text-muted">
+            <tr>
+              <th scope="col">Exam</th>
+              <th scope="col">Subjects</th>
+              <th scope="col">Result</th>
+            </tr>
+          </thead>
+          <tbody class="">
+            @foreach($liveExams as $exam)
+            <tr>
+              <td>{{$exam->title}}</td>
+              <td>{{join(', ',$exam->subjects->pluck('name')->toArray())}}</td>
+              <td><a class="btn btn-sm btn-danger" href="">See</a></td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+          <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">Upcoming Exams</span>
+        </h6>
+        @foreach($upcomingExams as $exam)
+        <div class=" mb-4 card bg-transparent  rounded shadow">
+          <div class="card-body">
+            <h6>{{$exam->title}}</h6>
+
+            <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
+
+            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;">
+              <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M , Y ') }} </span> <span>To</span> <span> <i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M , Y') }}</span>
+            </div>
+          </div>
+        </div>
+        @endforeach
+      </div>
+      <div class="col-md-6">
+        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+          <i class="fas fa-file-invoice fs-3 text-muted"></i> <span class="text-success">Notice board</span>
+        </h6>
+        @foreach($notices as $notice)
+        <div class="card mb-3 col-md-12" style="">
+          <div class="card-body">
+
+            <h6 class="up-exam-title"><a href="{{$notice->fileLink}}">{{$notice->title}}</a></h6>
+            <p class="live-exam-date pt-2"><span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($notice->created_at)->format('d M ,Y ') }} </span></p>
+          </div>
+        </div>
+        @endforeach
+        
+
+
+      </div>
+    </div>
+
+  </div>
 </section>
 <!-- Live section end -->
 <!-- Package section start -->
+<section class="live-section" id="package">
+  <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
+    <h1 class="text-uppercase" style="font-weight:700 ;">Our packages</h1>
+  </div>
+  <div class="container">
+    <div class="d-flex flex-wrap gap-5 justify-content-center py-5">
+      @foreach($packages as $package)
+      @if($package->paid)
+      <div>
+        <div class="card border border-success shadow package-hover ">
+
+          <div class="card-body d-flex  flex-column justify-content-center align-items-center shadow  p-5 gap-2">
+            <div style="height:80px;width:80px" class="text-success shadow rounded-circle border-success border d-flex justify-content-center flex-column  align-items-center">
+              <i class="fa fa-gifts fa-2x"></i>
+            </div>
+            <h4 class="text-uppercase" style="font-weight:700 ;">
+              {{$package->title}}
+            </h4>
+            <h5 style="font-weight:700;">
+
+              {{$package->price}} &#2547;
+
+            </h5>
+            <ul class="premium-feature">
+              <li><span>Question Bank</span></li>
+              <li><span>All routine based test</span></li>
+              <li><span>All exisiting test</span></li>
+              <li><span>Online Self Test</span></li>
+              <li><span>Job Solution</span></li>
+
+            </ul>
+            <!-- <a href="{{route('orderCreate',['package',$package->id])}}" class="btn  btn-danger text-uppercase">
+    Subscribe
+  </a> -->
+          </div>
+        </div>
+        <a class="btn btn-outline-danger d-block mt-3 text-uppercase" href="{{route('package-details',[Str::slug($package->title),$package])}}"> See Details</a>
+      </div>
+
+      @endif
+
+      @endforeach
+
+    </div>
+  </div>
+</section>
+<!-- 
 <section class="live-section">
   <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
-    <h1>Our packages</h1>
+    <h1 class="text-uppercase" style="font-weight:700 ;">Our Blog</h1>
   </div>
-   <div class="container">
-    <div class="row mt-5">
-       @foreach($packages as $package)
-      <div class="col-md-3 mb-5 ">
-        <div class="card package">
-          <div class="card-header bg-success text-center text-white">
-            <div class="d-flex justify-content-center">
-            <i class="fas fa-box-open bg-white text-danger rounded-circle p-2 fs-3"></i> <h5 class="mt-2 ps-2">{{$package->title}}</h5>
-            </div>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-success ps-3 border-bottom pb-2">Premium features :</h5>
-          <ul class="premium-feature">
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            
-          </ul>
-          
-          </div>
-          <div class="card-footer bg-success">
-          <div class="d-flex justify-content-center">
-            <a href="#" class="valid-btn d-block">Expiration : {{$package->duration}} days</a>
-          </div>
-          <h5 class="text-white text-center my-3">subscription fees : {{$package->price}} BDT</h5>
-          </div>
-        </div>
-        <a href="{{route('orderCreate',['package',$package])}}" class="details-btn">Buy</a>
-      </div>
-      @endforeach
-      <!-- <div class="col-md-3 mb-5 ">
-        <div class="card package">
-          <div class="card-header bg-success text-center text-white">
-            <div class="d-flex justify-content-center">
-            <i class="fas fa-box-open bg-white text-danger rounded-circle p-2 fs-3"></i> <h5 class="mt-2 ps-2">Monthly</h5>
-            </div>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-success ps-3 border-bottom pb-2">Premium features :</h5>
-          <ul class="premium-feature">
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            
-          </ul>
-          
-          </div>
-          <div class="card-footer bg-success">
-          <div class="d-flex justify-content-center">
-            <a href="#" class="valid-btn d-block">Expiration : 30 days</a>
-          </div>
-          <h5 class="text-white text-center my-3">subscription fees : 100 BDT</h5>
-          </div>
-        </div>
-        <a href="" class="details-btn">Details</a>
-      </div>
-      <div class="col-md-3 mb-5 ">
-        <div class="card package">
-          <div class="card-header bg-success text-center text-white">
-            <div class="d-flex justify-content-center">
-            <i class="fas fa-box-open bg-white text-danger rounded-circle p-2 fs-3"></i> <h5 class="mt-2 ps-2">Monthly</h5>
-            </div>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-success ps-3 border-bottom pb-2">Premium features :</h5>
-          <ul class="premium-feature">
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            
-          </ul>
-          
-          </div>
-          <div class="card-footer bg-success">
-          <div class="d-flex justify-content-center">
-            <a href="#" class="valid-btn d-block">Expiration : 30 days</a>
-          </div>
-          <h5 class="text-white text-center my-3">subscription fees : 100 BDT</h5>
-          </div>
-        </div>
-        <a href="" class="details-btn">Details</a>
-      </div>
-      <div class="col-md-3 mb-5 ">
-        <div class="card package">
-          <div class="card-header bg-success text-center text-white">
-            <div class="d-flex justify-content-center">
-            <i class="fas fa-box-open bg-white text-danger rounded-circle p-2 fs-3"></i> <h5 class="mt-2 ps-2">Monthly</h5>
-            </div>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-success ps-3 border-bottom pb-2">Premium features :</h5>
-          <ul class="premium-feature">
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            <li><span>Question bank searchs</span></li>
-            <li><span>All routine-based test</span></li>
-            
-          </ul>
-          
-          </div>
-          <div class="card-footer bg-success">
-          <div class="d-flex justify-content-center">
-            <a href="#" class="valid-btn d-block">Expiration : 30 days</a>
-          </div>
-          <h5 class="text-white text-center my-3">subscription fees : 100 BDT</h5>
-          </div>
-        </div>
-        <a href="" class="details-btn">Details</a>
-      </div> -->
-    </div>
-   </div>
-</section>
+  <div class="container">
+
+  </div>
+</section> -->
+
 <!-- Courses section start -->
-<section class="live-section">
+<!-- <section class="live-section">
   <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
     <h1>Our Courses</h1>
   </div>
-   <div class="container">
+  <div class="container">
     <div class="row mt-5">
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Bcs-prep.png')}}" alt="">
+          <img class="img-fluid" src="{{asset('frontEnd-assets/img/Bcs-prep.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Subject-Care.png')}}" alt="">
+          <img class="img-fluid" src="{{asset('frontEnd-assets/img/Subject-Care.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Bank_Prep.png')}}" alt="">
+          <img class="img-fluid" src="{{asset('frontEnd-assets/img/Bank_Prep.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Bcs-prep.png')}}" alt="">
+          <img class="img-fluid" src="{{asset('frontEnd-assets/img/Bcs-prep.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Subject-Care.png')}}" alt="">
+          <img class="img-fluid" src="{{asset('frontEnd-assets/img/Subject-Care.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Other.png')}}" alt="">
+          <img class="img-fluid" src="{{asset('frontEnd-assets/img/Other.png')}}" alt="">
         </a>
       </div>
-   </div>
-</section>
+    </div>
+</section> -->
 <!-- Course section end -->
 <!--  -->
-<section class="mt-4">
-  <div class="bg-danger">
-    <div class="d-flex justify-content-around flex-wrap pb-4">
-      <div class="subscribers mt-3 pe-5">
-        <i class="fas fa-users text-white d-block d-flex justify-content-center fs-1"></i>
-        <p class="text-white mt-2">Subscribers</p>
-        <h5 class="text-white fw-bold text-center">540</h5>
-      </div>
-      <div class="subscribers mt-3 pe-5">
-        <i class="far fa-file-alt text-white d-block d-flex justify-content-center fs-1"></i>
-        <p class="text-white mt-2">Model tests</p>
-        <h5 class="text-white fw-bold text-center">320</h5>
-      </div>
-      <div class="subscribers mt-3 pe-5">
-        <i class="far fa-question-circle text-white d-block d-flex justify-content-center fs-1"></i>
-        <p class="text-white mt-2">Question number</p>
-        <h5 class="text-white fw-bold text-center">4540</h5>
-      </div>
-      <div class="subscribers mt-3 pe-5">
-        <i class="fas fa-chalkboard text-white d-block d-flex justify-content-center fs-1"></i>
-        <p class="text-white mt-2">Course number</p>
-        <h5 class="text-white fw-bold text-center">14</h5>
-      </div>
-
-  
+<section class="" >
+  <div class="bg-danger py-4 d-flex flex-column flex-md-row justify-content-around gap-3">
+    <div class="d-flex flex-column justify-content-center align-items-center text-light">
+      <i class="fa fa-users fa-3x"></i>
+      <h6>Users</h6>
+      <h5>{{App\Models\User::count()}}</h5>
+    </div>
+    
+    <div class="d-flex flex-column justify-content-center align-items-center text-light gap-2">
+      <i class="fa fa-file-alt fa-3x"></i>
+      <h6>Model Test</h6>
+      <h5 >{{App\Models\Exam::count()}}</h5>
+    </div>
+    
+    <div class="d-flex flex-column justify-content-center align-items-center text-light gap-2">
+      <i class="fa fa-question-circle fa-3x"></i>
+      <h6>Questions</h6>
+      <h5>{{App\Models\Question::count()}}</h5>
+    </div>
+    
+    <div class="d-flex flex-column justify-content-center align-items-center text-light gap-2">
+      <i class="fa fa-chalkboard fa-3x"></i>
+      <h6>Categories</h6>
+      <h5>{{App\Models\Category::count()}}</h5>
     </div>
   </div>
 </section>
-<!--  -->
-
 
 @endsection

@@ -29,13 +29,13 @@
               
                 <tr>
                 <th scope="row">{{ $loop->iteration  }}</th>
-                @if($order->orderable_type === 'App\Models\Package')
                 <td>
-                    <span class="font-weight-bold"> Package name :</span> {{$order->orderable->title}} <br>
-                    <span class="font-weight-bold"> Package duration :</span> {{$order->orderable->duration}} days <br>
+                    
+                        @foreach($order->orderable->information() as $key => $value)
+                        {{ucfirst($key)}} : {{$value}} <br>
+                        @endforeach
+                    </ul>
                 </td>
-                @endif
-                <td>{{$order->price}}</td>
                 <td>
                     <a href="{{route('invoice',$order)}}" class="btn btn-primary">Invoice</a>
                 </td>

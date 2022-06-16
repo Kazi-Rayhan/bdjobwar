@@ -12,6 +12,7 @@ class UserMeta extends Model
 
     protected $primaryKey = 'id';
     protected $keyType = 'int';
+    protected $guarded = [];
     public $incrementing = false;
     
     /**

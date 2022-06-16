@@ -9,8 +9,10 @@ use App\Services\OrderServices;
 use Illuminate\Http\Request;
 use Error;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use SMS;
+use App\Facades\SMS\Sms;
+
 class OrderController extends Controller
 {
     /**
@@ -28,7 +30,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($type,$id)
+    public function create($type, $id)
     {
         $data = [];
         switch ($type) {
@@ -39,7 +41,7 @@ class OrderController extends Controller
                 $data = Exam::find($id);
                 break;
         }
-      return view('frontEnd.order',compact('data','type','id'));
+        return view('frontEnd.order', compact('data', 'type', 'id'));
     }
 
     /**
@@ -50,75 +52,58 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-      
+
         $request->validate([
-            "trnxId"=>'required'
+            "account" => 'required',
+            "trnxId" => 'required'
         ]);
-        try{
+        try {
             DB::beginTransaction();
-            OrderServices::make($request->type,$request->id,$request->trnxId)->save();
-            SMS::compose(Auth()->user()->phone,'Thanks, your transaction id is pending');
+            $data = [$request->type, $request->id, $request->account, $request->trnxId];
+            OrderServices::make(...$data)->save();
+            SMS::compose(Auth()->user()->phone, 'Thanks, your transaction id is pending');
             DB::commit();
-            
-        return redirect()
-            ->back()
-            ->with('success', 'Order created successfully');
-        }catch(Exception $e){
-            // return $e->getMessage();
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->getMessage());
-        }catch(Error $e){
-            // return $e->getMessage();
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->getMessage());
 
+            return redirect()
+                ->back()
+                ->with('success', 'Order created successfully');
+        } catch (Exception $e) {
+            // return $e->getMessage();
+            DB::rollBack();
+            return redirect()->back()->withErrors($e->getMessage());
+        } catch (Error $e) {
+            // return $e->getMessage();
+            DB::rollBack();
+            return redirect()->back()->withErrors($e->getMessage());
         }
-
-      
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
+    public function accept(Order $order)
     {
-        //
+        try {
+
+            OrderServices::accept($order);
+            return redirect()->back()->with([
+                'message'    => 'Order is accepted',
+                'alert-type' => 'success',
+            ]);
+        } catch (Exception $e) {
+            return redirect()->back()->with([
+                'message'    => $e->getMessage(),
+                'alert-type' => 'success',
+            ]);
+        } catch (Error $e) {
+            return $e->getMessage();
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
+    public function declined(Order $order)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+        try {
+            OrderServices::decline($order);
+            return back();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        } catch (Error $e) {
+            return $e->getMessage();
+        }
     }
 }

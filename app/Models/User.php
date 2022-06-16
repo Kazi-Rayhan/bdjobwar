@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends \TCG\Voyager\Models\User
@@ -57,6 +59,10 @@ class User extends \TCG\Voyager\Models\User
         return $this->belongsTo(Package::class,'package_id');
     }
 
+    public function exams(){
+        return $this->belongsToMany(Exam::class)->withPivot(['answers','total','wrong_answers','empty_answers','expire_at'])->withTimestamps();
+    }
+
     public function verify($otp){
         //check if otp is valid
         if(!$this->otp_sent_at > now()->addMinutes(-2)) throw new Exception('Otp is expired request new otp');
@@ -73,4 +79,34 @@ class User extends \TCG\Voyager\Models\User
        return $this->phone_verified_at != null ? true : false;
     
     }
+
+    public function ownThisPackage(Package $package){
+        
+      $information = $this->information()->updateOrCreate(
+        [
+            'id'=>$this->information->id??null
+        ]  
+        ,[
+            'id'=>now()->format('Y').now()->format('m').now()->format('d').rand(9999,99999),
+            'package_id' => $package->id,
+            'is_paid'=> $package->paid,
+            'infinite_duration'=> $package->infinite_duration,
+            'expired_at'=> Carbon::now()->addDays($package->duration)
+        ]);
+     
+    }
+
+    public function ownThisExam(Exam $exam){
+       if(DB::table('exam_user')->where('user_id',$this->id)->where('exam_id',$exam->id)->count() || auth()->user()->information->is_paid){
+            if(auth()->user()->information->is_paid && !DB::table('exam_user')->where('user_id',$this->id)->where('exam_id',$exam->id)->count() ){
+           
+                $this->exams()->attach($exam);
+            }    
+            return true;
+        }
+        return false;
+   
+    }
+    
+     
 }

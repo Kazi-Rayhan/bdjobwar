@@ -13,7 +13,7 @@ class DashboardController extends Controller
     }
     public function orders()
     {
-        $orders = Order::where('user_id',Auth()->user()->id)->where('status','1')->latest()->get();
+        $orders = Order::where('user_id',Auth()->user()->id)->latest()->get();
         return view('dashboard.order',compact('orders'));
     }
     public function invoice(Order $order)

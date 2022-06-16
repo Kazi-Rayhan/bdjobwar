@@ -21,6 +21,14 @@
 .btn-danger:hover{
   color: white;
 }
+
+.package-hover{
+  transition: transform .2s; /* Animation */
+}
+.package-hover:hover{
+  transform: scale(1.05);
+  
+}
 /* Top nav start */
 .top-nav{
 

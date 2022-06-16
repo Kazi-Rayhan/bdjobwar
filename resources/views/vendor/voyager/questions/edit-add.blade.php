@@ -106,15 +106,15 @@ $add = is_null($dataTypeContent->getKey());
                             @if (request()->exam)
                                 <input type="hidden" name="exam" value="{{ request()->exam }}">
                             @endif
-
+                            
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-8 ">
 
                                     @if ($edit)
                                     @foreach( $dataTypeContent->choices as $choice)
-                                    <div class="accordion" id="accordionChoice{{$choice->index}}">
-                                        <div class="card">
-                                            <div class="card-header" id="heading0{{$choice->index}}">
+                                    <div class="accordion " id="accordionChoice{{$choice->index}}">
+                                        <div class="card ">
+                                            <div class="card-header "  id="heading0{{$choice->index}}">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="choice{{$choice->index}}">Choice</label>
                                                     <div class="input-group">
