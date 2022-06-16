@@ -41,14 +41,14 @@
     <div class="row">
         <div class="col-md-6 form-group">
             <label for="phone">Phone</label>
-            <input type="phone" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone" aria-describedby="phone" value="{{Auth()->user()->phone}}" placeholder="Enter phone">
+            <input type="phone" name="phone" disabled read class="form-control @error('phone') is-invalid @enderror" id="phone" aria-describedby="phone" value="{{Auth()->user()->phone}}" placeholder="Enter phone">
             @error('phone')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </div>
-        <div class="col-md-6 form-group">
+        <!-- <div class="col-md-6 form-group">
             <label for="address">Address</label>
             <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" value="{{Auth()->user()->address}}" aria-describedby="address" placeholder="Enter address">
             @error('address')
@@ -56,30 +56,26 @@
                   <strong>{{ $message }}</strong>
                 </span>
             @enderror
-        </div>
-    </div>
-    <div class="form-group">
+        </div> -->
+        <div class=" col-md-6 form-group">
             <label for="password">Password</label>
-            <input type="password" name="password" style="display:none" class="form-control @error('password') is-invalid @enderror" id="password" aria-describedby="password">
+            <input type="password" name="password"  class="form-control @error('password') is-invalid @enderror" id="password" aria-describedby="password">
             @error('password')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
                 </span>
             @enderror
+            <small>
+                Left empty if you do not want to change password
+            </small>
         </div>
+    </div>
+   
 
 
   <button type="submit" class="btn btn-primary">Update</button>
-  <button class="btn btn-info" type="button" onClick="myFunction()">Password change</button>
+  
 </form>
 </div>
 @endsection
-@section('js')
-<script>
-    function myFunction(){
-        const password=document.getElementById('password');
-        password.style.display = 'block';
 
-    }
-</script>
-@endsection

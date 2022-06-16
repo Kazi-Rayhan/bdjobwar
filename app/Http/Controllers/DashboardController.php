@@ -35,17 +35,19 @@ class DashboardController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:40'],
-            'email' => ['required', 'max:40', 'email'],
-            'address' => ['required', 'max:200'],
-            'phone' => ['required', 'max:20']
+            'email' => ['nullable', 'max:40', 'email'],
+            // 'address' => ['required', 'max:200'],
+            // 'phone' => ['required', 'max:20']
         ]);
         $user=Auth()->user();
 
         $user->name=$request->name;
         $user->email=$request->email;
-        $user->phone=$request->phone;
-        $user->address=$request->address;
-        $user->password=Hash::make($request['password']);
+        // $user->phone=$request->phone;
+        // $user->address=$request->address;
+        if($request->filled('password')){
+            $user->password=Hash::make($request['password']);
+        }
 
         $user->update();
         return redirect()->back();

@@ -3,7 +3,7 @@
 <!-- Slider section start -->
 <section class="slider">
   <a href="">
-    <img src="{{asset('frontEnd-assets/img/slider.png')}}" alt="" width="100%" style="object-fit:cover">
+    <img src="{{asset('frontEnd-assets/img/slider.webp')}}" alt="" width="100%" style="object-fit:cover">
   </a>
 </section>
 <!-- Slider section end -->
@@ -19,9 +19,9 @@
           <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">Live Exams</span>
         </h6>
         @foreach($liveExams as $exam)
-        <div class=" mb-4 card bg-transparent  rounded shadow">
+        <div class=" mb-4 card   rounded shadow">
           <div class="card-body">
-            <h6>{{$exam->title}}</h6>
+            <h4 class="text-success">{{$exam->title}}</h4>
 
             <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
 

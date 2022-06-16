@@ -7,13 +7,13 @@
         <div class="container">
             <div class="">
                 <div class="">
-                    <div class="text-center">
+                    <div class="text-center bg-info py-1 mt-5">
                         <h3 class="text-center text-muted mt-5">{{ $exam->title }}</h3>
                         <h5 class="text-center text-muted mt-2">{{ $exam->sub_title }}</h5>
 
                     </div>
 
-                    <div class="course-details-page">
+                    <div class="course-details-page" style="font-size: 22px;">
                         <div class="course-details-meta-list">
                             <table class="table mt-5 w-75 mx-auto">
                                 <tr>
@@ -69,16 +69,16 @@
 
                         </div>
 
-                        <div class="mt-5 border border-dark shadow" style="height:700px;overflow:scroll">
+                        <div class="" >
                             <div class="p-2" id="tab1">
 
-                                <div class="row row-cols-1 gap-5 ">
+                                <div class="row  ">
                                     @foreach ($questions as $question)
-                                    <div class="">
+                                    <div class="col-md-12 mb-2">
                                         <div class="card single-course-inner border border-dark">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h4 class="card-title  text-dark  fw-semibold py-3 ps-3">
-                                                    <span class="text-dark">{{ $loop->iteration }}.</span> {{ $question->title }}
+                                            <div class="card-header bg-primary  d-flex justify-content-between align-items-center">
+                                                <h4 class="card-title  text-light  fw-semibold py-3 ps-3">
+                                                    <span >{{ $loop->iteration }}.</span> {{ $question->title }}
                                                 </h4>
                                                 @if($question->has_description)
                                                 <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-description="{{Voyager::image($question->image)}}" data-bs-description="{{$question->description}}">
@@ -86,9 +86,9 @@
                                                 </button>
                                                 @endif
                                             </div>
-                                            <div class=" mb-5">
+                                            <div class="row mb-5">
                                                 @foreach ($question->choices as $choice)
-                                                <div class="d-flex justify-content-between align-items-center border border-bottom-dark pt-2 " >
+                                                <div class="col-md-6" >
                                                     <div class="form-check p-3">
                                                         <div>
                                                             <input class="form-check-input bg-secondary  mt-2 ms-2 choice" type="radio" value="{{$choice->index}}" name="choice[{{ $question->id }}]" id="choice{{ $question->id }}{{ $loop->iteration }}">
@@ -98,10 +98,12 @@
                                                         </div>
 
                                                     </div>
+                                                    @if($choice->image)
                                                     <div class="text-center mb-2">
-                                                        <img class="" src="https://images.pexels.com/photos/3781338/pexels-photo-3781338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="100px" height="100px" style="object-fit:cover ;" alt="">
+                                                        <img class="" src="{{Voyager::image($choice->image)}}" width="100%" height="100px" style="object-fit:cover ;" alt="">
 
                                                     </div>
+                                                    @endif
                                                 </div>
                                                 @endforeach
                                             </div>

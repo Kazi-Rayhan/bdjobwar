@@ -479,6 +479,10 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
         $model = new $dataType->model_name();
         $model->answer = $request->answer;
+        $model->description = $request->description;
+        if($request->image){
+            $model->image = $request->image->store('description');
+        }
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, $model );
         foreach($request->options as $option){
             

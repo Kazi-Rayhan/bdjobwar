@@ -31,7 +31,7 @@
 <body>
 
   <!-- top nav -->
-  <nav class="top-nav" style="background-image: url({{asset('frontEnd-assets/img/Top.png')}})">
+  <nav class="top-nav" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
     <div class="container">
       <div class="d-flex flex-wrap justify-content-between">
         <div class="d-flex flex-wrap justify-content-center company-info">
@@ -65,7 +65,7 @@
 
   <!-- mid nav end -->
   <!-- Main Nav start -->
-  <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav" style="background-image: url({{asset('frontEnd-assets/img/Menu.png')}})">
+  <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
     <div class="container">
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
