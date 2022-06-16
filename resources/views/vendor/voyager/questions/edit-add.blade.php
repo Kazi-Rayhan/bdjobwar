@@ -114,7 +114,7 @@ $add = is_null($dataTypeContent->getKey());
                                     @foreach( $dataTypeContent->choices as $choice)
                                     <div class="accordion " id="accordionChoice{{$choice->index}}">
                                         <div class="card ">
-                                            <div class="card-header "  id="heading0{{$choice->index}}">
+                                            <div class="card-heade" id="heading0{{$choice->index}}">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="choice{{$choice->index}}">Choice</label>
                                                     <div class="input-group">
