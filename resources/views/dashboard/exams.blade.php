@@ -10,7 +10,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Order Informations</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Exams Informations</h6>
             </div>
             
        
@@ -19,24 +19,29 @@
             <thead class="bg-primary text-white">
                 <tr>
                 <th scope="col">#</th>
-                <th scope="col">Orders Info</th>
-                <th scope="col">Action</th>
+                <th scope="col">Exam name</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Status</th>
                 </tr>
             </thead>
-            @foreach($orders as $order)
+            @foreach($exams as $exam)
             <tbody>
               
                 <tr>
                 <th scope="row">{{ $loop->iteration  }}</th>
                 <td>
-                    
-                        @foreach($order->orderable->information() as $key => $value)
-                        {{ucfirst($key)}} : {{$value}} <br>
-                        @endforeach
-                    </ul>
+                 {{$exam->exam->title}}
+      
                 </td>
                 <td>
-                    <a href="{{route('invoice',$order)}}" class="btn btn-primary">Invoice</a>
+                {{ \Carbon\Carbon::parse($exam->created_at)->format('d M ,Y ') }}
+                </td>
+                <td>
+                    @if($exam->answers==!null)
+                    <a class="btn btn-info" href="{{route('question',$exam->exam->uuid)}}">Finished</a>
+                    @else
+                    <a class="btn btn-warning" href="{{route('question',$exam->exam->uuid)}}">Unfinished</a>
+                    @endif
                 </td>
                 </tr>
           

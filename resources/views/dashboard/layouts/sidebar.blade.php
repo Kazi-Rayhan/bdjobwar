@@ -1,9 +1,9 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home_page')}}">
     
-    <div class="sidebar-brand-text mx-3">Dashboard</div>
+    <div class="sidebar-brand-text mx-3">Bd Jobwar</div>
 </a>
 
 <!-- Divider -->
@@ -11,7 +11,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="{{route('dashboard')}}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
@@ -53,6 +53,11 @@
     <a class="nav-link" href="{{route('orders')}}">
         <i class="fas fa-fw fa-table"></i>
         <span>Orders</span></a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{route('dashboard.exams')}}">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Exams</span></a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -50,6 +50,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','verified']], fun
     Route::get('/home', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/orders', [DashboardController::class, 'orders'])->name('orders');
     Route::get('/invoice/{order}', [DashboardController::class, 'invoice'])->name('invoice');
+    Route::get('/exams', [DashboardController::class, 'exams'])->name('dashboard.exams');
+    Route::post('/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
 });
 
 
