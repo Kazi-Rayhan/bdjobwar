@@ -59,6 +59,6 @@ class PageController extends Controller
     }
 
     public function packageDetails($slug,Package $package){
-        return view('frontend.package-details',compact('package'));
+        return view('frontend/package-details',compact('package'));
     }
 }
