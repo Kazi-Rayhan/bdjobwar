@@ -1,15 +1,22 @@
 @extends('frontEnd.layouts.app')
 @section('content')
 
+<div style="position: relative;">
+<div class="card bg-transparent border border-success shadow m-1" style="position: fixed; z-index:200;">
+    <div class="card-body   ">
+    <span style="font-size: 16px;font-weight: 700; " id="countdown">
+    </span>
+    </div>
+</div>
 <form action="{{route('exam.store',$exam->uuid)}}" method="post">
     @csrf
     <div class="main-blog-area mb-5">
         <div class="container">
             <div class="">
                 <div class="">
-                    <div class="text-center bg-info py-1 mt-5">
-                        <h3 class="text-center text-muted mt-5">{{ $exam->title }}</h3>
-                        <h5 class="text-center text-muted mt-2">{{ $exam->sub_title }}</h5>
+                    <div class="text-center bg-success rounded  py-1 mt-5">
+                        <h3 class="text-center text-light  mt-5" style="font-weight: 700;">{{ $exam->title }}</h3>
+                        <h5 class="text-center text-light  mt-2" style="font-weight: 700;">{{ $exam->sub_title }}</h5>
 
                     </div>
 
@@ -55,16 +62,7 @@
                                     <th>Categories :</th>
                                     <td colspan="3">{{join(', ',$exam->categories->pluck('name')->toArray())}}</td>
                                 </tr>
-                                <tr>
-                                    <th colspan="2">
-                                        Time left :
-                                    </th>
-                                    <td colspan="2">
-                                        <span id="countdown">
-
-                                        </span>
-                                    </td>
-                                </tr>
+                               
                             </table>
 
                         </div>
@@ -76,7 +74,7 @@
                                     @foreach ($questions as $question)
                                     <div class="col-md-12 mb-2">
                                         <div class="card single-course-inner border border-dark">
-                                            <div class="card-header bg-primary  d-flex justify-content-between align-items-center">
+                                            <div class="card-header   d-flex justify-content-between align-items-center" style="background-color:#5ab500 ;">
                                                 <h4 class="card-title  text-light  fw-semibold py-3 ps-3">
                                                     <span >{{ $loop->iteration }}.</span> {{ $question->title }}
                                                 </h4>
@@ -130,6 +128,8 @@
         </div>
     </div>
 </form>
+</div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -198,7 +198,7 @@
 </script>
 <script>
     $('.choice').click((e)=>{
-        console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].classList.add('bg-info'));
+        console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].classList.add('bg-success'));
     });
 </script>
 @endsection
