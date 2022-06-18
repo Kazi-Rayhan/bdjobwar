@@ -21,7 +21,7 @@ class PageController extends Controller
         $liveExams = Exam::active()->where('from', '<', now())->where('to', '>', now())->latest()->limit(5)->get();
         $liveExaminees = DB::table('exam_user')->whereBetween('updated_at', [now()->addMinutes(-120), now()->addMinutes(120)])->latest()->limit(5)->get();
         $upcomingExams = Exam::active()->where('from', '>', now())->limit(5)->latest()->get();
-        $topStudents = UserExam::whereNotNull('total')->whereBetween('expire_at',[now()->subWeeks(1),now()])->select('user_id', DB::raw('SUM(total) as total'))
+        $topStudents = UserExam::whereNotNull('total')->whereBetween('created_at',[now()->subWeeks(1),now()])->select('user_id', DB::raw('SUM(total) as total'))
             ->groupBy('user_id')
             ->orderBy('total','desc')
             ->limit(5)
