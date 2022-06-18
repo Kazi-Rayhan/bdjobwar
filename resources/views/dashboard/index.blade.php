@@ -19,6 +19,10 @@
     </div> -->
 
     <div class="row">
+        <div class="col-md-12 form-group">
+        <label for="name">Roll</label>
+            <input type="text" name="roll"  class="form-control " id="id" aria-describedby="name" value="{{Auth()->user()->information->id??''}}" placeholder="Roll" disabled>
+        </div>
         <div class="col-md-6 form-group">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="name" value="{{Auth()->user()->name}}" placeholder="Enter name">
@@ -66,7 +70,7 @@
                 </span>
             @enderror
             <small>
-                Left empty if you do not want to change password
+                Leave empty if you do not want to change password
             </small>
         </div>
     </div>

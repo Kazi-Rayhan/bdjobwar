@@ -37,7 +37,20 @@
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
           <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">Recently Closed</span>
         </h6>
-      
+        @foreach($finishedExams as $exam)
+        <div class=" mb-4 card   rounded shadow">
+          <div class="card-body">
+            <h4 class="text-success">{{$exam->title}}</h4>
+
+            <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
+
+            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;">
+              <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M , Y ') }} </span> <span>To</span> <span> <i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M , Y') }}</span>
+            </div>
+            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">Start Exam</a>
+          </div>
+        </div>
+        @endforeach
       </div>
 
     </div>
@@ -82,7 +95,7 @@
             <tr>
               <td>{{$exam->title}}</td>
               <td>{{join(', ',$exam->subjects->pluck('name')->toArray())}}</td>
-              <td><a class="btn btn-sm btn-danger" href="">See</a></td>
+              <td><a class="btn btn-sm btn-danger" href="{{route('all-results-exam',$exam->uuid)}}">See</a></td>
             </tr>
             @endforeach
           </tbody>

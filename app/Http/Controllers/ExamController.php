@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exam;
 use App\Models\Question;
+use App\Models\UserExam;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,14 @@ class ExamController extends Controller
         $exam = Exam::where('uuid',$uuid)->first();
         $result = Auth::user()->exams()->find($exam->id);
         return view('frontEnd.result',compact('result'));
+    }
+
+    public function exam_all_results($uuid){
+        $exam = Exam::where('uuid',$uuid)->first();
+        $results = UserExam::where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
+        
+        
+        return view('frontEnd.exam.results',compact('exam','results'));
     }
 
     public function start($uuid){

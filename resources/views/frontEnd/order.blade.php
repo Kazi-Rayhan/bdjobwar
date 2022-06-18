@@ -54,7 +54,7 @@
                             <label for="exampleInputPrice" class="mb-3">Price</label>
                            
                             <input type="text" class="form-control border border-dark " readonly id="exampleInputPrice" 
-                                value="{{$data->information()['price']}} BDT">
+                                value="{{$data->information()['price']}}">
                            
 
                         </div>

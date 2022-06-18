@@ -73,32 +73,41 @@
                                 <div class="row  ">
                                     @foreach ($questions as $question)
                                     <div class="col-md-12 mb-2">
-                                        <div class="card single-course-inner border border-dark">
-                                            <div class="card-header   d-flex justify-content-between align-items-center" style="background-color:#5ab500 ;">
-                                                <h4 class="card-title  text-light  fw-semibold py-3 ps-3">
+                                        <div class="card single-course-inner border border-dark" id="q{{$question->id}}">
+                                            <div class="card-header text-center " style="background-color:#5ab500 ;">
+                                            @if($question->image)
+                                            <img src="{{Voyager::image($question->image)}}" height="150" width="300" alt="">
+                                            @endif
+                                            <div style="text-align: left;">
+                                            <h4 class="card-title  text-light  fw-semibold py-3 ps-3">
                                                     <span >{{ $loop->iteration }}.</span> {{ $question->title }}
                                                 </h4>
-                                                @if($question->has_description)
-                                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-description="{{Voyager::image($question->image)}}" data-bs-description="{{$question->description}}">
-                                                    Details
-                                                </button>
+                                                @if($question->description)
+                                                <p class="text-light">
+{{$question->description}}
+                                                </p>
                                                 @endif
+                                            </div>
+                                               
+                                               
+                                            
+                                                
                                             </div>
                                             <div class="row mb-5">
                                                 @foreach ($question->choices as $choice)
                                                 <div class="col-md-6" >
                                                     <div class="form-check p-3">
                                                         <div>
-                                                            <input class="form-check-input bg-secondary  mt-2 ms-2 choice" type="radio" value="{{$choice->index}}" name="choice[{{ $question->id }}]" id="choice{{ $question->id }}{{ $loop->iteration }}">
+                                                            <input class="form-check-input bg-secondary  mt-2 ms-2 choice q{{$question->id}}" type="radio" value="{{$choice->index}}" name="choice[{{ $question->id }}]" id="choice{{ $question->id }}{{ $loop->iteration }}">
                                                             <label class="form-check-label d-block ms-5" for="choice{{ $question->id }}{{ $loop->iteration }}">
                                                                 <strong style="font-size: 20px;">{{$choice::LABEL[$choice->index]}} . </strong> {{ $choice->choice_text }}
                                                             </label>
                                                         </div>
 
                                                     </div>
-                                                    @if($choice->image)
+                                                    @if($choice->choice_image)
                                                     <div class="text-center mb-2">
-                                                        <img class="" src="{{Voyager::image($choice->image)}}" width="100%" height="100px" style="object-fit:cover ;" alt="">
+                                                        <img class="" src="{{Voyager::image($choice->choice_image)}}" width="100%" height="100px" style="object-fit:cover ;" alt="">
 
                                                     </div>
                                                     @endif
@@ -198,7 +207,14 @@
 </script>
 <script>
     $('.choice').click((e)=>{
-        console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].classList.add('bg-success'));
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].classList.add('bg-success');
+        e.target.parentNode.childNodes[3].classList.add('text-success');
+        e.target.parentNode.childNodes[3].classList.remove('choice');
+        
+        var selector = '.'+$(e.target.parentNode.parentNode.parentNode.parentNode.parentNode).attr('id');
+        $(selector).each((key,el)=>{
+            el.classList.add('d-none');
+        });
     });
 </script>
 @endsection

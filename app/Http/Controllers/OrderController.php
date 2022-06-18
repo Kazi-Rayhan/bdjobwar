@@ -60,12 +60,12 @@ class OrderController extends Controller
         try {
             DB::beginTransaction();
             $data = [$request->type, $request->id, $request->account, $request->trnxId];
-            OrderServices::make(...$data)->save();
+           $order = OrderServices::make(...$data)->save();
             SMS::compose(Auth()->user()->phone, 'Thanks, your transaction id is pending');
             DB::commit();
 
             return redirect()
-                ->back()
+                ->route('success.order',compact('order'))
                 ->with('success', 'Order created successfully');
         } catch (Exception $e) {
             // return $e->getMessage();

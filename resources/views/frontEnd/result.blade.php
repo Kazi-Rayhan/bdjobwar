@@ -50,16 +50,7 @@
             </span>
         </div>
 
-        @if($result->pivot->total >= $result->minimum_to_pass)
-        <ul style="list-style: none; margin:0px;padding:0px;">
-            <li style="color:#666666"> <strong>Wrong Answer :</strong> {{$result->pivot->wrong_answers}}</li>
-            <li style="color:#666666"> <strong>Negative Mark :</strong> {{$result->minius_mark}}</li>
-            <li style="color:#666666"> <strong>Missed :</strong> {{$result->pivot->empty_answers}}</li>
-            <li style="color:#666666"> <strong>Correct Answer :</strong> {{($result->questions->count() - ($result->pivot->wrong_answers + $result->pivot->empty_answers ))/$result->point}} </li>
-            <li style="color:#666666"> <strong>Minimum to pass :</strong> {{$result->minimum_to_pass}}</li>
-            <li style="color:#666666"> <strong>Total :</strong> {{$result->pivot->total}}</li>
-        </ul>
-        @endif
+      
         
         @if(!$result->pivot->answers )
         <ul style="list-style: none; margin:0px;padding:0px;">
@@ -70,6 +61,15 @@
             <li style="color:#666666"> <strong>Minimum to pass :</strong> {{$result->minimum_to_pass}}</li>
             <li style="color:#666666"> <strong>Total :</strong> N/A</li>
         </ul>
+        @else
+        <ul style="list-style: none; margin:0px;padding:0px;">
+            <li style="color:#666666"> <strong>Wrong Answer :</strong> {{$result->pivot->wrong_answers}}</li>
+            <li style="color:#666666"> <strong>Negative Mark :</strong> {{$result->minius_mark}}</li>
+            <li style="color:#666666"> <strong>Missed :</strong> {{$result->pivot->empty_answers}}</li>
+            <li style="color:#666666"> <strong>Correct Answer :</strong> {{($result->questions->count() - ($result->pivot->wrong_answers + $result->pivot->empty_answers ))/$result->point}} </li>
+            <li style="color:#666666"> <strong>Minimum to pass :</strong> {{$result->minimum_to_pass}}</li>
+            <li style="color:#666666"> <strong>Total :</strong> {{$result->pivot->total}}</li>
+        </ul>
         @endif
 
        
@@ -79,7 +79,11 @@
         </p>
 
     </div>
-    <a href="{{route('dashboard')}}" class="btn btn-dark"> Go to dashboard</a>
+    <div>
+        <a href="{{route('dashboard')}}" class="btn btn-dark"> Go to dashboard</a>
+        <a href="{{route('home_page')}}" class="btn btn-dark"> Home</a>
+        <a href="{{route('all-results-exam',$result->uuid)}}" class="btn btn-dark"> Results</a>
+    </div>
 
 </div>
 @endsection

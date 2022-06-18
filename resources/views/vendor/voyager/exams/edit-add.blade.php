@@ -253,7 +253,7 @@ $dataType->getTranslatedAttribute('display_name_singular'))
         $('.form-group').on('click', '.remove-single-file', deleteHandler('a', false));
 
         $('#confirm_delete').on('click', function () {
-            $.post('{{ route('voyager.' . $dataType->slug . '.media.remove') }}', params, function (
+            $.post('{{ route('voyager.'.$dataType->slug.'.media.remove') }}', params, function (
                 response) {
                 if (response &&
                     response.data &&
@@ -274,8 +274,8 @@ $dataType->getTranslatedAttribute('display_name_singular'))
         $('[data-toggle="tooltip"]').tooltip();
         $('#id input[type=text]').prop('readonly', true);
         const date = new Date()
-        const id = 'EXM'+date.getFullYear() + '' + (Math.floor(Math
-            .random() * (99999 - 999999)) + 99999)
+        const id = 'EXM'+date.getFullYear() +''+ (Math.floor(Math
+            .random() * (9999 -999999))+ 99999)
         $('#id input[type=text]').val(id);
       
     });

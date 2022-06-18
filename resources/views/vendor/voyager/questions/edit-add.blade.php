@@ -219,13 +219,13 @@ $add = is_null($dataTypeContent->getKey());
                                     </div>
                                     @endforeach
                                     @endif
-                                   
+                                        
                                     <div class="accordion" id="accordionChoiceDescription">
                                         <div class="card">
                                             <div class="card-header" id="headingDescription">
                                                 <div class="form-group">
                                                         <label for="">Description</label>
-                                                        <input type="text" name="description" id=""  class="form-control">
+                                                        <input type="text" name="description" id="" value="{{old('description') ?? @$dataTypeContent->description}}"  class="form-control">
                                                     
                                                 </div>
                                                 <button class="btn btn-primary" type="button" data-toggle="collapse"
@@ -246,6 +246,9 @@ $add = is_null($dataTypeContent->getKey());
 
                                                         <input type="file" class="form-control" id="choiceImageDescription" name="image"
                                                             placeholder="Enter choice">
+                                                            @if($dataTypeContent->image)
+                                                        <img src="{{Voyager::image($dataTypeContent->image)}}" height="80" style="object-fit:cover" alt="">
+                                                        @endif
 
                                                     </div>
                                                 </div>
