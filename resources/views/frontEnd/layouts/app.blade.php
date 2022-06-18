@@ -35,7 +35,7 @@
     <div class="container">
       <div class="d-flex flex-wrap justify-content-between">
         <div class="d-flex flex-wrap justify-content-center company-info">
-          <p>রবিবার, ২২ মে ২০২২</p>
+          <p>{{now()->format('D, d M, Y')}}</p>
           <p><i class="fas fa-envelope"></i> info@bdjobwar.com</p>
           <p><i class="fas fa-phone-alt"></i> 01748545139</p>
         </div>
@@ -50,7 +50,7 @@
       <div class="brand">
         <a class="navbar-brand" href="#">
           <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="60" width="60" style="object-fit:contain" alt="">
-        </a>
+       s </a>
       </div>
       <div class="d-flex flex-wrap">
         <div class="">
@@ -74,7 +74,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link nav-active" aria-current="page" href="{{route('home_page')}}#home">Home</a>
+            <a class="nav-link" aria-current="page" href="{{route('home_page')}}#home">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('home_page')}}#live-section">Live section</a>
