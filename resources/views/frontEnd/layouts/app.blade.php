@@ -50,7 +50,7 @@
       <div class="brand">
         <a class="navbar-brand" href="#">
           <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="60" width="60" style="object-fit:contain" alt="">
-       s </a>
+       </a>
       </div>
       <div class="d-flex flex-wrap">
         <div class="">
