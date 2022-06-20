@@ -17,10 +17,11 @@ class PageController extends Controller
     {
         $categories = Category::whereNull('parent_id')->latest()->get();
 
-        $liveExams = Exam::where('from', '<', now())->where('to', '>', now())->latest()->limit(5)->get();
+        $finishedExams = Exam::active()->where('to', '<', now())->latest()->limit(5)->get();
+        $liveExams = Exam::active()->where('from', '<', now())->where('to', '>', now())->latest()->limit(5)->get();
         $liveExaminees = DB::table('exam_user')->whereBetween('updated_at', [now()->addMinutes(-120), now()->addMinutes(120)])->latest()->limit(5)->get();
-        $upcomingExams = Exam::where('from', '>', now())->limit(5)->latest()->get();
-        $topStudents = UserExam::whereBetween('expire_at',[now()->subWeeks(1),now()])->select('user_id', DB::raw('SUM(total) as total'))
+        $upcomingExams = Exam::active()->where('from', '>', now())->limit(5)->latest()->get();
+        $topStudents = UserExam::whereNotNull('total')->whereBetween('created_at',[now()->subWeeks(1),now()])->select('user_id', DB::raw('SUM(total) as total'))
             ->groupBy('user_id')
             ->orderBy('total','desc')
             ->limit(5)
@@ -31,13 +32,13 @@ class PageController extends Controller
         $packages = Package::all();
         $notices = Notice::latest()->get();
 
-        return view('frontEnd/home', compact('categories', 'liveExams','upcomingExams', 'liveExaminees','topStudents', 'packages', 'notices'));
+        return view('frontEnd/home', compact('finishedExams','categories', 'liveExams','upcomingExams', 'liveExaminees','topStudents', 'packages', 'notices'));
     }
     public function question($uuid)
     {
 
-        $exam = Exam::where('uuid', $uuid)->first();
-        $exams = Exam::whereNotIn('id', [$exam->id])->get();
+        $exam = Exam::active()->where('uuid', $uuid)->first();
+        $exams = Exam::active()->whereNotIn('id', [$exam->id])->get();
         $questions = $exam->questions;
 
         return view('frontEnd/questions', compact('exam', 'exams', 'questions'));
@@ -46,7 +47,7 @@ class PageController extends Controller
     {
         $categories = Category::all();
         // dd($categories->exams);
-        $exams = Exam::latest()->paginate(10);
+        $exams = Exam::active()->latest()->paginate(10);
 
 
         return view('frontEnd/exams', compact('categories', 'exams'));
@@ -54,7 +55,7 @@ class PageController extends Controller
     public function categoryExam(Category $cat)
     {
         $categories = Category::all();
-        // return $category->exams;
+
         return view('frontEnd/category_exam', compact('cat', 'categories'));
     }
 

@@ -1,19 +1,26 @@
 @extends('frontEnd.layouts.app')
 @section('content')
 
+<div style="position: relative;">
+<div class="card bg-transparent border border-success shadow m-1" style="position: fixed; z-index:200;">
+    <div class="card-body   ">
+    <span style="font-size: 16px;font-weight: 700; " id="countdown">
+    </span>
+    </div>
+</div>
 <form action="{{route('exam.store',$exam->uuid)}}" method="post">
     @csrf
     <div class="main-blog-area mb-5">
         <div class="container">
             <div class="">
                 <div class="">
-                    <div class="text-center">
-                        <h3 class="text-center text-muted mt-5">{{ $exam->title }}</h3>
-                        <h5 class="text-center text-muted mt-2">{{ $exam->sub_title }}</h5>
+                    <div class="text-center bg-success rounded  py-1 mt-5">
+                        <h3 class="text-center text-light  mt-5" style="font-weight: 700;">{{ $exam->title }}</h3>
+                        <h5 class="text-center text-light  mt-2" style="font-weight: 700;">{{ $exam->sub_title }}</h5>
 
                     </div>
 
-                    <div class="course-details-page">
+                    <div class="course-details-page" style="font-size: 22px;">
                         <div class="course-details-meta-list">
                             <table class="table mt-5 w-75 mx-auto">
                                 <tr>
@@ -55,53 +62,55 @@
                                     <th>Categories :</th>
                                     <td colspan="3">{{join(', ',$exam->categories->pluck('name')->toArray())}}</td>
                                 </tr>
-                                <tr>
-                                    <th colspan="2">
-                                        Time left :
-                                    </th>
-                                    <td colspan="2">
-                                        <span id="countdown">
-
-                                        </span>
-                                    </td>
-                                </tr>
+                               
                             </table>
 
                         </div>
 
-                        <div class="mt-5 border border-dark shadow" style="height:700px;overflow:scroll">
+                        <div class="" >
                             <div class="p-2" id="tab1">
 
-                                <div class="row row-cols-1 gap-5 ">
+                                <div class="row  ">
                                     @foreach ($questions as $question)
-                                    <div class="">
-                                        <div class="card single-course-inner border border-dark">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h4 class="card-title  text-dark  fw-semibold py-3 ps-3">
-                                                    <span class="text-dark">{{ $loop->iteration }}.</span> {{ $question->title }}
+                                    <div class="col-md-12 mb-2">
+                                        <div class="card single-course-inner border border-dark" id="q{{$question->id}}">
+                                            <div class="card-header text-center " style="background-color:#5ab500 ;">
+                                            @if($question->image)
+                                            <img src="{{Voyager::image($question->image)}}" height="150" width="300" alt="">
+                                            @endif
+                                            <div style="text-align: left;">
+                                            <h4 class="card-title  text-light  fw-semibold py-3 ps-3">
+                                                    <span >{{ $loop->iteration }}.</span> {{ $question->title }}
                                                 </h4>
-                                                @if($question->has_description)
-                                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-description="{{Voyager::image($question->image)}}" data-bs-description="{{$question->description}}">
-                                                    Details
-                                                </button>
+                                                @if($question->description)
+                                                <p class="text-light">
+{{$question->description}}
+                                                </p>
                                                 @endif
                                             </div>
-                                            <div class=" mb-5">
+                                               
+                                               
+                                            
+                                                
+                                            </div>
+                                            <div class="row mb-5">
                                                 @foreach ($question->choices as $choice)
-                                                <div class="d-flex justify-content-between align-items-center border border-bottom-dark pt-2 " >
+                                                <div class="col-md-6" >
                                                     <div class="form-check p-3">
                                                         <div>
-                                                            <input class="form-check-input bg-secondary  mt-2 ms-2 choice" type="radio" value="{{$choice->index}}" name="choice[{{ $question->id }}]" id="choice{{ $question->id }}{{ $loop->iteration }}">
+                                                            <input class="form-check-input bg-secondary  mt-2 ms-2 choice q{{$question->id}}" type="radio" value="{{$choice->index}}" name="choice[{{ $question->id }}]" id="choice{{ $question->id }}{{ $loop->iteration }}">
                                                             <label class="form-check-label d-block ms-5" for="choice{{ $question->id }}{{ $loop->iteration }}">
                                                                 <strong style="font-size: 20px;">{{$choice::LABEL[$choice->index]}} . </strong> {{ $choice->choice_text }}
                                                             </label>
                                                         </div>
 
                                                     </div>
+                                                    @if($choice->choice_image)
                                                     <div class="text-center mb-2">
-                                                        <img class="" src="https://images.pexels.com/photos/3781338/pexels-photo-3781338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="100px" height="100px" style="object-fit:cover ;" alt="">
+                                                        <img class="" src="{{Voyager::image($choice->choice_image)}}" width="100%" height="100px" style="object-fit:cover ;" alt="">
 
                                                     </div>
+                                                    @endif
                                                 </div>
                                                 @endforeach
                                             </div>
@@ -128,6 +137,8 @@
         </div>
     </div>
 </form>
+</div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -196,7 +207,14 @@
 </script>
 <script>
     $('.choice').click((e)=>{
-        console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].classList.add('bg-info'));
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].classList.add('bg-success');
+        e.target.parentNode.childNodes[3].classList.add('text-success');
+        e.target.parentNode.childNodes[3].classList.remove('choice');
+        
+        var selector = '.'+$(e.target.parentNode.parentNode.parentNode.parentNode.parentNode).attr('id');
+        $(selector).each((key,el)=>{
+            el.classList.add('d-none');
+        });
     });
 </script>
 @endsection

@@ -3,7 +3,7 @@
 <!-- Slider section start -->
 <section class="slider">
   <a href="">
-    <img src="{{asset('frontEnd-assets/img/slider.png')}}" alt="" width="100%" style="object-fit:cover">
+    <img src="{{asset('frontEnd-assets/img/slider.webp')}}" alt="" width="100%" style="object-fit:cover">
   </a>
 </section>
 <!-- Slider section end -->
@@ -19,9 +19,9 @@
           <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">Live Exams</span>
         </h6>
         @foreach($liveExams as $exam)
-        <div class=" mb-4 card bg-transparent  rounded shadow">
+        <div class=" mb-4 card   rounded shadow">
           <div class="card-body">
-            <h6>{{$exam->title}}</h6>
+            <h4 class="text-success">{{$exam->title}}</h4>
 
             <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
 
@@ -35,15 +35,22 @@
       </div>
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="fas fa-users fs-3 text-muted"></i> <span class="text-success">Live Examinees</span>
+          <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">Recently Closed</span>
         </h6>
-        <ul class="list-group ">
-          @foreach($liveExaminees as $examinee)
-          <li class="list-group-item bg-transparent">
-            {{App\Models\User::find($examinee->user_id)->name}} - {{App\Models\Exam::find($examinee->exam_id)->title}}
-          </li>
-          @endforeach
-        </ul>
+        @foreach($finishedExams as $exam)
+        <div class=" mb-4 card   rounded shadow">
+          <div class="card-body">
+            <h4 class="text-success">{{$exam->title}}</h4>
+
+            <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
+
+            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;">
+              <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M , Y ') }} </span> <span>To</span> <span> <i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M , Y') }}</span>
+            </div>
+            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">Start Exam</a>
+          </div>
+        </div>
+        @endforeach
       </div>
 
     </div>
@@ -88,7 +95,7 @@
             <tr>
               <td>{{$exam->title}}</td>
               <td>{{join(', ',$exam->subjects->pluck('name')->toArray())}}</td>
-              <td><a class="btn btn-sm btn-danger" href="">See</a></td>
+              <td><a class="btn btn-sm btn-danger" href="{{route('all-results-exam',$exam->uuid)}}">See</a></td>
             </tr>
             @endforeach
           </tbody>

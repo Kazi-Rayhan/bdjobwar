@@ -2,7 +2,7 @@
 
 namespace App\Models;
 use App\Models\Question;
-
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -61,7 +61,9 @@ class Exam extends Model
         $value      = $data->keys()->first() + 1;
         return $value;
      }
-    
-    
+    public function scopeActive($query){
+      return $query->where('active',1);
+    }
+  
 
 }

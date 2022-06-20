@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'BD Job War') }}</title>
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -31,11 +31,11 @@
 <body>
 
   <!-- top nav -->
-  <nav class="top-nav" style="background-image: url({{asset('frontEnd-assets/img/Top.png')}})">
+  <nav class="top-nav" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
     <div class="container">
       <div class="d-flex flex-wrap justify-content-between">
         <div class="d-flex flex-wrap justify-content-center company-info">
-          <p>রবিবার, ২২ মে ২০২২</p>
+          <p>{{now()->format('D, d M, Y')}}</p>
           <p><i class="fas fa-envelope"></i> info@bdjobwar.com</p>
           <p><i class="fas fa-phone-alt"></i> 01748545139</p>
         </div>
@@ -49,8 +49,12 @@
     <div class="container d-flex justify-content-between flex-wrap">
       <div class="brand">
         <a class="navbar-brand" href="#">
+
           <img src="{{asset('frontEnd-assets/img/logo-eToro.png')}}" style="object-fit:contain" alt="">
         </a>
+
+
+
       </div>
       <div class="d-flex flex-wrap">
         <div class="">
@@ -65,7 +69,7 @@
 
   <!-- mid nav end -->
   <!-- Main Nav start -->
-  <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav" style="background-image: url({{asset('frontEnd-assets/img/Menu.png')}})">
+  <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
     <div class="container">
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +78,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link nav-active" aria-current="page" href="{{route('home_page')}}#home">Home</a>
+            <a class="nav-link" aria-current="page" href="{{route('home_page')}}#home">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('home_page')}}#live-section">Live section</a>

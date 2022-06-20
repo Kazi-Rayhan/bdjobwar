@@ -54,10 +54,7 @@ class User extends \TCG\Voyager\Models\User
         return $query->where('active', 1)->where('role_id',2)->whereNotIn('id',$ids);
     }
     
-    public function package()
-    {
-        return $this->belongsTo(Package::class,'package_id');
-    }
+ 
 
     public function exams(){
         return $this->belongsToMany(Exam::class)->withPivot(['answers','total','wrong_answers','empty_answers','expire_at'])->withTimestamps();
@@ -97,12 +94,15 @@ class User extends \TCG\Voyager\Models\User
     }
 
     public function ownThisExam(Exam $exam){
-       if(DB::table('exam_user')->where('user_id',$this->id)->where('exam_id',$exam->id)->count() || auth()->user()->information->is_paid){
-            if(auth()->user()->information->is_paid && !DB::table('exam_user')->where('user_id',$this->id)->where('exam_id',$exam->id)->count() ){
+       if(DB::table('exam_user')->where('user_id',$this->id)->where('exam_id',$exam->id)->count() || $exam->is_paid == 0  || auth()->user()->information->is_paid ){
            
-                $this->exams()->attach($exam);
-            }    
-            return true;
+           
+                if(!DB::table('exam_user')->where('user_id',$this->id)->where('exam_id',$exam->id)->count()){
+                    $this->exams()->attach($exam);
+                }
+                return true;
+            
+
         }
         return false;
    

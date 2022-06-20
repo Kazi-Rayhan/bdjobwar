@@ -20,6 +20,7 @@ use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use App\Models\Exam;
 use Error;
+use Illuminate\Support\Facades\Storage;
 
 class QuestionsVoyagerController extends VoyagerBaseController
 {
@@ -285,7 +286,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
 
     public function edit(Request $request, $id)
     {
-        
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -328,7 +329,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         if (view()->exists("voyager::$slug.edit-add")) {
             $view = "voyager::$slug.edit-add";
         }
-        
+
 
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
     }
@@ -345,7 +346,8 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $id = $id instanceof \Illuminate\Database\Eloquent\Model ? $id->{$id->getKeyName()} : $id;
 
         $model = app($dataType->model_name);
-        $model->answer = $request->answer;
+        
+       
         $query = $model->query();
         if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
             $query = $query->{$dataType->scope}();
@@ -353,7 +355,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
             $query = $query->withTrashed();
         }
-
+        
         $data = $query->findOrFail($id);
 
         // Check permission
@@ -369,22 +371,30 @@ class QuestionsVoyagerController extends VoyagerBaseController
             });
         $original_data = clone ($data);
 
-       $data = $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
-
-       foreach($request->options as $option){
-            $choice = Choice::find($option['id']);
-        if(array_key_exists('choice_image',$option)){
-            
-            $option['choice_image'] =  $option['choice_image']->store('choices');
+        $data = $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+        $data->answer = $request->answer;
+        $data->description = $request->description;
+        if ($request->image) {
+            if (Storage::exists( $data->image)) {
+                Storage::delete($data->image);
+            }
+            $data->image = $request->image->store('description');
         }
-   
-        $data->choices()->updateOrCreate(['id'=>$option['id']],$option);
-    }
-    $exam = Exam::find($request->exam);
-    if($exam){
-        $data->exams()->attach($exam);
-        
-    }
+        $data->update();
+     
+        foreach ($request->options as $option) {
+            $choice = Choice::find($option['id']);
+            if (array_key_exists('choice_image', $option)) {
+
+                $option['choice_image'] =  $option['choice_image']->store('choices');
+            }
+
+            $data->choices()->updateOrCreate(['id' => $option['id']], $option);
+        }
+        $exam = Exam::find($request->exam);
+        if ($exam) {
+            $data->exams()->attach($exam);
+        }
 
         // Delete Images
         $this->deleteBreadImages($original_data, $to_remove);
@@ -396,7 +406,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         } else {
             $redirect = redirect()->back();
         }
-       
+
         return $redirect->with([
             'message'    => __('voyager::generic.successfully_updated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
@@ -419,10 +429,10 @@ class QuestionsVoyagerController extends VoyagerBaseController
     public function create(Request $request)
     {
         $exam = new Exam;
-        if($request->has('exam')){
+        if ($request->has('exam')) {
             $exam = Exam::whereId($request->exam)->first();
         }
-  
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -453,7 +463,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','exam'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'exam'));
     }
 
     /**
@@ -465,57 +475,62 @@ class QuestionsVoyagerController extends VoyagerBaseController
      */
     public function store(Request $request)
     {
-  
-        try{
-        DB::beginTransaction();
-        $slug = $this->getSlug($request);
 
-        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+        try {
+            DB::beginTransaction();
+            $slug = $this->getSlug($request);
 
-        // Check permission
-        $this->authorize('add', app($dataType->model_name));
+            $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
-        // Validate fields with ajax
-        $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
-        $model = new $dataType->model_name();
-        $model->answer = $request->answer;
-        $data = $this->insertUpdateData($request, $slug, $dataType->addRows, $model );
-        foreach($request->options as $option){
-            
-            if(array_key_exists('choice_image',$option)){
-                $option['choice_image'] =  $option['choice_image']->store('choices');
+            // Check permission
+            $this->authorize('add', app($dataType->model_name));
+
+            // Validate fields with ajax
+            $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
+            $model = new $dataType->model_name();
+            $model->answer = $request->answer;
+            $model->description = $request->description;
+
+            if ($request->image) {
+                $model->image = $request->image->store('description');
             }
-       
-            $data->choices()->create($option);
-        }
-        $exam = Exam::find($request->exam);
-        if($exam){
-            $data->exams()->attach($exam);
-            
-        }
-        event(new BreadDataAdded($dataType, $data));
-        DB::commit();
-        if (!$request->has('_tagging')) {
-            if (auth()->user()->can('create', $data)) {
-                $redirect = redirect()->route("voyager.{$dataType->slug}.create");
+            $data = $this->insertUpdateData($request, $slug, $dataType->addRows, $model);
+            foreach ($request->options as $option) {
+
+                if (array_key_exists('choice_image', $option)) {
+                    $option['choice_image'] =  $option['choice_image']->store('choices');
+                }
+
+                $data->choices()->create($option);
+            }
+            $exam = Exam::find($request->exam);
+            if ($exam) {
+                $data->exams()->attach($exam);
+            }
+            event(new BreadDataAdded($dataType, $data));
+
+            DB::commit();
+            if (!$request->has('_tagging')) {
+                if (auth()->user()->can('create', $data)) {
+                    $redirect = redirect()->route("voyager.{$dataType->slug}.create");
+                } else {
+                    $redirect = redirect()->back();
+                }
+
+                return $redirect->with([
+                    'message'    => __('voyager::generic.successfully_added_new') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
+                    'alert-type' => 'success',
+                ]);
             } else {
-                $redirect = redirect()->back();
+                return response()->json(['success' => true, 'data' => $data]);
             }
-
-            return $redirect->with([
-                'message'    => __('voyager::generic.successfully_added_new') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
-                'alert-type' => 'success',
-            ]);
-        } else {
-            return response()->json(['success' => true, 'data' => $data]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($e->getMessage());
+        } catch (Error $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors($e->getMessage());
         }
-    }catch(Exception $e){
-        DB::rollBack();
-        return redirect()->back()->withErrors($e->getMessage());
-    }catch(Error $e){
-        DB::rollBack();
-        return redirect()->back()->withErrors($e->getMessage());
-    }
     }
 
     //***************************************
@@ -1047,7 +1062,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
 
     public function validateBread($data, $rows, $name = null, $id = null)
     {
-   
+
         $rules = [];
         $messages = [];
         $customAttributes = [];
@@ -1055,8 +1070,8 @@ class QuestionsVoyagerController extends VoyagerBaseController
 
         $rules['answer'] = 'required';
         $rules['options.*.choice_text'] = 'required';
-        
-     
+
+
 
         $fieldsWithValidationRules = $this->getFieldsWithValidationRules($rows);
 

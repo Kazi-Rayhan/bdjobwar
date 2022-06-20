@@ -7,7 +7,17 @@ $add = is_null($dataTypeContent->getKey());
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-@stop
+    <style>
+        #title input{
+            height: 50px;
+
+        }
+        #title{
+            font-size: 20px;
+            color: #000;
+        }
+    </style>
+    @stop
 
 @section('page_title', __('voyager::generic.' . ($edit ? 'edit' : 'add')) . ' ' .
     $dataType->getTranslatedAttribute('display_name_singular'))
@@ -27,7 +37,7 @@ $add = is_null($dataTypeContent->getKey());
 
             <div class="col-md-12">
 
-                <div class="panel panel-bordered">
+                <div class="panel panel-bordered " style="background-color: #e9ecef;">
                     <!-- form start -->
                     <form role="form" class="form-edit-add"
                         action="{{ $edit ? route('voyager.' . $dataType->slug . '.update', $dataTypeContent->getKey()) : route('voyager.' . $dataType->slug . '.store') }}"
@@ -56,8 +66,11 @@ $add = is_null($dataTypeContent->getKey());
                             @php
                                 $dataTypeRows = $dataType->{$edit ? 'editRows' : 'addRows'};
                             @endphp
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
 
-                            @foreach ($dataTypeRows as $row)
+                                @foreach ($dataTypeRows as $row)
                                 <!-- GET THE DISPLAY OPTIONS -->
                                 @php
                                     $display_options = $row->details->display ?? null;
@@ -103,22 +116,31 @@ $add = is_null($dataTypeContent->getKey());
                                     @endif
                                 </div>
                             @endforeach
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                           
                             @if (request()->exam)
                                 <input type="hidden" name="exam" value="{{ request()->exam }}">
                             @endif
                             
-                            <div class="row">
-                                <div class="col-md-8 ">
-
+                            <div class="row ">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10" >
+                                
+                                    <div class="card " >
+                                    <div class="card-body " >
                                     @if ($edit)
+
+                                
                                     @foreach( $dataTypeContent->choices as $choice)
-                                    <div class="accordion " id="accordionChoice{{$choice->index}}">
-                                        <div class="card ">
-                                            <div class="card-heade" id="heading0{{$choice->index}}">
-                                                <div class="form-group">
+                                    <div class="accordion "  id="accordionChoice{{$choice->index}}">
+                                        <div class="card " >
+                                            <div class="card-header"  id="heading0{{$choice->index}}">
+                                                <div class="form-group" >
                                                     <label class="sr-only" for="choice{{$choice->index}}">Choice</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">{{$choice->label}}</div>
+                                                    <div class="input-group ">
+                                                        <div class="input-group-addon ">{{$choice->label}}</div>
                                                          <input type="hidden" name="options[{{$choice->index}}][index]" class="form-control" value="{{$choice->index}}">
                                                        
                                                         <input type="hidden" class="form-control" id="choice{{$choice->index}}Id"  placeholder="Enter choice {{$choice->label}}" name="options[{{$choice->index}}][id]" value="{{$choice->id}}">
@@ -163,18 +185,18 @@ $add = is_null($dataTypeContent->getKey());
                                                 <div class="form-group">
                                                     <label class="sr-only" for="choice{{$key}}">Choice</label>
                                                     <div class="input-group">
-                                                        <div class="input-group-addon">{{$value}}</div>
+                                                        <div class="input-group-addon " style="color:#fff;background-color: #2ecc71;">{{$value}}</div>
                                                          <input type="hidden" name="options[{{$key}}][index]" class="form-control" value="{{$key}}">
                                                         <input type="text" class="form-control" id="choice{{$key}}"
                                                             placeholder="Enter choice {{$value}}" name="options[{{$key}}][choice_text]">
-                                                        <div class="input-group-addon"><input name="answer" value="{{$key}}" type="radio">
+                                                        <div class="input-group-addon" ><input name="answer" value="{{$key}}" type="radio">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <button class="btn btn-primary" type="button" data-toggle="collapse"
                                                     data-target="#collapse0{{$key}}" aria-expanded="true"
                                                     aria-controls="collapse0{{$key}}">
-                                                    Add Image with option {{$value}} (if necessary) 
+                                                    Add Image 
                                                 </button>
 
 
@@ -197,17 +219,58 @@ $add = is_null($dataTypeContent->getKey());
                                     </div>
                                     @endforeach
                                     @endif
+                                        
+                                    <div class="accordion" id="accordionChoiceDescription">
+                                        <div class="card">
+                                            <div class="card-header" id="headingDescription">
+                                                <div class="form-group">
+                                                        <label for="">Description</label>
+                                                        <input type="text" name="description" id="" value="{{old('description') ?? @$dataTypeContent->description}}"  class="form-control">
+                                                    
+                                                </div>
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                    data-target="#collapseDescription" aria-expanded="true"
+                                                    aria-controls="collapseDescription">
+                                                    Add Image  
+                                                </button>
+
+
+                                            </div>
+
+                                            <div id="collapseDescription" class="collapse " aria-labelledby="headingDescription"
+                                                data-parent="#accordionChoiceDescription">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label 
+                                                            for="choiceImageDescription">Image </label>
+
+                                                        <input type="file" class="form-control" id="choiceImageDescription" name="image"
+                                                            placeholder="Enter choice">
+                                                            @if($dataTypeContent->image)
+                                                        <img src="{{Voyager::image($dataTypeContent->image)}}" height="80" style="object-fit:cover" alt="">
+                                                        @endif
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
 
 
                                 </div>
+                                
+                                <div class="col-md-1"></div>
+                                
                             </div>
-
+                                 
                         </div><!-- panel-body -->
 
 
-                        <div class="panel-footer">
+                        <div class=" " style="display: flex;justify-content: end;background-color: #e9ecef;" >
                         @section('submit-buttons')
-                            <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
+                            <button type="submit" class="btn  btn-primary save " style="height: 60px ; width: 120px ;margin-right:150px ;" >{{ __('voyager::generic.save') }}</button>
                         @stop
                         @yield('submit-buttons')
                     </div>
@@ -225,13 +288,16 @@ $add = is_null($dataTypeContent->getKey());
 
         </div>
         @if (!$edit)
+        <div class="container">
+
             <div class="row">
                 @foreach ($exam->questions as $question)
-                    <div class="col-md-12">
-                        <x-questionAdmin :question="$question" :index="$loop->iteration" />
-                    </div>
+                <div class="col-md-12">
+                    <x-questionAdmin :iteration="$loop->iteration" :question="$question" :index="$loop->iteration" />
+                </div>
                 @endforeach
             </div>
+        </div>
         @endif
     </div>
 </div>
