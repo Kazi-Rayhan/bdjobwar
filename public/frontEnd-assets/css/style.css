@@ -288,9 +288,11 @@
 }
 /* footer start */
 .location{
-  margin: 15px 0 0;
+  /* margin: 15px 0 0; */
   padding: 0;
-  color: #555;
+  color: rgb(224, 224, 224);
+  word-spacing: 5px;
+  font-weight: 300;
 }
 .contact{
   margin: 20px 0 0 15px;
@@ -307,12 +309,12 @@
 .bg-footer{
   background-color: #013b34;
 }
-.footer-info{
+/* .footer-info{
   margin-left: 116px;
-}
-.populer-course{
+} */
+/* .populer-course{
   margin-left: 10px;
-}
+} */
 .populer-course h5{
   color: #d6ff00;
 }
@@ -322,6 +324,10 @@
   margin-top: 15px;
   padding-bottom: 10px;
   border-bottom: 1px solid #555;
+
+}
+.social-link{
+  border-bottom: none !important;
 
 }
 .payment-method{

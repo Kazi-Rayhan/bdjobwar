@@ -235,7 +235,7 @@
     </div>
 </section> -->
 <!-- Course section end -->
-<!--  -->
+
 <section class="" >
   <div class="bg-danger py-4 d-flex flex-column flex-md-row justify-content-around gap-3">
     <div class="d-flex flex-column justify-content-center align-items-center text-light">

@@ -49,7 +49,7 @@
     <div class="container d-flex justify-content-between flex-wrap">
       <div class="brand">
         <a class="navbar-brand" href="#">
-          <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="60" width="60" style="object-fit:contain" alt="">
+          <img src="{{asset('frontEnd-assets/img/logo-eToro.png')}}" style="object-fit:contain" alt="">
         </a>
       </div>
       <div class="d-flex flex-wrap">
@@ -116,7 +116,7 @@
   <!-- footer section start-->
   <footer>
     <div class="">
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-3 mt-3 footer-info">
           <div class="brand">
             <a class="navbar-brand" href="#">
@@ -129,22 +129,21 @@
             </div>
           </div>
 
-        </div>
-        <div class="col-md-8 bg-footer ">
+        </div> -->
+        <div class="container-fluid bg-footer ">
           <div class="row justify-content-around">
-            <div class="col-md-3 populer-course pe-5">
-              <h5 class="mt-3">Populer Courses</h5>
-              <a href="">
-                <p>Daily quiz-01</p>
-              </a>
-              <a href="">
-                <p>Daily quiz-02</p>
-              </a>
-              <a href="">
-                <p>Daily quiz-03</p>
-              </a>
-            </div>
-            <div class="col-md-3 populer-course pe-5">
+          <div class="col-md-4 mt-3 footer-info">
+          <div class="brand">
+            <a class="navbar-brand" href="#">
+              <img src="{{asset('frontEnd-assets/img/logo-eToro.png')}}" height="100" width="100" style="object-fit:contain" alt="">
+            </a>
+          </div>
+            <p class="location mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet accusamus rerum ipsam quibusdam ipsum optio, deleniti culpa consequatur quae eos laboriosam aut nemo architecto laudantium fugit autem hic facere voluptatibus?</p>
+     
+        </div>
+            
+
+            <div class="col-md-2 populer-course ">
               <h5 class="mt-3">Populer Package</h5>
               <a href="">
                 <p>Monthly</p>
@@ -159,7 +158,7 @@
                 <p>Yearly</p>
               </a>
             </div>
-            <div class="col-md-3 populer-course pe-5">
+            <div class="col-md-2 populer-course">
               <h5 class="mt-3">Job Guidline</h5>
               <a href="">
                 <p>BCS</p>
@@ -174,14 +173,20 @@
                 <p>Yearly</p>
               </a>
             </div>
+            <div class="col-md-2 populer-course">
+            <h5 class="mt-3">Social Link</h5>
+            <p class="text-white social-link">Stay with us</p>
+            <a class="social-link" href=""><i class="fab fa-facebook-f fs-3 text-primary"></i></a>
+            <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 text-danger"></i></a>
+            <a class="social-link" href=""><i class="fab fa-instagram fs-3 ms-3  "></i></a>
+            <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 text-primary"></i></a>
+
+            </div>
           </div>
         </div>
-      </div>
-      <div class="d-flex justify-content-around flex-wrap mid-nav">
-        <div class="social">
-          <p class="text-danger mt-2">Stay with us</p>
-          <p><a class="text-decoration-none  text-primary" href=""><i class="fab fa-facebook-f fs-3 me-2"></i></a> <a class="text-decoration-none text-danger" href=""><i class="fab fa-youtube fs-3"></i></a></p>
-        </div>
+      <!-- </div> -->
+      <div class="d-flex justify-content-center mid-nav">
+
 
         <div class="payment-method">
           <img class="" src="{{asset('frontEnd-assets/img/ssl.png')}}" alt="">
@@ -193,7 +198,7 @@
   <!-- footer section end -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
   @if($errors->any())
   <script>
