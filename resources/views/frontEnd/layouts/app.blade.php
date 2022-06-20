@@ -9,6 +9,7 @@
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
 
   <script src="https://kit.fontawesome.com/10ec6aaa98.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -78,16 +79,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{route('home_page')}}#home">Home</a>
+            <a class="nav-link" aria-current="page" href="{{route('home_page')}}#home">হোম</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('home_page')}}#live-section">Live section</a>
+            <a class="nav-link" href="{{route('home_page')}}#live-section">লাইভ সেকশন</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('home_page')}}#package">Package</a>  
+            <a class="nav-link" href="{{route('home_page')}}#package">প্যাকেজসমূহ</a>  
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('exams')}}" >Exams</a>  
+            <a class="nav-link" href="{{route('exams')}}" >পরীক্ষাসমূহ</a>  
           </li>
          
         </ul>
@@ -96,14 +97,14 @@
           @auth
             
           <li class="auth-item">
-            <a class="nav-link" aria-current="page" href="{{route('dashboard')}}">Dashboard</a>
+            <a class="nav-link" aria-current="page" href="{{route('dashboard')}}">ড্যাশবোর্ড</a>
           </li>
           @else
           <li class="auth-item">
-            <a class="nav-link" aria-current="page" href="{{route('login')}}">Sing In</a>
+            <a class="nav-link" aria-current="page" href="{{route('login')}}">সাইন-আপ </a>
           </li>
           <li class="auth-item">
-            <a class="nav-link" href="{{route('register')}}">Sing Up</a>
+            <a class="nav-link" href="{{route('register')}}">সাইন-ইন </a>
           </li>
           @endauth
 
@@ -148,54 +149,56 @@
             
 
             <div class="col-md-2 populer-course ">
-              <h5 class="mt-3">Populer Package</h5>
+              <h5 class="mt-3">জনপ্রিয় প্যাকেজ </h5>
               <a href="">
-                <p>Monthly</p>
+                <p>মাসিক </p>
               </a>
               <a href="">
-                <p>Three monts</p>
+                <p>ত্রৈমাসিক </p>
               </a>
               <a href="">
-                <p>Six months</p>
+                <p>ষান্মাসিক </p>
               </a>
               <a href="">
-                <p>Yearly</p>
-              </a>
-            </div>
-            <div class="col-md-2 populer-course">
-              <h5 class="mt-3">Job Guidline</h5>
-              <a href="">
-                <p>BCS</p>
-              </a>
-              <a href="">
-                <p>Bank</p>
-              </a>
-              <a href="">
-                <p>Focus Writing</p>
-              </a>
-              <a href="">
-                <p>Yearly</p>
+                <p>বাৎসরিক </p>
               </a>
             </div>
             <div class="col-md-2 populer-course">
-            <h5 class="mt-3">Social Link</h5>
-            <p class="text-white social-link">Stay with us</p>
-            <a class="social-link" href=""><i class="fab fa-facebook-f fs-3 text-primary"></i></a>
-            <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 text-danger"></i></a>
+              <h5 class="mt-3">জব গাইডলাইন </h5>
+              <a href="">
+                <p>বিসিএস </p>
+              </a>
+              <a href="">
+                <p>ব্যাংক </p>
+              </a>
+              <a href="">
+                <p>ফোকাস রাইটিং </p>
+              </a>
+           
+            </div>
+            <div class="col-md-2 populer-course">
+            <h5 class="mt-3">সোসাল লিঙ্ক</h5>
+            <p class="text-white social-link">আমাদের সাথে থাকো</p>
+            <a class="social-link" href=""><i class="fab fa-facebook-f fs-3 "></i></a>
+            <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 "></i></a>
             <a class="social-link" href=""><i class="fab fa-instagram fs-3 ms-3  "></i></a>
-            <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 text-primary"></i></a>
+            <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 "></i></a>
 
             </div>
           </div>
         </div>
       <!-- </div> -->
-      <div class="d-flex justify-content-center mid-nav">
+            <!-- Copyrigh -->
 
-
-        <div class="payment-method">
-          <img class="" src="{{asset('frontEnd-assets/img/ssl.png')}}" alt="">
+        <div class="text-center">
+          <div class="copyright">
+            <p>© {{ now()->year }} Copyright <a href="index.html">Bdjobwar.</a> All Right Reserved. Developed by <a target="blank"
+                href="#">Wizerd</a></p>
+          </div>
         </div>
-      </div>
+    
+      <!-- Copyrigh -->
+
     
     </div>
   </footer>

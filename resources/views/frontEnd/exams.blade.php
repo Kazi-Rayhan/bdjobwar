@@ -20,7 +20,7 @@
                                 <!-- End Price Filter -->
                                 <!-- Categories -->
                                 <div class="sidebar_widget filterBox categories">
-                                    <div class="widget-title"><h2>Categories</h2></div>
+                                    <div class="widget-title"><h2>ক্যাটাগরিসমূহ</h2></div>
                                     <div class="widget-content">
                                         <ul class="sidebar_categories">
                                           

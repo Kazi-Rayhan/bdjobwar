@@ -3,20 +3,20 @@
 <!-- Slider section start -->
 <section class="slider">
   <a href="">
-    <img src="{{asset('frontEnd-assets/img/slider.webp')}}" alt="" width="100%" style="object-fit:cover">
+    <img src="{{asset('frontEnd-assets/img/slider.png')}}" alt="" width="100%" style="object-fit:cover">
   </a>
 </section>
 <!-- Slider section end -->
 <!-- Live section start -->
 <section class="live-section" id="live-section" style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
   <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
-    <h1 class="text-uppercase" style="font-weight:700 ;">Live Section</h1>
+    <h1 class="text-uppercase" style="font-weight:700 ;">লাইভ সেকশন</h1>
   </div>
   <div class="container">
     <div class="row">
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">Live Exams</span>
+          <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success"> লাইভ পরীক্ষা চলছে </span>
         </h6>
         @foreach($liveExams as $exam)
         <div class=" mb-4 card   rounded shadow">
@@ -28,14 +28,14 @@
             <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;">
               <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M , Y ') }} </span> <span>To</span> <span> <i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M , Y') }}</span>
             </div>
-            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">Start Exam</a>
+            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">টেস্ট দিন</a>
           </div>
         </div>
         @endforeach
       </div>
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">Recently Closed</span>
+          <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">সম্প্রতি বন্ধ</span>
         </h6>
         @foreach($finishedExams as $exam)
         <div class=" mb-4 card   rounded shadow">
@@ -47,7 +47,7 @@
             <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;">
               <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M , Y ') }} </span> <span>To</span> <span> <i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M , Y') }}</span>
             </div>
-            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">Start Exam</a>
+            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">টেস্ট দিন</a>
           </div>
         </div>
         @endforeach
@@ -57,7 +57,7 @@
     <div class="row">
       <div class="col-md-6 mb-4">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="fas fa-chess fs-3 text-muted"></i> <span class="text-success">This Week Top</span>
+          <i class="fas fa-chess fs-3 text-muted"></i> <span class="text-success">এ সপ্তাহের সেরা পরীক্ষার্থী</span>
         </h6>
         <table class="table table-striped table-light">
           <thead class="text-muted">
@@ -80,7 +80,7 @@
       </div>
       <div class="col-md-6 mb-4">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="fas fa-poll fs-3 text-muted"></i> <span class="text-success">Latest Exam Result</span>
+          <i class="fas fa-poll fs-3 text-muted"></i> <span class="text-success">সর্বশেষ ফলাফল </span>
         </h6>
         <table class="table table-striped table-light">
           <thead class="text-muted">
@@ -95,7 +95,7 @@
             <tr>
               <td>{{$exam->title}}</td>
               <td>{{join(', ',$exam->subjects->pluck('name')->toArray())}}</td>
-              <td><a class="btn btn-sm btn-danger" href="{{route('all-results-exam',$exam->uuid)}}">See</a></td>
+              <td><a class="btn btn-sm btn-danger" href="{{route('all-results-exam',$exam->uuid)}}">দেখুন</a></td>
             </tr>
             @endforeach
           </tbody>
@@ -107,7 +107,7 @@
     <div class="row">
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">Upcoming Exams</span>
+          <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">আসন্ন পরীক্ষা </span>
         </h6>
         @foreach($upcomingExams as $exam)
         <div class=" mb-4 card bg-transparent  rounded shadow">
@@ -125,7 +125,7 @@
       </div>
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="fas fa-file-invoice fs-3 text-muted"></i> <span class="text-success">Notice board</span>
+          <i class="fas fa-file-invoice fs-3 text-muted"></i> <span class="text-success">নোটিশ বোর্ড </span>
         </h6>
         @foreach($notices as $notice)
         <div class="card mb-3 col-md-12" style="">
@@ -148,7 +148,7 @@
 <!-- Package section start -->
 <section class="live-section" id="package">
   <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
-    <h1 class="text-uppercase" style="font-weight:700 ;">Our packages</h1>
+    <h1 class="text-uppercase" style="font-weight:700 ;">আমাদের প্যাকেজসমূহ</h1>
   </div>
   <div class="container">
     <div class="d-flex flex-wrap gap-5 justify-content-center py-5">
@@ -182,7 +182,7 @@
   </a> -->
           </div>
         </div>
-        <a class="btn btn-outline-danger d-block mt-3 text-uppercase" href="{{route('package-details',[Str::slug($package->title),$package])}}"> See Details</a>
+        <a class="btn btn-outline-danger d-block mt-3 text-uppercase" href="{{route('package-details',[Str::slug($package->title),$package])}}"> বিস্তারিত দেখুন</a>
       </div>
 
       @endif
@@ -247,25 +247,25 @@
   <div class="bg-danger py-4 d-flex flex-column flex-md-row justify-content-around gap-3">
     <div class="d-flex flex-column justify-content-center align-items-center text-light">
       <i class="fa fa-users fa-3x"></i>
-      <h6>Users</h6>
+      <h6>সাবস্ক্রাইবার </h6>
       <h5>{{App\Models\User::count()}}</h5>
     </div>
     
     <div class="d-flex flex-column justify-content-center align-items-center text-light gap-2">
       <i class="fa fa-file-alt fa-3x"></i>
-      <h6>Model Test</h6>
+      <h6>মডেল টেস্ট </h6>
       <h5 >{{App\Models\Exam::count()}}</h5>
     </div>
     
     <div class="d-flex flex-column justify-content-center align-items-center text-light gap-2">
       <i class="fa fa-question-circle fa-3x"></i>
-      <h6>Questions</h6>
+      <h6>প্রশ্ন সংখ্যা </h6>
       <h5>{{App\Models\Question::count()}}</h5>
     </div>
     
     <div class="d-flex flex-column justify-content-center align-items-center text-light gap-2">
       <i class="fa fa-chalkboard fa-3x"></i>
-      <h6>Categories</h6>
+      <h6>ক্যাটাগরিসমূহ</h6>
       <h5>{{App\Models\Category::count()}}</h5>
     </div>
   </div>

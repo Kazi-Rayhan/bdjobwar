@@ -1,4 +1,7 @@
-
+/* @import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@200;400&family=El+Messiri:wght@500;600&family=Tiro+Bangla:ital@1&display=swap');
+body{
+  font-family: 'El Messiri', sans-serif; !important;
+} */
 .text-success{
   color: #015b25 !important;
 }
@@ -363,4 +366,22 @@
 /* bradcam area end */
 .custom-reg-btn{
   font-size: 13px;
+}
+.copyright {
+  position: relative;
+  border-top: 1px solid #000;
+  padding: 22px 0 46px;
+}
+.copyright p {
+  font-size: 14px;
+  line-height: 26px;
+  color: #767480;
+  margin: 0;
+  font-weight: 600;
+}
+.copyright p a{
+  color: #5838fc;
+}
+.copyright p a:hover{
+  color: #767480;
 }
