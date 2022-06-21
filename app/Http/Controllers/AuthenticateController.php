@@ -45,7 +45,7 @@ class AuthenticateController extends Controller
         }
        
     }
-    public function testLogin(Request $request)
+    public function login(Request $request)
 {
      $phone = $request->input('phone');
      $password = $request->input('password');

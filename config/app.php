@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\SmsServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
 
     ],
 

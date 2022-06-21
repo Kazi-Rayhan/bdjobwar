@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::post('/test', [AuthenticateController::class, 'testLogin'])->name('testLogin');
+Auth::routes();
+Route::post('/login', [AuthenticateController::class, 'login'])->name('login');
 
 Route::get('/', [PageController::class, 'home'])->name('home_page');
-Route::get('/register', [PageController::class, 'register'])->name('register');
+
 Route::get('/exam', [PageController::class, 'exams'])->name('exams');
 Route::get('/category/exam/{cat}', [PageController::class, 'categoryExam'])->name('categoryExam');
 
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-Auth::routes();
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
