@@ -21,14 +21,14 @@
                 <div class="card-header py-3 bg-success text-white fs-5">{{ __('লগইন ফরম ') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('testLogin') }}">
                         @csrf
 
                         <div class="row mb-4 px-4 pt-4">
      
 
                             <div class="col-md-12">
-                                <input id="phone" type="text" placeholder="মোবাইল নম্বর" class="form-control py-2 @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                <input id="phone" type="text" placeholder="মোবাইল নম্বর" class="form-control py-2 @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  autocomplete="phone" autofocus>
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
@@ -42,6 +42,7 @@
 
                             <div class="col-md-12">
                                 <input id="password" placeholder="পাসওয়ার্ড" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <button type="button" id="hidePassword" style="display:none" onclick="myFunction()" class="field-icon">show</button>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -67,7 +68,7 @@
                         </div>
                         <div class="mt-2">
                              @if (Route::has('password.request'))
-                                    <a class="text-decoration-none text-muted ms-4 custom-reg-btn" href="{{ route('register') }}">
+                                    <a id="register" class="text-decoration-none ms-4 custom-reg-btn" href="{{ route('register') }}">
                                         {{ __('আপনি কি নতুন ইউজার? ফ্রি অ্যাকাউন্ট খুলুন ') }}
                                     </a>
                                 @endif
@@ -78,4 +79,36 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    document.getElementById('password').addEventListener('input', function () {
+        const hidePassword=document.getElementById('hidePassword');
+        hidePassword.style.display ="block";
+
+    })
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} 
+
+</script>
+
+@if(session()->has('error'))
+  <script>
+    const registrationLink = document.getElementById("register");
+    console.log(registrationLink)
+    registrationLink.style.fontWeight  = "bold";
+    registrationLink.style.color  = "red";
+
+  
+  </script>
+@endif
+
+
+
 @endsection

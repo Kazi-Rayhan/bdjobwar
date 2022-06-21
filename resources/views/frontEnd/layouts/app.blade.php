@@ -49,7 +49,7 @@
   <nav class="mid-nav py-4">
     <div class="container d-flex justify-content-between flex-wrap">
       <div class="brand">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{route('home_page')}}">
 
           <img src="{{asset('frontEnd-assets/img/logo-eToro.png')}}" style="object-fit:contain" alt="">
         </a>
@@ -210,8 +210,13 @@
   @if($errors->any())
   <script>
     @foreach($errors->all() as $error)
-    toastr.error('{{ $error }}')
+    toastr.error("{{ session('error') }}")
     @endforeach
+  </script>
+  @endif
+  @if(session()->has('error'))
+  <script>
+    toastr.error("{{ session('error') }}")
   </script>
   @endif
   @if(session()->has('success'))

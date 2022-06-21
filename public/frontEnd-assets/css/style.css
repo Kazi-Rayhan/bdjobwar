@@ -385,3 +385,12 @@ body{
 .copyright p a:hover{
   color: #767480;
 }
+.field-icon {
+  float: right;
+  margin-right: 10px;
+  margin-top: -32px;
+  position: relative;
+  z-index: 2;
+  background-color: transparent !important;
+  border: none;
+}
