@@ -11,22 +11,22 @@
     </h3>
     <div style="height:2px;width:100px" class="bg-danger"></div>
 
-    <h2 class="text-center bg-success text-light p-2 mt-2"> Results</h2>
+    <h2 class="text-center bg-success text-light p-2 mt-2"> ফলাফল</h2>
     
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>
-                    Postion
+                অবস্থান
                 </th>
                 <th>
-                    Name
+                নাম
                 </th>
                 <th>
-                    Roll
+                রোল
                 </th>
                 <th>
-                    Score
+                স্কোর
                 </th>
             </tr>
         </thead>
