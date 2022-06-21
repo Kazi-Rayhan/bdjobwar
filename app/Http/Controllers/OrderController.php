@@ -53,21 +53,27 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
+    //    dd($request->all());
         $request->validate([
             "account" => 'required',
-            "trnxId" => 'required'
+            "trnxId" => 'required',
+            "method" => 'required',
+
         ]);
         try {
             DB::beginTransaction();
-            $data = [$request->type, $request->id, $request->account, $request->trnxId];
+            $data = [$request->type, $request->id, $request->account, $request->trnxId,$request->method];
+            // dd($data);
            $order = OrderServices::make(...$data)->save();
+        //    dd($order);
             SMS::compose(Auth()->user()->phone, 'Thanks, your transaction id is pending');
             DB::commit();
 
             return redirect()
                 ->route('success.order',compact('order'))
                 ->with('success', 'Order created successfully');
-        } catch (Exception $e) {
+        } 
+        catch (Exception $e) {
             // return $e->getMessage();
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());

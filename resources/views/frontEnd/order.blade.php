@@ -26,10 +26,9 @@
                          <input type="hidden" name="type" value="{{$type}}">
                             <input type="hidden" name="id" value="{{$id}}">
                             <div class="form-group ">
-                            <label for="exampleInputAccount" class="mb-3">Account :</label>
+                            <label for="account" class="mb-3">Account :</label>
                            
-                            <input type="text" name="account" class="form-control border border-dark " id="exampleInputAccount" required
-                                placeholder="Enter account number">
+                            <input type="text" name="account" value="{{old('account')}}" class="form-control border border-dark @error('account') is-invalid @enderror" id="account" placeholder="Enter account number">
                             @error('account')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -38,11 +37,27 @@
 
                         </div>
                         <div class="form-group mt-2 ">
-                            <label for="exampleInputTransaction" class="mb-3">Transaction Id</label>
+                            <label for="trnxId" class="mb-3">Transaction Id</label>
                            
-                            <input type="text" name="trnxId" class="form-control border border-dark " id="exampleInputTransaction" required
+                            <input type="text" name="trnxId" value="{{old('trnxId')}}" class="form-control border border-dark @error('trnxId') is-invalid @enderror" id="trnxId"
                                 placeholder="Enter Transaction ID">
                             @error('trnxId')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+                        <div class="form-group mt-2 ">
+                        <label for="method" class="mb-3">Payment method</label>
+                        <select id="inputState" class="form-control @error('method') is-invalid @enderror" name="method">
+                            <option value=""selected>Choose...</option>
+                            <option value="0">Bkash</option>
+                            <option value="1">Nagad</option>
+                            <option value="2">Rocket</option>
+                      
+                        </select>
+                            @error('method')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

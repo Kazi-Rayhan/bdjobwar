@@ -23,20 +23,22 @@ class OrderServices
 
     protected string $account;
     protected string $trnxId;
+    protected string $method;
     protected $model;
 
 
-    public function __construct(string $type = null, int $id = null, string $account, string $trnxId = null)
+    public function __construct(string $type = null, int $id = null, string $account, string $trnxId = null,string $method)
     {
         $this->account = $account;
         $this->trnxId = $trnxId;
+        $this->method = $method;
         $this->model = $this::MODEL[$type]::find($id);
     }
 
-    public static function make(string $type, int $id, string $account, string $trnxId)
+    public static function make(string $type, int $id, string $account, string $trnxId,string $method)
     {
 
-        return new static($type, $id, $account, $trnxId);
+        return new static($type, $id, $account, $trnxId,$method);
     }
 
     public function save(): Order
@@ -44,11 +46,12 @@ class OrderServices
 
         $order = $this->model->orders()->create([
             'user_id' => Auth::id(),
-            'method' => Order::METHOD['BKASH'],
+            // 'method' => Order::METHOD[['NAGAD'],
             'status' => Order::STATUS['PENDING'],
             'account' => $this->account,
             'trnxId' => $this->trnxId,
-            'price' => $this->model->price
+            'price' => $this->model->price,
+            'method' => $this->method,
         ]);
 
         return $order;
