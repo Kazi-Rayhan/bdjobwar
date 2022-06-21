@@ -1,5 +1,10 @@
 @extends('frontEnd.layouts.app')
 @section('content')
+
+@php
+use Rakibhstu\Banglanumber\NumberToBangla;
+$numto = new NumberToBangla();
+@endphp
 <!-- Slider section start -->
 <section class="slider">
   <a href="">
@@ -25,8 +30,13 @@
 
             <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
 
-            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;">
-              <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M , Y ') }} </span> <span>To</span> <span> <i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M , Y') }}</span>
+            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;font-weight:700">
+              @php
+      
+              $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
+              $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
+              @endphp
+              <span><i class="far fa-clock"></i> {{ $from->getDateTime()->format('l jS F Y b h:i')}} </span> <span>থেকে</span> <span> <i class="far fa-clock"></i> {{ $to->getDateTime()->format('l jS F Y b h:i') }}</span>
             </div>
             <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">টেস্ট দিন</a>
           </div>
@@ -62,17 +72,17 @@
         <table class="table table-striped table-light">
           <thead class="text-muted">
             <tr>
-              <th scope="col">Position</th>
-              <th scope="col">Name</th>
-              <th scope="col">Score</th>
+              <th scope="col">স্থান</th>
+              <th scope="col">নাম</th>
+              <th scope="col">স্কোর</th>
             </tr>
           </thead>
           <tbody class="">
             @foreach($topStudents as $pos => $student)
             <tr>
-              <td>{{$pos+1}}</td>
+              <td>{{$numto->bnNum($pos+1)}}</td>
               <td>{{$student->user->name}}</td>
-              <td>{{$student->total}}</td>
+              <td>{{$numto->bnNum($student->total)}}</td>
             </tr>
             @endforeach
           </tbody>
@@ -85,9 +95,9 @@
         <table class="table table-striped table-light">
           <thead class="text-muted">
             <tr>
-              <th scope="col">Exam</th>
-              <th scope="col">Subjects</th>
-              <th scope="col">Result</th>
+              <th scope="col">পরীক্ষা</th>
+              <th scope="col">বিষয়</th>
+              <th scope="col">ফলাফল</th>
             </tr>
           </thead>
           <tbody class="">
@@ -116,8 +126,14 @@
 
             <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
 
-            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;">
-              <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M , Y ') }} </span> <span>To</span> <span> <i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M , Y') }}</span>
+            
+            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;font-weight:700">
+              @php
+      
+              $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
+              $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
+              @endphp
+              <span><i class="far fa-clock"></i> {{ $from->getDateTime()->format('l jS F Y b h:i')}} </span> <span>থেকে</span> <span> <i class="far fa-clock"></i> {{ $to->getDateTime()->format('l jS F Y b h:i') }}</span>
             </div>
           </div>
         </div>
@@ -136,7 +152,7 @@
           </div>
         </div>
         @endforeach
-        
+
 
 
       </div>
@@ -166,7 +182,7 @@
             </h4>
             <h5 style="font-weight:700;">
 
-              {{$package->price}} &#2547;
+              {{$numto->bnNum($package->price)}} &#2547;
 
             </h5>
             <ul class="premium-feature">
@@ -243,30 +259,30 @@
 </section> -->
 <!-- Course section end -->
 
-<section class="" >
-  <div class="bg-danger py-4 d-flex flex-column flex-md-row justify-content-around gap-3">
+<section class="">
+  <div class=" py-4 d-flex flex-column flex-md-row justify-content-around gap-3" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
     <div class="d-flex flex-column justify-content-center align-items-center text-light">
       <i class="fa fa-users fa-3x"></i>
       <h6>সাবস্ক্রাইবার </h6>
-      <h5>{{App\Models\User::count()}}</h5>
+      <h5>{{$numto->bnNum(App\Models\User::count())}}</h5>
     </div>
-    
+
     <div class="d-flex flex-column justify-content-center align-items-center text-light gap-2">
       <i class="fa fa-file-alt fa-3x"></i>
       <h6>মডেল টেস্ট </h6>
-      <h5 >{{App\Models\Exam::count()}}</h5>
+      <h5>{{$numto->bnNum(App\Models\Exam::count())}}</h5>
     </div>
-    
+
     <div class="d-flex flex-column justify-content-center align-items-center text-light gap-2">
       <i class="fa fa-question-circle fa-3x"></i>
       <h6>প্রশ্ন সংখ্যা </h6>
-      <h5>{{App\Models\Question::count()}}</h5>
+      <h5>{{$numto->bnNum(App\Models\Question::count())}}</h5>
     </div>
-    
+
     <div class="d-flex flex-column justify-content-center align-items-center text-light gap-2">
       <i class="fa fa-chalkboard fa-3x"></i>
       <h6>ক্যাটাগরিসমূহ</h6>
-      <h5>{{App\Models\Category::count()}}</h5>
+      <h5>{{$numto->bnNum(App\Models\Category::count())}}</h5>
     </div>
   </div>
 </section>
