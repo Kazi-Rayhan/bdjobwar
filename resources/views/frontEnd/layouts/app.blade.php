@@ -27,7 +27,9 @@
   <style>
     body {
       font-family: 'CharukolaUltraLight', Arial, sans-serif !important;
+      font-weight: 600;
     }
+  
   </style>
 </head>
 

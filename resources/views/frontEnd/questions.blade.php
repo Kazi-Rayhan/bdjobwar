@@ -1,9 +1,7 @@
 @extends('frontEnd.layouts.app')
 @section('css')
 <style>
-    body{
-        font-weight: 600;
-    }
+   
     .question {
         width: 80%;
     }
