@@ -21,7 +21,7 @@
         </div>
         <div class="">
             <span class=" h3 text-danger ">
-                Subscription Fee :
+            সাবস্ক্রিপশন ফি :
             </span>
             <span class="h3">
                 {{$package->price}} BDT
@@ -29,32 +29,32 @@
         </div>
 
         <ul style="list-style: none; margin:0px;padding:0px;">
-            <li  style="color:#666666"> <strong>Package :</strong> {{$package->title}} Package</li>
-            <li  style="color:#666666"> <strong>Duration :</strong> {{$package->duration}} Days</li>
+            <li  style="color:#666666"> <strong>প্যাকেজ :</strong> {{$package->title}}  প্যাকেজ</li>
+            <li  style="color:#666666"> <strong>সময়কাল : </strong> {{$package->duration}} দিন </li>
         </ul>
 
         <p class="" style="color:#666666">
-            <strong>Premium Features :</strong>
+            <strong>প্রিমিয়াম বৈশিষ্ট্য :</strong>
             <br>
-            1) You can participate in the routine test of all the buttons.
+            1) আপনি সমস্ত বোতামের রুটিন পরীক্ষায় অংশগ্রহণ করতে পারেন। 
             <br>
-            2) You can read Job Solution Question Bank with more than 1 lakh questions.
+            2) আপনি 1 লাখের বেশি প্রশ্ন সহ জব সলিউশন প্রশ্নব্যাঙ্ক পড়তে পারেন। 
             <br>
-            3) You can give 24 hours self test on different subjects.
+            3) আপনি বিভিন্ন বিষয়ে 24 ঘন্টা স্ব-পরীক্ষা দিতে পারেন। 
             <br>
-            4) You will get the opportunity to search questions and answers from the question bank.
+            4) আপনি প্রশ্নব্যাঙ্ক থেকে প্রশ্ন ও উত্তর অনুসন্ধানের সুযোগ পাবেন। 
             <br>
-            5) You will get access to all the paid sections of the app.
+            5) আপনি অ্যাপের সমস্ত প্রদত্ত বিভাগে অ্যাক্সেস পাবেন। 
         </p>
 
         <p style="color:#666666">
-            <strong>Note:</strong> There is no need to buy separate packages for each batch test. If you buy any one package, you will
+            <strong>দ্রষ্টব্য:</strong> প্রতিটি ব্যাচের পরীক্ষার জন্য আলাদা প্যাকেজ কেনার দরকার নেই। আপনি যে কোনো একটি প্যাকেজ কিনলেই হবে
             <br>
-            be able to give running exam of all the buttons of the app till the specified period.
+নির্দিষ্ট সময় পর্যন্ত অ্যাপের সমস্ত বোতামের চলমান পরীক্ষা দিতে সক্ষম হবেন। 
         </p>
         
     </div>
-    <a href="{{route('orderCreate',['package',$package->id])}}" class="btn btn-dark"> Subscribe</a>
+    <a href="{{route('orderCreate',['package',$package->id])}}" class="btn btn-dark"> সাবস্ক্রাইব </a>
 
 </div>
 @endsection

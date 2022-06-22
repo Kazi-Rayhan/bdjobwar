@@ -10,8 +10,8 @@
                 <i class="fa fa-trophy fa-4x"></i>
             </div>
             <div class=" text-center">
-                <h1>Congratulations !</h1>
-                <h5>Best wishes for passing the exam and good luck for more excellent achievement.</h5>
+                <h1>অভিনন্দন!</h1>
+                <h5> হওয়ার জন্য শুভকামনা এবং আরও ভালো সাফল্যের জন্য শুভকামনা।</h5>
                 <h2>  {{$result->getRanking(auth()->user())}} / {{$result->users()->count()}}</h2>
 
             </div>
@@ -20,7 +20,7 @@
                 <i class="fa fa-frown fa-4x"></i>
             </div>
             <div class=" text-center">
-                <h1>Unfinished .</h1>
+                <h1>অসমাপ্ত.</h1>
                 <h5>You didn't finished your exam.</h5>
             </div>
             @else
