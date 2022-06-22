@@ -1,10 +1,15 @@
 @extends('frontEnd.layouts.app')
 @section('css')
 <style>
-   
     .question {
-        width: 80%;
+        width: 70%;
     }
+
+    @media screen and (max-width: 600px) {
+        .question {
+        width: 100%;
+    }
+}
 
     .options {
         position: relative;
@@ -67,13 +72,26 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
 <div style="position: relative;">
-    <div class="card bg-danger text-light  shadow m-1 "  style=" position: fixed; z-index:200;top: 30px;
-right: 0px;">
-        <div class="card-body   ">
+    <div class="card text-dark border border-danger  shadow  m-3" style=" position: fixed; z-index:200;top: 0;
+right: 10;">
+        <div class="card-body " style="font-size: 14px;">
+        <span>
+            উত্তর দিয়েছেন : <span id="answered"></span>
+           </span>
+<br>
+           <span>
+            বাকি আছে : <span id="left"></span>
+</span>
+<br>
+<hr>
+<small>সময় :</small>
+           <br>
             <strong style="font-size: 16px; " id="countdown">
             </strong>
+
         </div>
     </div>
+   
     <form action="{{route('exam.store',$exam->uuid)}}" method="post">
         @csrf
         <div class="main-blog-area mb-5">
@@ -90,7 +108,7 @@ right: 0px;">
                             <h5 style="font-weight: 700;">
                                 পূর্ণমান : {{$numto->bnNum($exam->fullMark)}}
                             </h5>
-                            <div class="d-flex justify-content-around fs-5 mt-5" style="font-weight: 700;">
+                            <div class="d-flex justify-content-around mt-5" style="font-weight: 700;">
                                 <span class="">
                                     প্রশ্ন : {{$numto->bnNum($exam->questions->count())}}
                                 </span>
@@ -99,7 +117,7 @@ right: 0px;">
                                     পাশ মার্ক : {{$numto->bnNum($exam->minimum_to_pass)}}
                                 </span>
                             </div>
-                            <div class="d-flex justify-content-around fs-5 " style="font-weight: 700;">
+                            <div class="d-flex justify-content-around mt-3 " style="font-weight: 700;">
                                 <span class="">
                                     প্রশ্ন প্রতি মার্ক : {{$numto->bnNum($exam->questions->count())}}
                                 </span>
@@ -109,7 +127,7 @@ right: 0px;">
                                 </span>
                             </div>
 
-                            <div class="d-flex justify-content-center fs-5" style="font-weight: 700;">
+                            <div class="d-flex justify-content-center mt-3" style="font-weight: 700;">
                                 <span class="">
                                     সময়কাল : {{$numto->bnNum($exam->duration)}} মিনিট
                                 </span>
@@ -119,39 +137,39 @@ right: 0px;">
                         </div>
 
                         <div class="course-details-page" style="font-size: 22px;">
-                           
+
 
                             <div>
                                 <div class="p-2 d-flex flex-column justify-content-center align-items-center mt-5" id="tab1">
                                     @foreach($questions as $question)
 
-                                    <div class="question card ml-sm-5 pl-sm-5 pt-2 mb-2">
+                                    <div class="question border border-success card ml-sm-5 pl-sm-5 pt-2 mb-2">
                                         <div class="card-body shadow">
-                                        <div class="py-2 h5"><b>{{ $numto->bnNum($loop->iteration) }}. {{ $question->title }}</b></div>
-                                        <div class="text-center">
-                                            @if($question->image)
-                                            <img src="{{Voyager::image($question->image)}}" height="150" width="300" alt="">
-                                            @endif
-                                        </div>
-                                       
+                                            <div class="p-2 rounded text-light h6  " style="background-color: #019514;"><b>{{ $numto->bnNum($loop->iteration) }}. {{ $question->title }}</b></div>
+                                            <div class="text-center">
+                                                @if($question->image)
+                                                <img src="{{Voyager::image($question->image)}}" width="80%" style="object-fit:cover" alt="">
+                                                @endif
+                                            </div>
 
-                                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
-                                            @foreach($question->choices as $choice)
-                                            <label class="options  q{{$question->id}}" style="font-size: 16px;"  for="choice{{ $question->id }}{{ $loop->iteration }}"> <strong>{{$choice::LABEL[$choice->index]}} . </strong> {{ $choice->choice_text }}
-                                                <input type="radio" value="{{$choice->index}}" name="choice[{{$question->id}}]" id="choice{{ $question->id }}{{ $loop->iteration }}">
-                                                @if($choice->choice_image)
-                                                        <div  class=" mb-2">
-                                                            <img class="" src="{{Voyager::image($choice->choice_image)}}"  height="150px" style="object-fit:cover ;" alt="">
 
-                                                        </div>
-                                                        @endif
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            @endforeach
+                                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3 mt-4" id="options">
+                                                @foreach($question->choices as $choice)
+                                                <label class="options  q{{$question->id}}" style="font-size: 16px;" for="choice{{ $question->id }}{{ $loop->iteration }}"> <strong>{{$choice::LABEL[$choice->index]}} . </strong> {{ $choice->choice_text }}
+                                                    <input type="radio" value="{{$choice->index}}" name="choice[{{$question->id}}]" id="choice{{ $question->id }}{{ $loop->iteration }}">
+                                                    @if($choice->choice_image)
+                                                    <div class=" mb-2">
+                                                        <img class="" src="{{Voyager::image($choice->choice_image)}}" width="80%" style="object-fit:cover ;" alt="">
 
+                                                    </div>
+                                                    @endif
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                @endforeach
+
+                                            </div>
                                         </div>
-                                        </div>
-                                       
+
                                     </div>
                                     @endforeach
                                     <!-- <div class="row  ">
@@ -207,7 +225,7 @@ right: 0px;">
 
                                     </div> -->
                                     <div class="d-flex justify-content-center my-3">
-                                        <button class="btn btn-lg btn-success" type="submit">SUBMIT</button>
+                                        <button class="btn btn-lg btn-success" type="submit">সম্পূর্ণ</button>
                                     </div>
 
                                 </div>
@@ -242,13 +260,13 @@ right: 0px;">
 <script>
     // Set the date we're counting down to
     var countDownDate = new Date("{{auth()->user()->exams()->find($exam)->pivot->expire_at}}").getTime();
-    const toBn = n => n.replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d])
+    const toBn = n => n.replace(/\d/g, d => "০১২৩৪৫৬৭৮৯" [d])
     // Update the count down every 1 second
     var x = setInterval(function() {
 
         // Get today's date and time
         var now = Date.now();
-    
+
         // Find the distance between now and the count down date
         var distance = countDownDate - now;
 
@@ -259,7 +277,7 @@ right: 0px;">
 
         // Output the result in an element with id="demo"
         var time = hours + " ঘঃ " + minutes + " মিঃ " + seconds + " সেঃ";
-        document.getElementById("countdown").innerHTML =  toBn(time);
+        document.getElementById("countdown").innerHTML = toBn(time);
 
         // If the count down is over, write some text 
         if (distance < 0) {
@@ -291,13 +309,26 @@ right: 0px;">
     })
 </script>
 <script>
-    $(document).ready(()=>{
-        $('input[type="radio"]').prop('checked',false)
+    const examCard = (answered,questions)=>{
+        $('#answered').text( answered);
+        $('#left').text(questions - answered);
+    }
+</script>
+<script>
+    let answered = 0;
+    let questions = {{$exam->questions->count()}};
+    $(document).ready(() => {
+        examCard(answered,questions);
+        $('input[type="radio"]').prop('checked', false)
     })
     $('input[type="radio"]').on('change', function() {
+        answered++
+        examCard(answered,questions);
+        
+        $(this).parent().parent().siblings().addClass('bg-success')
         $(this).closest('label').addClass('text-success')
         var isDisabled = $(this).closest('label').siblings().find('input').prop('disabled');
-     $(this).closest('label').siblings().find('input').prop('disabled', !isDisabled);
-});
+        $(this).closest('label').siblings().find('input').prop('disabled', !isDisabled);
+    });
 </script>
 @endsection
