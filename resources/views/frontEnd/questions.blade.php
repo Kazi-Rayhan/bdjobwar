@@ -24,42 +24,42 @@
                         <div class="course-details-meta-list">
                             <table class="table mt-5 w-75 mx-auto">
                                 <tr>
-                                    <th>Full Mark :</th>
+                                    <th>সম্পূর্ণ মার্ক :</th>
                                     <td>
                                         {{$exam->questions->count() * $exam->point}}
                                     </td>
 
-                                    <th>Questions :</th>
+                                    <th>প্রশ্ন :</th>
                                     <td>
                                         {{$exam->questions->count()}}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Mark Per Questions :</th>
+                                    <th>প্রশ্ন প্রতি মার্ক :</th>
                                     <td>
                                         {{ $exam->point }}
                                     </td>
 
-                                    <th>Negative Mark :</th>
+                                    <th>নেতিবাচক মার্ক :</th>
                                     <td>
                                         {{ $exam->minius_mark }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Minimum to pass :</th>
+                                    <th>সর্বনিম্ন পাস করতে হবে :</th>
                                     <td>
                                         {{$exam->minimum_to_pass}}
                                     </td>
 
-                                    <th>Duration :</th>
+                                    <th>সময়কাল :</th>
                                     <td> {{$exam->duration}} Miniute</td>
                                 </tr>
                                 <tr>
-                                    <th>Subjects :</th>
+                                    <th>বিষয় :</th>
                                     <td colspan="3">{{join(', ',$exam->subjects->pluck('name')->toArray())}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Categories :</th>
+                                    <th>ক্যাটাগরিসমূহ :</th>
                                     <td colspan="3">{{join(', ',$exam->categories->pluck('name')->toArray())}}</td>
                                 </tr>
                                

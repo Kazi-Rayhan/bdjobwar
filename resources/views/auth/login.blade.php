@@ -29,7 +29,7 @@
      
 
                             <div class="col-md-12">
-                                <input id="phone" type="text" placeholder="মোবাইল নম্বর" class="border border-success form-control py-2 @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  autocomplete="phone" autofocus>
+                                <input id="phone" type="text" placeholder="মোবাইল অথবা রোল নম্বর" class="border border-success form-control py-2 @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  autocomplete="phone" autofocus>
 
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">

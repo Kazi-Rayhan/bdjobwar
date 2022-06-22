@@ -22,46 +22,46 @@
         </div>
         <div class="">
             <span class=" h3 text-danger ">
-                Price :
+            দাম : 
             </span>
             <span class="h3">
-                {{$exam->price}} BDT
+                {{$exam->price}} টাকা
             </span>
         </div>
 
         <ul style="list-style: none; margin:0px;padding:0px;">
-            <li  style="color:#666666"> <strong>Title :</strong> {{$exam->title}} Exam</li>
-            <li  style="color:#666666"> <strong>Sub Title :</strong> {{$exam->sub_title}} Exam</li>
+            <li  style="color:#666666"> <strong>শিরোনাম :</strong> {{$exam->title}} Exam</li>
+            <li  style="color:#666666"> <strong>উপ শিরোনাম :</strong> {{$exam->sub_title}} Exam</li>
         </ul>
         <ul style="list-style: none; margin:0px;padding:0px;">
-            <li  style="color:#666666"> <strong>From : </strong> {{$exam->from->format('d M, Y')}}</li> 
-            <li  style="color:#666666"> <strong>To : </strong> {{$exam->to->format('d M, Y')}}</li> 
-            <li  style="color:#666666"> <strong>Time Limit :</strong> {{$exam->duration}} Min</li>
+            <li  style="color:#666666"> <strong>শুরু : </strong> {{$exam->from->format('d M, Y')}}</li> 
+            <li  style="color:#666666"> <strong>শেষ : </strong> {{$exam->to->format('d M, Y')}}</li> 
+            <li  style="color:#666666"> <strong>সময় সীমা :</strong> {{$exam->duration}} Min</li>
         </ul>
 
         <ul style="list-style: none; margin:0px;padding:0px;">
-            <li  style="color:#666666"> <strong>Subjects :</strong> {{join(', ',$exam->subjects->pluck('name')->toArray())}}</li>
-            <li  style="color:#666666"> <strong>Categories :</strong> {{join(', ',$exam->categories->pluck('name')->toArray())}}</li>
+            <li  style="color:#666666"> <strong>বিষয় :</strong> {{join(', ',$exam->subjects->pluck('name')->toArray())}}</li>
+            <li  style="color:#666666"> <strong>ক্যাটাগরিসমূহ:</strong> {{join(', ',$exam->categories->pluck('name')->toArray())}}</li>
         </ul>
 
         <p class="" style="color:#666666">
-            <strong>Exam Details :</strong>
+            <strong>পরীক্ষার বিবরণ :</strong>
             <br>
-            1) Total number of  questions  is : {{$exam->questions->count()}}.
+            ১) মোট প্রশ্নের সংখ্যা হল : {{$exam->questions->count()}}.
             <br>
-            2) Each question is equal to {{$exam->point}} point  so full mark  for this exam is ( {{$exam->point}} * {{$exam->questions->count()}} )  {{$exam->point * $exam->questions->count()}}
+            ২) প্রতিটি প্রশ্ন {{$exam->point}} পয়েন্টের সমান তাই এই পরীক্ষার জন্য পূর্ণ নম্বর ( {{$exam->point}} * {{$exam->questions->count()}} )  {{$exam->point * $exam->questions->count()}}
             <br>
-            3) For every wrong answer {{$exam->minius_mark}} will be subtracted from total score . <br> Note : Unanswerd question dosent count as Wrong answer.
+            ৩) প্রতিটি ভুল উত্তরের জন্য মোট স্কোর থেকে {{$exam->minius_mark}} বিয়োগ করা হবে . <br> বিঃদ্রঃ : অনুত্তরিত প্রশ্ন ভুল উত্তর হিসাবে গণনা করা হয়.
             <br>
-            4) You need to score at least {{$exam->minimum_to_pass}} to pass this exam .
+            ৪) এই পরীক্ষায় পাস করার জন্য আপনাকে কমপক্ষে {{$exam->minimum_to_pass}} স্কোর করতে হবে .
             
         </p>
 
         <p style="color:#666666">
-            <strong>Note : </strong>You have only one attempt for each exam . On start of each exam a countdown will begain you have to <br> finish the exam before countdown end  
-            or else your attempt will be counted as unfinished.
+            <strong>বিঃদ্রঃ  : </strong>প্রতিটি পরীক্ষার জন্য আপনার শুধুমাত্র একটি প্রচেষ্টা আছে। <br> প্রতিটি পরীক্ষার শুরুতে একটি কাউন্টডাউন শুরু হবে আপনাকে করতে হবে <br>
+কাউন্টডাউন শেষ হওয়ার আগে পরীক্ষা শেষ করুন অন্যথায় আপনার প্রচেষ্টা <br> অসমাপ্ত হিসাবে গণনা করা হবে।
         </p>
-        <a href="{{route('start',$exam->uuid)}}" class="btn btn-dark"> I want to take this exam</a>
+        <a href="{{route('start',$exam->uuid)}}" class="btn btn-dark"> আমি এই পরীক্ষা দিতে চাই</a>
 
     </div>
   

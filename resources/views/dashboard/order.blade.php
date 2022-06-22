@@ -10,13 +10,14 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Order Informations</h6>
+                <h6 class="m-0 font-weight-bold text-success">Order Informations</h6>
             </div>
             
        
         </div>
+        @if($orders->count() >0)
         <table class="table">
-            <thead class="bg-primary text-white">
+            <thead class="bg-success text-white">
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Orders Info</th>
@@ -36,7 +37,7 @@
                     </ul>
                 </td>
                 <td>
-                    <a href="{{route('invoice',$order)}}" class="btn btn-primary">Invoice</a>
+                    <a href="{{route('invoice',$order)}}" class="btn btn-success">Invoice</a>
                 </td>
                 </tr>
           
@@ -44,6 +45,9 @@
             </tbody>
             @endforeach
         </table>
+        @else
+				<h3 class="text-center"> You did not placed any order </h3>
+        @endif
 
     </div>
 

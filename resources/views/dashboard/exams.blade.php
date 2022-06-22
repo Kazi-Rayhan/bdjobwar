@@ -10,13 +10,14 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Exams Informations</h6>
+                <h6 class="m-0 font-weight-bold text-success">Exams Informations</h6>
             </div>
             
        
         </div>
+        @if($exams->count()>0)
         <table class="table">
-            <thead class="bg-primary text-white">
+            <thead class="bg-success text-white">
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Exam name</th>
@@ -49,7 +50,9 @@
             </tbody>
             @endforeach
         </table>
-
+        @else
+				<h3 class="text-center"> You did not placed any exams </h3>
+        @endif
     </div>
 
 

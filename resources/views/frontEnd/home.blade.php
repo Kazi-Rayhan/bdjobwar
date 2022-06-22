@@ -186,11 +186,11 @@ $numto = new NumberToBangla();
 
             </h5>
             <ul class="premium-feature">
-              <li><span>Question Bank</span></li>
-              <li><span>All routine based test</span></li>
-              <li><span>All exisiting test</span></li>
-              <li><span>Online Self Test</span></li>
-              <li><span>Job Solution</span></li>
+              <li><span>প্রশ্ন ব্যাংক</span></li>
+              <li><span>সমস্ত রুটিন ভিত্তিক পরীক্ষা</span></li>
+              <li><span>সমস্ত বিদ্যমান পরীক্ষা</span></li>
+              <li><span>অনলাইন স্ব-পরীক্ষা</span></li>
+              <li><span>কাজের সমাধান</span></li>
 
             </ul>
             <!-- <a href="{{route('orderCreate',['package',$package->id])}}" class="btn  btn-danger text-uppercase">
