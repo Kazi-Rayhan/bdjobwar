@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Choice extends Model
 {
     public const LABEL = [
-        1 =>"A",
-        2 =>"B",
-        3 =>"C",
-        4 =>"D",
+        1 =>"ক",
+        2 =>"খ",
+        3 =>"গ",
+        4 =>"ঘ",
     ];
 
     public function getLabelAttribute(){

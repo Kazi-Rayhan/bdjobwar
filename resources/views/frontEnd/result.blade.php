@@ -80,7 +80,7 @@
 
     </div>
     <div>
-        <a href="{{route('all-results-exam',$result->uuid)}}" class="btn btn-dark">Answers</a>
+        <a href="{{route('answerSheet',$result->uuid)}}" class="btn btn-dark">Answers</a>
         <a href="{{route('dashboard')}}" class="btn btn-dark"> Go to dashboard</a>
         <a href="{{route('home_page')}}" class="btn btn-dark"> Home</a>
         <a href="{{route('all-results-exam',$result->uuid)}}" class="btn btn-dark"> Results</a>

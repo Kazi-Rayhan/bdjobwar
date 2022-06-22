@@ -59,6 +59,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 Route::get('/package/{slug}/{package}', [PageController::class, 'packageDetails'])->name('package-details');
 
 
+Route::group(['middleware'=>['auth','canAttendThisExam']],function(){
+    Route::get('exam/{uuid}/answer-sheet',[ExamController::class,'answerSheet'])->name('answerSheet');
+});
+
 Route::group(['prefix' => 'exam', 'controller' => ExamController::class, 'middleware' => ['auth']], function () {
     Route::get('/exam/all/results/{uuid}','exam_all_results')->name('all-results-exam');
     Route::get('/exam/{uuid}','exam')->name('question')->middleware('canAttendThisExam');

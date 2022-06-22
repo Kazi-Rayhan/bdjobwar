@@ -23,6 +23,14 @@ class Exam extends Model
         ];
     }
 
+
+
+    public function getFullMarkAttribute(){
+        return  $this->point * $this->questions->count() ;
+    }
+
+
+
     public function subjects()
     {
         return $this->morphToMany(Subject::class,'subjectable');
