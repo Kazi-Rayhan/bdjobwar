@@ -3,7 +3,7 @@ $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/
 $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
 @endphp
 
-<div class="card border border-success rounded shadow">
+<div class="card border border-success rounded shadow mb-2">
    
     <div class="card-body">
     <div class=" d-flex justify-content-between gap-2 flex-wrap mb-3 text-muted" style="font-size: 12px ;font-weight:700">
