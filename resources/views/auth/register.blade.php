@@ -58,7 +58,7 @@
 
                             <div class="col-md-12">
                                 <input id="password" type="password" placeholder="পাসওয়ার্ড" class=" border border-success form-control py-2 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                                <small class="text-secondary" style="font-size: 12px;">আপনার পছন্দমত পাসওয়ার্ড সেট করুণ ।</small>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -71,6 +71,7 @@
 
                             <div class="col-md-12">
                                 <input id="password-confirm" type="password" placeholder="কনফার্ম পাসওয়ার্ড" class=" border border-success form-control py-2" name="password_confirmation" required autocomplete="new-password">
+                                <small class="text-secondary" style="font-size: 12px;">উপরের পাসওয়ার্ড টি এখানে দিন ।</small>
                             </div>
                         </div>
 

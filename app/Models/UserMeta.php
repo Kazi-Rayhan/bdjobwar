@@ -13,6 +13,9 @@ class UserMeta extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     protected $guarded = [];
+    protected $casts = [
+        'expired_at' => 'datetime',
+    ];
     public $incrementing = false;
     
     /**

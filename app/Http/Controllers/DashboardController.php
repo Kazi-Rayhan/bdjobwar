@@ -7,6 +7,7 @@ use PDF;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -34,17 +35,25 @@ class DashboardController extends Controller
     public function profile(Request $request)
     {
         $request->validate([
+            'avatar'=>['nullable','mimes:jpeg,png,jpg,gif,svg','max:2048'],
             'name' => ['required', 'max:40'],
             'email' => ['nullable', 'max:40', 'email'],
-            // 'address' => ['required', 'max:200'],
-            // 'phone' => ['required', 'max:20']
         ]);
         $user=Auth()->user();
 
+        if($request->has('avatar')){
+            if(Storage::has( $user->avatar)){
+                Storage::delete($user->avatar);
+            }
+           $image = $request->avatar->store('user');
+           $user->avatar = $image;
+           $user->update();
+           
+        }
+
         $user->name=$request->name;
         $user->email=$request->email;
-        // $user->phone=$request->phone;
-        // $user->address=$request->address;
+
         if($request->filled('password')){
             $user->password=Hash::make($request['password']);
         }

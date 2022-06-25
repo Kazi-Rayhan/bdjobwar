@@ -172,6 +172,7 @@ right: 10;">
 
                                             </div>
                                         </div>
+                                     
 
                                     </div>
                                     @endforeach
