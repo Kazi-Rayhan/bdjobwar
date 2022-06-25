@@ -21,12 +21,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&display=swap" rel="stylesheet">
-  <link href="https://fonts.maateen.me/charukola-ultra-light/font.css" rel="stylesheet">
+  <link href="https://fonts.maateen.me/adorsho-lipi/font.css" rel="stylesheet">
 
   @yield('css')
   <style>
     body {
-      font-family: 'CharukolaUltraLight', Arial, sans-serif !important;
+      font-family: 'AdorshoLipi', Arial, sans-serif !important;
       font-weight: 600;
     }
   
@@ -58,24 +58,16 @@
   <!-- top nav end-->
   <!-- mid nav start -->
   <nav class="mid-nav py-4">
-    <div class="container d-flex justify-content-between flex-wrap">
-      <div class="brand">
-        <a class="navbar-brand" href="{{route('home_page')}}">
+    <div class="container d-flex justify-content-center flex-wrap">
+    
+        <a href="{{route('home_page')}}">
 
-          <img src="{{asset('frontEnd-assets/img/logo-eToro.png')}}" style="object-fit:contain" alt="">
+          <img src="{{asset('frontEnd-assets/img/logo.png')}}" width="100" height="100" style="object-fit:contain" alt="">
         </a>
 
 
 
-      </div>
-      <div class="d-flex flex-wrap">
-        <div class="">
-          <div class="input-group mb-3 pt-2">
-            <input type="text" class="top-search" placeholder="Search..." aria-label="" aria-describedby="button-addon2">
-            <button class="top-search-btn" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
-          </div>
-        </div>
-      </div>
+    
     </div>
   </nav>
 
@@ -148,13 +140,9 @@
         </div> -->
       <div class="container-fluid bg-footer ">
         <div class="row justify-content-around">
-          <div class="col-md-4 mt-3 footer-info">
-            <div class="brand">
-              <a class="navbar-brand" href="#">
-                <img src="{{asset('frontEnd-assets/img/logo-eToro.png')}}" height="100" width="100" style="object-fit:contain" alt="">
-              </a>
-            </div>
-            <p class="location mt-3"></p>
+          <div class="col-md-4 d-flex justify-content-center align-items-center footer-info">
+          <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="150" width="150"  alt="">
+          
 
           </div>
 

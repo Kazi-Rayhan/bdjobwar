@@ -73,7 +73,7 @@ class ExamController extends Controller
             $correctAnswers = 0;
             
         }
-      $total_point = $correctAnswers - ($wrongAnswers*$exam->minus_mark) ;
+      $total_point = $correctAnswers - ($wrongAnswers*$exam->minius_mark) ;
       $exam = auth()->user()->exams()->updateExistingPivot($exam->id,['answers'=>json_encode($student_answers),'total'=>$total_point,'wrong_answers'=>$wrongAnswers,'empty_answers'=>$emptyAnswers]);
         return redirect()->route('result-exam',$uuid);
     

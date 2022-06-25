@@ -24,23 +24,7 @@ $numto = new NumberToBangla();
           <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success"> লাইভ পরীক্ষা চলছে </span>
         </h6>
         @foreach($liveExams as $exam)
-        <div class=" mb-4 card   rounded shadow">
-          <div class="card-body">
-            <h4 class="text-success">{{$exam->title}}</h4>
-
-            <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
-
-            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;font-weight:700">
-              @php
-      
-              $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
-              $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
-              @endphp
-              <span><i class="far fa-clock"></i> {{ $from->getDateTime()->format('l jS F Y b h:i')}} </span> <span>থেকে</span> <span> <i class="far fa-clock"></i> {{ $to->getDateTime()->format('l jS F Y b h:i') }}</span>
-            </div>
-            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">টেস্ট দিন</a>
-          </div>
-        </div>
+        <x-exam-card :exam="$exam" />
         @endforeach
       </div>
       <div class="col-md-6">
@@ -48,18 +32,7 @@ $numto = new NumberToBangla();
           <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">সম্প্রতি বন্ধ</span>
         </h6>
         @foreach($finishedExams as $exam)
-        <div class=" mb-4 card   rounded shadow">
-          <div class="card-body">
-            <h4 class="text-success">{{$exam->title}}</h4>
-
-            <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
-
-            <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;">
-              <span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->from)->format('d M , Y ') }} </span> <span>To</span> <span> <i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($exam->to)->format('d M , Y') }}</span>
-            </div>
-            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">টেস্ট দিন</a>
-          </div>
-        </div>
+        <x-exam-card :exam="$exam" />
         @endforeach
       </div>
 
@@ -126,10 +99,10 @@ $numto = new NumberToBangla();
 
             <p class="text-secondary ">{{join(', ',$exam->categories->pluck('name')->toArray())}}</p>
 
-            
+
             <div class=" d-flex gap-3 mb-4 text-dark" style="font-size: 12px ;font-weight:700">
               @php
-      
+
               $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
               $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
               @endphp

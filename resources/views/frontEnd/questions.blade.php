@@ -7,9 +7,9 @@
 
     @media screen and (max-width: 600px) {
         .question {
-        width: 100%;
+            width: 100%;
+        }
     }
-}
 
     .options {
         position: relative;
@@ -75,23 +75,23 @@ $numto = new NumberToBangla();
     <div class="card text-dark border border-danger  shadow  m-3" style=" position: fixed; z-index:200;top: 0;
 right: 10;">
         <div class="card-body " style="font-size: 14px;">
-        <span>
-            উত্তর দিয়েছেন : <span id="answered"></span>
-           </span>
-<br>
-           <span>
-            বাকি আছে : <span id="left"></span>
-</span>
-<br>
-<hr>
-<small>সময় :</small>
-           <br>
+            <span>
+                উত্তর দিয়েছেন : <span id="answered"></span>
+            </span>
+            <br>
+            <span>
+                বাকি আছে : <span id="left"></span>
+            </span>
+            <br>
+            <hr>
+            <small>সময় :</small>
+            <br>
             <strong style="font-size: 16px; " id="countdown">
             </strong>
 
         </div>
     </div>
-   
+
     <form action="{{route('exam.store',$exam->uuid)}}" method="post">
         @csrf
         <div class="main-blog-area mb-5">
@@ -119,7 +119,7 @@ right: 10;">
                             </div>
                             <div class="d-flex justify-content-around mt-3 " style="font-weight: 700;">
                                 <span class="">
-                                    প্রশ্ন প্রতি মার্ক : {{$numto->bnNum($exam->questions->count())}}
+                                    প্রশ্ন প্রতি মার্ক : {{$numto->bnNum($exam->point)}}
                                 </span>
 
                                 <span>
@@ -144,13 +144,16 @@ right: 10;">
                                     @foreach($questions as $question)
 
                                     <div class="question border border-success card ml-sm-5 pl-sm-5 pt-2 mb-2">
+
                                         <div class="card-body shadow">
+
                                             <div class="p-2 rounded text-light h6  " style="background-color: #019514;"><b>{{ $numto->bnNum($loop->iteration) }}. {{ $question->title }}</b></div>
+                                            @if($question->image)
                                             <div class="text-center">
-                                                @if($question->image)
                                                 <img src="{{Voyager::image($question->image)}}" width="80%" style="object-fit:cover" alt="">
-                                                @endif
+
                                             </div>
+                                            @endif
 
 
                                             <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3 mt-4" id="options">
@@ -225,7 +228,7 @@ right: 10;">
 
                                     </div> -->
                                     <div class="d-flex justify-content-center my-3">
-                                        <button class="btn btn-lg btn-success" type="submit">সম্পূর্ণ</button>
+                                        <button class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">Submit your answer</button>
                                     </div>
 
                                 </div>
@@ -238,23 +241,27 @@ right: 10;">
 
             </div>
         </div>
-    </form>
-</div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+              
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                ...
+            <p class="p-4">
+            আপনি <span id="answeredModal"> </span> টি প্রশ্নের মধ্যে <span id="leftModal"> </span> টির উত্তর করেছেন। পরীক্ষাটি কি এখানেই শেষ করবেন
+            </p>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">হ্যা</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">না</button>
             </div>
-
         </div>
     </div>
 </div>
+    </form>
+</div>
+
+
 @endsection
 @section('js')
 <script>
@@ -309,23 +316,25 @@ right: 10;">
     })
 </script>
 <script>
-    const examCard = (answered,questions)=>{
-        $('#answered').text( answered);
+    const examCard = (answered, questions) => {
+        $('#answered').text(answered);
+        $('#answeredModal').text(answered);
         $('#left').text(questions - answered);
+        $('#leftModal').text(questions - answered);
     }
 </script>
 <script>
     let answered = 0;
     let questions = {{$exam->questions->count()}};
     $(document).ready(() => {
-        examCard(answered,questions);
+        examCard(answered, questions);
         $('input[type="radio"]').prop('checked', false)
     })
     $('input[type="radio"]').on('change', function() {
         answered++
-        examCard(answered,questions);
-        
-        $(this).parent().parent().siblings().addClass('bg-success')
+        examCard(answered, questions);
+        console.log($(this).parent().parent().siblings()[0]);
+        $(this).parent().parent().siblings()[0].classList.add('bg-success')
         $(this).closest('label').addClass('text-success')
         var isDisabled = $(this).closest('label').siblings().find('input').prop('disabled');
         $(this).closest('label').siblings().find('input').prop('disabled', !isDisabled);
