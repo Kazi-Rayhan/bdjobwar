@@ -7,14 +7,14 @@
 <div class="container my-5 d-flex flex-column gap-3 justify-content-center " style="height:60vh">
     <div class="d-flex flex-column gap-3">
         <div>
-            <h2 class="text-dark">Hi, {{auth()->user()->name}}</h2>
-            <h5 style="color:#666666">Thank you for the purchase</h5>
+            <h2 class="text-dark">হাই!, {{auth()->user()->name}}</h2>
+            <h5 style="color:#666666">ক্রয় করার জন্য আপনাকে ধন্যবাদ</h5>
             <div style="height:2px;width:60px" class="bg-danger"></div>
             
         </div>
         <div class="">
             <span class=" h3 text-danger ">
-                Price :
+            মূল্য :
             </span>
             <span class="h3">
                 {{$order->orderable->information()['price']}}
@@ -22,24 +22,24 @@
         </div>
 
         <ul style="list-style: none; margin:0px;padding:0px;font-size:18px">
-            <li style="color:#666666"> <strong>Type : </strong> {{$order->orderable->information()['type']}}</li>
-            <li style="color:#666666"> <strong>Title : </strong> {{$order->orderable->information()['title']}}</li>
+            <li style="color:#666666"> <strong>প্রকার : </strong> {{$order->orderable->information()['type']}}</li>
+            <li style="color:#666666"> <strong>শিরোনাম : </strong> {{$order->orderable->information()['title']}}</li>
         </ul>
 
         <ul style="list-style: none; margin:0px;padding:0px;font-size:18px">
-            <li style="color:#666666"> <strong>Name : </strong> {{$order->user->name}}</li>
-            <li style="color:#666666"> <strong>Phone : </strong> {{$order->user->phone}}</li>
-            <li style="color:#666666"> <strong>Roll : </strong> {{$order->user->information->id}}</li>
+            <li style="color:#666666"> <strong>নাম : </strong> {{$order->user->name}}</li>
+            <li style="color:#666666"> <strong>ফোন : </strong> {{$order->user->phone}}</li>
+            <li style="color:#666666"> <strong>রোল :  </strong> {{$order->user->information->id}}</li>
         </ul>
 
 
-        @if($order->status == 0)<p>Your purchase is being processed we will notify you updates as soon</p>@elseif($order->status == 2) <p>Your purchase is declined </p> @else<p>Your purchase is complete </p> @endif
+        @if($order->status == 0)<p class="text-dark">আপনার ক্রয় প্রক্রিয়া করা হচ্ছে আমরা যত তাড়াতাড়ি আপনাকে আপডেট জানাব</p>@elseif($order->status == 2) <p class="text-dark">আপনার ক্রয় প্রত্যাখ্যান করা হয়েছে </p> @else<p class="text-dark">আপনার ক্রয় সম্পূর্ণ হয়েছে </p> @endif
 
 
 
         <div>
-            <a href="{{route('dashboard')}}" class="btn btn-dark "> Check Dashboard</a>
-            <a href="{{route('home_page')}}" class="btn btn-info "> Home</a>
+            <a href="{{route('dashboard')}}" class="btn btn-dark "> ড্যাশবোর্ড </a>
+            <a href="{{route('home_page')}}" class="btn btn-info "> হোম </a>
 
         </div>
 

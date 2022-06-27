@@ -58,9 +58,13 @@
 
                             <div class="col-md-12">
                                 <input id="password" type="password" placeholder="পাসওয়ার্ড" class=" border border-success form-control py-2 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+<<<<<<< HEAD
                                 <button type="button" id="hidePassword" style="" onclick="myFunction()" class="field-icon"><i class=" text-secondary fas fa-eye"></i></button>
                                 <div id="emailHelp" class="form-text">আপনার পছন্দমত পাসওয়ার্ড সেট করুন ।</div>
 
+=======
+                                <small class="text-secondary" style="font-size: 12px;">আপনার পছন্দমত পাসওয়ার্ড সেট করুণ ।</small>
+>>>>>>> 9173fbdc2c0205a4e00551a18859dcfdaa830b76
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -73,8 +77,12 @@
 
                             <div class="col-md-12">
                                 <input id="password-confirm" type="password" placeholder="কনফার্ম পাসওয়ার্ড" class=" border border-success form-control py-2" name="password_confirmation" required autocomplete="new-password">
+<<<<<<< HEAD
                                 <button type="button" id="hideConfirmPassword" style="" onclick="myFunction2()" class="field-icon"><i class=" text-secondary fas fa-eye"></i></button>
                                 <div id="emailHelp" class="form-text">উপরের পাসওয়ার্ডটি পুনরায় দিন ।</div>
+=======
+                                <small class="text-secondary" style="font-size: 12px;">উপরের পাসওয়ার্ড টি এখানে দিন ।</small>
+>>>>>>> 9173fbdc2c0205a4e00551a18859dcfdaa830b76
                             </div>
                         </div>
 

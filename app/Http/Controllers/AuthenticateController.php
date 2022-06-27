@@ -57,12 +57,12 @@ class AuthenticateController extends Controller
         if (!$user) {
             return redirect()
             ->back()
-            ->with('error', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
+            ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
          }
          if (!Hash::check($password, $user->password)) {
             return redirect()
             ->back()
-            ->with('error', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
+            ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
          }
          Auth::loginUsingId($user->id);
           return redirect()->route('dashboard')->with('success', 'Log In successfully');
@@ -72,12 +72,12 @@ class AuthenticateController extends Controller
         if(!$user_roll){
             return redirect()
             ->back()
-            ->with('error', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
+            ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
         }
         if (!Hash::check($password,$user_roll->user->password)) {
         return redirect()
         ->back()
-        ->with('error', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
+        ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
         }
         Auth::loginUsingId($user_roll->user_id);
         return redirect()->route('dashboard')->with('success', 'Log In successfully');

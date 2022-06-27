@@ -11,7 +11,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
 {
-    
+    public function answerSheet($uuid){
+        $exam = Exam::where('uuid',$uuid)->with('questions')->first();
+        if(!Auth::user()->exams()->find($exam->id)->pivot->answers){
+            return \redirect()->route('start-exam',$exam->uuid);
+        }
+        
+        return view('frontEnd.exam.answer_sheet',compact('exam'));
+    }
+
     public function exam_start($uuid){
         $exam = Exam::where('uuid',$uuid)->first();
         return view('frontEnd.exam_start',compact('exam'));
@@ -65,7 +73,7 @@ class ExamController extends Controller
             $correctAnswers = 0;
             
         }
-      $total_point = $correctAnswers - ($wrongAnswers*$exam->minus_mark) ;
+      $total_point = $correctAnswers - ($wrongAnswers*$exam->minius_mark) ;
       $exam = auth()->user()->exams()->updateExistingPivot($exam->id,['answers'=>json_encode($student_answers),'total'=>$total_point,'wrong_answers'=>$wrongAnswers,'empty_answers'=>$emptyAnswers]);
         return redirect()->route('result-exam',$uuid);
     

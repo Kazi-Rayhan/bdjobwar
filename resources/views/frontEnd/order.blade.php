@@ -3,11 +3,11 @@
     <!-- bratcam area  start-->
     <section class="bradcam">
         <div class="container">
-            <h3 class="text-white pt-5 pb-3">Payment getaway</h3>
+            <h3 class="text-white pt-5 pb-3">অর্থপ্রদান</h3>
             <p class="pb-5 text-white">
-                <a href="{{ route('home_page') }}" class="text-decoration-none bradcam-active-btn pe-2">Home</a>
+                <a href="{{ route('home_page') }}" class="text-decoration-none bradcam-active-btn pe-2">হোম</a>
                 /
-                <a href="" class="text-decoration-none text-white ps-2">Sing In</a>
+                <a href="" class="text-decoration-none text-white ps-2">অর্থপ্রদান</a>
             </p>
         </div>
 
@@ -17,8 +17,11 @@
         <div class="  d-flex flex-column justify-content-center align-items-center gap-3">
           
             <h3>
-            Bkash : 017955****1
+            টাকা পরিষদের অ্যাকাউন্ট 
             </h3>
+            <h1>
+            01795560431
+            </h1>
               <div class="card shadow w-100" >
                 <div class="card-body d-flex justify-content-center align-items-center " >
                     <form action="{{ route('orderStore') }}" class="w-75" method="POST">
@@ -26,9 +29,9 @@
                          <input type="hidden" name="type" value="{{$type}}">
                             <input type="hidden" name="id" value="{{$id}}">
                             <div class="form-group ">
-                            <label for="account" class="mb-3">Account :</label>
+                            <label for="account" class="mb-3">অ্যাকাউন্ট </label>
                            
-                            <input type="text" name="account" value="{{old('account')}}" class="form-control border border-dark @error('account') is-invalid @enderror" id="account" placeholder="Enter account number">
+                            <input type="text" name="account" value="{{old('account')}}" class="form-control border border-dark @error('account') is-invalid @enderror" id="account" placeholder="অ্যাকাউন্ট নম্বর লিখুন">
                             @error('account')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -37,10 +40,10 @@
 
                         </div>
                         <div class="form-group mt-2 ">
-                            <label for="trnxId" class="mb-3">Transaction Id</label>
+                            <label for="trnxId" class="mb-3">লেনদেন নাম্বার </label>
                            
                             <input type="text" name="trnxId" value="{{old('trnxId')}}" class="form-control border border-dark @error('trnxId') is-invalid @enderror" id="trnxId"
-                                placeholder="Enter Transaction ID">
+                                placeholder="লেনদেন আইডি লিখুন">
                             @error('trnxId')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -49,7 +52,7 @@
 
                         </div>
                         <div class="form-group mt-2 ">
-                        <label for="method" class="mb-3">Payment method</label>
+                        <label for="method" class="mb-3">মূল্যপরিশোধ পদ্ধতি </label>
                         <select id="inputState" class="form-control @error('method') is-invalid @enderror" name="method">
                             <option value=""selected>Choose...</option>
                             <option value="0">Bkash</option>
@@ -66,7 +69,7 @@
                         </div>
 
                         <div class="form-group mt-2 ">
-                            <label for="exampleInputPrice" class="mb-3">Price</label>
+                            <label for="exampleInputPrice" class="mb-3">মূল্য</label>
                            
                             <input type="text" class="form-control border border-dark " readonly id="exampleInputPrice" 
                                 value="{{$data->information()['price']}}">
@@ -75,7 +78,7 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-outline-dark mt-3">Pay </button>
+                        <button type="submit" class="btn btn-outline-danger btn-lg mt-3">সম্পূর্ণ </button>
                     </form>
                 </div>
             </div>
@@ -86,12 +89,12 @@
                     <table class="table table-striped">
                      <tr>
                             <td colspan='2' class="h4">
-                                Buyer Information :
+                            ক্রেতার তথ্য: 
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                Name :
+                            নাম: 
                             </th>
                             <td>
                                 {{ auth()->user()->name }}
@@ -100,7 +103,7 @@
                         
                         <tr>
                             <th>
-                                Phone :
+                            ফোন: 
                             </th>
                             <td>
                                 {{ auth()->user()->phone }}
@@ -109,12 +112,12 @@
                 
                         <tr>
                             <td colspan='2' class="h4">
-                                Purchase Information :
+                            ক্রয় তথ্য: 
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                Type :
+                            প্রকার: 
                             </th>
                             <td>
                                 {{ $data->information()['type'] }}
@@ -123,14 +126,14 @@
                         <tr>
                         <tr>
                             <th>
-                                Title :
+                            শিরোনাম : 
                             </th>
                             <td>
                                 {{ $data->information()['title'] }}
                             </td>
                         </tr>
                         <th>
-                            Price :
+                        মূল্য: 
                         </th>
                         <td>
                             {{ $data->information()['price'] }} BDT

@@ -1,5 +1,11 @@
 @extends('frontEnd.layouts.app')
 @section('content')
+@php
+$from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
+$to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
+use Rakibhstu\Banglanumber\NumberToBangla;
+$numto = new NumberToBangla();
+@endphp
 <!-- bratcam area  start-->
 <section class="bradcam">
     <div class="container">
@@ -21,45 +27,43 @@
             <div style="height:2px;width:60px" class="bg-danger"></div>
         </div>
         <div class="">
-            <span class=" h3 text-danger ">
-            দাম : 
-            </span>
+         
             <span class="h3">
-                {{$exam->price}} টাকা
+                {{$exam->priceFormat()}}
             </span>
         </div>
 
+       
         <ul style="list-style: none; margin:0px;padding:0px;">
-            <li  style="color:#666666"> <strong>শিরোনাম :</strong> {{$exam->title}} Exam</li>
-            <li  style="color:#666666"> <strong>উপ শিরোনাম :</strong> {{$exam->sub_title}} Exam</li>
-        </ul>
-        <ul style="list-style: none; margin:0px;padding:0px;">
-            <li  style="color:#666666"> <strong>শুরু : </strong> {{$exam->from->format('d M, Y')}}</li> 
-            <li  style="color:#666666"> <strong>শেষ : </strong> {{$exam->to->format('d M, Y')}}</li> 
-            <li  style="color:#666666"> <strong>সময় সীমা :</strong> {{$exam->duration}} Min</li>
+            <li  style="color:#666666"> <strong>পরীক্ষা শুরু : </strong> {{ $from->getDateTime()->format('j F, Y b h:i')}}</li> 
+            <li  style="color:#666666"> <strong>পরীক্ষা শেষ : </strong> {{ $to->getDateTime()->format('j F, Y b h:i') }}</li> 
+            <li  style="color:#666666"> <strong>সময় :</strong>  {{$numto->bnNum($exam->duration)}} মিনিট</li>
         </ul>
 
-        <ul style="list-style: none; margin:0px;padding:0px;">
-            <li  style="color:#666666"> <strong>বিষয় :</strong> {{join(', ',$exam->subjects->pluck('name')->toArray())}}</li>
-            <li  style="color:#666666"> <strong>ক্যাটাগরিসমূহ:</strong> {{join(', ',$exam->categories->pluck('name')->toArray())}}</li>
-        </ul>
+       
 
         <p class="" style="color:#666666">
+<<<<<<< HEAD
             <p class="fs-3 exam-description">পরীক্ষার বিবরণ :</p>
             <br>
             ১) মোট প্রশ্নের সংখ্যা হল : {{$exam->questions->count()}}
+=======
+            <strong>পরীক্ষার বিবণ :</strong>
             <br>
-            ২) প্রতিটি প্রশ্ন {{$exam->point}} পয়েন্টের সমান তাই এই পরীক্ষার জন্য পূর্ণ নম্বর ( {{$exam->point}} * {{$exam->questions->count()}} )  {{$exam->point * $exam->questions->count()}}
+            প্রশ্ন সংখ্যা: {{$numto->bnNum($exam->questions->count())}}.
+>>>>>>> 9173fbdc2c0205a4e00551a18859dcfdaa830b76
             <br>
-            ৩) প্রতিটি ভুল উত্তরের জন্য মোট স্কোর থেকে {{$exam->minius_mark}} বিয়োগ করা হবে . <br> বিঃদ্রঃ : অনুত্তরিত প্রশ্ন ভুল উত্তর হিসাবে গণনা করা হয়.
+            পূর্ণ মান : {{$numto->bnNum($exam->fullMark)}} 
             <br>
-            ৪) এই পরীক্ষায় পাস করার জন্য আপনাকে কমপক্ষে {{$exam->minimum_to_pass}} স্কোর করতে হবে .
+            পাশ নম্বর : {{$numto->bnNum($exam->passMark)}} 
+            <br>
+            নেগেটিভ মার্ক : {{$numto->bnNum($exam->minius_mark)}}
             
         </p>
 
         <p style="color:#666666">
-            <strong>বিঃদ্রঃ  : </strong>প্রতিটি পরীক্ষার জন্য আপনার শুধুমাত্র একটি প্রচেষ্টা আছে। <br> প্রতিটি পরীক্ষার শুরুতে একটি কাউন্টডাউন শুরু হবে আপনাকে করতে হবে <br>
-কাউন্টডাউন শেষ হওয়ার আগে পরীক্ষা শেষ করুন অন্যথায় আপনার প্রচেষ্টা <br> অসমাপ্ত হিসাবে গণনা করা হবে।
+            <strong>বিঃদ্রঃ  : </strong>প্রতি পরীক্ষা শুরু হলে টাইম কাউন্টার শুরু হবে ।  নির্ধারিত সময়ের মধ্যে পরীক্ষা সাবমিট করুন ।
+            সময় শেষ হলে পরীক্ষাটি  অটোম্যাটিক সাবমিট হয়ে যাবে । <br>পরীক্ষা চলাকালীন পরীক্ষার পেইজ থেকে বের হওয়া যাবেনা । বের হলেও আপনার টাইম কাউন্ট চলতে থাকবে ।
         </p>
         <a href="{{route('start',$exam->uuid)}}" class="btn btn-dark">পরীক্ষা শুরুকরুন</a>
 

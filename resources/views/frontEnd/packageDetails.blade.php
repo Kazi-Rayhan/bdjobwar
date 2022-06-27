@@ -29,8 +29,8 @@
         </div>
 
         <ul style="list-style: none; margin:0px;padding:0px;">
-            <li  style="color:#666666"> <strong>প্যাকেজ :</strong> {{$package->title}} Package</li>
-            <li  style="color:#666666"> <strong>সময়কাল :</strong> {{$package->duration}} Days</li>
+            <li  style="color:#666666"> <strong>প্যাকেজ :</strong> {{$package->title}}  প্যাকেজ</li>
+            <li  style="color:#666666"> <strong>সময়কাল : </strong> {{$package->duration}} দিন </li>
         </ul>
 
         <p class="" style="color:#666666">
