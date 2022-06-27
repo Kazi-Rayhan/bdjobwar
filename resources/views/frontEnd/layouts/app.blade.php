@@ -57,17 +57,10 @@
   </nav> -->
   <!-- top nav end-->
   <!-- mid nav start -->
-<<<<<<< HEAD
   <!-- <nav class="mid-nav py-4">
     <div class="container d-flex justify-content-between flex-wrap">
       <div class="brand">
         <a class="navbar-brand" href="{{route('home_page')}}">
-=======
-  <nav class="mid-nav py-4">
-    <div class="container d-flex justify-content-center flex-wrap">
-    
-        <a href="{{route('home_page')}}">
->>>>>>> 9173fbdc2c0205a4e00551a18859dcfdaa830b76
 
           <img src="{{asset('frontEnd-assets/img/logo.png')}}" width="100" height="100" style="object-fit:contain" alt="">
         </a>
@@ -124,10 +117,10 @@
       </div>
     </div>
   </nav> -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="background-color:#161E31 !important">
   <div class="container">
   <a class="navbar-brand" href="#">
-      <img src="{{asset('frontEnd-assets/img/logo-eToro.png')}}" alt="" width="100" height="80">
+      <img src="{{asset('frontEnd-assets/img/logo.png')}}" alt="" width="100" height="70" style="object-fit:cover">
   </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -152,9 +145,25 @@
         <ul class="navbar-nav mb-2 mb-lg-0">
           @auth
 
-          <li class="auth-item">
-            <a class="nav-link" aria-current="page" href="{{route('dashboard')}}">ড্যাশবোর্ড</a>
-          </li>
+        <li class="dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{Auth()->user()->name}}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="{{route('dashboard')}}">ড্যাশবোর্ড</a></li>
+            <li>
+              <!-- <a class="dropdown-item" href="#">Logout</a> -->
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            <span class=" mr-3"></span>লগ আউট</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form
+            </li>
+   
+          </ul>
+        </li>
+
           @else
           <li class="auth-item">
             <a class="nav-link" aria-current="page" href="{{route('login')}}">সাইন-ইন</a>
@@ -190,7 +199,7 @@
           </div>
 
         </div> -->
-      <div class="container-fluid bg-footer ">
+      <div class="container-fluid bg-footer " style="background-color:#161E31 !important">
         <div class="row justify-content-around">
           <div class="col-md-4 d-flex justify-content-center align-items-center footer-info">
           <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="150" width="150"  alt="">

@@ -61,4 +61,10 @@ class DashboardController extends Controller
         $user->update();
         return redirect()->back();
     }
+    public function testHistory()
+    {
+        $user=Auth()->user()->id;
+        $testHistories=UserExam::where('user_id',$user)->latest()->get();
+        return view('dashboard.test_history',compact('testHistories'));
+    }
 }

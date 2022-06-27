@@ -107,6 +107,10 @@ class User extends \TCG\Voyager\Models\User
         return false;
    
     }
+    public function subjects()
+    {
+        return $this->morphToMany(Subject::class, 'subjectable');
+    }
     
      
 }

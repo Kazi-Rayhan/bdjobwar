@@ -16,4 +16,8 @@ class UserExam extends Model
     public function Exam(){
         return $this->belongsTo(Exam::class);
     }
+    public function subjects()
+    {
+        return $this->morphToMany(Subject::class, 'subjectable');
+    }
 }

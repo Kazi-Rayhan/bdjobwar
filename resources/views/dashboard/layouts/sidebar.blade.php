@@ -60,6 +60,11 @@
         <span>Exams</span></a>
 </li>
 <li class="nav-item">
+    <a class="nav-link" href="{{route('testHistory')}}">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Test history</span></a>
+</li>
+<li class="nav-item">
 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
             <span class="fas fa-toggle-off mr-3"></span>Sign Off</a>

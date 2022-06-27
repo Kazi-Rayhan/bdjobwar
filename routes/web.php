@@ -53,6 +53,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/invoice/{order}', [DashboardController::class, 'invoice'])->name('invoice');
     Route::get('/exams', [DashboardController::class, 'exams'])->name('dashboard.exams');
     Route::post('/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
+    Route::get('/test-history', [DashboardController::class, 'testHistory'])->name('testHistory');
 });
 
 

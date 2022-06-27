@@ -43,15 +43,9 @@ $numto = new NumberToBangla();
        
 
         <p class="" style="color:#666666">
-<<<<<<< HEAD
             <p class="fs-3 exam-description">পরীক্ষার বিবরণ :</p>
             <br>
-            ১) মোট প্রশ্নের সংখ্যা হল : {{$exam->questions->count()}}
-=======
-            <strong>পরীক্ষার বিবণ :</strong>
-            <br>
-            প্রশ্ন সংখ্যা: {{$numto->bnNum($exam->questions->count())}}.
->>>>>>> 9173fbdc2c0205a4e00551a18859dcfdaa830b76
+            ১)প্রশ্নের সংখ্যা : {{$exam->questions->count()}}
             <br>
             পূর্ণ মান : {{$numto->bnNum($exam->fullMark)}} 
             <br>
@@ -62,10 +56,10 @@ $numto = new NumberToBangla();
         </p>
 
         <p style="color:#666666">
-            <strong>বিঃদ্রঃ  : </strong>প্রতি পরীক্ষা শুরু হলে টাইম কাউন্টার শুরু হবে ।  নির্ধারিত সময়ের মধ্যে পরীক্ষা সাবমিট করুন ।
-            সময় শেষ হলে পরীক্ষাটি  অটোম্যাটিক সাবমিট হয়ে যাবে । <br>পরীক্ষা চলাকালীন পরীক্ষার পেইজ থেকে বের হওয়া যাবেনা । বের হলেও আপনার টাইম কাউন্ট চলতে থাকবে ।
+            <strong class="text-dark">বিঃদ্রঃ  : </strong>প্রতি পরীক্ষা শুরু হলে টাইম কাউন্ট শুরু হবে ।  নির্ধারিত সময়ের মধ্যে পরীক্ষা সাবমিট করুন ।
+            সময় শেষ হলে পরীক্ষাটি  অটোমেটিক সাবমিট হয়ে যাবে । <br>পরীক্ষা চলাকালীন পরীক্ষার পেইজ থেকে বের হওয়া যাবেনা । বের হলেও আপনার টাইম কাউন্ট চলতে থাকবে ।
         </p>
-        <a href="{{route('start',$exam->uuid)}}" class="btn btn-dark">পরীক্ষা শুরুকরুন</a>
+        <a href="{{route('start',$exam->uuid)}}" class="btn btn-dark">পরীক্ষা শুরু করুন</a>
 
     </div>
   
