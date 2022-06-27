@@ -45,9 +45,9 @@
         </ul>
 
         <p class="" style="color:#666666">
-            <strong>পরীক্ষার বিবরণ :</strong>
+            <p class="fs-3 exam-description">পরীক্ষার বিবরণ :</p>
             <br>
-            ১) মোট প্রশ্নের সংখ্যা হল : {{$exam->questions->count()}}.
+            ১) মোট প্রশ্নের সংখ্যা হল : {{$exam->questions->count()}}
             <br>
             ২) প্রতিটি প্রশ্ন {{$exam->point}} পয়েন্টের সমান তাই এই পরীক্ষার জন্য পূর্ণ নম্বর ( {{$exam->point}} * {{$exam->questions->count()}} )  {{$exam->point * $exam->questions->count()}}
             <br>
@@ -61,7 +61,7 @@
             <strong>বিঃদ্রঃ  : </strong>প্রতিটি পরীক্ষার জন্য আপনার শুধুমাত্র একটি প্রচেষ্টা আছে। <br> প্রতিটি পরীক্ষার শুরুতে একটি কাউন্টডাউন শুরু হবে আপনাকে করতে হবে <br>
 কাউন্টডাউন শেষ হওয়ার আগে পরীক্ষা শেষ করুন অন্যথায় আপনার প্রচেষ্টা <br> অসমাপ্ত হিসাবে গণনা করা হবে।
         </p>
-        <a href="{{route('start',$exam->uuid)}}" class="btn btn-dark"> আমি এই পরীক্ষা দিতে চাই</a>
+        <a href="{{route('start',$exam->uuid)}}" class="btn btn-dark">পরীক্ষা শুরুকরুন</a>
 
     </div>
   

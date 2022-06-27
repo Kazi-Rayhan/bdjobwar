@@ -34,7 +34,7 @@
 <body>
 
   <!-- top nav -->
-  <nav class="top-nav" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
+  <!-- <nav class="top-nav" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
     <div class="container">
       <div class="d-flex flex-wrap justify-content-between">
         <div class="d-flex flex-wrap justify-content-center company-info">
@@ -52,10 +52,10 @@
 
       </div>
     </div>
-  </nav>
+  </nav> -->
   <!-- top nav end-->
   <!-- mid nav start -->
-  <nav class="mid-nav py-4">
+  <!-- <nav class="mid-nav py-4">
     <div class="container d-flex justify-content-between flex-wrap">
       <div class="brand">
         <a class="navbar-brand" href="{{route('home_page')}}">
@@ -75,11 +75,11 @@
         </div>
       </div>
     </div>
-  </nav>
+  </nav> -->
 
   <!-- mid nav end -->
   <!-- Main Nav start -->
-  <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
+  <!-- <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
     <div class="container">
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,7 +122,52 @@
 
       </div>
     </div>
-  </nav>
+  </nav> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
+  <div class="container">
+  <a class="navbar-brand" href="#">
+      <img src="{{asset('frontEnd-assets/img/logo-eToro.png')}}" alt="" width="100" height="80">
+  </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ps-5">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{route('home_page')}}#home">হোম</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('home_page')}}#live-section">লাইভ সেকশন</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('home_page')}}#package">প্যাকেজসমূহ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('exams')}}">পরীক্ষাসমূহ</a>
+          </li>
+
+        </ul>
+
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          @auth
+
+          <li class="auth-item">
+            <a class="nav-link" aria-current="page" href="{{route('dashboard')}}">ড্যাশবোর্ড</a>
+          </li>
+          @else
+          <li class="auth-item">
+            <a class="nav-link" aria-current="page" href="{{route('login')}}">সাইন-ইন</a>
+          </li>
+          <li class="auth-item">
+            <a class="nav-link" href="{{route('register')}}"> সাইন-আপ </a>
+          </li>
+          @endauth
+
+
+        </ul>
+    </div>
+  </div>
+</nav>
   <!-- Main Nav end -->
   <main>
     @yield('content')

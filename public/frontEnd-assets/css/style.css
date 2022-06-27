@@ -394,3 +394,7 @@ body{
   background-color: transparent !important;
   border: none;
 }
+.exam-description{
+  margin-bottom: 0 !important;
+  font-weight: 800;
+}

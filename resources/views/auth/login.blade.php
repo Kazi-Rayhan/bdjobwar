@@ -19,7 +19,7 @@
         <div class="col-md-5">
             
             <div class="card shadow-lg">
-                <div class="card-header py-3 bg-success text-white fs-5">সাইন ইন  ফরম</div>
+                <div class="card-header py-3 bg-success text-white fs-5">লগইন  ফরম</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -62,7 +62,7 @@
                         <div class="">
                             <div class=" mt-3 ms-4">
                                 <button type="submit" class="btn  btn-danger px-4">
-                                সাইন ইন 
+                                লগইন করুন 
                                 </button>
 
                             </div>
