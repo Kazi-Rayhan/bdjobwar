@@ -22,68 +22,58 @@ class AuthenticateController extends Controller
     {
 
         $user = auth()->user();
-      
+
         SMS::otp($user)->send();
         return back();
-       
-    
     }
     public function checkOtp(Request $request)
-    {   
+    {
 
         $request->validate([
-            "otp"=>'required'
+            "otp" => 'required'
         ]);
-        try{
+        try {
             Auth::user()->verify($request->otp);
             return redirect(route('dashboard'));
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
-        }catch(Error $e){
+        } catch (Error $e) {
             return redirect()->back()->withErrors($e->getMessage());
-
         }
-       
     }
     public function login(Request $request)
-{
-     $phone = $request->input('phone');
-     $password = $request->input('password');
-     $roll=$request->input('phone');
+    {
+        $request->validate(['phone' => 'required', 'password' => 'required']);
+        $rollOrPhone = $request->phone;
+        $password = $request->password;
+        try {
 
-     $user = User::where('phone', '=', $phone)->first();
-     $user_roll = UserMeta::where('id', '=', $roll)->first();
-     if($user){
-        if (!$user) {
-            return redirect()
-            ->back()
-            ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
-         }
-         if (!Hash::check($password, $user->password)) {
-            return redirect()
-            ->back()
-            ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
-         }
-         Auth::loginUsingId($user->id);
-          return redirect()->route('dashboard')->with('success', 'Log In successfully');
-     }
+            $user = User::where('phone', $rollOrPhone)
+                ->orWhereHas(
+                    'information',
+                    function ($q) use ($rollOrPhone) {
+                        return $q->where('id', $rollOrPhone);
+                    }
+                )
+                ->firstOrFail();
 
-    else{
-        if(!$user_roll){
+            if (!Hash::check($password, $user->password)) throw new Exception;
+           
+            Auth::loginUsingId($user->id);
+            return redirect()->intended();
+            
+        } catch (Exception $e) {
             return redirect()
-            ->back()
-            ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
+                ->back()
+                ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
+        } catch (Error $e) {
+            return redirect()
+                ->back()
+                ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
         }
-        if (!Hash::check($password,$user_roll->user->password)) {
-        return redirect()
-        ->back()
-        ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
-        }
-        Auth::loginUsingId($user_roll->user_id);
-        return redirect()->route('dashboard')->with('success', 'Log In successfully');
-         
-     }
 
 
+
+      
     }
 }

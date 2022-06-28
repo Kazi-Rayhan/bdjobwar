@@ -6,6 +6,7 @@ Use App\Models\UserExam;
 use PDF;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -63,8 +64,8 @@ class DashboardController extends Controller
     }
     public function testHistory()
     {
-        $user=Auth()->user()->id;
-        $testHistories=UserExam::where('user_id',$user)->latest()->get();
-        return view('dashboard.test_history',compact('testHistories'));
+        $exams = Auth::user()->exams;
+    
+        return view('dashboard.test_history',compact('exams'));
     }
 }

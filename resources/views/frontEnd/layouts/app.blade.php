@@ -29,7 +29,6 @@
       font-family: 'AdorshoLipi', Arial, sans-serif !important;
       font-weight: 600;
     }
-  
   </style>
 </head>
 
@@ -118,51 +117,60 @@
     </div>
   </nav> -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="background-color:#161E31 !important">
-  <div class="container">
-  <a class="navbar-brand" href="#">
-      <img src="{{asset('frontEnd-assets/img/logo.png')}}" alt="" width="100" height="70" style="object-fit:cover">
-  </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ps-5">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="{{asset('frontEnd-assets/img/logo.png')}}" alt="" width="100" height="50" style="object-fit:cover">
+      </a>
+      <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto" style="font-size: 14px;">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{route('home_page')}}#home">হোম</a>
+            <a class="nav-link" style="font-size: 13px;" aria-current="page" href="{{route('home_page')}}#home">হোম</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('home_page')}}#live-section">লাইভ সেকশন</a>
+            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#live-section">লাইভ সেকশন <sup>Free</sup></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('home_page')}}#package">প্যাকেজসমূহ</a>
+            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#package">প্যাকেজসমূহ <sup>Paid</sup></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('exams')}}">পরীক্ষাসমূহ</a>
+            <a class="nav-link" style="font-size: 13px;" href="#">কোর্স সমূহ <sup>Paid</sup></a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: 13px;" href="#">Sell Book</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: 13px;" href="#">Job Solution</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: 13px;" href="#">Skill Development</a>
+          </li>
         </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0">
           @auth
 
-        <li class="dropdown">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{Auth()->user()->name}}
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="{{route('dashboard')}}">ড্যাশবোর্ড</a></li>
-            <li>
-              <!-- <a class="dropdown-item" href="#">Logout</a> -->
-              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+          <li class="dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{Auth()->user()->name}}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <li><a class="dropdown-item" href="{{route('dashboard')}}">ড্যাশবোর্ড</a></li>
+              <li>
+                <!-- <a class="dropdown-item" href="#">Logout</a> -->
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
-            <span class=" mr-3"></span>লগ আউট</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form
-            </li>
-   
-          </ul>
-        </li>
+                  <span class=" mr-3"></span>লগ আউট</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form 
+              </li>
+
+            </ul>
+          </li>
 
           @else
           <li class="auth-item">
@@ -175,9 +183,9 @@
 
 
         </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
   <!-- Main Nav end -->
   <main>
     @yield('content')
@@ -202,8 +210,8 @@
       <div class="container-fluid bg-footer " style="background-color:#161E31 !important">
         <div class="row justify-content-around">
           <div class="col-md-4 d-flex justify-content-center align-items-center footer-info">
-          <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="150" width="150"  alt="">
-          
+            <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="150" width="150" alt="">
+
 
           </div>
 
@@ -286,7 +294,7 @@
   </script>
   @if($errors->any())
   <script>
-    @foreach($errors-> all() as $error)
+    @foreach($errors->all() as $error)
     toastr.error("{{ session('error') }}")
     @endforeach
   </script>

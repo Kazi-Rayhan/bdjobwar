@@ -3,62 +3,63 @@
 <div class="container-fluid">
 
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-success">All Test History</h6>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-success">All Test History</h6>
+        </div>
     </div>
-</div>
-    
-    @if($testHistories->count() >0)
-        <table class="table">
-            <thead class="bg-success text-white">
-                <tr>
+
+    @if($exams->count() >0)
+    <table class="table">
+        <thead class="bg-success text-white">
+            <tr>
                 <th scope="col">#</th>
                 <th scope="col">Exam name</th>
-                <th scope="col">Subjects</th>
-                <th scope="col">Date</th>
-                <th scope="col">Right answer</th>
+                <th scope="col">Position</th>
+                <th scope="col">Missed</th>
                 <th scope="col">Wrong answer</th>
+                <th scope="col">Total</th>
                 <th scope="col">Action</th>
-                </tr>
-            </thead>
-            @foreach($testHistories as $test)
-            <tbody>
-              
-                <tr>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($exams as $exam)
+            @if($exam->pivot->total)
+            <tr>
                 <th scope="row">{{ $loop->iteration  }}</th>
                 <td>
-                    
-                    {{$test->Exam->title}}
+
+                    {{$exam->title}}
                 </td>
                 <td>
-                    @foreach($test->Exam->subjects as $subject)
-                    <span>{{$subject->name}} </span>
-                    @endforeach
-                  
+                    {{$exam->getRanking(auth()->user())}}
                 </td>
                 <td>
-                {{ \Carbon\Carbon::parse($test->created_at)->format('d M ,Y ') }}
-                  
+                   
+                {{$exam->pivot->empty_answers}}
+                </td>
+
+               
+                
+                <td>
+                    {{$exam->pivot->wrong_answers}}
                 </td>
                 <td>
-                {{$test->total}}
+                    {{$exam->pivot->total}}
+
                 </td>
                 <td>
-                {{$test->wrong_answers}}
+                    <a href="{{route('answerSheet',$exam->uuid)}}" class="btn btn-success">Answer Sheet</a>
                 </td>
-                <td>
-                <a href="{{route('answerSheet',$test->Exam->uuid)}}" class="btn btn-success">Read</a>
-                </td>
-                </tr>
-          
-            
-            </tbody>
+            </tr>
+            @endif
             @endforeach
-        </table>
-        @else
-        <h3 class="text-center"> You did not placed any order </h3>
-        @endif
+
+        </tbody>
+    </table>
+    @else
+    <h3 class="text-center"> You did not placed any order </h3>
+    @endif
 </div>
 
 @endsection

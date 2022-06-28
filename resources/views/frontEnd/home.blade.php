@@ -6,9 +6,9 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
 <!-- Slider section start -->
-<section class="slider">
+<section class="slider " style="height:80vh">
   <a href="">
-    <img src="{{asset('frontEnd-assets/img/slider.png')}}" alt="" width="100%" style="object-fit:cover">
+    <img src="{{asset('frontEnd-assets/img/slider2.jpg')}}" alt="" width="100%" style="object-fit:cover">
   </a>
 </section>
 <!-- Slider section end -->

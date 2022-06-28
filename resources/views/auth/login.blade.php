@@ -32,9 +32,9 @@
                                 <input id="phone" type="text" placeholder="মোবাইল অথবা রোল নম্বর" class="border border-success form-control py-2 @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}"  autocomplete="phone" autofocus>
 
                                 @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    
+                                        <small class="text-info">{{ $message }}</small>
+                                
                                 @enderror
                             </div>
                         </div>

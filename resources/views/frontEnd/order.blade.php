@@ -31,7 +31,7 @@
                             <div class="form-group ">
                             <label for="account" class="mb-3">অ্যাকাউন্ট </label>
                            
-                            <input type="text" name="account" value="{{old('account')}}" class="form-control border border-dark @error('account') is-invalid @enderror" id="account" placeholder="অ্যাকাউন্ট নম্বর লিখুন">
+                            <input type="text" name="account" value="{{old('account')}}" class="form-control border border-dark @error('account') is-invalid @enderror" id="account" placeholder="আপনার বিকাশ, নগদ বা রকেট অ্যাকাউন্ট নম্বর লিখুন">
                             @error('account')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -40,10 +40,10 @@
 
                         </div>
                         <div class="form-group mt-2 ">
-                            <label for="trnxId" class="mb-3">লেনদেন নাম্বার </label>
+                            <label for="trnxId" class="mb-3">ট্রানজেকশন আইডি </label>
                            
                             <input type="text" name="trnxId" value="{{old('trnxId')}}" class="form-control border border-dark @error('trnxId') is-invalid @enderror" id="trnxId"
-                                placeholder="লেনদেন আইডি লিখুন">
+                                placeholder="ট্রানজেকশন আইডি লিখুন">
                             @error('trnxId')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
