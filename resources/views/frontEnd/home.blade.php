@@ -21,7 +21,7 @@ $numto = new NumberToBangla();
     <div class="row">
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success"> লাইভ পরীক্ষা চলছে </span>
+          <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success"> লাইভ পরীক্ষা চলছে <sup>Free</sup></span>
         </h6>
         @foreach($liveExams as $exam)
         <x-exam-card :exam="$exam" />
@@ -29,7 +29,7 @@ $numto = new NumberToBangla();
       </div>
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
-          <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">সম্প্রতি বন্ধ</span>
+          <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">সম্প্রতি বন্ধ <sup>Free</sup></span>
         </h6>
         @foreach($finishedExams as $exam)
         <x-exam-card :exam="$exam" />
@@ -38,7 +38,26 @@ $numto = new NumberToBangla();
 
     </div>
     <div class="row">
-      <div class="col-md-6 mb-4">
+      <div class="col-md-6">
+        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+          <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success"> লাইভ পরীক্ষা চলছে <sup>Paid</sup></span>
+        </h6>
+        @foreach($livePaidExams as $exam)
+        <x-exam-card :exam="$exam" />
+        @endforeach
+      </div>
+      <div class="col-md-6">
+        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+          <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">সম্প্রতি বন্ধ <sup>Paid</sup></span>
+        </h6>
+        @foreach($finishedPaidExams as $exam)
+        <x-exam-card :exam="$exam" />
+        @endforeach
+      </div>
+
+    </div>
+    <div class="row">
+      <!-- <div class="col-md-6 mb-4">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
           <i class="fas fa-chess fs-3 text-muted"></i> <span class="text-success">এ সপ্তাহের সেরা পরীক্ষার্থী</span>
         </h6>
@@ -60,8 +79,8 @@ $numto = new NumberToBangla();
             @endforeach
           </tbody>
         </table>
-      </div>
-      <div class="col-md-6 mb-4">
+      </div> -->
+      <div class="col-md-12 mb-4">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
           <i class="fas fa-poll fs-3 text-muted"></i> <span class="text-success">সর্বশেষ ফলাফল </span>
         </h6>

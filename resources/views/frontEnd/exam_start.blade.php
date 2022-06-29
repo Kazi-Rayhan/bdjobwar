@@ -9,8 +9,8 @@ $numto = new NumberToBangla();
 <!-- bratcam area  start-->
 <section class="bradcam">
     <div class="container">
-        <h3 class="text-white pt-5 pb-3">{{$exam->title}}</h3>
-        <p class="pb-5 text-white">
+        <h3 class="text-white pt-3 pb-2">{{$exam->title}}</h3>
+        <p class="pb-3 text-white p-0 m-0">
             <a href="{{ route('home_page') }}" class="text-decoration-none bradcam-active-btn pe-2">Home</a>
             /
             <a href="" class="text-decoration-none text-white ps-2">{{$exam->title}}</a>
@@ -19,7 +19,7 @@ $numto = new NumberToBangla();
 
 </section>
 <!-- bratcam area  end-->
-<div class="container my-5 d-flex flex-column gap-3 justify-content-center align-items-center">
+<div class="container my-md-5 my-2 d-flex flex-column gap-3 justify-content-center align-items-center">
     <div class="d-flex flex-column gap-3">
         <div>
             <h2 class="text-dark">{{$exam->title}}</h2>
@@ -42,10 +42,13 @@ $numto = new NumberToBangla();
 
        
 
-        <p class="" style="color:#666666">
-            <p class="fs-3 exam-description">পরীক্ষার বিবরণ :</p>
+        <p class="m-0 p-0" style="color:#666666">
+            <!-- <p class="fs-3 exam-description"></p> -->
+            <strong class="fs-4 text-dark">
+            পরীক্ষার বিবরণ :
+            </strong>
             <br>
-            ১)প্রশ্নের সংখ্যা : {{$exam->questions->count()}}
+            প্রশ্নের সংখ্যা : {{$numto->bnNum($exam->questions->count())}}
             <br>
             পূর্ণ মান : {{$numto->bnNum($exam->fullMark)}} 
             <br>
@@ -55,7 +58,7 @@ $numto = new NumberToBangla();
             
         </p>
 
-        <p style="color:#666666">
+        <p style="color:#666666" class="m-0 p-0">
             <strong class="text-dark">বিঃদ্রঃ  : </strong>প্রতি পরীক্ষা শুরু হলে টাইম কাউন্ট শুরু হবে ।  নির্ধারিত সময়ের মধ্যে পরীক্ষা সাবমিট করুন ।
             সময় শেষ হলে পরীক্ষাটি  অটোমেটিক সাবমিট হয়ে যাবে । <br>পরীক্ষা চলাকালীন পরীক্ষার পেইজ থেকে বের হওয়া যাবেনা । বের হলেও আপনার টাইম কাউন্ট চলতে থাকবে ।
         </p>

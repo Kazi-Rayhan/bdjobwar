@@ -32,8 +32,9 @@ class ExamController extends Controller
     }
 
     public function exam_all_results($uuid){
+        // dd(UserExam::filter(request(['search'])));
         $exam = Exam::where('uuid',$uuid)->first();
-        $results = UserExam::where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
+        $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
         
         
         return view('frontEnd.exam.results',compact('exam','results'));

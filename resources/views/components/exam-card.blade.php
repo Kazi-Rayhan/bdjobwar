@@ -16,7 +16,7 @@ $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhak
         </p>
         <div class=" d-flex flex-sm-column flex-md-row gap-3  flex-wrap justify-content-between align-items-center mt-4">
 
-            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">বিস্তারিত</a>
+            <a class="btn btn-outline-danger btn-sm " href="{{route('question',$exam->uuid)}}" style="font-size: 13px ;">টেস্ট দিন </a>
             <div class="d-flex  gap-5 text-dark" style="font-size: 14px;">
                 <span>
                     <i class="fa fa-coins"></i> : {{$exam->priceFormat()}}

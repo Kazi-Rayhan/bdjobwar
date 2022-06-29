@@ -20,4 +20,22 @@ class UserExam extends Model
     {
         return $this->morphToMany(Subject::class, 'subjectable');
     }
+    public function scopeFilter($query,array $filters)
+    {
+        $query->when($filters['search']?? false, fn($query,$search)=>
+        $query->whereExists(fn($query)=>
+        $query->from('users')
+        ->whereColumn('users.id','exam_user.user_id')
+        ->where('users.name',$search)
+        )
+        
+    );
+    $query->when($filters['roll']?? false, fn($query,$roll)=>
+    $query->whereExists(fn($query)=>
+    $query->from('user_metas')
+    ->whereColumn('user_metas.user_id','exam_user.user_id')
+    ->where('user_metas.id',$roll)
+    )
+    );
+    }
 }

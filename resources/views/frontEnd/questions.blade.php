@@ -4,11 +4,31 @@
     .question {
         width: 70%;
     }
+    .hr{
+        padding:0 ;
+        margin:3px 0;
+    }
+    .time{
+         font-size: 16px;
+    }
 
     @media screen and (max-width: 600px) {
         .question {
             width: 100%;
         }
+       .exam-title{
+            font-size:23px;
+        }
+        .exam-subtitle{
+            font-size:18px;
+        }
+        .fullmark{
+            font-size:16px;
+        }
+        .custom-body span,small,strong{
+            font-size:12px !important;
+        }
+
     }
 
     .options {
@@ -72,21 +92,21 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
 <div style="position: relative;">
-    <div class="card text-dark border border-danger  shadow  m-3" style=" position: fixed; z-index:200;top: 0;
+    <div class="card text-dark border border-danger  shadow  m-3" style=" position: fixed; z-index:200;top: 60px;
 right: 10;">
-        <div class="card-body " style="font-size: 14px;">
+        <div class="card-body custom-body" style="font-size: 14px;" >
             <span>
                 উত্তর দিয়েছেন : <span id="answered"></span>
             </span>
             <br>
-            <span>
+            <span class="pb-2">
                 বাকি আছে : <span id="left"></span>
             </span>
             <br>
-            <hr>
+            <hr class="hr">
             <small>সময় :</small>
             <br>
-            <strong style="font-size: 16px; " id="countdown">
+            <strong class="time" style=" " id="countdown">
             </strong>
 
         </div>
@@ -95,20 +115,20 @@ right: 10;">
     <form action="{{route('exam.store',$exam->uuid)}}" method="post">
         @csrf
         <div class="main-blog-area mb-5">
-            <div class=" my-5">
+            <div class=" mb-md-5">
                 <div class="">
                     <div class="">
                         <div id="exam-header " class="text-center border border-success shadow  text-light p-4" style="background-color: #019514;">
-                            <h1>
+                            <h1 class="exam-title">
                                 {{$exam->title}}
                             </h1>
-                            <h3 style="font-weight: 700;">
+                            <h3 class="exam-subtitle" style="font-weight: 700;">
                                 {{$exam->sub_title}}
                             </h3>
-                            <h5 style="font-weight: 700;">
+                            <h5 class="fullmark" style="font-weight: 700;">
                                 পূর্ণমান : {{$numto->bnNum($exam->fullMark)}}
                             </h5>
-                            <div class="d-flex justify-content-around mt-5" style="font-weight: 700;">
+                            <div class="d-flex justify-content-around mt-md-5" style="font-weight: 700;">
                                 <span class="">
                                     প্রশ্ন : {{$numto->bnNum($exam->questions->count())}}
                                 </span>
@@ -117,7 +137,7 @@ right: 10;">
                                     পাশ মার্ক : {{$numto->bnNum($exam->minimum_to_pass)}}
                                 </span>
                             </div>
-                            <div class="d-flex justify-content-around mt-3 " style="font-weight: 700;">
+                            <div class="d-flex justify-content-around mt-md-3 mt-2" style="font-weight: 700;">
                                 <span class="">
                                     প্রশ্ন প্রতি মার্ক : {{$numto->bnNum($exam->point)}}
                                 </span>
@@ -140,7 +160,7 @@ right: 10;">
 
 
                             <div>
-                                <div class="p-2 d-flex flex-column justify-content-center align-items-center mt-5" id="tab1">
+                                <div class="p-2 d-flex flex-column justify-content-center align-items-center mt-md-5" id="tab1">
                                     @foreach($questions as $question)
 
                                     <div class="question border border-success card ml-sm-5 pl-sm-5 pt-2 mb-2">
@@ -250,7 +270,11 @@ right: 10;">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <p class="p-4">
-            আপনি <span id="answeredModal"> </span> টি প্রশ্নের মধ্যে <span id="leftModal"> </span> টির উত্তর করেছেন। পরীক্ষাটি কি এখানেই শেষ করবেন
+            <span>
+
+                {{$questions->count() }} 
+            </span>
+             টি প্রশ্নের মধ্যে আপনি <span id="answeredModal"> </span> টির উত্তর করেছেন <span id="leftModal"> </span> উত্তর বাকি আছে। পরীক্ষাটি কি এখানেই শেষ করবেন
             </p>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success">হ্যা</button>

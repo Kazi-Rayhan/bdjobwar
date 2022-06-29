@@ -357,6 +357,13 @@ body{
 .bradcam{
   background-color: #0b2e13;
 }
+@media screen and (max-width: 768px) {
+ 
+  .bradcam{
+    display: none;
+  }
+
+}
 .bradcam-active-btn{
   color: #777;
 }
