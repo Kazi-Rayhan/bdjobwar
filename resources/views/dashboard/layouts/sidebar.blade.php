@@ -59,11 +59,11 @@
         <i class="fas fa-fw fa-table"></i>
         <span>Exams</span></a>
 </li>
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link" href="{{route('testHistory')}}">
         <i class="fas fa-fw fa-table"></i>
         <span>Test history</span></a>
-</li>
+</li> -->
 <li class="nav-item">
 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">

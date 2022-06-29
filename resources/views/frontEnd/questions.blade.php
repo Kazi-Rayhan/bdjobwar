@@ -94,7 +94,7 @@ $numto = new NumberToBangla();
 <div style="position: relative;">
     <div class="card text-dark border border-danger  shadow  m-3" style=" position: fixed; z-index:200;top: 60px;
 right: 10;">
-        <div class="card-body custom-body" style="font-size: 14px;" >
+        <div class="card-body custom-body"  >
             <span>
                 উত্তর দিয়েছেন : <span id="answered"></span>
             </span>
@@ -137,7 +137,7 @@ right: 10;">
                                     পাশ মার্ক : {{$numto->bnNum($exam->minimum_to_pass)}}
                                 </span>
                             </div>
-                            <div class="d-flex justify-content-around mt-md-3 mt-2" style="font-weight: 700;">
+                            <div class="d-flex justify-content-around mt-md-3 mt-1" style="font-weight: 700;">
                                 <span class="">
                                     প্রশ্ন প্রতি মার্ক : {{$numto->bnNum($exam->point)}}
                                 </span>
@@ -147,7 +147,7 @@ right: 10;">
                                 </span>
                             </div>
 
-                            <div class="d-flex justify-content-center mt-3" style="font-weight: 700;">
+                            <div class="d-flex justify-content-center mt-md-3 mt-1" style="font-weight: 700;">
                                 <span class="">
                                     সময়কাল : {{$numto->bnNum($exam->duration)}} মিনিট
                                 </span>
