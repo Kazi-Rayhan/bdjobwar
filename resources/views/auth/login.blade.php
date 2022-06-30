@@ -1,18 +1,7 @@
 @extends('frontEnd.layouts.app')
 
 @section('content')
-<!-- bratcam area  start-->
-<section class="bradcam">
-<div class="container">
-<h3 class="text-white pt-5 pb-3">সাইন ইন </h3>
-    <p class="pb-5 text-white">
-        <a href="{{route('home_page')}}" class="text-decoration-none bradcam-active-btn pe-2">হোম</a>
-         / 
-         <a href="" class="text-decoration-none text-white ps-2">সাইন ইন </a>
-    </p>
-</div>
 
-</section>
 <!-- bratcam area  end-->
 <div class="container my-5 py-5">
     <div class="row justify-content-center">

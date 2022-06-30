@@ -87,7 +87,7 @@ class User extends \TCG\Voyager\Models\User
                 'id' => $this->information->id ?? null
             ],
             [
-                'id' => now()->format('Y') . now()->format('m') . now()->format('d') . rand(9999, 99999),
+                'id' =>  rand(999999, 99999),
                 'package_id' => $package->id,
                 'is_paid' => $package->paid,
                 'infinite_duration' => $package->infinite_duration,

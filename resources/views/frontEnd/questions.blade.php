@@ -92,7 +92,7 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
 <div style="position: relative;">
-    <div class="card text-dark border border-danger  shadow  m-3" style=" position: fixed; z-index:200;top: 60px;
+    <div class="card text-dark border border-danger  shadow  mt-4" style=" position: fixed; z-index:200;top: 60px;
 right: 10;">
         <div class="card-body custom-body"  >
             <span>

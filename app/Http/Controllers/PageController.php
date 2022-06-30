@@ -17,11 +17,16 @@ class PageController extends Controller
     {
         $categories = Category::whereNull('parent_id')->latest()->get();
 
+        $sliderExams = Exam::whereNotNull('image')->latest()->limit(5)->get();
+
         $finishedExams = Exam::active()->where('to', '<', now())->latest()->limit(5)->get();
         $finishedPaidExams = Exam::where('to', '<', now())->where('is_paid',1)->latest()->limit(5)->get();
         $liveExams = Exam::active()->where('from', '<', now())->where('to', '>', now())->latest()->limit(5)->get();
         $livePaidExams = Exam::where('from', '<', now())->where('to', '>', now())->where('is_paid',1)->latest()->limit(5)->get();
         // dd($finishedPaidExams);
+
+    
+
         $liveExaminees = DB::table('exam_user')->whereBetween('updated_at', [now()->addMinutes(-120), now()->addMinutes(120)])->latest()->limit(5)->get();
         $upcomingExams = Exam::active()->where('from', '>', now())->limit(5)->latest()->get();
         $topStudents = UserExam::whereNotNull('total')->whereBetween('created_at',[now()->subWeeks(1),now()])->select('user_id', DB::raw('SUM(total) as total'))
@@ -35,7 +40,7 @@ class PageController extends Controller
         $packages = Package::all();
         $notices = Notice::latest()->get();
 
-        return view('frontEnd/home', compact('finishedExams','categories', 'liveExams','upcomingExams', 'liveExaminees','topStudents', 'packages', 'notices','livePaidExams','finishedPaidExams'));
+        return view('frontEnd/home', compact('sliderExams','finishedExams','categories', 'liveExams','upcomingExams', 'liveExaminees','topStudents', 'packages', 'notices','livePaidExams','finishedPaidExams'));
     }
     public function question($uuid)
     {

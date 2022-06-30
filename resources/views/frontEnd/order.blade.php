@@ -20,7 +20,7 @@
             টাকা পরিষদের অ্যাকাউন্ট 
             </h3>
             <h1>
-            01795560431
+            {{setting('site.payment_account_number')}}
             </h1>
               <div class="card shadow w-100" >
                 <div class="card-body d-flex justify-content-center align-items-center " >
