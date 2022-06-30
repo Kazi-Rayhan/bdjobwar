@@ -6,9 +6,9 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
 <!-- Slider section start -->
-<section class="slider  d-flex justify-content-center  " style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
-  <div class="container mt-4 mb-2 row" style="height:50vh;">
-    <div class="col-md-8">
+<section class="container-fluid container-md  d-flex justify-content-center  " style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
+  <div class=" mt-4 mb-2 row" >
+    <div class=" col-md-12 col-xl-7 col-12 mb-2">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -18,7 +18,7 @@ $numto = new NumberToBangla();
         <div class="carousel-inner">
         @foreach($sliderExams as $exam)
           <div class="carousel-item @if($loop->first)active @endif">
-            <img class="d-block w-100" src="{{Voyager::image($exam->image)}}" alt="First slide" style="height:50vh">
+            <img class="d-block w-100" src="{{Voyager::image($exam->image)}}" alt="First slide" >
           </div>
           @endforeach
         </div>
@@ -33,10 +33,9 @@ $numto = new NumberToBangla();
       </div>
       
     </div>
-    <div class="col-md-4">
-      <div class="h-100">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ATjaT7MzY30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+    <div class="col-md-12 col-xl-5 col-12">
+      <div class="h-100 d-flex justify-content-center align-items-center">
+      <iframe  class="video" src="https://www.youtube.com/embed/ATjaT7MzY30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
     </div>
   </div>
 
