@@ -6,18 +6,7 @@ $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhak
 use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
-<!-- bratcam area  start-->
-<section class="bradcam">
-    <div class="container">
-        <h3 class="text-white pt-3 pb-2">{{$exam->title}}</h3>
-        <p class="pb-3 text-white p-0 m-0">
-            <a href="{{ route('home_page') }}" class="text-decoration-none bradcam-active-btn pe-2">Home</a>
-            /
-            <a href="" class="text-decoration-none text-white ps-2">{{$exam->title}}</a>
-        </p>
-    </div>
 
-</section>
 <!-- bratcam area  end-->
 <div class="container my-md-5 my-2 d-flex flex-column gap-3 justify-content-center align-items-center">
     <div class="d-flex flex-column gap-3">
@@ -25,6 +14,7 @@ $numto = new NumberToBangla();
             <h2 class="text-dark">{{$exam->title}}</h2>
             <h5 style="color:#666666">{{$exam->sub_title}}</h5>
             <div style="height:2px;width:60px" class="bg-danger"></div>
+            <a href="{{route('start',$exam->uuid)}}" class="btn btn-success mt-2">পরীক্ষা শুরু করুন</a>   
         </div>
         <div class="">
          
@@ -62,7 +52,7 @@ $numto = new NumberToBangla();
             <strong class="text-dark">বিঃদ্রঃ  : </strong>প্রতি পরীক্ষা শুরু হলে টাইম কাউন্ট শুরু হবে ।  নির্ধারিত সময়ের মধ্যে পরীক্ষা সাবমিট করুন ।
             সময় শেষ হলে পরীক্ষাটি  অটোমেটিক সাবমিট হয়ে যাবে । <br>পরীক্ষা চলাকালীন পরীক্ষার পেইজ থেকে বের হওয়া যাবেনা । বের হলেও আপনার টাইম কাউন্ট চলতে থাকবে ।
         </p>
-        <a href="{{route('start',$exam->uuid)}}" class="btn btn-dark">পরীক্ষা শুরু করুন</a>
+      
 
     </div>
   

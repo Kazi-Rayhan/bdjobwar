@@ -23,10 +23,19 @@ $add = is_null($dataTypeContent->getKey());
     $dataType->getTranslatedAttribute('display_name_singular'))
 
 @section('page_header')
-    <h1 class="page-title">
+<div style="display: flex; justify-content:space-between;">
+
+    <h1 class="page-title" >
         <i class="{{ $dataType->icon }}"></i>
         {{ __('voyager::generic.' . ($edit ? 'edit' : 'add')) . ' ' . $dataType->getTranslatedAttribute('display_name_singular') }}
+        
     </h1>
+@if(!$edit)
+    <h1 class="page-title">
+       Total : {{$exam->questions->count()}}
+    </h1>
+@endif
+</div>
     @include('voyager::multilingual.language-selector')
 @stop
 
@@ -38,6 +47,7 @@ $add = is_null($dataTypeContent->getKey());
             <div class="col-md-12">
 
                 <div class="panel panel-bordered " style="background-color: #e9ecef;">
+                
                     <!-- form start -->
                     <form role="form" class="form-edit-add"
                         action="{{ $edit ? route('voyager.' . $dataType->slug . '.update', $dataTypeContent->getKey()) : route('voyager.' . $dataType->slug . '.store') }}"
@@ -116,7 +126,46 @@ $add = is_null($dataTypeContent->getKey());
                                     @endif
                                 </div>
                             @endforeach
+                            <div class="col-md-12 ">
+                            <div class="accordion" id="accordionChoiceDescription">
+                                        <div class="card">
+                                            
+                                            <div class="card-body" id="headingDescription">
+                                                <div class="form-group">
+                                                        <label for="">Description</label>
+                                                        <input type="text" name="description" id="" value="{{old('description') ?? @$dataTypeContent->description}}"  class="form-control">
+                                                    
+                                                </div>
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                    data-target="#collapseDescription" aria-expanded="true"
+                                                    aria-controls="collapseDescription">
+                                                    Add Image  
+                                                </button>
+
+
+                                            </div>
+
+                                            <div id="collapseDescription" class="collapse " aria-labelledby="headingDescription"
+                                                data-parent="#accordionChoiceDescription">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label 
+                                                            for="choiceImageDescription">Image </label>
+
+                                                        <input type="file" class="form-control" id="choiceImageDescription" name="image"
+                                                            placeholder="Enter choice">
+                                                            @if($dataTypeContent->image)
+                                                        <img src="{{Voyager::image($dataTypeContent->image)}}" height="80" style="object-fit:cover" alt="">
+                                                        @endif
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                                 </div>
+                                
                                 <div class="col-md-1"></div>
                             </div>
                            
@@ -136,10 +185,10 @@ $add = is_null($dataTypeContent->getKey());
                                     @foreach( $dataTypeContent->choices as $choice)
                                     <div class="accordion "  id="accordionChoice{{$choice->index}}">
                                         <div class="card " >
-                                            <div class="card-header"  id="heading0{{$choice->index}}">
-                                                <div class="form-group" >
+                                            <div class="card-header "  id="heading0{{$choice->index}}">
+                                                <div class="form-group "  >
                                                     <label class="sr-only" for="choice{{$choice->index}}">Choice</label>
-                                                    <div class="input-group ">
+                                                    <div class="input-group " >
                                                         <div class="input-group-addon ">{{$choice->label}}</div>
                                                          <input type="hidden" name="options[{{$choice->index}}][index]" class="form-control" value="{{$choice->index}}">
                                                        
@@ -220,41 +269,7 @@ $add = is_null($dataTypeContent->getKey());
                                     @endforeach
                                     @endif
                                         
-                                    <div class="accordion" id="accordionChoiceDescription">
-                                        <div class="card">
-                                            <div class="card-header" id="headingDescription">
-                                                <div class="form-group">
-                                                        <label for="">Description</label>
-                                                        <input type="text" name="description" id="" value="{{old('description') ?? @$dataTypeContent->description}}"  class="form-control">
-                                                    
-                                                </div>
-                                                <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                                    data-target="#collapseDescription" aria-expanded="true"
-                                                    aria-controls="collapseDescription">
-                                                    Add Image  
-                                                </button>
-
-
-                                            </div>
-
-                                            <div id="collapseDescription" class="collapse " aria-labelledby="headingDescription"
-                                                data-parent="#accordionChoiceDescription">
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label 
-                                                            for="choiceImageDescription">Image </label>
-
-                                                        <input type="file" class="form-control" id="choiceImageDescription" name="image"
-                                                            placeholder="Enter choice">
-                                                            @if($dataTypeContent->image)
-                                                        <img src="{{Voyager::image($dataTypeContent->image)}}" height="80" style="object-fit:cover" alt="">
-                                                        @endif
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
                                     </div>
                                     </div>
 

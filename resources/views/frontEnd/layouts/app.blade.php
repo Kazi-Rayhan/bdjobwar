@@ -15,8 +15,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="{{asset('frontEnd-assets/css/style.css')}}" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
-     alpha/css/bootstrap.css" rel="stylesheet">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +30,23 @@
       font-family: 'AdorshoLipi', Arial, sans-serif !important;
       font-weight: 600;
     }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+      .video {
+        width: 300px;
+      }
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+      .video {
+        width: 700px;
+        height: 315px;
+      }
+    }
+
+   
   </style>
 </head>
 
@@ -129,8 +147,12 @@
           <li class="nav-item">
             <a class="nav-link" style="font-size: 13px;" aria-current="page" href="{{route('home_page')}}#home">হোম</a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#live-section">লাইভ সেকশন <sup>Free</sup></a>
+            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#live-section-free">লাইভ সেকশন <sup>Free</sup></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#live-section-paid">লাইভ সেকশন <sup>Paid</sup></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#package">প্যাকেজসমূহ <sup>Paid</sup></a>
@@ -139,12 +161,7 @@
             <a class="nav-link" style="font-size: 13px;" href="#">কোর্স সমূহ <sup>Paid</sup></a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="#">Sell Book</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="#">Job Solution</a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link" style="font-size: 13px;" href="#">Skill Development</a>
           </li>
@@ -166,8 +183,7 @@
                   <span class=" mr-3"></span>লগ আউট</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                   @csrf
-                </form 
-              </li>
+                </form </li>
 
             </ul>
           </li>
@@ -270,7 +286,9 @@
     </div>
   </footer>
   <!-- footer section end -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script>
@@ -294,7 +312,7 @@
   </script>
   @if($errors->any())
   <script>
-    @foreach($errors->all() as $error)
+    @foreach($errors-> all() as $error)
     toastr.error("{{ session('error') }}")
     @endforeach
   </script>

@@ -6,19 +6,48 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
 <!-- Slider section start -->
-<section class="slider " style="height:80vh">
-  <a href="">
-    <img src="{{asset('frontEnd-assets/img/slider.png')}}" alt="" width="100%" style="object-fit:cover">
-  </a>
+<section class="container-fluid container-md  d-flex justify-content-center  " style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
+  <div class=" mt-4 mb-2 row" >
+    <div class=" col-md-12 col-xl-7 col-12 mb-2">
+      <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+        @foreach($sliderExams as $exam)
+          <div class="carousel-item @if($loop->first)active @endif">
+            <img class="d-block w-100" src="{{Voyager::image($exam->image)}}" alt="First slide" >
+          </div>
+          @endforeach
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      
+    </div>
+    <div class="col-md-12 col-xl-5 col-12">
+      <div class="h-100 d-flex justify-content-center align-items-center">
+      <iframe  class="video" src="https://www.youtube.com/embed/ATjaT7MzY30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    </div>
+  </div>
+
 </section>
 <!-- Slider section end -->
 <!-- Live section start -->
 <section class="live-section" id="live-section" style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
   <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
-    <h1 class="text-uppercase" style="font-weight:700 ;">লাইভ সেকশন</h1>
+    <h1 class="text-uppercase" style="font-weight:500 ; font-size:25px">লাইভ সেকশন</h1>
   </div>
   <div class="container">
-    <div class="row">
+    <div class="row" id="live-section-free">
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
           <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success"> লাইভ পরীক্ষা চলছে <sup>Free</sup></span>
@@ -37,7 +66,7 @@ $numto = new NumberToBangla();
       </div>
 
     </div>
-    <div class="row">
+    <div class="row" id="live-section-paid">
       <div class="col-md-6">
         <h6 class="mt-5 fw-bold live-exam-heading mb-4">
           <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success"> লাইভ পরীক্ষা চলছে <sup>Paid</sup></span>
@@ -129,7 +158,7 @@ $numto = new NumberToBangla();
             </p>
             <div class=" d-flex flex-sm-column flex-md-row gap-3  flex-wrap justify-content-between align-items-center mt-4">
 
-            
+
               <div class="d-flex  gap-5 text-dark" style="font-size: 14px;">
                 <span>
                   <i class="fa fa-coins"></i> : {{$exam->priceFormat()}}

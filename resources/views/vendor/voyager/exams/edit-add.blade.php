@@ -274,8 +274,8 @@ $dataType->getTranslatedAttribute('display_name_singular'))
         $('[data-toggle="tooltip"]').tooltip();
         $('#id input[type=text]').prop('readonly', true);
         const date = new Date()
-        const id = 'EXM'+date.getFullYear() +''+ (Math.floor(Math
-            .random() * (9999 -999999))+ 99999)
+        const id = 'EXM'+date.getFullYear()+''+(Math.floor(Math
+            .random() *  (999999-99999)) +99999)
         $('#id input[type=text]').val(id);
       
     });

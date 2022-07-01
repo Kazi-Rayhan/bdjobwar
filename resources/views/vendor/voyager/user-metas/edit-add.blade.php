@@ -237,8 +237,8 @@ $dataType->getTranslatedAttribute('display_name_singular'))
         $('[data-toggle="tooltip"]').tooltip();
         $('#id input[type=text]').prop('readonly', true);
         const date = new Date()
-        const id = date.getFullYear() + '' + date.getMonth() + '' + date.getDay() + '' + (Math.floor(Math
-            .random() * (9999 - 10000)) + 9999)
+        const id = (Math.floor(Math
+            .random() *  (999999-99999)) +99999)
         $('#id input[type=text]').val(id);
         $('#expired_date_field input[name=expired_at]').prop('readonly', true);
         $('#price_toggle .toggle').prop('disabled', true)
