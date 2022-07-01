@@ -99,9 +99,10 @@
             <div class="">
                 <div class="">
 
-                    <h6 style="font-weight: 700; margin:5px 0 5px 0; padding:0">{{ $loop->iteration }}. {{ $question->title }}</h6>
-    
+                    <h6 style="font-weight: 700; margin:10px 0 5px 0; padding:0">{{ $loop->iteration }}. {{ $question->title }}</h6>
+
                     <hr style="margin:5px 0 5px 0">
+                   
                     <div class="">
                         @foreach($question->choices as $choice)
                         <div class="">
@@ -110,6 +111,7 @@
                             <small style="color:green">
                                 {{$choice->label}}. {{$choice->choice_text}} @if($choice->index == $question->answer)<sup class=" text-success "><i class="fa fa-check"></i> </sup>@elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )<sup class=" text-danger "><i class="fa fa-times"></i> </sup> @else @endif
                             </small>
+                            
                             @elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )
                             <small style="color:red">
                                 {{$choice->label}}. {{$choice->choice_text}} @if($choice->index == $question->answer)<sup class=" text-success "><i class="fa fa-check"></i> </sup>@elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )<sup class=" text-danger "><i class="fa fa-times"></i> </sup> @else @endif
@@ -119,9 +121,11 @@
                                 {{$choice->label}}. {{$choice->choice_text}} @if($choice->index == $question->answer)<sup class=" text-success "><i class="fa fa-check"></i> </sup>@elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )<sup class=" text-danger "><i class="fa fa-times"></i> </sup> @else @endif
                             </small>
                             @endif
+                         
 
 
                         </div>
+                     
                         @endforeach
                     </div>
 
