@@ -8,6 +8,9 @@ use App\Models\UserExam;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use PDF;
+use MPDF;
 
 class ExamController extends Controller
 {
@@ -79,4 +82,22 @@ class ExamController extends Controller
         return redirect()->route('result-exam',$uuid);
     
     }
+    public function exam_all_results_pdf($uuid)
+    {
+        $exam = Exam::where('uuid',$uuid)->first();
+        $results = UserExam::where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
+        $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results]);
+
+        return $pdf->download('results.pdf');
+    }
+    public function answerSheetPdf($uuid)
+    {
+        $exam = Exam::where('uuid',$uuid)->with('questions')->first();
+        $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf', ['exam' => $exam], [
+            'title' => 'Another Title'
+            // 'margin_top' => 0
+          ]);
+        // Storage::put('public/pdf/answer_sheet.pdf', $pdf->output());
+        return $pdf->download('answer_sheet.pdf');
+      }
 }

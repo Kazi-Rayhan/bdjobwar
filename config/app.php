@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -176,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\SmsServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
         Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
 
     ],
@@ -234,6 +236,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'SMS' => App\Facades\SMS\SmsFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'MPDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class,
 
     ],
 

@@ -32,7 +32,7 @@
 
     <h2 class="text-center bg-success text-light p-2 mt-2"> ফলাফল</h2>
     
-    
+    <div class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -47,6 +47,12 @@
                 </th>
                 <th>
                 স্কোর
+                </th>
+                <th>
+                ভুল উত্তর
+                </th>
+                <th>
+                মিস
                 </th>
             </tr>
         </thead>
@@ -69,6 +75,12 @@
                 <td class="text-danger">
                     {{$result->total}}
                 </td>
+                <td class="text-danger">
+                    {{$result->wrong_answers}}
+                </td>
+                <td class="text-danger">
+                    {{$result->empty_answers}}
+                </td>
                 @else
                 <td>
                     {{$pos+1}}
@@ -85,11 +97,18 @@
                 <td>
                     {{$result->total}}
                 </td>
+                <td>
+                {{$result->wrong_answers}}
+                </td>
+                <td>
+                {{$result->empty_answers}}
+                </td>
                 @endif
             </tr>
             @endforeach
         </tbody>
     </table>
+</div>
 
 
 </div>

@@ -62,10 +62,13 @@ Route::get('/package/{slug}/{package}', [PageController::class, 'packageDetails'
 
 Route::group(['middleware'=>['auth','canAttendThisExam']],function(){
     Route::get('exam/{uuid}/answer-sheet',[ExamController::class,'answerSheet'])->name('answerSheet');
+    Route::get('exam/{uuid}/answer-sheet-pdf',[ExamController::class,'answerSheetPdf'])->name('answerSheetPdf');
 });
 
 Route::group(['prefix' => 'exam', 'controller' => ExamController::class, 'middleware' => ['auth']], function () {
     Route::get('/exam/all/results/{uuid}','exam_all_results')->name('all-results-exam');
+    Route::get('/exam/all/results/pdf/{uuid}','exam_all_results_pdf')->name('all-results-exam-pdf');
+
     Route::get('/exam/{uuid}','exam')->name('question')->middleware('canAttendThisExam');
     Route::get('/exam/start/{uuid}','exam_start')->name('start-exam')->middleware('canAttendThisExam');
     Route::get('/exam/result/{uuid}','exam_result')->name('result-exam')->middleware('canAttendThisExam');
