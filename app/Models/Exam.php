@@ -22,8 +22,8 @@ class Exam extends Model
 
     public function priceFormat()
     {
-        if ($this->price > 0) {
-            return (new NumberToBangla)->bnNum($this->price).' ৳';
+        if ($this->batch->price > 0) {
+            return 'পেইড';
         } else {
             return   'ফ্রি';
         }
@@ -69,7 +69,7 @@ class Exam extends Model
     public function getRanking(User $user)
     {
         $collection = collect($this->users()->orderBy('pivot_total', 'DESC')->get());
-      
+    )
         $data       = $collection->where('id', $user->id);
     
         $value      = $data->keys()->first() + 1;
