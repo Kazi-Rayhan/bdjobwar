@@ -136,9 +136,27 @@
     <div class="row row-cols-3 gap-5">
         <a href="{{route('answerSheet',$result->uuid)}}" class="btn btn-dark ">উত্তরপত্র</a>
         <a href="{{route('dashboard')}}" class="btn btn-dark">প্রোফাইল</a>
-        <a href="#" class="btn btn-dark">পরবর্তী পরিক্ষার সিলেবাস</a>
+        <button  type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী পরিক্ষার সিলেবাস</button>
         <a href="{{route('all-results-exam',$result->uuid)}}" class="btn btn-dark"> মেধাতালিকা</a>
     </div>
 
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">পরবর্তী পরিক্ষার সিলেবাস</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       {{$result->next_syllabus}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

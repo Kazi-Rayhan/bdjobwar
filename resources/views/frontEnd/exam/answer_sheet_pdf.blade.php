@@ -76,11 +76,11 @@
 <body>
 
     <table style="width: 100%;">
-        @foreach($exam->questions->chunk(2) as $questions)
+        @foreach($exam->questions as $question)
 
         <tr>
-            @foreach($questions as $question)
-            <td style="width: 50%; ">
+        
+            <td >
 
 
                 <p style="font-weight: 700; margin:10px 0 5px 0; padding:0">{{ $loop->iteration }}. {{ $question->title }}</p>
@@ -126,7 +126,7 @@
 
 
             </td>
-            @endforeach
+          
         </tr>
 
 
