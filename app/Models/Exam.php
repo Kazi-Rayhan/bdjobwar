@@ -69,7 +69,7 @@ class Exam extends Model
     public function getRanking(User $user)
     {
         $collection = collect($this->users()->orderBy('pivot_total', 'DESC')->get());
-    )
+
         $data       = $collection->where('id', $user->id);
     
         $value      = $data->keys()->first() + 1;
