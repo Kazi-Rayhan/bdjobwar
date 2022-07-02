@@ -14,7 +14,10 @@ $numto = new NumberToBangla();
             <h2 class="text-dark">{{$exam->title}}</h2>
             <h5 style="color:#666666">{{$exam->sub_title}}</h5>
             <div style="height:2px;width:60px" class="bg-danger"></div>
-            <a href="{{route('start',$exam->uuid)}}" class="btn btn-success mt-2">পরীক্ষা শুরু করুন</a>   
+            <div class="d-flex gap-2 mt-2">
+                <a href="{{route('start',$exam->uuid)}}" class="btn btn-success">পরীক্ষা শুরু করুন</a>   
+                <button class="btn btn-sm btn-success">সিলেবাস দেখুন</button>
+            </div>
         </div>
         <div class="">
          

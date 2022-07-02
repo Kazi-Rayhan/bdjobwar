@@ -17,14 +17,7 @@ class Exam extends Model
         'to' => 'datetime',
     ];
 
-    public function information()
-    {
-        return [
-            'title' => $this->title,
-            'type' => 'Exam',
-            'price' => $this->price . ' BDT'
-        ];
-    }
+    
 
 
     public function priceFormat()
@@ -58,28 +51,15 @@ class Exam extends Model
         return $this->morphToMany(Subject::class, 'subjectable');
     }
 
-    public function categories()
-    {
-        return $this->morphToMany(Category::class, 'categoriable');
-    }
+    
     public function questions()
     {
         return $this->belongsToMany(Question::class);
     }
-    function scopeFilter($query, array $filter)
-    {
-        $query->when($filter['categories'] ?? false, function ($query, $category) {
-            $query->whereHas('categories', function ($query) use ($category) {
-                $query->where('categories.slug', $category);
-            });
-        });
-    }
+   
 
 
-    public function orders()
-    {
-        return $this->morphMany(Order::class, 'orderable');
-    }
+  
 
     public function users()
     {
@@ -89,7 +69,9 @@ class Exam extends Model
     public function getRanking(User $user)
     {
         $collection = collect($this->users()->orderBy('pivot_total', 'DESC')->get());
-        $data       = $collection->where('user_id', $user->id);
+      
+        $data       = $collection->where('id', $user->id);
+    
         $value      = $data->keys()->first() + 1;
         return $value;
     }
@@ -98,7 +80,25 @@ class Exam extends Model
         return $query->where('active', 1);
     }
 
+    public function scopePaid($query)
+    {
+        return $query->whereHas('batch',function($q){
+            $q->where('price','>',0);
+        });
+    }
+
+    public function scopeFree($query)
+    {
+        return $query->whereHas('batch',function($q){
+            $q->where('price','<=',0);
+        });
+    }
+
     public function userChoice(User $user,$index){
-    return json_decode($this->users()->find($user->id)->pivot->answers,true)[$index];
+    return json_decode($this->users()->find($user->id)->pivot->answers,true)[$index]??'';
+    }
+
+    public function batch(){
+        return $this->belongsTo(Batch::class);
     }
 }

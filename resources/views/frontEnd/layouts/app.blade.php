@@ -34,7 +34,7 @@
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
       .video {
-        width: 300px;
+        width: 250px;
       }
     }
 
@@ -90,50 +90,7 @@
 
   <!-- mid nav end -->
   <!-- Main Nav start -->
-  <!-- <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
-    <div class="container">
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{route('home_page')}}#home">হোম</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('home_page')}}#live-section">লাইভ সেকশন</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('home_page')}}#package">প্যাকেজসমূহ</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('exams')}}">পরীক্ষাসমূহ</a>
-          </li>
-
-        </ul>
-
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          @auth
-
-          <li class="auth-item">
-            <a class="nav-link" aria-current="page" href="{{route('dashboard')}}">ড্যাশবোর্ড</a>
-          </li>
-          @else
-          <li class="auth-item">
-            <a class="nav-link" aria-current="page" href="{{route('login')}}">সাইন-ইন</a>
-          </li>
-          <li class="auth-item">
-            <a class="nav-link" href="{{route('register')}}"> সাইন-আপ </a>
-          </li>
-          @endauth
-
-
-        </ul>
-
-      </div>
-    </div>
-  </nav> -->
+ 
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="background-color:#161E31 !important">
     <div class="container">
       <a class="navbar-brand" href="#">

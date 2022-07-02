@@ -92,7 +92,7 @@
                 </td>
              
                 <td>
-                    {{$result->user->information->id}}
+                    {{@$result->user->information->id}}
                 </td>
                 <td>
                     {{$result->total}}

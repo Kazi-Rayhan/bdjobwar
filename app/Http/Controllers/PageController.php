@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Course;
 use App\Models\Package;
 use App\Models\Exam;
 use App\Models\Notice;
@@ -15,32 +17,79 @@ class PageController extends Controller
 {
     public function home()
     {
-        $categories = Category::whereNull('parent_id')->latest()->get();
 
-        $sliderExams = Exam::whereNotNull('image')->latest()->limit(5)->get();
+        $sliderExams = Exam::whereNotNull('image')
+            ->active()
+            ->where('to', '>', now())
+            ->latest()
+            ->limit(3)
+            ->get();
 
-        $finishedExams = Exam::active()->where('to', '<', now())->latest()->limit(5)->get();
-        $finishedPaidExams = Exam::where('to', '<', now())->where('is_paid',1)->latest()->limit(5)->get();
-        $liveExams = Exam::active()->where('from', '<', now())->where('to', '>', now())->latest()->limit(5)->get();
-        $livePaidExams = Exam::where('from', '<', now())->where('to', '>', now())->where('is_paid',1)->latest()->limit(5)->get();
-        // dd($finishedPaidExams);
+        $finishedExams = Exam::free()
+            ->active()
+            ->where('to', '<', now())
+            ->latest()
+            ->limit(3)
+            ->get();
+        $finishedPaidExams = Exam::paid()
+            ->where('to', '<', now())
+            ->latest()
+            ->limit(3)
+            ->get();
+        $liveExams = Exam::free()
+            ->active()
+            ->where('from', '<', now())
+            ->where('to', '>', now())
+            ->latest()
+            ->limit(3)
+            ->get();
+        $livePaidExams = Exam::paid()
+            ->where('from', '<', now())
+            ->where('to', '>', now())
+            ->latest()
+            ->limit(3)
+            ->get();
 
-    
-
-        $liveExaminees = DB::table('exam_user')->whereBetween('updated_at', [now()->addMinutes(-120), now()->addMinutes(120)])->latest()->limit(5)->get();
-        $upcomingExams = Exam::active()->where('from', '>', now())->limit(5)->latest()->get();
-        $topStudents = UserExam::whereNotNull('total')->whereBetween('created_at',[now()->subWeeks(1),now()])->select('user_id', DB::raw('SUM(total) as total'))
-            ->groupBy('user_id')
-            ->orderBy('total','desc')
+        $courses = Course::latest()->get();
+        $liveExaminees = DB::table('exam_user')
+            ->whereBetween(
+                'updated_at',
+                [
+                    now()->addMinutes(-120),
+                    now()->addMinutes(120)
+                ]
+            )
+            ->latest()
             ->limit(5)
             ->get();
-        
+        $upcomingExams = Exam::active()
+            ->where('from', '>', now())
+            ->limit(5)
+            ->latest()
+            ->get();
+
+       
 
 
         $packages = Package::all();
-        $notices = Notice::latest()->get();
 
-        return view('frontEnd/home', compact('sliderExams','finishedExams','categories', 'liveExams','upcomingExams', 'liveExaminees','topStudents', 'packages', 'notices','livePaidExams','finishedPaidExams'));
+        $notices = Notice::latest()->limit(5)->get();
+
+        return view(
+            'frontEnd/home',
+            compact(
+                'sliderExams',
+                'finishedExams',
+                'liveExams',
+                'upcomingExams',
+                'liveExaminees',
+                'packages',
+                'notices',
+                'livePaidExams',
+                'finishedPaidExams',
+                'courses'
+            )
+        );
     }
     public function question($uuid)
     {
@@ -51,23 +100,29 @@ class PageController extends Controller
 
         return view('frontEnd/questions', compact('exam', 'exams', 'questions'));
     }
-    public function exams(Request $request)
-    {
-        $categories = Category::all();
-        // dd($categories->exams);
-        $exams = Exam::active()->latest()->paginate(10);
 
-
-        return view('frontEnd/exams', compact('categories', 'exams'));
-    }
-    public function categoryExam(Category $cat)
-    {
-        $categories = Category::all();
-
-        return view('frontEnd/category_exam', compact('cat', 'categories'));
+    public function course($slug,Course $course){
+       $course->load('batches');
+       return view('frontEnd/course',compact('course'));
     }
 
-    public function packageDetails($slug,Package $package){
-        return view('frontEnd/packageDetails',compact('package'));
-    }
+    public function batch($slug,Batch $batch,Request $request){
+        
+        $exams = Exam::active()->where('batch_id',$batch->id);
+
+        if($request->filter == 'upcoming'){
+            $exams = $exams->where('from', '>', now());
+        }
+        elseif($request->filter == 'archived'){
+            $exams = $exams->where('to', '<', now());
+
+        }
+        else{
+            $exams = $exams->where('from', '<', now())
+            ->where('to', '>', now());
+        }
+        
+        $exams = $exams->get();
+        return view('frontEnd/batch',compact('batch','exams'));
+     }
 }

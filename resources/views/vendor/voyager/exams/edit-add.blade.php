@@ -113,41 +113,31 @@ $dataType->getTranslatedAttribute('display_name_singular'))
                     </div><!-- panel-body -->
                     <div class="panel-body">
                     <div class="row">
-                        <div class="col-12 col-md-6">
-                            <h3>
-                                Subjects
-                            </h3>
-                            <hr>
-                              <ul style="list-style:none">
-                                @foreach ($subjects as $subject)
-                                <li>
-                                    <div class="form-check">
-                                        <input type="checkbox" name="subjects[]" value={{$subject->id}} class="form-check-input" id="subject_{{$subject->id}}" @if($dataTypeContent->subjects->contains($subject->id))checked="true" @endif>
-                                        <label class="form-check-label" for="subject_{{$subject->id}}">{{$subject->name}}</label>
+                    <div class="col-12 col-md-12">
+                                <h3>
+                                    Subjects
+                                </h3>
+                                <hr>
+                                <div class="row">
+                                    @foreach ($subjects->chunk(10) as $subjects)
+                                    <div class="col-md-2    ">
+                                        <ul style="list-style:none">
+                                            @foreach($subjects as $subject)
+                                            <li>
+                                                <div class="form-check">
+                                                    <input type="checkbox" name="subjects[]" value={{$subject->id}} class="form-check-input" id="subject_{{$subject->id}}" @if($dataTypeContent->subjects->contains($subject->id))checked="true" @endif>
+                                                    <label class="form-check-label" for="subject_{{$subject->id}}">{{$subject->name}}</label>
+                                                </div>
+                                            </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
-                                </li>
-                                @endforeach
-                                </ul>
-                        </div>
-                         <div class="col-12 col-md-6">
-                            <h3>
-                                Categories
-                            </h3>
-                            <hr>
-                              <ul style="list-style:none">
-                             @foreach($categories as $category)
-                                <li>
-                                 <div class="form-check">
-                                        <input type="checkbox" name="categories[]" value={{$category->id}} class="form-check-input" id="categories_{{$category->id}}" @if($dataTypeContent->categories->contains($category->id))checked="true" @endif>
-                                        <label class="form-check-label" for="category_{{$category->id}}">{{ $category->name }}</label>
-                                    </div>
-                                       
-                                @if(count($category->childrens))
-                                    @include('category-partial ',['childs' => $category->childrens])
-                                @endif
-                                </li>
-                                @endforeach
-                        </div>
+                                    @endforeach
+                                </div>
+
+
+                            </div>
+                       
                     </div>
                     </div>
                     <div class="panel-footer">

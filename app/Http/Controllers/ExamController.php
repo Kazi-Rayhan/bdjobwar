@@ -94,10 +94,12 @@ class ExamController extends Controller
     {
         $exam = Exam::where('uuid',$uuid)->with('questions')->first();
         $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf', ['exam' => $exam], [
-            'title' => 'Another Title'
-            // 'margin_top' => 0
+            'title' => $exam->title.' Answer Sheet',
+            'Author' => 'BD Job War'
           ]);
         // Storage::put('public/pdf/answer_sheet.pdf', $pdf->output());
         return $pdf->download('answer_sheet.pdf');
+        // return $pdf->stream('answer_sheet.pdf');
+        // return $pdf->stream('answer_sheet.pdf');
       }
 }

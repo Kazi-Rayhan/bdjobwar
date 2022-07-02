@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Facades\SMS\Sms;
+use App\Models\Batch;
 
 class OrderController extends Controller
 {
@@ -37,8 +38,8 @@ class OrderController extends Controller
             case 'package':
                 $data = Package::find($id);
                 break;
-            case 'exam':
-                $data = Exam::find($id);
+            case 'batch':
+                $data = Batch::find($id);
                 break;
         }
         return view('frontEnd.order', compact('data', 'type', 'id'));

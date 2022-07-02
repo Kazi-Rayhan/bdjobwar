@@ -18,10 +18,11 @@ class CanAttendThisExam
     public function handle(Request $request, Closure $next)
     {
         $exam = Exam::where('uuid',$request->uuid)->first();
-        if(auth()->user()->ownThisExam($exam)){
+        
+        if(auth()->user()->participateToThisExam($exam)){
             return $next($request);
         }
-        return redirect()->route('orderCreate',['exam',$exam->id]);
+        return redirect()->route('orderCreate',['batch',$exam->batch->id]);
         
     }
 }

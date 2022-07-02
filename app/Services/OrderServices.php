@@ -11,13 +11,14 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Facades\SMS\Sms;
+use App\Models\Batch;
 
 class OrderServices
 {
 
 
     protected const MODEL = [
-        'exam' => 'App\Models\Exam',
+        'batch' => 'App\Models\Batch',
         'package' => 'App\Models\Package',
     ];
 
@@ -66,14 +67,15 @@ class OrderServices
             $order->update([
                 'status' => $order::STATUS['ACCEPTED']
             ]);
-            SMS::compose($order->user->phone,'Your purchase is approved . order id :#'.$order->id)->send();
             if ($order->orderable instanceof Package) {
                 $user->ownThisPackage($order->orderable);
             }
-            if ($order->orderable instanceof Exam) {
-                $user->exams()->attach($order->orderable);
+            if ($order->orderable instanceof Batch) {
+                $user->batches()->attach($order->orderable);
             }
+            
             DB::commit();
+            SMS::compose($order->user->phone,'Your purchase is approved . order id :#'.$order->id)->send();
             return $order;
         } catch (Exception $exception) {
             DB::rollBack();

@@ -114,21 +114,19 @@ right: 10;">
 
     <form action="{{route('exam.store',$exam->uuid)}}" method="post">
         @csrf
-        <div class="main-blog-area mb-5">
-            <div class=" mb-md-5">
-                <div class="">
-                    <div class="">
+        
+                    <div >
                         <div id="exam-header " class="text-center border border-success shadow  text-light p-4" style="background-color: #019514;">
-                            <h1 class="exam-title">
+                            <h3 class="exam-title">
                                 {{$exam->title}}
-                            </h1>
-                            <h3 class="exam-subtitle" style="font-weight: 700;">
-                                {{$exam->sub_title}}
                             </h3>
-                            <h5 class="fullmark" style="font-weight: 700;">
+                            <h4 class="exam-subtitle" style="font-weight: 700;">
+                                {{$exam->sub_title}}
+                            </h4>
+                            <h6 class="fullmark" style="font-weight: 700;">
                                 পূর্ণমান : {{$numto->bnNum($exam->fullMark)}}
-                            </h5>
-                            <div class="d-flex justify-content-around mt-md-5" style="font-weight: 700;">
+                            </h6>
+                            <div class="d-flex justify-content-around " style="font-weight: 700;">
                                 <span class="">
                                     প্রশ্ন : {{$numto->bnNum($exam->questions->count())}}
                                 </span>
@@ -137,7 +135,7 @@ right: 10;">
                                     পাশ মার্ক : {{$numto->bnNum($exam->minimum_to_pass)}}
                                 </span>
                             </div>
-                            <div class="d-flex justify-content-around mt-md-3 mt-1" style="font-weight: 700;">
+                            <div class="d-flex justify-content-around " style="font-weight: 700;">
                                 <span class="">
                                     প্রশ্ন প্রতি মার্ক : {{$numto->bnNum($exam->point)}}
                                 </span>
@@ -147,7 +145,7 @@ right: 10;">
                                 </span>
                             </div>
 
-                            <div class="d-flex justify-content-center mt-md-3 mt-1" style="font-weight: 700;">
+                            <div class="d-flex justify-content-center " style="font-weight: 700;">
                                 <span class="">
                                     সময়কাল : {{$numto->bnNum($exam->duration)}} মিনিট
                                 </span>
@@ -168,9 +166,9 @@ right: 10;">
                                         <div class="card-body shadow">
 
                                             <div class="p-2 rounded text-light h6  " style="background-color: #019514;"><b>{{ $numto->bnNum($loop->iteration) }}. {{ $question->title }}</b></div>
-                                            @if($question->image)
+                                            @if($question->title_image)
                                             <div class="text-center">
-                                                <img src="{{Voyager::image($question->image)}}" width="80%" style="object-fit:cover" alt="">
+                                                <img src="{{Voyager::image($question->title_image)}}" width="80%" style="object-fit:cover" alt="">
 
                                             </div>
                                             @endif
@@ -258,10 +256,6 @@ right: 10;">
                         </div>
                     </div>
 
-                </div>
-
-            </div>
-        </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

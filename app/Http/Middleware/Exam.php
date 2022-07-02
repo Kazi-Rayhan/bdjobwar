@@ -19,7 +19,6 @@ class Exam
     public function handle(Request $request, Closure $next)
     {
         $exam = ModelsExam::where('uuid',$request->uuid)->first();
-        
         if(!Auth::user()->exams()->find($exam->id)->pivot->expire_at){
             return \redirect()->route('start-exam',$exam->uuid);
         }

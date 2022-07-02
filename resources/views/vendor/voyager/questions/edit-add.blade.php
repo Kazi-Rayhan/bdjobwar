@@ -10,7 +10,6 @@ $add = is_null($dataTypeContent->getKey());
     <style>
         #title input{
             height: 50px;
-
         }
         #title{
             font-size: 20px;
@@ -23,19 +22,10 @@ $add = is_null($dataTypeContent->getKey());
     $dataType->getTranslatedAttribute('display_name_singular'))
 
 @section('page_header')
-<div style="display: flex; justify-content:space-between;">
-
-    <h1 class="page-title" >
+    <h1 class="page-title">
         <i class="{{ $dataType->icon }}"></i>
         {{ __('voyager::generic.' . ($edit ? 'edit' : 'add')) . ' ' . $dataType->getTranslatedAttribute('display_name_singular') }}
-        
     </h1>
-@if(!$edit)
-    <h1 class="page-title">
-       Total : {{$exam->questions->count()}}
-    </h1>
-@endif
-</div>
     @include('voyager::multilingual.language-selector')
 @stop
 
@@ -47,7 +37,6 @@ $add = is_null($dataTypeContent->getKey());
             <div class="col-md-12">
 
                 <div class="panel panel-bordered " style="background-color: #e9ecef;">
-                
                     <!-- form start -->
                     <form role="form" class="form-edit-add"
                         action="{{ $edit ? route('voyager.' . $dataType->slug . '.update', $dataTypeContent->getKey()) : route('voyager.' . $dataType->slug . '.store') }}"
@@ -126,46 +115,7 @@ $add = is_null($dataTypeContent->getKey());
                                     @endif
                                 </div>
                             @endforeach
-                            <div class="col-md-12 ">
-                            <div class="accordion" id="accordionChoiceDescription">
-                                        <div class="card">
-                                            
-                                            <div class="card-body" id="headingDescription">
-                                                <div class="form-group">
-                                                        <label for="">Description</label>
-                                                        <input type="text" name="description" id="" value="{{old('description') ?? @$dataTypeContent->description}}"  class="form-control">
-                                                    
-                                                </div>
-                                                <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                                    data-target="#collapseDescription" aria-expanded="true"
-                                                    aria-controls="collapseDescription">
-                                                    Add Image  
-                                                </button>
-
-
-                                            </div>
-
-                                            <div id="collapseDescription" class="collapse " aria-labelledby="headingDescription"
-                                                data-parent="#accordionChoiceDescription">
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label 
-                                                            for="choiceImageDescription">Image </label>
-
-                                                        <input type="file" class="form-control" id="choiceImageDescription" name="image"
-                                                            placeholder="Enter choice">
-                                                            @if($dataTypeContent->image)
-                                                        <img src="{{Voyager::image($dataTypeContent->image)}}" height="80" style="object-fit:cover" alt="">
-                                                        @endif
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
                                 </div>
-                                
                                 <div class="col-md-1"></div>
                             </div>
                            
@@ -185,10 +135,10 @@ $add = is_null($dataTypeContent->getKey());
                                     @foreach( $dataTypeContent->choices as $choice)
                                     <div class="accordion "  id="accordionChoice{{$choice->index}}">
                                         <div class="card " >
-                                            <div class="card-header "  id="heading0{{$choice->index}}">
-                                                <div class="form-group "  >
+                                            <div class="card-header"  id="heading0{{$choice->index}}">
+                                                <div class="form-group" >
                                                     <label class="sr-only" for="choice{{$choice->index}}">Choice</label>
-                                                    <div class="input-group " >
+                                                    <div class="input-group ">
                                                         <div class="input-group-addon ">{{$choice->label}}</div>
                                                          <input type="hidden" name="options[{{$choice->index}}][index]" class="form-control" value="{{$choice->index}}">
                                                        
@@ -269,7 +219,41 @@ $add = is_null($dataTypeContent->getKey());
                                     @endforeach
                                     @endif
                                         
-                                  
+                                    <div class="accordion" id="accordionChoiceDescription">
+                                        <div class="card">
+                                            <div class="card-header" id="headingDescription">
+                                                <div class="form-group">
+                                                        <label for="">Description</label>
+                                                        <input type="text" name="description" id="" value="{{old('description') ?? @$dataTypeContent->description}}"  class="form-control">
+                                                    
+                                                </div>
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                    data-target="#collapseDescription" aria-expanded="true"
+                                                    aria-controls="collapseDescription">
+                                                    Add Image  
+                                                </button>
+
+
+                                            </div>
+
+                                            <div id="collapseDescription" class="collapse " aria-labelledby="headingDescription"
+                                                data-parent="#accordionChoiceDescription">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label 
+                                                            for="choiceImageDescription">Image </label>
+
+                                                        <input type="file" class="form-control" id="choiceImageDescription" name="image"
+                                                            placeholder="Enter choice">
+                                                            @if($dataTypeContent->image)
+                                                        <img src="{{Voyager::image($dataTypeContent->image)}}" height="80" style="object-fit:cover" alt="">
+                                                        @endif
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </div>
                                     </div>
 
@@ -347,11 +331,9 @@ $add = is_null($dataTypeContent->getKey());
 <script>
     var params = {};
     var $file;
-
     function deleteHandler(tag, isMulti) {
         return function() {
             $file = $(this).siblings(tag);
-
             params = {
                 slug: '{{ $dataType->slug }}',
                 filename: $file.data('file-name'),
@@ -360,16 +342,12 @@ $add = is_null($dataTypeContent->getKey());
                 multi: isMulti,
                 _token: '{{ csrf_token() }}'
             }
-
             $('.confirm_delete_name').text(params.filename);
             $('#confirm_delete_modal').modal('show');
         };
     }
-
     $('document').ready(function() {
-
         $('.toggleswitch').bootstrapToggle();
-
         //Init datepicker for date fields if data-datepicker attribute defined
         //or if browser does not handle date inputs
         $('.form-group input[type=date]').each(function(idx, elt) {
@@ -384,22 +362,18 @@ $add = is_null($dataTypeContent->getKey());
                 }).datetimepicker($(elt).data('datepicker'));
             }
         });
-
         @if ($isModelTranslatable)
             $('.side-body').multilingual({
                 "editing": true
             });
         @endif
-
         $('.side-body input[data-slug-origin]').each(function(i, el) {
             $(el).slugify();
         });
-
         $('.form-group').on('click', '.remove-multi-image', deleteHandler('img', true));
         $('.form-group').on('click', '.remove-single-image', deleteHandler('img', false));
         $('.form-group').on('click', '.remove-multi-file', deleteHandler('a', true));
         $('.form-group').on('click', '.remove-single-file', deleteHandler('a', false));
-
         $('#confirm_delete').on('click', function() {
             $.post('{{ route('voyager.' . $dataType->slug . '.media.remove') }}', params, function(
                 response) {
@@ -407,7 +381,6 @@ $add = is_null($dataTypeContent->getKey());
                     response.data &&
                     response.data.status &&
                     response.data.status == 200) {
-
                     toastr.success(response.data.message);
                     $file.parent().fadeOut(300, function() {
                         $(this).remove();
@@ -416,11 +389,9 @@ $add = is_null($dataTypeContent->getKey());
                     toastr.error("Error removing file.");
                 }
             });
-
             $('#confirm_delete_modal').modal('hide');
         });
         $('[data-toggle="tooltip"]').tooltip();
-
     });
 </script>
 <script>
@@ -433,12 +404,9 @@ $add = is_null($dataTypeContent->getKey());
             $('#qDesc').hide(500)
         }
     }
-
     $('document').ready(() => {
         toggleDescription($('input[name=has_description]')[0]);
     });
-
-
     $('input[name=has_description]').change((event) => {
         toggleDescription(event.target);
     })
@@ -452,18 +420,15 @@ $add = is_null($dataTypeContent->getKey());
             case 'image':
                 imageField();
                 break;
-
             case 'both':
                 bothField();
                 break;
-
             default:
                 textField();
                 break;
         }
     }
     let index = {{ rand(100, 500) }};
-
     function textField() {
         index++;
         const div = document.createElement('div');
@@ -486,7 +451,6 @@ $add = is_null($dataTypeContent->getKey());
     `
         document.getElementById('options').append(div)
     }
-
     function imageField() {
         index++;
         const div = document.createElement('div');
@@ -507,8 +471,6 @@ $add = is_null($dataTypeContent->getKey());
         </div>`;
         document.getElementById('options').append(div)
     }
-
-
     function bothField() {
         index++;
         const div = document.createElement('div');

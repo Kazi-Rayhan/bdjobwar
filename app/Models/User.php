@@ -55,6 +55,10 @@ class User extends \TCG\Voyager\Models\User
         return $query->where('active', 1)->where('role_id', 2)->whereNotIn('id', $ids);
     }
 
+    public function batches()
+    {
+        return $this->belongsToMany(Batch::class);
+    }
 
 
     public function exams()
@@ -98,7 +102,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function ownThisExam(Exam $exam)
     {
-        if (DB::table('exam_user')->where('user_id', $this->id)->where('exam_id', $exam->id)->count() || $exam->is_paid == 0  || auth()->user()->information->is_paid) {
+        if (DB::table('exam_user')->where('user_id', $this->id)->where('exam_id', $exam->id)->count() || auth()->user()->information->is_paid) {
 
 
             if (!DB::table('exam_user')->where('user_id', $this->id)->where('exam_id', $exam->id)->count()) {
@@ -108,10 +112,52 @@ class User extends \TCG\Voyager\Models\User
         }
         return false;
     }
+
+    public function attachExam($exam)
+    {
+        return  $this->exams()->attach($exam->id);
+    }
+
+    protected function own(Exam $exam)
+    {
+        //if user already own this exam
+        if ($this->exams->contains($exam->id)) {
+            
+            return true;
+        }
+        //If user is paid user can particapate 
+        if ($this->information->is_paid) {
+            $this->attachExam($exam);
+            return true;
+        }
+        //if batch is free then user own the exam
+        if ($exam->batch->price <= 0) {
+            $this->attachExam($exam);
+            return true;
+        }
+        //if user own the exam batch
+        if ($this->batches->contains($exam->batch->id)) {
+            $this->attachExam($exam);
+            return true;
+        }
+
+        return false;
+    }
+
+    public function participateToThisExam(Exam $exam)
+    {
+
+
+
+
+        if (!$this->own($exam)) return false;
+
+        return true;
+    }
+
+
     public function subjects()
     {
         return $this->morphToMany(Subject::class, 'subjectable');
     }
-
-  
 }

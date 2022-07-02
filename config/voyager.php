@@ -148,8 +148,8 @@ return [
             // 'TCG\\Voyager\\Widgets\\UserDimmer',
             'App\\Widgets\\ExamDimmer',
             'App\\Widgets\\PackageDimmer',
-            'TCG\\Voyager\\Widgets\\PostDimmer',
-            'TCG\\Voyager\\Widgets\\PageDimmer',
+            // 'TCG\\Voyager\\Widgets\\PostDimmer',
+            // 'TCG\\Voyager\\Widgets\\PageDimmer',
         ],
 
     ],

@@ -286,7 +286,7 @@ class ExamVoyagerController extends VoyagerBaseController
     {
         $slug = $this->getSlug($request);
         $subjects = Subject::all();
-        $categories = Category::where('parent_id', null)->with('childrens')->get();
+       
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
         if (strlen($dataType->model_name) != 0) {
@@ -328,7 +328,7 @@ class ExamVoyagerController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'subjects', 'categories'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'subjects', ));
     }
 
     // POST BR(E)AD
@@ -366,6 +366,7 @@ class ExamVoyagerController extends VoyagerBaseController
         $original_data = clone ($data);
 
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+        
 
         // Delete Images
         $this->deleteBreadImages($original_data, $to_remove);
@@ -377,14 +378,7 @@ class ExamVoyagerController extends VoyagerBaseController
         } else {
             $data->subjects()->detach();
         }
-        if ($request->filled('categories')) {
-        foreach ($request->categories as $cat_id) {
-            $category = Category::find($cat_id);
-            $data->categories()->sync($category);
-        }
-    }else{
-        $data->categories()->detach();
-    }
+       
 
         event(new BreadDataUpdated($dataType, $data));
 
@@ -417,7 +411,7 @@ class ExamVoyagerController extends VoyagerBaseController
     {
         $slug = $this->getSlug($request);
         $subjects = Subject::all();
-        $categories = Category::where('parent_id', null)->with('childrens')->get();
+      
 
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -448,7 +442,7 @@ class ExamVoyagerController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'subjects', 'categories'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'subjects'));
     }
 
     /**
@@ -476,10 +470,7 @@ class ExamVoyagerController extends VoyagerBaseController
             $subject = Subject::find($sub_id);
             $data->subjects()->save($subject);
         }
-        foreach ($request->categories as $cat_id) {
-            $category = Category::find($cat_id);
-            $data->categories()->save($category);
-        }
+      
 
         event(new BreadDataAdded($dataType, $data));
 
@@ -532,7 +523,7 @@ class ExamVoyagerController extends VoyagerBaseController
             // Check permission
             $this->authorize('delete', $data);
             $data->subjects()->detach();
-            $data->categories()->detach();
+          
             $model = app($dataType->model_name);
             if (!($model && in_array(SoftDeletes::class, class_uses_recursive($model)))) {
                 $this->cleanup($dataType, $data);
@@ -1041,7 +1032,7 @@ class ExamVoyagerController extends VoyagerBaseController
         $is_update = $name && $id;
 
         $rules['subjects'] = 'required';
-        $rules['categories'] = 'required';
+      
         
      
 

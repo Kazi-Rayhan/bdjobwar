@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriablesTable extends Migration
+class CreateCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCategoriablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoriables', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')
-                ->constrained('categories')
-                ->cascadeOnDelete();
-            $table->foreignId('categoriable_id');
-            $table->string('categoriable_type');
+            $table->string('title');
+            $table->text('thumbnail');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateCategoriablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categoriables');
+        Schema::dropIfExists('courses');
     }
 }

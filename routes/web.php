@@ -25,15 +25,14 @@ Auth::routes();
 
 Route::get('/', [PageController::class, 'home'])->name('home_page');
 
-Route::get('/exam', [PageController::class, 'exams'])->name('exams');
-Route::get('/category/exam/{cat}', [PageController::class, 'categoryExam'])->name('categoryExam');
 
 Route::get('download/{notice}', [HomeController::class, 'download'])->name('download');
 
 Route::get('/verify/otp/send', [AuthenticateController::class, 'otpSend'])->name('otpSend');
 Route::post('/verify/otp/check', [AuthenticateController::class, 'checkOtp'])->name('checkOtp');
 Route::get('/verify', [AuthenticateController::class, 'otp'])->name('otp');
-
+Route::get('/course/{slug}/{course}',[PageController::class,'course'])->name('course');
+Route::get('/batch/{slug}/{batch}',[PageController::class,'batch'])->name('batch');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
@@ -66,21 +65,17 @@ Route::group(['middleware'=>['auth','canAttendThisExam']],function(){
 });
 
 Route::group(['prefix' => 'exam', 'controller' => ExamController::class, 'middleware' => ['auth']], function () {
-    Route::get('/exam/all/results/{uuid}','exam_all_results')->name('all-results-exam');
-    Route::get('/exam/all/results/pdf/{uuid}','exam_all_results_pdf')->name('all-results-exam-pdf');
+    Route::get('all/results/{uuid}','exam_all_results')->name('all-results-exam');
+    Route::get('all/results/pdf/{uuid}','exam_all_results_pdf')->name('all-results-exam-pdf');
 
-    Route::get('/exam/{uuid}','exam')->name('question')->middleware('canAttendThisExam');
-    Route::get('/exam/start/{uuid}','exam_start')->name('start-exam')->middleware('canAttendThisExam');
-    Route::get('/exam/result/{uuid}','exam_result')->name('result-exam')->middleware('canAttendThisExam');
-    Route::get('/exam/start/2/{uuid}','start')->name('start')->middleware('canAttendThisExam');
-    Route::post('/exam/{uuid}/store','store')->name('exam.store')->middleware('canAttendThisExam');
+    Route::get('{uuid}','exam')->name('question')->middleware(['canAttendThisExam','exam']);
+    Route::get('start/{uuid}','exam_start')->name('start-exam')->middleware('canAttendThisExam');
+    Route::get('result/{uuid}','exam_result')->name('result-exam')->middleware(['canAttendThisExam']);
+    Route::get('start/2/{uuid}','start')->name('start')->middleware('canAttendThisExam');
+    Route::post('{uuid}/store','store')->name('exam.store')->middleware(['canAttendThisExam','exam']);
 });
 
-Route::get('/exam/start/{uuid}', [ExamController::class, 'exam_start'])->name('start-exam')->middleware(['auth', 'canAttendThisExam']);
-Route::get('/exam/result/{uuid}', [ExamController::class, 'exam_result'])->name('result-exam')->middleware(['auth', 'canAttendThisExam']);
-Route::get('/exam/start/2/{uuid}', [ExamController::class, 'start'])->name('start')->middleware(['auth', 'canAttendThisExam']);
-Route::get('/exam/{uuid}', [ExamController::class, 'exam'])->name('question')->middleware(['auth', 'canAttendThisExam', 'exam']);
-Route::post('/exam/{uuid}/store', [ExamController::class, 'store'])->name('exam.store')->middleware(['auth', 'canAttendThisExam', 'exam']);
+
 Route::group(['prefix' => 'order', 'middleware' => ['auth']], function () {
 
     Route::get('/create/{type}/{id}', [OrderController::class, 'create'])->name('orderCreate');

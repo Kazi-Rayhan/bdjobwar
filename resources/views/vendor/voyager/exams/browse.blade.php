@@ -101,6 +101,9 @@
                                             @endif
                                         </th>
                                         @endforeach
+                                        <th>
+                                        Participants
+                                        </th>
                                         <th class="actions text-right dt-not-orderable">{{ __('voyager::generic.actions') }}</th>
                                     </tr>
                                 </thead>
@@ -251,6 +254,10 @@
                                                 @endif
                                             </td>
                                         @endforeach
+                                        
+                                        <td>
+                                            {{$data->users()->count()}}
+                                        </td>
                                         <td class="no-sort no-click bread-actions">
                                             @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))

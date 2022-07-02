@@ -70,16 +70,15 @@
 <body>
   
     <div class="">
-    <h5 class="cus-info" style="background-color: #019514; padding:5px 0; color:white;text-align:center">ফলাফল</h5>
+   
       <table class="content">
-         <tr class="" style=" background-color: #019514; color:white; ">
-            <th style="color:white; ">অবস্থান </th>
-            <th style="color:white; ">নাম </th>
-            <th style="color:white; ">রোল</th>
-           
-            <th style="color:white; ">স্কোর</th>
-            <th style="color:white; "> ভুল উত্তর  </th>
-            <th style="color:white; ">মিস </th>
+         <tr >
+            <th>Postion </th>
+            <th>Name</th>
+            <th>Roll</th>
+            <th>Total</th>
+            <th>Wrong Answer</th>
+            <th>Missed</th>
       
          </tr>
          @foreach($results as $pos => $result)
@@ -94,7 +93,7 @@
                 </td>
              
                 <td>
-                    {{$result->user->information->id}}
+                    {{@$result->user->information->id}}
                 </td>
                 <td>
                     {{$result->total}}
