@@ -194,31 +194,32 @@ $numto = new NumberToBangla();
     <div class="row py-5">
       @foreach($courses as $course)
 
-      <div class="col-md-6">
-        <div class="card shadow package-hover">
-          <div class="d-flex gap-5">
-            <img src="{{Voyager::image($course->thumbnail)}}" class="w-50" alt="{{$course->title}}">
-            <div class="d-flex flex-column justify-content-around">
-              <div>
-                <h5 class="text-success">
-                  {{$course->title}}
-                </h5>
-                <div style="height:2px;width:100px" class="bg-danger"></div>
+      <div class="col-md-4">
+        <div class="card border-success shadow package-hover">
+          <img src="{{Voyager::image($course->thumbnail)}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h3 class="card-title">{{$course->title}}</h3>
+            <div style="height:2px;width:100px" class="bg-danger"></div>
+            <div class=" d-flex flex-sm-column flex-md-row gap-3  flex-wrap justify-content-between align-items-center mt-4">
+
+              <a class="btn btn-success btn-lg " href="{{$course->link()}}" style="font-size: 13px ;">বিস্তারিত </a>
+              <div class="d-flex  gap-5 text-dark" style="font-size: 14px;">
+
+                <span>
+                  <i class="fa fa-users"> ব্যাচ</i> :
+
+                  {{$numto->bnNum($course->batches->count())}} </span>
+                <span>
+                  <i class="fa fa-certificate"> পরীক্ষা</i> :
+
+                  {{$numto->bnNum($course->exams()->count())}}
+                </span>
 
               </div>
-              <ul style="list-style: none;margin:0px;padding:0px;" class="text-muted">
-                <li>
-                  <i class="fa fa-users"> ব্যাচ : {{$numto->bnNum($course->batches()->count())}}</i>
-                </li>
-                <li>
-                  <i class="fa fa-certificate"> পরীক্ষা : {{$numto->bnNum($course->exams()->count())}}</i>
-                </li>
-              </ul>
-              <a href="{{$course->link()}}" class="btn btn-success">বিস্তারিত</a>
             </div>
-
           </div>
         </div>
+
       </div>
 
       @endforeach
