@@ -106,21 +106,22 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#live-section-free">লাইভ সেকশন <sup>Free</sup></a>
+            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#live-section-free">লাইভ সেকশন</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#live-section-paid">লাইভ সেকশন <sup>Paid</sup></a>
+            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#courses">কোর্স সমূহ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#package">প্যাকেজসমূহ <sup>Paid</sup></a>
+            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#package">প্যাকেজসমূহ </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="#">কোর্স সমূহ <sup>Paid</sup></a>
-          </li>
+          
 
 
           <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="#">Skill Development</a>
+            <a class="nav-link" style="font-size: 13px;" href="#">জব সলিউশন</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: 13px;" href="#">বুক স্টোর</a>
           </li>
         </ul>
 

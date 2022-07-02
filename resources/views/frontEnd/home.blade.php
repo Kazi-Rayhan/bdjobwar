@@ -186,9 +186,9 @@ $numto = new NumberToBangla();
 
   </div>
 </section>
-<section class="live-section" id="package">
+<section class="live-section" id="courses">
   <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
-    <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px">আমাদের কোর্স</h1>
+    <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px">আমাদের কোর্স সমূহ</h1>
   </div>
   <div class="container">
     <div class="row py-5">
