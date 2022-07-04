@@ -14,7 +14,7 @@ $numto = new NumberToBangla();
         @foreach($course->batches as $batch)
         <div class="col-md-3 mb-2">
             <div class="card border-success shadow package-hover">
-                <img src="{{Voyager::image($batch->thumbnail)}}" class="card-img-top" alt="...">
+                <img src="{{Voyager::image($batch->thumbnail)}}" height="300px" style="object-fit:cover" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h3 class="card-title">{{$batch->title}}</h3>
                     <div style="height:2px;width:100px" class="bg-danger"></div>
