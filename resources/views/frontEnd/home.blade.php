@@ -196,8 +196,8 @@ $numto = new NumberToBangla();
 
       <div class="col-md-4">
         <div class="card border-success shadow package-hover">
-          <div class="bg-success rounded">
-            <img src="{{Voyager::image($course->thumbnail)}}" height="300px" style="object-fit:contain" class="rounded card-img-top" alt="...">
+          <div class="">
+            <img src="{{Voyager::image($course->thumbnail)}}" height="300px" style="object-fit:contain" class="card-img-top" alt="...">
 
           </div>
           <div class="card-body">
