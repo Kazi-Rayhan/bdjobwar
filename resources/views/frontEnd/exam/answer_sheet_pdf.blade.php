@@ -74,23 +74,26 @@
 </head>
 
 <body>
-
+    <div style="text-align: center;">
+        <h2 style=" margin:0px;">{{$exam->title}}</h2>
+        <h3 style=" margin:0px;">{{$exam->sub_title}}</h3>
+        <h6 style=" margin:0px;">Answer Sheet</h6>
+    </div>
     <table style="width: 100%;">
-        @foreach($exam->questions as $question)
+        @foreach($exam->questions->chunk(2) as $questions)
 
         <tr>
-        
+        @foreach($questions as $question)
             <td >
 
 
-                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0">{{ $loop->iteration }}. {{ $question->title }}</p>
+                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0"> {{ $question->title }}</p>
                 @if($question->title_image)
                 <div class="text-center">
                     <img src="{{Voyager::image($question->title_image)}}" width="300px" style="object-fit:contain" alt="">
 
                 </div>
                 @endif
-                <hr style="margin:5px 0 5px 0">
 
                 <div class="">
                     @foreach($question->choices as $choice)
@@ -126,6 +129,7 @@
 
 
             </td>
+            @endforeach
           
         </tr>
 
