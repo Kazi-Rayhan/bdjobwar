@@ -91,7 +91,7 @@
   <!-- mid nav end -->
   <!-- Main Nav start -->
  
-  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="background-color:#ff9027 !important">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="background-color:#161E31 !important">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="{{asset('frontEnd-assets/img/logo.png')}}" alt="" width="100" height="50" style="object-fit:cover">
