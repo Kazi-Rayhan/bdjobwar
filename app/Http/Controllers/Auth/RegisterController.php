@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
-        $user->ownThisPackage(Package::find(5));
+        $user->ownThisPackage(Package::find(env('FREE_PACKAGE')));
         return $user;
     }
     public function otp()
