@@ -46,13 +46,13 @@
                 রোল
                 </th>
                 <th>
-                স্কোর
+                সঠিক উত্তর
                 </th>
                 <th>
                 ভুল উত্তর
                 </th>
                 <th>
-                মিস
+                প্রাপ্ত নম্বর 
                 </th>
             </tr>
         </thead>
@@ -73,13 +73,15 @@
                     {{$result->user->information->id}}
                 </td>
                 <td class="text-danger">
-                    {{$result->total}}
+                {{count((array) json_decode($result->answers)) - ($result->wrong_answers )}}
+                
                 </td>
                 <td class="text-danger">
                     {{$result->wrong_answers}}
                 </td>
+                
                 <td class="text-danger">
-                    {{$result->empty_answers}}
+                    {{$result->total}}
                 </td>
                 @else
                 <td>
@@ -95,14 +97,15 @@
                     {{@$result->user->information->id}}
                 </td>
                 <td>
-                    {{$result->total}}
+                    {{count((array) json_decode($result->answers)) - ($result->wrong_answers )}}
                 </td>
                 <td>
                 {{$result->wrong_answers}}
                 </td>
                 <td>
-                {{$result->empty_answers}}
+                    {{$result->total}}
                 </td>
+               
                 @endif
             </tr>
             @endforeach

@@ -212,12 +212,7 @@ $numto = new NumberToBangla();
                   <i class="fa fa-users"> ব্যাচ</i> :
 
                   {{$numto->bnNum($course->batches->count())}} </span>
-                <span>
-                  <i class="fa fa-certificate"> পরীক্ষা</i> :
-
-                  {{$numto->bnNum($course->exams()->count())}}
-                </span>
-
+                
               </div>
             </div>
           </div>

@@ -38,9 +38,9 @@ class ExamController extends Controller
         // dd(UserExam::filter(request(['search'])));
         
         $exam = Exam::where('uuid',$uuid)->first();
-        if($exam->to > now()){
-          return view('frontEnd.exam.not_published',compact('exam'));
-        }
+        // if($exam->to > now()){
+        //   return view('frontEnd.exam.not_published',compact('exam'));
+        // }
         $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
         
         

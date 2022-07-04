@@ -6,7 +6,7 @@
         <div class="  d-flex flex-column justify-content-center align-items-center gap-3">
           
             <h3>
-            টাকা পরিষদের অ্যাকাউন্ট 
+            টাকা পরিশদের অ্যাকাউন্ট 
             </h3>
             <h1>
             বিকাশ / নগদ : 01707725544
@@ -25,7 +25,7 @@
                          <input type="hidden" name="type" value="{{$type}}">
                             <input type="hidden" name="id" value="{{$id}}">
                             <div class="form-group ">
-                            <label for="account" class="mb-3">অ্যাকাউন্ট </label>
+                            <label for="account" class="mb-3">অ্যাকাউন্ট <span class="text-danger">*</span> </label>
                            
                             <input type="text" name="account" value="{{old('account')}}" class="form-control border border-dark @error('account') is-invalid @enderror" id="account" placeholder="আপনার বিকাশ, নগদ বা রকেট অ্যাকাউন্ট নম্বর লিখুন">
                             @error('account')
@@ -48,7 +48,7 @@
 
                         </div>
                         <div class="form-group mt-2 ">
-                        <label for="method" class="mb-3">মূল্যপরিশোধ পদ্ধতি </label>
+                        <label for="method" class="mb-3">মূল্যপরিশোধ পদ্ধতি <span class="text-danger">*</span>  </label>
                         <select id="inputState" class="form-control @error('method') is-invalid @enderror" name="method">
                             <option value=""selected>Choose...</option>
                             <option value="0">Bkash</option>
@@ -74,7 +74,7 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-outline-danger btn-lg mt-3">সম্পূর্ণ </button>
+                        <button type="submit" class="btn btn-outline-danger btn-lg mt-3">সাবমিট</button>
                     </form>
                 </div>
             </div>

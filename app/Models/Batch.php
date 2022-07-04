@@ -36,7 +36,7 @@ class Batch extends Model
     {
         return [
             'title' => $this->title,
-            'type' => 'Batch',
+            'type' => 'কোর্স',
             'price' => $this->price 
         ];
     }

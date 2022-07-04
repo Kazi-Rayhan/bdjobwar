@@ -14,7 +14,7 @@ class Package extends Model
     public function information(){
         return [
             'title'=> $this->title,
-            'type'=> 'Package',
+            'type'=> 'প্যাকেজ',
             'price'=> $this->price
         ];
     }
