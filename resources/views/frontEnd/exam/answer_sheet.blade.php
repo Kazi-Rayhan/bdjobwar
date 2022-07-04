@@ -50,17 +50,18 @@ $numto = new NumberToBangla();
                 </div>
                 @if($question->description)
                 <div class="card-footer">
-                @if($question->image)
-                    <div class="text-center">
-                        <img src="{{Voyager::image($question->image)}}" width="300px" style="object-fit:contain" alt="">
-
-                    </div>
-                    @endif
+               
                     <h6>ব্যাখ্যা :</h6>
                     <hr>
                     <p style="font-size: 12px;">
                         {{$question->description}}
                     </p>
+                    @if($question->image)
+                    <div>
+                        <img src="{{Voyager::image($question->image)}}" width="300px" style="object-fit:contain" alt="">
+
+                    </div>
+                    @endif
                 </div>
 
                 @endif
