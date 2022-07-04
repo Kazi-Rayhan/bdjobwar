@@ -12,7 +12,7 @@ $numto = new NumberToBangla();
     <div style="height:2px;width:100px" class="bg-danger"></div>
     <div class="row mt-5">
         @foreach($course->batches as $batch)
-        <div class="col-md-3 mb-2">
+        <div class="col-md-4 mb-2">
             <div class="card border-success shadow package-hover">
                 <img src="{{Voyager::image($batch->thumbnail)}}" height="300px" style="object-fit:contain" class="card-img-top" alt="...">
                 <div class="card-body">
