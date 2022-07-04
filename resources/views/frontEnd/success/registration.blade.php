@@ -8,12 +8,12 @@
     <div class="d-flex flex-column gap-3">
         <div>
             <h2 class="text-dark">Hi, {{auth()->user()->name}}</h2>
-            <h5 style="color:#666666">Thank you for registration</h5>
+            <h5 style="color:#666666">আপনি যে পাসওয়ার্ডটি সেট করেছেন সেটি মনে রাখুন  অথবা কোথাও লিখে রাখুন । <br> পরবরতীতে লগইন করতে প্রয়োজন হবে</h5>
             <div style="height:2px;width:60px" class="bg-danger"></div>
         </div>
         <div class="">
             <span class=" h3 text-danger ">
-                Roll :
+                রোল :
             </span>
             <span class="h3">
                 {{auth()->user()->information->id}}
@@ -21,9 +21,9 @@
         </div>
 
         <ul style="list-style: none; margin:0px;padding:0px;font-size:18px">
-            <li style="color:#666666"> <strong>Name : </strong> {{auth()->user()->name}}</li>
-            <li style="color:#666666"> <strong>Phone : </strong> {{auth()->user()->phone}}</li>
-            <li style="color:#666666"> <strong>Package: </strong> {{auth()->user()->information->package->title}} </li>
+            <li style="color:#666666"> <strong>নাম : </strong> {{auth()->user()->name}}</li>
+            <li style="color:#666666"> <strong>মোবাইল নম্বর  : </strong> {{auth()->user()->phone}}</li>
+            <li style="color:#666666"> <strong>প্যাকেজ : </strong> {{auth()->user()->information->package->title}} </li>
         </ul>
        
       
@@ -31,8 +31,8 @@
         
 
        <div>
-           <a href="{{route('dashboard')}}" class="btn btn-dark "> Check Dashboard</a>
-           <a href="{{route('home_page')}}" class="btn btn-info "> Home</a>
+           <a href="{{route('dashboard')}}" class="btn btn-dark "> প্রোফাইল</a>
+           <a href="{{route('home_page')}}" class="btn btn-info "> হোম</a>
 
        </div>
 

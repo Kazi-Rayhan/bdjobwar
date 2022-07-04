@@ -148,10 +148,10 @@
 
           @else
           <li class="auth-item">
-            <a class="nav-link" aria-current="page" href="{{route('login')}}">সাইন-ইন</a>
+            <a class="nav-link" aria-current="page" href="{{route('login')}}">লগইন</a>
           </li>
           <li class="auth-item">
-            <a class="nav-link" href="{{route('register')}}"> সাইন-আপ </a>
+            <a class="nav-link" href="{{route('register')}}"> রেজিস্ট্রেশন </a>
           </li>
           @endauth
 
@@ -234,7 +234,7 @@
 
       <div class="text-center">
         <div class="copyright">
-          <p>© {{ now()->year }} Copyright <a href="index.html">Bdjobwar.</a> All Right Reserved. Developed by <a target="blank" href="#">Uuizard</a></p>
+          <p>© {{ now()->year }} Copyright <a href="{{url('/')}}">Bdjobwar.</a> All Right Reserved. Developed by <a target="blank" href="https://caregiver.com.bd/">Caregiver</a></p>
         </div>
       </div>
 
@@ -268,13 +268,7 @@
       "hideMethod": "fadeOut"
     }
   </script>
-  @if($errors->any())
-  <script>
-    @foreach($errors-> all() as $error)
-    toastr.error("{{ session('error') }}")
-    @endforeach
-  </script>
-  @endif
+ 
   @if(session()->has('error'))
   <script>
     toastr.error("{{ session('error') }}")

@@ -69,11 +69,13 @@ Route::group(['prefix' => 'exam', 'controller' => ExamController::class, 'middle
     Route::get('all/results/pdf/{uuid}','exam_all_results_pdf')->name('all-results-exam-pdf');
 
     Route::get('{uuid}','exam')->name('question')->middleware(['canAttendThisExam','exam']);
-    Route::get('start/{uuid}','exam_start')->name('start-exam')->middleware('canAttendThisExam');
+    Route::get('start/{uuid}','exam_start')->name('start-exam')->middleware('canAttendThisExam','exam');
     Route::get('result/{uuid}','exam_result')->name('result-exam')->middleware(['canAttendThisExam']);
     Route::get('start/2/{uuid}','start')->name('start')->middleware('canAttendThisExam');
     Route::post('{uuid}/store','store')->name('exam.store')->middleware(['canAttendThisExam','exam']);
-});
+}); 
+Route::get('{batch}/batch/routine',[PageController::class,'batchRoutine'])->name('batch.routines');
+// Route::get('{batch}/batch/results',[PageController::class,'batchResults']);
 
 
 Route::group(['prefix' => 'order', 'middleware' => ['auth']], function () {

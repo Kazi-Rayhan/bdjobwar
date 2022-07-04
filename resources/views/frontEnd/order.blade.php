@@ -9,8 +9,15 @@
             টাকা পরিষদের অ্যাকাউন্ট 
             </h3>
             <h1>
-            {{setting('site.payment_account_number')}}
+            বিকাশ / নগদ : 01707725544
             </h1>
+            
+            <h1>
+            রকেট : 01707725543
+            </h1>
+            <p>
+                অবশ্যই সেন্ডমানি করবেন ফ্লাক্সিলোড গ্রহণযোগ্য নয়
+            </p>
               <div class="card shadow w-100" >
                 <div class="card-body d-flex justify-content-center align-items-center " >
                     <form action="{{ route('orderStore') }}" class="w-75" method="POST">

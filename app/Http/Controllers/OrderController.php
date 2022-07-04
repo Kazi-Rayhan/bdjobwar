@@ -57,7 +57,7 @@ class OrderController extends Controller
     //    dd($request->all());
         $request->validate([
             "account" => 'required',
-            "trnxId" => 'required',
+            "trnxId" => 'nullable',
             "method" => 'required',
 
         ]);

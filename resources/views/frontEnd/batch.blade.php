@@ -10,7 +10,8 @@ $numto = new NumberToBangla();
         {{$batch->title}}
     </h3>
     <div style="height:2px;width:100px" class="bg-danger"></div>
-    <!-- <a href="" class="btn btn-dark mt-2"> রুটিন ডাউনলোড করুন</a> -->
+    <!-- <a href="{{route('batch.routines',$batch)}}" class="btn btn-dark mt-2"> রুটিন পিডিফ</a> -->
+    
     <div class="mt-5">
         <nav class="navbar navbar-expand navbar-light ">
             <div class="nav navbar-nav">

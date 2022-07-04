@@ -12,6 +12,7 @@ use App\Models\Notice;
 use App\Models\UserExam;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Mpdf\Mpdf;
 
 class PageController extends Controller
 {
@@ -125,4 +126,31 @@ class PageController extends Controller
         $exams = $exams->get();
         return view('frontEnd/batch',compact('batch','exams'));
      }
+
+     public function batchRoutine(Batch $batch){
+        $exams = $batch->exams()->latest()->get();
+        $pdf = Mpdf::loadView('frontEnd.routines', ['exams' => $exams],[
+            'title' => $batch->title.' Routine',
+            'Author' => 'BD Job War'
+          ]);
+        return $pdf->download('routines.pdf');
+     }
+
+    //  public function batchResults(Batch $batch){
+    //     dd(UserExam::where('exam_id',$batch->exams->pluck('id')->toArray())->get()->groupBy(function($data){
+    //         return $data->user_id;
+    //     }))->map(function($data){
+    //         return $data->id;
+    //     });
+    //     // $exam = Exam::where('uuid',$uuid)->first();
+    //     // if($exam->to > now()){
+    //     //   return view('frontEnd.exam.not_published',compact('exam'));
+    //     // }
+    //     // $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
+     
+    // }
+
+    public function packageDetails($slug,Package $package){
+        return view('frontEnd.packageDetails',compact('package'));
+    }
 }
