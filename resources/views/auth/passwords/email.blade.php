@@ -14,16 +14,16 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" action="{{ route('resetPassword') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Phone number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required >
 
-                                @error('email')
+                                @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -34,7 +34,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                    {{ __('Send OTP') }}
                                 </button>
                             </div>
                         </div>
@@ -44,4 +44,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+
 @endsection
