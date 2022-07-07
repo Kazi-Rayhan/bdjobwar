@@ -58,10 +58,9 @@ class AuthenticateController extends Controller
                 ->firstOrFail();
 
             if (!Hash::check($password, $user->password)) throw new Exception;
-           
+
             Auth::loginUsingId($user->id);
             return redirect()->intended();
-            
         } catch (Exception $e) {
             return redirect()
                 ->back()
@@ -71,49 +70,35 @@ class AuthenticateController extends Controller
                 ->back()
                 ->with('error-msg', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
         }
-
-
-
-      
     }
     public function resetPassword(Request $request)
     {
 
         $phone = $request->input('phone');
         // dd($phone);
-    
-        try{
-            $user = User::where('phone',$phone )->firstOrFail();
+
+        try {
+            $user = User::where('phone', $phone)->firstOrFail();
             // return $user;
-            Session::put('user',$user);
-          
-            if($user->otp_reset_at && $user->otp && $user->otp_reset_at > now()->addMinutes(-2)){
-                $otp = $user->otp;
-           }else{
-                $otp = rand(9999,99999);
-                $user->update([
-                    'otp'=>$otp,
-                    'otp_reset_at'=>now()
-                ]); 
-           }
-        }catch (Exception $e) {
+
+            Session::put('user', $user);
+            Sms::otp($user)->send();
+        } catch (Exception $e) {
             return redirect()
                 ->back()
-                ->with('error', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
+                ->with('error', $e->getMessage());
         } catch (Error $e) {
             return redirect()
                 ->back()
-                ->with('error', 'Bdjobwar.com ওয়েবসাইটতে আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন');
+                ->with('error', $e->getMessage());
         }
 
 
-       
-       SMS::compose($phone, 'OTP from '.env('APP_NAME').': '.$otp.' this code will be valid for')->send();
-       return redirect()
-                ->route('resetPasswordVerify')
-                ->with('success', 'Successfully OTP Send');
 
-        
+       
+        return redirect()
+            ->route('resetPasswordVerify')
+            ->with('success', 'Successfully OTP Send');
     }
     public function resetPasswordVerify()
     {
@@ -125,17 +110,20 @@ class AuthenticateController extends Controller
             "otp" => 'required'
         ]);
         try {
-            $user=Session::get('user');
-            $user->resetOtpVerify($request->otp);
+            $user = Session::get('user');
+            $user->verify($request->otp);
             return redirect()
-            ->route('setPassword')
-            ->with('success', 'Successfully OTP Submitted');
+                ->route('setPassword')
+                ->with('success', 'Successfully OTP Submitted');
         } catch (Exception $e) {
-            return redirect()->back()->withErrors($e->getMessage());
+            return redirect()
+            ->back()
+            ->with('error', $e->getMessage());
         } catch (Error $e) {
-            return redirect()->back()->withErrors($e->getMessage());
+            return redirect()
+                ->back()
+                ->with('error', $e->getMessage());
         }
-        
     }
     public function setPassword()
     {
@@ -146,22 +134,21 @@ class AuthenticateController extends Controller
         try {
             $request->validate([
                 "password" => 'required|confirmed'
+
             ]);
-               $user=Session::get('user');
-                $user->password=Hash::make($request['password']);
-                $user->update();
-     
-        
+            $user = Session::get('user');
+            $user->password = Hash::make($request['password']);
+            $user->update();
+
+
             // Session::forget('user');
             return redirect()
-            ->route('login')
-            ->with('success', 'Successfully password changed');
-        }
-         catch (Exception $e) {
+                ->route('login')
+                ->with('success', 'Successfully password changed');
+        } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         } catch (Error $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
-
     }
 }

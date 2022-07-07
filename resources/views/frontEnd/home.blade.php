@@ -11,18 +11,19 @@ $numto = new NumberToBangla();
     <div class=" col-md-12 col-xl-7 col-12 mb-2">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        @foreach($sliderExams as $exam)
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{$loop->index}}" class="@if($loop->first)active @endif" aria-current="true" aria-label="Slide {{$loop->iteration}}"></button>
+          @endforeach
+
         </div>
-        <div class="carousel-inner">
+        <div class="carousel-inner" >
           @foreach($sliderExams as $exam)
           <div class="carousel-item @if($loop->first)active @endif">
             <a href="{{route('register')}}">
-              <img class="d-block w-100" src="{{Voyager::image($exam->image)}}" alt="First slide">
+              <img class="d-block w-100" style="object-fit:cover;" src="{{Voyager::image($exam->image)}}" alt="First slide">
             </a>
           </div>
-          @endforeach
+        @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -36,9 +37,22 @@ $numto = new NumberToBangla();
 
     </div>
     <div class="col-md-12 col-xl-5 col-12">
-      <div class="h-100 d-flex justify-content-center align-items-center">
-        <iframe class="video" src="https://www.youtube.com/embed/ATjaT7MzY30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     <div class="card" style="height:393px;overflow: scroll;">
+      <div class="card-body">
+        <h4>
+          Videos
+        </h4>
+      <ul class="list-group">
+        @foreach($videos as $video)
+        <li class="list-group-item">
+          <a class="my-video-links text-success" style="text-decoration: none;" data-autoplay="true" data-vbtype="video" href="{{$video->link}}">
+            <span class="" ><i class="fa fa-play"></i></span> {{$video->title}}
+          </a>
+        </li>
+        @endforeach
+      </ul>
       </div>
+     </div>
     </div>
   </div>
 

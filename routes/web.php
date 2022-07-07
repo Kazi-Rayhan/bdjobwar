@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\QuestionsVoyagerController;
 use App\Http\Controllers\SuccessController;
 use App\Models\UserMeta;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'admin.user'], function () {
         Route::get('/order/accept/{order}', [OrderController::class, 'accept'])->name('order.accept');
         Route::get('/order/declined/{order}', [OrderController::class, 'declined'])->name('order.decline');
+        Route::post('/question/{question}/disable',[QuestionsVoyagerController::class,'disable'])->name('question-disable');
+        Route::post('/question/{question}/active',[QuestionsVoyagerController::class,'active'])->name('question-active');
     });
 });
 
@@ -59,6 +62,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::post('/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
     Route::get('/test-history', [DashboardController::class, 'testHistory'])->name('testHistory');
 });
+
+
 
 
 Route::get('/package/{slug}/{package}', [PageController::class, 'packageDetails'])->name('package-details');
@@ -79,6 +84,8 @@ Route::group(['prefix' => 'exam', 'controller' => ExamController::class, 'middle
     Route::get('start/2/{uuid}','start')->name('start')->middleware('canAttendThisExam');
     Route::post('{uuid}/store','store')->name('exam.store')->middleware(['canAttendThisExam','exam']);
 }); 
+
+Route::get('b/{slugh}/{batch}/details',[PageController::class,'batchDetails'])->name('batch.details');
 Route::get('{batch}/batch/routine',[PageController::class,'batchRoutine'])->name('batch.routines');
 // Route::get('{batch}/batch/results',[PageController::class,'batchResults']);
 

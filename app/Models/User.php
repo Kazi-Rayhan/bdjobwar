@@ -83,17 +83,7 @@ class User extends \TCG\Voyager\Models\User
             'phone_verified_at' => now()
         ]);
     }
-    public function resetOtpVerify($otp)
-    {
-        //check if otp is valid
-        if (!$this->otp_reset_at > now()->addMinutes(-2)) throw new Exception('Otp is expired request new otp');
-        //match the otp with user otp
-        if ($this->otp != $otp) throw new Exception('Otp do not match');
-        //if nothing happen then update the phone verrified at
-        $this->update([
-            'phone_verified_at' => now()
-        ]);
-    }
+   
 
     public function verified(): bool
     {

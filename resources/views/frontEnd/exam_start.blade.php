@@ -1,4 +1,11 @@
 @extends('frontEnd.layouts.app')
+@section('css')
+<meta property="og:url"           content="{{request()->url()}}" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="{{$exam->title}} | BD Job War" />
+<meta property="og:description"   content="{{exam->title}}  {{exam->sub_title}}" />
+<meta property="og:image"         content="{{Voyager::image($exam->image)}}" />
+@endsection
 @section('content')
 @php
 $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));

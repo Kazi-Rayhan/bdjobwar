@@ -101,16 +101,12 @@
                                             @endif
                                         </th>
                                         @endforeach
-                                        <th>
-                                        Participants
-                                        </th>
                                         <th class="actions text-right dt-not-orderable">{{ __('voyager::generic.actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($dataTypeContent as $data)
                                     <tr>
-                                
                                         @if($showCheckboxColumn)
                                             <td>
                                                 <input type="checkbox" name="row_id" id="checkbox_{{ $data->getKey() }}" value="{{ $data->getKey() }}">
@@ -254,12 +250,8 @@
                                                 @endif
                                             </td>
                                         @endforeach
-                                        
-                                        <td>
-                                            {{$data->users()->count()}}
-                                        </td>
                                         <td class="no-sort no-click bread-actions">
-                                           <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u={{route('start-exam',$data)}}&display=popup&ref=plugin&src=share_button" style="margin-left: 2px;"> <i class="voyager-facebook"></i> Share on facebook</a>
+                                        <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u={{route('batch.details',[\Str::slug($data->title),$data])}}&display=popup&ref=plugin&src=share_button" style="margin-left: 2px;"> <i class="voyager-facebook"></i> Share on facebook</a>
                                             @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
                                                     @include('voyager::bread.partials.actions', ['action' => $action])
@@ -400,3 +392,4 @@
         });
     </script>
 @stop
+}

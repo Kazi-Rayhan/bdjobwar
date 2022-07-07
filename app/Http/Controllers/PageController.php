@@ -10,6 +10,7 @@ use App\Models\Package;
 use App\Models\Exam;
 use App\Models\Notice;
 use App\Models\UserExam;
+use App\Video;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Mpdf\Mpdf;
@@ -18,7 +19,7 @@ class PageController extends Controller
 {
     public function home()
     {
-
+        $videos = Video::orderBy('order','asc')->get();
         $sliderExams = Exam::whereNotNull('image')
             ->active()
             ->where('to', '>', now())
@@ -45,11 +46,11 @@ class PageController extends Controller
             ->latest()
             ->limit(3)
             ->get();
-        $yesterday = Carbon::yesterday();
+    
         // dd($yesterday);
         $latestResults = Exam::free()
             ->active()
-            ->where('from', '<=', $yesterday)
+            ->where('to', '<=', now())
             ->latest()
             ->limit(3)
             ->get();
@@ -100,6 +101,7 @@ class PageController extends Controller
                 'finishedPaidExams',
                 'courses',
                 'latestResults',
+                'videos'
             )
         );
     }
@@ -164,5 +166,9 @@ class PageController extends Controller
 
     public function packageDetails($slug,Package $package){
         return view('frontEnd.packageDetails',compact('package'));
+    }
+
+    public function batchDetails($slug,Batch $batch){
+        return view('frontend.batch-details',compact('batch'));
     }
 }

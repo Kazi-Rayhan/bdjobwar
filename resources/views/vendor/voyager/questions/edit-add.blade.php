@@ -8,13 +8,19 @@ $add = is_null($dataTypeContent->getKey());
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
-        #title input{
-            height: 50px;
+        input{
+          
+            font-size: 18px !important; 
+     
         }
-        #title{
-            font-size: 20px;
-            color: #000;
+        label{
+            font-size: 18px;
+            color: #000 !important;
         }
+       input[type=file]{
+        width: 100%;
+        height: 60px;
+       }
     </style>
     @stop
 
@@ -22,10 +28,20 @@ $add = is_null($dataTypeContent->getKey());
     $dataType->getTranslatedAttribute('display_name_singular'))
 
 @section('page_header')
-    <h1 class="page-title">
+<div style="display: flex;justify-content:space-between;margin-top:10px">
+<h1 class="page-title">
         <i class="{{ $dataType->icon }}"></i>
-        {{ __('voyager::generic.' . ($edit ? 'edit' : 'add')) . ' ' . $dataType->getTranslatedAttribute('display_name_singular') }}
+        {{ __('voyager::generic.' . ($edit ? 'edit' : 'add')) . ' ' . $dataType->getTranslatedAttribute('display_name_singular') }} 
     </h1>
+    @if(!$edit)
+    <ul class="list-group" style="font-size: 15px;">
+        <li class="list-group-item">Total : {{$exam->questions->count()}}</li>
+        <li class="list-group-item">Active : {{$exam->questions->where('active',1)->count()}}</li>
+        <li class="list-group-item">Disabled : {{$exam->questions->where('active',0)->count()}}</li>
+    </ul>
+    @endif
+</div>
+    
     @include('voyager::multilingual.language-selector')
 @stop
 
@@ -36,7 +52,7 @@ $add = is_null($dataTypeContent->getKey());
 
             <div class="col-md-12">
 
-                <div class="panel panel-bordered " style="background-color: #e9ecef;">
+                <div class=""  >
                     <!-- form start -->
                     <form role="form" class="form-edit-add"
                         action="{{ $edit ? route('voyager.' . $dataType->slug . '.update', $dataTypeContent->getKey()) : route('voyager.' . $dataType->slug . '.store') }}"
@@ -267,9 +283,9 @@ $add = is_null($dataTypeContent->getKey());
                         </div><!-- panel-body -->
 
 
-                        <div class=" " style="display: flex;justify-content: end;background-color: #e9ecef;" >
+                        <div class=" " style="display: flex;justify-content: end;" >
                         @section('submit-buttons')
-                            <button type="submit" class="btn  btn-primary save " style="height: 60px ; width: 120px ;margin-right:150px ;" >{{ __('voyager::generic.save') }}</button>
+                            <button type="submit" class="btn  btn-primary save " style="height: 50px ; width: 120px ;margin-right:150px ;" >{{ __('voyager::generic.save') }}</button>
                         @stop
                         @yield('submit-buttons')
                     </div>

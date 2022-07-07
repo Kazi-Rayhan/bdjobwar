@@ -19,8 +19,10 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use App\Models\Exam;
+use App\Models\Question;
 use Error;
 use Illuminate\Support\Facades\Storage;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class QuestionsVoyagerController extends VoyagerBaseController
 {
@@ -38,6 +40,20 @@ class QuestionsVoyagerController extends VoyagerBaseController
     //
     //****************************************
 
+    public function active(Question $question){
+        $question->update(['active'=>true]);
+        return redirect()->back()->with([
+            'message'    => "Question is active now",
+            'alert-type' => 'success',
+        ]);
+    }
+    public function disable(Question $question){
+        $question->update(['active'=>false]);
+        return redirect()->back()->with([
+            'message'    => "Question is disabled now",
+            'alert-type' => 'success',
+        ]);
+    }
     public function index(Request $request)
     {
         // GET THE SLUG, ex. 'posts', 'pages', etc.
