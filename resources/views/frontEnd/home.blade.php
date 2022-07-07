@@ -20,7 +20,7 @@ $numto = new NumberToBangla();
           @foreach($sliderExams as $exam)
           <div class="carousel-item @if($loop->first)active @endif">
             <a href="{{route('register')}}">
-              <img class="d-block w-100" style="object-fit:cover;" height="400px" width="100%" style="object-fit: cover;" src="{{Voyager::image($exam->image)}}" alt="First slide">
+              <img class="d-block " style="object-fit:cover;" height="400px" width="100%" style="object-fit: cover;" src="{{Voyager::image($exam->image)}}" alt="First slide">
             </a>
           </div>
         @endforeach
