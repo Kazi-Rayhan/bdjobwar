@@ -259,7 +259,7 @@
                                             {{$data->users()->count()}}
                                         </td>
                                         <td class="no-sort no-click bread-actions">
-                                           <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u={{route('start-exam',$data)}}&display=popup&ref=plugin&src=share_button" style="margin-left: 2px;"> <i class="voyager-facebook"></i> Share on facebook</a>
+                                           <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u={{route('start-exam',$data->uuid)}}&display=popup&ref=plugin&src=share_button" style="margin-left: 2px;"> <i class="voyager-facebook"></i> Share on facebook</a>
                                             @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
                                                     @include('voyager::bread.partials.actions', ['action' => $action])

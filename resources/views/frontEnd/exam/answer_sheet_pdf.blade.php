@@ -84,13 +84,13 @@
 
         <tr>
         @foreach($questions as $question)
-            <td >
+            <td  width="50%">
 
 
                 <p style="font-weight: 700; margin:10px 0 5px 0; padding:0"> {{ $question->title }}</p>
                 @if($question->title_image)
                 <div class="text-center">
-                    <img src="{{Voyager::image($question->title_image)}}" width="300px" style="object-fit:contain" alt="">
+                    <img src="{{Voyager::image($question->title_image)}}" width="200px" style="object-fit:contain" alt="">
 
                 </div>
                 @endif
@@ -121,7 +121,7 @@
                         <img class="" src="{{Voyager::image($choice->choice_image)}}" width="100px" style="object-fit:contain ;display: block;" alt="">
                         @endif
 
-                        <hr style="margin: 1px;padding:2px;">
+                       
                     </div>
 
                     @endforeach
