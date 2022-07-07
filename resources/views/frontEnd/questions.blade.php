@@ -112,7 +112,7 @@ right: 10;">
         </div>
     </div>
 
-    <form action="{{route('exam.store',$exam->uuid)}}" method="post">
+    <form action="{{route('exam.store',$exam->uuid)}}" id="question" method="post">
         @csrf
         
                     <div >
@@ -194,58 +194,7 @@ right: 10;">
 
                                     </div>
                                     @endforeach
-                                    <!-- <div class="row  ">
-                                        @foreach ($questions as $question)
-                                        <div class="col-md-12 mb-2">
-                                            <div class="card single-course-inner border border-dark" id="q{{$question->id}}">
-                                                <div class="card-header text-center " style="background-color:#5ab500 ;">
-                                                    @if($question->image)
-                                                    <img src="{{Voyager::image($question->image)}}" height="150" width="300" alt="">
-                                                    @endif
-                                                    <div style="text-align: left;">
-                                                        <h4 class="card-title  text-light  fw-semibold py-3 ps-3">
-                                                            <span>{{ $loop->iteration }}.</span> {{ $question->title }}
-                                                        </h4>
-                                                        @if($question->description)
-                                                        <p class="text-light">
-                                                            {{$question->description}}
-                                                        </p>
-                                                        @endif
-                                                    </div>
-
-
-
-
-                                                </div>
-                                                <div class="row mb-5">
-                                                    @foreach ($question->choices as $choice)
-                                                    <div class="col-md-6">
-                                                        <div class="form-check p-3">
-                                                            <div>
-                                                                <input class="form-check-input bg-secondary  mt-2 ms-2 choice q{{$question->id}}" type="radio" value="{{$choice->index}}" name="choice[{{ $question->id }}]" id="choice{{ $question->id }}{{ $loop->iteration }}">
-                                                                <label class="form-check-label d-block ms-5" for="choice{{ $question->id }}{{ $loop->iteration }}">
-                                                                    <strong style="font-size: 20px;">{{$choice::LABEL[$choice->index]}} . </strong> {{ $choice->choice_text }}
-                                                                </label>
-                                                            </div>
-
-                                                        </div>
-                                                        @if($choice->choice_image)
-                                                        <div class="text-center mb-2">
-                                                            <img class="" src="{{Voyager::image($choice->choice_image)}}" width="100%" height="100px" style="object-fit:cover ;" alt="">
-
-                                                        </div>
-                                                        @endif
-                                                    </div>
-                                                    @endforeach
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-                                        @endforeach
-
-                                    </div> -->
+                                
                                     <div class="d-flex justify-content-center my-3">
                                         <button class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">Submit your answer</button>
                                     </div>
@@ -271,7 +220,7 @@ right: 10;">
              টি প্রশ্নের মধ্যে আপনি <span id="answeredModal"> </span> টির উত্তর করেছেন <span id="leftModal"> </span> উত্তর বাকি আছে। পরীক্ষাটি কি এখানেই শেষ করবেন
             </p>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success">হ্যা</button>
+                <button type="submit"  id=""class="btn btn-success">হ্যা</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">না</button>
             </div>
         </div>
@@ -295,7 +244,7 @@ right: 10;">
 
         // Find the distance between now and the count down date
         var distance = countDownDate - now;
-
+    
         // Time calculations for days, hours, minutes and seconds
         var hours = Math.floor((distance % (1000 * 60 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -307,8 +256,10 @@ right: 10;">
 
         // If the count down is over, write some text 
         if (distance < 0) {
+            document.getElementById("question").submit(); 
             clearInterval(x);
             document.getElementById("countdown").innerHTML = "EXPIRED";
+          
         }
     }, 1000);
 </script>
