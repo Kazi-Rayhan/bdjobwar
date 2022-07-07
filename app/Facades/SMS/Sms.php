@@ -25,7 +25,14 @@ class Sms{
         $this->password = \config('sms.password');
         $this->endpoint = \config('sms.endpoint');
     }
-
+    
+    /**
+     * compose
+     *
+     * @param  mixed $to
+     * @param  mixed $body
+     * @return void
+     */
     public static function compose($to,$body){
     
         return new static($to,$body);

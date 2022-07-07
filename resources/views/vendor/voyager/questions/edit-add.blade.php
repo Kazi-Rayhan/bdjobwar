@@ -324,6 +324,25 @@ $add = is_null($dataTypeContent->getKey());
         </div>
     </div>
 </div>
+{{-- Single delete modal --}}
+    <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><i class="voyager-trash"></i> {{ __('voyager::generic.delete_question') }} {{ strtolower($dataType->getTranslatedAttribute('display_name_singular')) }}?</h4>
+                </div>
+                <div class="modal-footer">
+                    <form action="#" id="delete_form" method="POST">
+                        {{ method_field('DELETE') }}
+                        {{ csrf_field() }}
+                        <input type="submit" class="btn btn-danger pull-right delete-confirm" value="{{ __('voyager::generic.delete_confirm') }}">
+                    </form>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 <!-- End Delete File Modal -->
 @stop
 
@@ -394,111 +413,20 @@ $add = is_null($dataTypeContent->getKey());
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
-<script>
-    const toggleDescription = has_description => {
-        if (has_description.checked) {
-            $('#qImage').show(500)
-            $('#qDesc').show(500)
-        } else {
-            $('#qImage').hide(500)
-            $('#qDesc').hide(500)
-        }
-    }
-    $('document').ready(() => {
-        toggleDescription($('input[name=has_description]')[0]);
-    });
-    $('input[name=has_description]').change((event) => {
-        toggleDescription(event.target);
-    })
-</script>
-<script>
-    function addOption(type) {
-        switch (type) {
-            case 'text':
-                textField();
-                break;
-            case 'image':
-                imageField();
-                break;
-            case 'both':
-                bothField();
-                break;
-            default:
-                textField();
-                break;
-        }
-    }
-    let index = {{ rand(100, 500) }};
-    function textField() {
-        index++;
-        const div = document.createElement('div');
-        div.innerHTML = `
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="answer" value="` + index + `" aria-label="...">
-                    </span>
-                    <input type="text" name="options[` + index + `][choice_text]" class="form-control" aria-label="...">
-                    <input type="hidden" name="options[` + index + `][type]" class="form-control" value="text">
-                    <input type="hidden" name="options[` + index + `][index]" class="form-control" value="` + index + `">
-                    <span class="input-group-addon">
-                        <button type="button" onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i class="voyager-trash"></i></button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    `
-        document.getElementById('options').append(div)
-    }
-    function imageField() {
-        index++;
-        const div = document.createElement('div');
-        div.innerHTML = `<div class="row">
-            <div class="col-lg-12">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="answer" value="` + index + `" aria-label="...">
-                    </span>
-                    <input type="file" name="options[` + index + `][choice_image]" class="form-control" aria-label="...">
-                    <input type="hidden" name="options[` + index + `][type]" class="form-control" value="image">
-                    <input type="hidden" name="options[` + index + `][index]" class="form-control" value="` + index + `">
-                    <span class="input-group-addon">
-                        <button type="button" onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i class="voyager-trash"></i></button>
-                    </span>
-                </div>
-            </div>
-        </div>`;
-        document.getElementById('options').append(div)
-    }
-    function bothField() {
-        index++;
-        const div = document.createElement('div');
-        div.innerHTML = `<div class="row">
-            <div class="col-lg-12">
-                    <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="answer" value="` + index + `" aria-label="...">
-                    </span>
-                    <input type="text" name="options[` + index + `][choice_text]" class="form-control" aria-label="...">
-                    <input type="hidden" name="options[` + index + `][type]" class="form-control" value="both">
-                    <input type="hidden" name="options[` + index + `][index]" class="form-control" value="` + index + `">
-                    <span class="input-group-addon">
-                        <button type="button" onclick="this.parentNode.parentNode.parentNode.parentNode.remove()"><i class="voyager-trash"></i></button>
-                    </span>
-                </div>
-                <br>
-                <p>Upload Image here</p>
-                 <input type="file" name="options[` + index + `][choice_image]" class="form-control" aria-label="...">
-            </div>
-        </div>`;
-        document.getElementById('options').append(div)
-    }
-</script>
+
 @if (request()->exam)
     <script>
         $('#exams').hide();
     </script>
 @endif
+<script>
+     var deleteFormAction;
+    
+        $('.actions').on('click', '.delete', function (e) {
+            console.log('asdasd');
+            $('#delete_form')[0].action = '{{ route('voyager.questions.destroy', '__id') }}'.replace('__id', $(this).data('id'));
+            $('#delete_modal').modal('show');
+        });
+</script>
 
 @stop

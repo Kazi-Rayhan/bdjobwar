@@ -1,14 +1,24 @@
+@php
+$actions = [];
+$dataType = Voyager::model('DataType')->where('slug', '=', 'questions')->first();
+if (!empty($question)) {
+foreach (Voyager::actions() as $action) {
+$action = new $action($dataType, $question);
+
+if ($action->shouldActionDisplayOnDataType()) {
+$actions[] = $action;
+}
+}
+}
+@endphp
 <div class="card single-course-inner border border-dark">
-    <div class="card-header bg-primary   "  style="display: flex;justify-content:space-between; align-items:center ;">
-        <h4 class="card-title  text-light  fw-semibold ">
+    <div class="card-header    " style="display: flex;justify-content:space-between; align-items:center ;">
+        <h4 class="card-title text-dark ">
             <span>{{ $iteration }}.</span> {{ $question->title }}
         </h4>
 
-        <a href="{{ route('voyager.questions.edit', $question) }}" class="btn btn-sm btn-primary "  >
-                Edit
-            </a>
-            
-        
+
+
     </div>
     <div class="card-body">
         <div class="row mb-5">
@@ -34,6 +44,16 @@
         </div>
     </div>
 
+    <div class="card-footer">
+        <div  style="display:flex ;gap:10px;" class="actions">
 
+
+            @foreach($actions as $action)
+
+            @include('voyager::bread.partials.actions', ['action' => $action, 'data' => $question])
+
+            @endforeach
+        </div>
+    </div>
 
 </div>

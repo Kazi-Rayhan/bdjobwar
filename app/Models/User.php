@@ -23,6 +23,7 @@ class User extends \TCG\Voyager\Models\User
      */
     protected $guarded = [];
 
+    public $additional_attributes = ['batch_name'];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,6 +44,10 @@ class User extends \TCG\Voyager\Models\User
         'phone_verified_at' => 'datetime',
     ];
 
+    public function getBatchNameAttribute(){
+        return "{$this->name} - {$this->phone}";
+    }
+
     public function information()
     {
         return $this->hasOne(UserMeta::class, 'user_id');
@@ -52,6 +57,7 @@ class User extends \TCG\Voyager\Models\User
     public function scopeCustomer($query)
     {
         $ids = UserMeta::select('user_id')->get()->pluck('user_id')->toArray();
+    
         return $query->where('active', 1)->where('role_id', 2)->whereNotIn('id', $ids);
     }
 

@@ -150,6 +150,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $defaultSearchKey = $dataType->default_search_key ?? null;
 
         // Actions
+     
         $actions = [];
         if (!empty($dataTypeContent->first())) {
             foreach (Voyager::actions() as $action) {
@@ -330,7 +331,10 @@ class QuestionsVoyagerController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
+      
+      
 
+      
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
     }
 
@@ -589,7 +593,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
             event(new BreadDataDeleted($dataType, $data));
         }
 
-        return redirect()->route("voyager.{$dataType->slug}.index")->with($data);
+        return redirect()->back()->with($data);
     }
 
     public function restore(Request $request, $id)
@@ -778,6 +782,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
 
         // Delete Files
         foreach ($dataType->deleteRows->where('type', 'file') as $row) {
+            
             if (isset($data->{$row->field})) {
                 foreach (json_decode($data->{$row->field}) as $file) {
                     $this->deleteFileIfExists($file->download_link);
