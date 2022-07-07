@@ -22,7 +22,7 @@
                 <a href="{{route('orderCreate',['type'=>'batch','id'=>$batch->id])}}" class="btn btn-success">ভর্তি হন</a>
                 <a href="{{$batch->link()}}" class="btn btn-success">বিস্তারিত</a>
         
-                <a href="{{Voyager::image(json_decode($batch->routine)[0]->download_link)}}" class="btn btn-success">রুটিন ডাউনলোড করুন</a>
+                <a href="{{Voyager::image(json_decode($batch->routine)[0]->download_link)??''}}" class="btn btn-success">রুটিন ডাউনলোড করুন</a>
             
             </div>
         </div>
