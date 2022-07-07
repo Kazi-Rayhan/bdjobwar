@@ -123,17 +123,17 @@ class PageController extends Controller
         $exams = Exam::active()->where('batch_id',$batch->id);
 
         if($request->filter == 'upcoming'){
-            // $exams = $exams->where('from', '>', now());
-            $exam;
+            $exams = $exams->where('from', '>', now());
+            // $exam;
         }
-        // elseif($request->filter == 'archived'){
-        //     $exams = $exams->where('to', '<', now());
+        elseif($request->filter == 'archived'){
+            $exams = $exams->where('to', '<', now());
 
-        // }
-        // else{
-        //     $exams = $exams->where('from', '<', now())
-        //     ->where('to', '>', now());
-        // }
+        }
+        else{
+            $exams = $exams->where('from', '<', now())
+            ->where('to', '>', now());
+        }
         
         $exams = $exams->get();
         return view('frontEnd/batch',compact('batch','exams'));

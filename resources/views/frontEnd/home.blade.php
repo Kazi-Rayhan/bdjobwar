@@ -194,7 +194,7 @@ $numto = new NumberToBangla();
     <div class="row py-5">
       @foreach($courses as $course)
 
-      <div class="col-md-4">
+      <div class="col-md-4 mb-3">
         <div class="card border-success shadow package-hover">
           <div class="">
             <img src="{{Voyager::image($course->thumbnail)}}" height="300px" style="object-fit:contain" class="card-img-top" alt="...">
