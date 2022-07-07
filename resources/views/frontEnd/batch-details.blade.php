@@ -21,9 +21,9 @@
             <div class="d-flex gap-2 mt-2">
                 <a href="{{route('orderCreate',['type'=>'batch','id'=>$batch->id])}}" class="btn btn-success">ভর্তি হন</a>
                 <a href="{{$batch->link()}}" class="btn btn-success">বিস্তারিত</a>
-        
+        @if($batch->routine)
                 <a href="{{Voyager::image(json_decode($batch->routine)[0]->download_link)??''}}" class="btn btn-success">রুটিন ডাউনলোড করুন</a>
-            
+            @endif
             </div>
         </div>
         <div class="">
