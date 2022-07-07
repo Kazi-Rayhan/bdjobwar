@@ -41,7 +41,7 @@ $numto = new NumberToBangla();
                         </th>
 
                         <th scope="col">
-
+            
                         </th>
                     </tr>
                 </thead>
@@ -70,16 +70,16 @@ $numto = new NumberToBangla();
                         </td>
 
                         <td>
-                            <div class="dropdown open">
-                                <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- <div class="dropdown open"> -->
+                                <!-- <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Dropdown
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    <a href="{{route('start-exam',$exam->uuid)}}" class="dropdown-item"> টেস্ট দিন</a>
-                                    <button data-syllabus="{{$exam->syllabus}}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button>
+                                </a> -->
+                                <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
+                                    <a href="{{route('start-exam',$exam->uuid)}}" class="btn btn-primary"> টেস্ট দিন</a>
+                                    <button data-syllabus="{{$exam->syllabus}}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
                                     <!-- <a href="{{route('all-results-exam',$exam->uuid)}}" class="dropdown-item"> মেধাতালিকা</a> -->
-
-                                </div>
+<!-- 
+                                </div> -->
                             </div>
 
                         </td>
@@ -137,16 +137,16 @@ $numto = new NumberToBangla();
                         </td>
 
                         <td>
-                            <div class="dropdown open">
+                            <!-- <div class="dropdown open">
                                 <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Dropdown
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
+                                </a> -->
+                                <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
                                     <!-- <a href="{{route('start-exam',$exam->uuid)}}" class="dropdown-item"> টেস্ট দিন</a> -->
-                                    <button data-syllabus="{{$exam->syllabus}}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button>
+                                    <button data-syllabus="{{$exam->syllabus}}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
                                     <!-- <a href="{{route('all-results-exam',$exam->uuid)}}" class="dropdown-item"> মেধাতালিকা</a> -->
 
-                                </div>
+                                <!-- </div> -->
                             </div>
 
                         </td>
@@ -200,18 +200,18 @@ $numto = new NumberToBangla();
                  
 
                         <td>
-                            <div class="dropdown open">
+                            <!-- <div class="dropdown open">
                                 <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Dropdown
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    <a href="{{route('start-exam',$exam->uuid)}}" class="dropdown-item"> টেস্ট দিন</a>
+                                </a> -->
+                                <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
+                                    <a href="{{route('start-exam',$exam->uuid)}}" class="btn btn-primary"> টেস্ট দিন</a>
                                     <!-- <button data-syllabus="{{$exam->syllabus}}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button> -->
-                                    <a href="{{route('all-results-exam',$exam->uuid)}}" class="dropdown-item"> মেধাতালিকা</a>
-                                    <a href="{{route('answerSheet',$exam->uuid)}}" class="dropdown-item"> উত্তরমালা</a>
+                                    <a href="{{route('all-results-exam',$exam->uuid)}}" class="btn btn-dark"> মেধাতালিকা</a>
+                                    <a href="{{route('answerSheet',$exam->uuid)}}" class="btn btn-info text-white"> উত্তরমালা</a>
 
-                                </div>
-                            </div>
+                                <!-- </div> -->
+                            <!-- </div> -->
 
                         </td>
                     </tr>
