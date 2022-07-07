@@ -103,7 +103,7 @@ $numto = new NumberToBangla();
             </tr>
           </thead>
           <tbody class="">
-            @foreach($liveExams as $exam)
+            @foreach($latestResults as $exam)
             <tr>
               <td>{{$exam->title}}</td>
               <td>{{join(', ',$exam->subjects->pluck('name')->toArray())}}</td>

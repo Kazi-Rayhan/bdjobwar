@@ -46,6 +46,7 @@ class Sms{
 	        "message" => $this->body,
 		]);
         return $client->json();
+   
     }
 
     public static function otp(User $user){

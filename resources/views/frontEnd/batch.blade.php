@@ -21,7 +21,8 @@ $numto = new NumberToBangla();
             </div>
         </nav>
         <div  style="overflow-x:auto;width:100%;min-height:200px;">
-            <table class="table table-borderless table-hover text-center " style="width: 1300px;">
+        @if(request()->filter == '')
+        <table class="table table-borderless table-hover text-center " style="width: 1300px;">
                 <thead class="bg-danger text-light">
                     <tr>
                         <th scope="col">
@@ -76,7 +77,74 @@ $numto = new NumberToBangla();
                                 <div class="dropdown-menu" aria-labelledby="triggerId">
                                     <a href="{{route('start-exam',$exam->uuid)}}" class="dropdown-item"> টেস্ট দিন</a>
                                     <button data-syllabus="{{$exam->syllabus}}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button>
-                                    <a href="{{route('all-results-exam',$exam->uuid)}}" class="dropdown-item"> মেধাতালিকা</a>
+                                    <!-- <a href="{{route('all-results-exam',$exam->uuid)}}" class="dropdown-item"> মেধাতালিকা</a> -->
+
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    @endforeach
+                </tbody>
+          </table>
+          @endif
+        @if(request()->filter == 'upcoming')
+            <table class="table table-borderless table-hover text-center " style="width: 1300px;">
+                <thead class="bg-danger text-light">
+                    <tr>
+                    <th scope="col">
+                            পরীক্ষার নাম
+                        </th>
+                       <th scope="col">
+                          বিষয়
+                        </th>
+                        <th scope="col">
+                            শুরু
+                        </th>
+
+                        <th scope="col">
+                            শেষ
+                        </th>
+                        <th scope="col">
+                 
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($exams as $exam)
+                    @php
+                    $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
+                    $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
+                    @endphp
+                    <tr>
+                
+
+                        <td>
+                            {{$exam->title}}
+                        </td>
+
+                        <td>
+                            {{$exam->sub_title}}
+                        </td>
+
+                        <td>
+                        {{ $from->getDateTime()->format('j F, Y b h:i')}}
+                        </td>
+                        <td >
+                            {{ $to->getDateTime()->format('j F, Y b h:i')}}
+                        </td>
+
+                        <td>
+                            <div class="dropdown open">
+                                <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="triggerId">
+                                    <!-- <a href="{{route('start-exam',$exam->uuid)}}" class="dropdown-item"> টেস্ট দিন</a> -->
+                                    <button data-syllabus="{{$exam->syllabus}}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button>
+                                    <!-- <a href="{{route('all-results-exam',$exam->uuid)}}" class="dropdown-item"> মেধাতালিকা</a> -->
 
                                 </div>
                             </div>
@@ -88,6 +156,73 @@ $numto = new NumberToBangla();
                 </tbody>
             </table>
         </div>
+        @endif
+        @if(request()->filter == 'archived')
+            <table class="table table-borderless table-hover text-center " style="width: 1300px;">
+                <thead class="bg-danger text-light">
+                    <tr>
+                    <th scope="col">
+                        নাম
+                        </th>
+                       <th scope="col">
+                          বিষয়
+                        </th>
+                        <th scope="col">
+                        পূর্ণ নম্বর
+                        </th>
+
+                        <th scope="col">
+                 
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($exams as $exam)
+                    @php
+                    $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
+                    $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
+                    @endphp
+                    <tr>
+                
+
+                        <td>
+                            {{$exam->title}}
+                        </td>
+
+                        <td>
+                            {{$exam->sub_title}}
+                        </td>
+
+                        <td>
+                        {{$exam->fullMark}}
+                        </td>
+                 
+
+                        <td>
+                            <div class="dropdown open">
+                                <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="triggerId">
+                                    <a href="{{route('start-exam',$exam->uuid)}}" class="dropdown-item"> টেস্ট দিন</a>
+                                    <!-- <button data-syllabus="{{$exam->syllabus}}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button> -->
+                                    <a href="{{route('all-results-exam',$exam->uuid)}}" class="dropdown-item"> মেধাতালিকা</a>
+                                    <a href="{{route('answerSheet',$exam->uuid)}}" class="dropdown-item"> উত্তরমালা</a>
+
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @endif
+
+          
     </div>
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

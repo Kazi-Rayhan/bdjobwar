@@ -81,7 +81,7 @@
     </div>
 </div>
 @endsection
-@section('css')
+@section('js')
 <script>
     function myFunction() {
   var x = document.getElementById("password");

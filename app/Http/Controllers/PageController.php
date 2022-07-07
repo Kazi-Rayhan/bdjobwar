@@ -37,6 +37,7 @@ class PageController extends Controller
             ->latest()
             ->limit(3)
             ->get();
+  
         $liveExams = Exam::free()
             ->active()
             ->where('from', '<', now())
@@ -44,6 +45,15 @@ class PageController extends Controller
             ->latest()
             ->limit(3)
             ->get();
+        $yesterday = Carbon::yesterday();
+        // dd($yesterday);
+        $latestResults = Exam::free()
+            ->active()
+            ->where('from', '<=', $yesterday)
+            ->latest()
+            ->limit(3)
+            ->get();
+            // dd($latestResults);
         $livePaidExams = Exam::paid()
             ->where('from', '<', now())
             ->where('to', '>', now())
@@ -88,7 +98,8 @@ class PageController extends Controller
                 'notices',
                 'livePaidExams',
                 'finishedPaidExams',
-                'courses'
+                'courses',
+                'latestResults',
             )
         );
     }
@@ -112,16 +123,17 @@ class PageController extends Controller
         $exams = Exam::active()->where('batch_id',$batch->id);
 
         if($request->filter == 'upcoming'){
-            $exams = $exams->where('from', '>', now());
+            // $exams = $exams->where('from', '>', now());
+            $exam;
         }
-        elseif($request->filter == 'archived'){
-            $exams = $exams->where('to', '<', now());
+        // elseif($request->filter == 'archived'){
+        //     $exams = $exams->where('to', '<', now());
 
-        }
-        else{
-            $exams = $exams->where('from', '<', now())
-            ->where('to', '>', now());
-        }
+        // }
+        // else{
+        //     $exams = $exams->where('from', '<', now())
+        //     ->where('to', '>', now());
+        // }
         
         $exams = $exams->get();
         return view('frontEnd/batch',compact('batch','exams'));

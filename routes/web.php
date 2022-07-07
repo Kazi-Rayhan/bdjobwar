@@ -33,6 +33,11 @@ Route::post('/verify/otp/check', [AuthenticateController::class, 'checkOtp'])->n
 Route::get('/verify', [AuthenticateController::class, 'otp'])->name('otp');
 Route::get('/course/{slug}/{course}',[PageController::class,'course'])->name('course');
 Route::get('/batch/{slug}/{batch}',[PageController::class,'batch'])->name('batch');
+Route::post('/reset-password',[AuthenticateController::class,'resetPassword'])->name('resetPassword');
+Route::get('/reset-password/verify',[AuthenticateController::class,'resetPasswordVerify'])->name('resetPasswordVerify');
+Route::post('/reset/otp/check', [AuthenticateController::class, 'resetOtpCheck'])->name('resetOtpCheck');
+Route::get('/password/set', [AuthenticateController::class, 'setPassword'])->name('setPassword');
+Route::post('/password/confirm', [AuthenticateController::class, 'confirmPassword'])->name('confirmPassword');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
