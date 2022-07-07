@@ -7,7 +7,7 @@ $numto = new NumberToBangla();
 @endphp
 <!-- Slider section start -->
 <section class="container-fluid container-md  d-flex justify-content-center  " style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
-  <div class=" mt-4 mb-2 row">
+  <div class=" mt-4 mb-2 row w-100">
     <div class=" col-md-12 col-xl-7 col-12 mb-2">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
