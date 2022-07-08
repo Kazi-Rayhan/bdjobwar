@@ -74,18 +74,22 @@ Route::group(['middleware'=>['auth','canAttendThisExam']],function(){
     Route::get('exam/{uuid}/answer-sheet-pdf',[ExamController::class,'answerSheetPdf'])->name('answerSheetPdf');
 });
 
+Route::get('start/{uuid}',[ExamController::class,'exam_start'])->name('start-exam')->middleware('canAttendThisExam');
+Route::get('e/{uuid}',[ExamController::class,'exam_start'])->name('share.exam');
+Route::get('b/{batch}',[PageController::class,'batchDetails'])->name('batch.details');
+
+
+
 Route::group(['prefix' => 'exam', 'controller' => ExamController::class, 'middleware' => ['auth']], function () {
     Route::get('all/results/{uuid}','exam_all_results')->name('all-results-exam');
     Route::get('all/results/pdf/{uuid}','exam_all_results_pdf')->name('all-results-exam-pdf');
 
     Route::get('{uuid}','exam')->name('question')->middleware(['canAttendThisExam','exam']);
-    Route::get('start/{uuid}','exam_start')->name('start-exam')->middleware('canAttendThisExam');
     Route::get('result/{uuid}','exam_result')->name('result-exam')->middleware(['canAttendThisExam']);
     Route::get('start/2/{uuid}','start')->name('start')->middleware('canAttendThisExam');
     Route::post('{uuid}/store','store')->name('exam.store')->middleware(['canAttendThisExam','exam']);
 }); 
 
-Route::get('b/{slugh}/{batch}/details',[PageController::class,'batchDetails'])->name('batch.details');
 Route::get('{batch}/batch/routine',[PageController::class,'batchRoutine'])->name('batch.routines');
 // Route::get('{batch}/batch/results',[PageController::class,'batchResults']);
 
@@ -100,3 +104,5 @@ Route::group(['prefix' => 'success', 'controller' => SuccessController::class, '
     Route::get('/registration', 'registration')->name('registraion');
     Route::get('/order/{order}', 'order')->name('order');
 });
+
+

@@ -260,7 +260,8 @@
                                         </td>
                                         <td class="no-sort no-click bread-actions">
                                            <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u={{route('start-exam',$data->uuid)}}&display=popup&ref=plugin&src=share_button" style="margin-left: 2px;"> <i class="voyager-facebook"></i> Share on facebook</a>
-                                            @foreach($actions as $action)
+                                           <button class="btn btn-primary copy" data-link="{{route('share.exam',$data->uuid)}}" >Copy Link</button> 
+                                           @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
                                                     @include('voyager::bread.partials.actions', ['action' => $action])
                                                 @endif
@@ -398,5 +399,37 @@
             });
             $('.selected_ids').val(ids);
         });
+    </script>
+
+    <script>
+        function copyToClipboard(textToCopy) {
+    // navigator clipboard api needs a secure context (https)
+    if (navigator.clipboard && window.isSecureContext) {
+        // navigator clipboard api method'
+        return navigator.clipboard.writeText(textToCopy);
+    } else {
+        // text area method
+        let textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+        // make the textarea out of viewport
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        return new Promise((res, rej) => {
+            // here the magic happens
+            document.execCommand('copy') ? res() : rej();
+            textArea.remove();
+        });
+    }
+}
+        $('.copy').click((e)=>{
+            copyToClipboard(e.target.dataset.link)
+    .then(() => alert('link coppied: '+e.target.dataset.link))
+    .catch(() => alert('error'));
+           
+        })
     </script>
 @stop

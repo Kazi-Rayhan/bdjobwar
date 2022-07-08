@@ -168,7 +168,7 @@ class PageController extends Controller
         return view('frontEnd.packageDetails',compact('package'));
     }
 
-    public function batchDetails($slug,Batch $batch){
+    public function batchDetails(Batch $batch){
         return view('frontEnd.batch-details',compact('batch'));
     }
 }
