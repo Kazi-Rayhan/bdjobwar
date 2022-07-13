@@ -28,7 +28,7 @@ $numto = new NumberToBangla();
 
                     </div>
                     <div class=" btn-group gap-2 mt-5">
-                        <a href="{{$batch->link()}}" class="btn btn-success">বিস্তারিত</a>
+                        <a href="{{route('batch.details',$batch)}}" class="btn btn-success">বিস্তারিত</a>
                         <!-- <a href="#" class="btn btn-dark">রুটিন</a> -->
 
                     </div>

@@ -76,7 +76,7 @@ Route::group(['middleware'=>['auth','canAttendThisExam']],function(){
 
 Route::get('start/{uuid}',[ExamController::class,'exam_start'])->name('start-exam')->middleware('canAttendThisExam');
 Route::get('e/{uuid}',[ExamController::class,'exam_start'])->name('share.exam');
-Route::get('b/{batch}',[PageController::class,'batchDetails'])->name('batch.details');
+Route::get('batch-details/{batch}',[PageController::class,'batchDetails'])->name('batch.details');
 
 
 
