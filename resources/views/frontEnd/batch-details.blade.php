@@ -12,18 +12,18 @@
 
 <!-- bratcam area  end-->
 <div class="container my-md-5 my-2 d-flex flex-column gap-3 justify-content-center align-items-center">
-    <img src="{{Voyager::image($batch->thumbnail)}}" style="height:300px;object-fit:cover" alt="">
+    <img src="{{Voyager::image($batch->thumbnail)}}" style="width:100%;height:300px;object-fit:contain" alt="">
     <div class="d-flex flex-column gap-3 w-50">
         <div>
             <h2 class="text-dark">{{$batch->title}}</h2>
             <div style="height:2px;width:60px" class="bg-danger"></div>
 
-            <div class="d-flex gap-2 mt-2">
+            <div class="d-flex flex-wrap gap-2 mt-2">
                 <a href="{{route('orderCreate',['type'=>'batch','id'=>$batch->id])}}" class="btn btn-success">ভর্তি হন</a>
                 <a href="{{$batch->link()}}" class="btn btn-success">বিস্তারিত</a>
-        @if($batch->routine)
+                @if($batch->routine)
                 <a href="{{Voyager::image(json_decode($batch->routine)[0]->download_link)??''}}" class="btn btn-success">রুটিন ডাউনলোড করুন</a>
-            @endif
+                @endif
             </div>
         </div>
         <div class="">
@@ -43,7 +43,7 @@
 
         </p>
 
-      
+
 
     </div>
     <h2>
@@ -51,11 +51,11 @@
     </h2>
     <div style="height:2px;width:60px" class="bg-danger"></div>
     <div class="owl-carousel ">
-            @foreach($batch->exams as $exam)
-            <x-exam-card :exam="$exam" />
-           
-            @endforeach
-        </div>
+        @foreach($batch->exams as $exam)
+        <x-exam-card :exam="$exam" />
+
+        @endforeach
+    </div>
 </div>
 
 
@@ -64,7 +64,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(document).ready(function() {
-        $(".owl-carousel").owlCarousel();
+        $(".owl-carousel").owlCarousel({
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+            loop:false
+        }
+    }
+});
     });
 </script>
 @endsection
