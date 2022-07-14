@@ -11,7 +11,7 @@
 
 
 <!-- bratcam area  end-->
-<div class="container my-md-5 my-2 d-flex flex-column gap-3 justify-content-center align-items-center">
+<div class="container-fluid container-md my-md-5 my-2 d-flex flex-column gap-3 justify-content-center align-items-center">
     <img src="{{Voyager::image($batch->thumbnail)}}" style="width:100%;height:300px;object-fit:contain" alt="">
     <div class="d-flex flex-column gap-3 w-50">
         <div>
