@@ -12,9 +12,24 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
-    public function dashboard()
-    {
+
+    public function dashboard(){
         return view('dashboard.index');
+    }
+
+    public function courses(){
+        $courses = auth()->user()->batches;
+        return view('dashboard.courses',compact('courses'));
+    }
+
+    public function editProfile()
+    {
+        return view('dashboard.editprofile');
+    }
+
+    public function package()
+    {
+        return view('dashboard.packages');
     }
     public function orders()
     {

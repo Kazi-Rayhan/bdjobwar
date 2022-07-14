@@ -61,7 +61,7 @@
             <tr>
             @if($result->user_id==Auth()->user()->id)
                 <td class="text-danger">
-                    {{$pos+1}}
+                    {{$result->exam->getRanking($result->user)}}
                 </td>
              
                 <td class="text-danger">
@@ -85,7 +85,7 @@
                 </td>
                 @else
                 <td>
-                    {{$pos+1}}
+                {{$result->exam->getRanking($result->user)}}
                 </td>
              
                 <td>

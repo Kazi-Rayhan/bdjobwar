@@ -9,8 +9,7 @@ class Order extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public const STATUS = ['DECLINED' => '0','A
-    CCEPTED' => '1','PENDING' => '2'];
+    public const STATUS = ['DECLINED' => '0','ACCEPTED' => '1','PENDING' => '2'];
     public const METHOD = ['BKASH' => '0','NAGAD'=>'1','ROCKET'=>'2'];
     public function orderable()
     {

@@ -27,6 +27,11 @@ class Batch extends Model
         return "{$this->course->title} - {$this->title}";
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+
     public function orders()
     {
         return $this->morphMany(Order::class, 'orderable');

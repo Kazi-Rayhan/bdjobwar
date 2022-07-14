@@ -56,9 +56,12 @@ Route::group(['prefix' => 'admin'], function () {
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/home', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/courses', [DashboardController::class, 'courses'])->name('courses');
+    Route::get('/package', [DashboardController::class, 'package'])->name('package');
+    Route::get('/edit/profile', [DashboardController::class, 'editProfile'])->name('editprofile');
     Route::get('/orders', [DashboardController::class, 'orders'])->name('orders');
     Route::get('/invoice/{order}', [DashboardController::class, 'invoice'])->name('invoice');
-    Route::get('/exams', [DashboardController::class, 'exams'])->name('dashboard.exams');
+    Route::get('/exams', [DashboardController::class, 'exams'])->name('exams');
     Route::post('/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
     Route::get('/test-history', [DashboardController::class, 'testHistory'])->name('testHistory');
 });

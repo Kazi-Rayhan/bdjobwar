@@ -162,6 +162,9 @@ class User extends \TCG\Voyager\Models\User
         return true;
     }
 
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 
     public function subjects()
     {

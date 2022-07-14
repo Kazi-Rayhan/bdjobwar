@@ -116,8 +116,8 @@ class PageController extends Controller
     }
 
     public function course($slug,Course $course){
-       $course->load('batches');
-       return view('frontEnd/course',compact('course'));
+       $batches =  Batch::active()->where('course_id',$course->id)->get();
+       return view('frontEnd/course',compact('course','batches'));
     }
 
     public function batch($slug,Batch $batch,Request $request){

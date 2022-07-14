@@ -57,7 +57,7 @@ class ExamController extends Controller
     {
         $exam = Exam::where('uuid',$uuid)->first();
 
-        $questions=$exam->questions;
+        $questions= $exam->questions()->active()->inRandomOrder()->get();
         return view('frontEnd.questions',compact('exam','questions'));
     }
     public function store($uuid, Request $request)
@@ -96,8 +96,10 @@ class ExamController extends Controller
     }
     public function answerSheetPdf($uuid)
     {
-        $exam = Exam::where('uuid',$uuid)->with('questions')->first();
-        $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf', ['exam' => $exam], [
+        $exam = Exam::where('uuid',$uuid)->first();
+
+        $questions= $exam->questions()->active()->get();
+        $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf', ['questions'=>$questions,'exam'=>$exam], [
             'title' => $exam->title.' Answer Sheet',
             'Author' => 'BD Job War'
           ]);
@@ -107,8 +109,10 @@ class ExamController extends Controller
       }
     public function answerSheetPdfWithOutMarking($uuid)
     {
-        $exam = Exam::where('uuid',$uuid)->with('questions')->first();
-        $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_without_marking', ['exam' => $exam], [
+        $exam = Exam::where('uuid',$uuid)->first();
+
+        $questions= $exam->questions()->active()->get();
+        $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_without_marking', ['questions'=>$questions,'exam'=>$exam], [
             'title' => $exam->title.' Answer Sheet',
             'Author' => 'BD Job War'
           ]);

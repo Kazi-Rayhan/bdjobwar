@@ -12,6 +12,12 @@ class Question extends Model
     public function exams(){
         return $this->belongsToMany(Exam::class);
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+    
     public function choices()
     {
         return $this->hasMany(Choice::class,'question_id');

@@ -50,15 +50,37 @@
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
-    <a class="nav-link" href="{{route('orders')}}">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Orders</span></a>
+    <a class="nav-link" href="{{route('exams')}}">
+    <i class="fab fa-pied-piper"></i>
+        <span>Your Exams</span></a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{{route('dashboard.exams')}}">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Exams</span></a>
+    <a class="nav-link" href="{{route('orders')}}">
+    <i class="fas fa-file-invoice-dollar"></i>
+        <span>Your Orders</span></a>
 </li>
+<li class="nav-item">
+    <a class="nav-link" href="{{route('courses')}}">
+    <i class="fas fa-chalkboard-teacher"></i>
+        <span>Your Courses</span></a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{route('package')}}">
+    <i class="fas fa-box"></i>
+        <span>Subscribed Package</span></a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{route('editprofile')}}">
+    <i class="fas fa-user-edit"></i>
+        <span>Edit Profile</span></a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{route('home_page')}}">
+    <i class="fas fa-home"></i>
+        <span>Back to home</span></a>
+</li>
+
 <!-- <li class="nav-item">
     <a class="nav-link" href="{{route('testHistory')}}">
         <i class="fas fa-fw fa-table"></i>

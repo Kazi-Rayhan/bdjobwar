@@ -79,10 +79,10 @@
         <h6 style=" margin:0px;">Answer Sheet</h6>
     </div>
     <table style="width: 100%;">
-        @foreach($exam->questions->chunk(2) as $questions)
+        @foreach($questions->chunk(2) as $q)
 
         <tr>
-        @foreach($questions as $question)
+        @foreach($q as $question)
             <td  width="50%">
 
 
