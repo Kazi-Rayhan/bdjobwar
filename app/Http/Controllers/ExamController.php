@@ -101,9 +101,19 @@ class ExamController extends Controller
             'title' => $exam->title.' Answer Sheet',
             'Author' => 'BD Job War'
           ]);
-        // Storage::put('public/pdf/answer_sheet.pdf', $pdf->output());
+   
         return $pdf->download('answer_sheet.pdf');
-        // return $pdf->stream('answer_sheet.pdf');
-        // return $pdf->stream('answer_sheet.pdf');
+ 
+      }
+    public function answerSheetPdfWithOutMarking($uuid)
+    {
+        $exam = Exam::where('uuid',$uuid)->with('questions')->first();
+        $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_without_marking', ['exam' => $exam], [
+            'title' => $exam->title.' Answer Sheet',
+            'Author' => 'BD Job War'
+          ]);
+   
+        return $pdf->download('questions.pdf');
+ 
       }
 }

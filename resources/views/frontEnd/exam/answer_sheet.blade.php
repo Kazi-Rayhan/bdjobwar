@@ -7,6 +7,7 @@ $numto = new NumberToBangla();
 <div class="container my-5 ">
     <div class="main-blog-area mb-5">
         <a href="{{route('answerSheetPdf',$exam->uuid)}}" class="btn btn-dark " >পিডিএফ ডাউনলোড করুন</a>    
+        <a href="{{route('answerSheetPdfWithOutMarking',$exam->uuid)}}" class="btn btn-dark " >প্রশ্নপত্র ডাউনলোড করুন</a>    
     <div class=" mt-1">
 
             <div id="exam-header " class="  text-center border border-success shadow  rounded text-light pt-2" style="background-color: #019514;">

@@ -75,7 +75,7 @@
 
 <body>
     <div style="text-align: center;">
-
+   
         <h6 style=" margin:0px;">Answer Sheet</h6>
     </div>
     <table style="width: 100%;">
@@ -100,14 +100,14 @@
 
 
                         @if($choice->index == $question->answer)
-                        <p style="color:green">
+                        <p style="color:black">
 
                             {{$choice->label}}. {{$choice->choice_text}} @if($choice->index == $question->answer)<sup class=" text-success "><i class="fa fa-check"></i> </sup>@elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )<sup class=" text-danger "><i class="fa fa-times"></i> </sup> @else @endif
 
                         </p>
 
                         @elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )
-                        <p style="color:red">
+                        <p style="color:black">
                             {{$choice->label}}. {{$choice->choice_text}} @if($choice->index == $question->answer)<sup class=" text-success "><i class="fa fa-check"></i> </sup>@elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )<sup class=" text-danger "><i class="fa fa-times"></i> </sup> @else @endif
                         </p>
                         @else

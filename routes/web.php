@@ -72,6 +72,7 @@ Route::get('/package/{slug}/{package}', [PageController::class, 'packageDetails'
 Route::group(['middleware'=>['auth','canAttendThisExam']],function(){
     Route::get('exam/{uuid}/answer-sheet',[ExamController::class,'answerSheet'])->name('answerSheet');
     Route::get('exam/{uuid}/answer-sheet-pdf',[ExamController::class,'answerSheetPdf'])->name('answerSheetPdf');
+    Route::get('exam/{uuid}/questions-sheet-pdf',[ExamController::class,'answerSheetPdfWithOutMarking'])->name('answerSheetPdfWithOutMarking');
 });
 
 Route::get('start/{uuid}',[ExamController::class,'exam_start'])->name('start-exam')->middleware('canAttendThisExam');

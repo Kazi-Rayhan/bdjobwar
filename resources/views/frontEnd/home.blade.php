@@ -229,11 +229,11 @@ $numto = new NumberToBangla();
 
             </h5>
             <ul class="premium-feature">
-              <li><span>প্রশ্ন ব্যাংক</span></li>
-              <li><span>সমস্ত রুটিন ভিত্তিক পরীক্ষা</span></li>
-              <li><span>সমস্ত বিদ্যমান পরীক্ষা</span></li>
-              <li><span>অনলাইন স্ব-পরীক্ষা</span></li>
-              <li><span>কাজের সমাধান</span></li>
+              <li><span>প্রশ্ন ব্যাংক সার্স</span></li>
+              <li><span>সকল পেইড কোর্স</span></li>
+              <li><span>জব সলিউশন</span></li>
+              <li><span>পিডিএফ ডাউনলোড</span></li>
+              <li><span>সকল লাইভ ও আর্কাইভ পরীক্ষা</span></li>
 
             </ul>
             <!-- <a href="{{route('orderCreate',['package',$package->id])}}" class="btn  btn-danger text-uppercase">
