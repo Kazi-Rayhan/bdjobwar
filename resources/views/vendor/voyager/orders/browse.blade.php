@@ -272,7 +272,9 @@
                                         </td>
                                     </tr>
                                     @else
+                                    @php
                                     $data->delete();
+                                    @endphp
                                     @endif
                                     @endforeach
                                 </tbody>
