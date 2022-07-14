@@ -271,9 +271,9 @@
                                             @endforeach
                                         </td>
                                     </tr>
-                                    @endif
-                                    $data->delete();
                                     @else
+                                    $data->delete();
+                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>
