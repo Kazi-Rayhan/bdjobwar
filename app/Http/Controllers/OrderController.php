@@ -44,7 +44,7 @@ class OrderController extends Controller
         }
         if ($data->price <= 0) {
             $order = OrderServices::make($type, $id, 'FREE PURCHASE', '', 3)->save();
-            OrderServices::accept($order);
+            OrderServices::accept($order,false);
             return redirect()
                 ->route('success.order', compact('order'))
                 ->with('success', 'Order created successfully');

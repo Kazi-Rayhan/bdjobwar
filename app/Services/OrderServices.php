@@ -58,9 +58,11 @@ class OrderServices
         return $order;
     }
 
-    public static function accept(Order $order)
+    public static function accept(Order $order ,$authorize = false)
     {
-        if (!Auth::user()->can('read', $order)) throw new Exception('You do not have permission');
+        if($authorize){
+            if (!Auth::user()->can('read', $order)) throw new Exception('You do not have permission');
+        }
         try {
             DB::beginTransaction();
             $user = User::find($order->user_id);
