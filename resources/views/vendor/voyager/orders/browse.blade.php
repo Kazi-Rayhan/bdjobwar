@@ -260,7 +260,7 @@
                                         <span > Title :</span> <span class="text-info">{{$data->orderable->information()['title']}} </span>
                                         <br>
                                         <span> Type :</span> <span class="text-info">{{$data->orderable->information()['type']}} </span>
-                                        @if($data->orderable)
+                                        @endif
                                         </td>
                                         <td class="no-sort no-click bread-actions">
                                             @foreach($actions as $action)
