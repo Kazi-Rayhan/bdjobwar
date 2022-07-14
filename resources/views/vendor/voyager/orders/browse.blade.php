@@ -111,6 +111,7 @@
                                 <tbody>
         
                                     @foreach($dataTypeContent as $data)
+                                    @if($data->orderable)
                                     <tr>
                                         @if($showCheckboxColumn)
                                             <td>
@@ -256,11 +257,11 @@
                                             </td>
                                         @endforeach
                                         <td>
-                                            @if($data->orderable)
+                                            
                                         <span > Title :</span> <span class="text-info">{{$data->orderable->information()['title']}} </span>
                                         <br>
                                         <span> Type :</span> <span class="text-info">{{$data->orderable->information()['type']}} </span>
-                                        @endif
+                                
                                         </td>
                                         <td class="no-sort no-click bread-actions">
                                             @foreach($actions as $action)
@@ -270,6 +271,9 @@
                                             @endforeach
                                         </td>
                                     </tr>
+                                    @endif
+                                    $data->delete();
+                                    @else
                                     @endforeach
                                 </tbody>
                             </table>
