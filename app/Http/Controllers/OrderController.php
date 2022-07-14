@@ -42,6 +42,13 @@ class OrderController extends Controller
                 $data = Batch::find($id);
                 break;
         }
+        if ($data->price <= 0) {
+            $order = OrderServices::make($type, $id, 'FREE PURCHASE', '', 3)->save();
+            OrderServices::accept($order);
+            return redirect()
+                ->route('success.order', compact('order'))
+                ->with('success', 'Order created successfully');
+        }
         return view('frontEnd.order', compact('data', 'type', 'id'));
     }
 
@@ -54,7 +61,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-    //    dd($request->all());
+        //    dd($request->all());
         $request->validate([
             "account" => 'required',
             "trnxId" => 'nullable',
@@ -63,18 +70,17 @@ class OrderController extends Controller
         ]);
         try {
             DB::beginTransaction();
-            $data = [$request->type, $request->id, $request->account, $request->trnxId,$request->method];
+            $data = [$request->type, $request->id, $request->account, $request->trnxId, $request->method];
             // dd($data);
-           $order = OrderServices::make(...$data)->save();
-        //    dd($order);
+            $order = OrderServices::make(...$data)->save();
+            //    dd($order);
             SMS::compose(Auth()->user()->phone, 'Thanks, your transaction id is pending');
             DB::commit();
 
             return redirect()
-                ->route('success.order',compact('order'))
+                ->route('success.order', compact('order'))
                 ->with('success', 'Order created successfully');
-        } 
-        catch (Exception $e) {
+        } catch (Exception $e) {
             // return $e->getMessage();
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
