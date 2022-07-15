@@ -7,7 +7,7 @@
         <div>
             <h2 class="text-dark">{{$result->title}}</h2>
             <div style="height:2px;width:60px" class="mb-2 @if($result->pivot->মোট >= $result->minimum_to_pass) bg-success @else bg-danger @endif "></div>
-            <h5 class="">মোট পরীক্ষার্থী সংখা : {{$result->users()->count()}}</h5>
+            <h5 class="">মোট পরীক্ষার্থী সংখা : {{$count}}</h5>
             <h5 class="text-success">আপনার অবস্থান : {{$result->getRanking(auth()->user())}}</h5>
         </div>
 
