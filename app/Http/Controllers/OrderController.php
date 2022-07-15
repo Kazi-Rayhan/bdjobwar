@@ -42,13 +42,7 @@ class OrderController extends Controller
                 $data = Batch::find($id);
                 break;
         }
-        if ($data->price <= 0) {
-            $order = OrderServices::make($type, $id, 'FREE PURCHASE', '', 3)->save();
-            OrderServices::accept($order,false);
-            return redirect()
-                ->route('success.order', compact('order'))
-                ->with('success', 'Order created successfully');
-        }
+      
         return view('frontEnd.order', compact('data', 'type', 'id'));
     }
 
