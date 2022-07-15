@@ -28,12 +28,14 @@
                 @endif
             </div>
         </div>
+        @if($batch->price > 0)
         <div class="">
 
             <span class="h3">
                 {{$batch->price}} ৳
             </span>
         </div>
+        @endif
 
 
 
