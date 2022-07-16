@@ -22,7 +22,7 @@ class PageController extends Controller
         $videos = Video::orderBy('order','asc')->get();
         $sliderExams = Exam::whereNotNull('image')
             ->active()
-            ->where('to', '>', now())
+            // ->where('to', '>', now())
             ->latest()
             ->limit(3)
             ->get();

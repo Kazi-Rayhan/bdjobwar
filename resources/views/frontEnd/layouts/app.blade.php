@@ -106,7 +106,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#live-section-free">লাইভ সেকশন</a>
+            <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#live-section">লাইভ সেকশন</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" style="font-size: 13px;" href="{{route('home_page')}}#courses">কোর্স সমূহ</a>
@@ -286,6 +286,15 @@
 });
   </script>
   @yield('js')
+  <script>
+    $(document).ready(function () { 
+  $('.nav-item').click(function () {
+     // if($(".navbar-collapse").hasClass("in")){
+       $('.navbar-collapse').collapse('hide');
+     // }
+  });
+});
+  </script>
 
 </body>
 

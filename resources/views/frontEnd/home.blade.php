@@ -20,7 +20,7 @@ $numto = new NumberToBangla();
           @foreach($sliderExams as $exam)
           <div class="carousel-item @if($loop->first)active @endif">
             <a href="{{route('register')}}">
-              <img class="d-block " style="object-fit:contain;" height="400px" width="100%" src="{{Voyager::image($exam->image)}}" alt="First slide">
+              <img class="d-block slider-img" style="object-fit:contain;" height="400px" width="100%" src="{{asset('frontEnd-assets/img/1645650241.jpg')}}" alt="First slide">
             </a>
           </div>
         @endforeach
@@ -37,7 +37,7 @@ $numto = new NumberToBangla();
 
     </div>
     <div class="col-md-12 col-xl-5 col-12">
-     <div class="card" style="height:393px;overflow: scroll;">
+     <div class="card video-card" style="">
       <div class="card-body">
         <h4>
           Videos
@@ -275,5 +275,9 @@ $numto = new NumberToBangla();
 
     </div>
   </section>
+
+  @endsection
+  @section('js')
+
 
   @endsection

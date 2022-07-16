@@ -362,6 +362,17 @@ body{
   .bradcam{
     display: none;
   }
+  .slider-img{
+    height: 150px;
+  }
+
+}
+@media screen and (min-width: 768px) {
+ 
+  .video-card{
+    height:393px !important;
+    overflow: scroll !important;
+  }
 
 }
 .bradcam-active-btn{
