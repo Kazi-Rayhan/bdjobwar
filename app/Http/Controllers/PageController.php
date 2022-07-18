@@ -30,11 +30,13 @@ class PageController extends Controller
         $finishedExams = Exam::free()
             ->active()
             ->where('to', '<', now())
+            ->orderBy('from','desc')
             ->latest()
             ->limit(3)
             ->get();
         $finishedPaidExams = Exam::paid()
             ->where('to', '<', now())
+            ->orderBy('from','desc')
             ->latest()
             ->limit(3)
             ->get();
@@ -43,6 +45,7 @@ class PageController extends Controller
             ->active()
             ->where('from', '<', now())
             ->where('to', '>', now())
+            ->orderBy('from','asc')
             ->latest()
             ->limit(3)
             ->get();
@@ -58,6 +61,7 @@ class PageController extends Controller
         $livePaidExams = Exam::paid()
             ->where('from', '<', now())
             ->where('to', '>', now())
+            ->orderBy('from','asc')
             ->latest()
             ->limit(3)
             ->get();
@@ -77,7 +81,7 @@ class PageController extends Controller
         $upcomingExams = Exam::active()
             ->where('from', '>=', now())
             ->orderBy('from','asc')
-            ->limit(10)
+            ->limit(5)
             ->get();
 
        
