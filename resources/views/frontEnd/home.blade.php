@@ -26,11 +26,11 @@ $numto = new NumberToBangla();
         @endforeach
         </div>
         <button class="carousel-control-prev  " type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-          <span class=" bg-dark rounded-circle d-flex justify-content-center align-items-center " style="height:60px;width:60px" aria-hidden="true"><i class="fa fa-2x fa-arrow-left"></i></span>
+          <span class=" bg-dark rounded-circle d-flex justify-content-center align-items-center " style="height:40px;width:40px" aria-hidden="true"><i class="fa  fa-arrow-left"></i></span>
           <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class=" bg-dark rounded-circle d-flex justify-content-center align-items-center " style="height:60px;width:60px" aria-hidden="true"><i class="fa fa-2x fa-arrow-right"></i></span>
+        <span class=" bg-dark rounded-circle d-flex justify-content-center align-items-center " style="height:40px;width:40px" aria-hidden="true"><i class="fa  fa-arrow-right"></i></span>
             
         <span class="visually-hidden">Next</span>
         </button>
