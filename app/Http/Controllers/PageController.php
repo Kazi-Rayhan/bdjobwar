@@ -76,6 +76,7 @@ class PageController extends Controller
             ->get();
         $upcomingExams = Exam::active()
             ->where('from', '>=', now())
+            ->orderBy('from','asc')
             ->limit(10)
             ->get();
 
