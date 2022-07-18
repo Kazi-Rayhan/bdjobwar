@@ -132,12 +132,13 @@ body{
   padding: 10px 20px !important;
   font-weight: 400;
   font-size: 16px;
+  transition: .2s;
+  border: 2px solid transparent;
+  border-radius: 20px;
 }
 .nav-item a:hover{
   background-color: white;
   color: #018d1a;
-  border-radius: 20px;
-  transition: 1s;
 }
 .nav-active{
   background-color: #ff0000;
@@ -149,12 +150,12 @@ body{
   color: white;
 }
 .auth-item a{
-  background-color: white;
+  background-color: #018d1a;
   border-radius: 20px;
   padding:10px 20px !important;
   margin: 5px;
   font-weight: 700;
-  color: #018d1a;
+  color: #fff !;
 }
 /* Main Nav End */
 /* slider section start */
@@ -372,6 +373,7 @@ body{
   .video-card{
     height:393px !important;
     overflow: scroll !important;
+    overflow-x: hidden;
   }
 
 }

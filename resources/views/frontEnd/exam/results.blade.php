@@ -109,8 +109,10 @@
                 @endif
             </tr>
             @endforeach
+
         </tbody>
     </table>
+    {{$results->links()}}
 </div>
 
 

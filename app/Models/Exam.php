@@ -30,7 +30,7 @@ class Exam extends Model
     }
 
     public function getParticipantsAttribute(){
-        return  (new NumberToBangla)->bnNum($this->users()->count());
+        return  (new NumberToBangla)->bnNum($this->users()->wherePivotNotNull('total')->count());
     }
 
 

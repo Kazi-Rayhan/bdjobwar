@@ -6,9 +6,9 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
 <!-- Slider section start -->
-<section class="container-fluid container-md  d-flex justify-content-center  " style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
-  <div class=" mt-4 mb-2 row w-100">
-    <div class=" col-md-12 col-xl-7 col-12 mb-2">
+<section class="container-fluid  d-flex justify-content-center  " style="background-color:#161E31">
+  <div class="row w-100 my-2">
+    <div class="col-md-12 col-xl-7 col-12 mb-2">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
         @foreach($sliderExams as $exam)
@@ -16,36 +16,37 @@ $numto = new NumberToBangla();
           @endforeach
 
         </div>
-        <div class="carousel-inner" >
+        <div class="carousel-inner " >
           @foreach($sliderExams as $exam)
           <div class="carousel-item @if($loop->first)active @endif">
             <a href="{{route('register')}}">
-              <img class="d-block slider-img" style="object-fit:contain;" height="400px" width="100%" src="{{asset('frontEnd-assets/img/1645650241.jpg')}}" alt="First slide">
+              <img class="d-block rounded slider-img" style="object-fit:stretch;" height="400px" width="100%" src="{{asset('frontEnd-assets/img/1645650241.jpg')}}" alt="First slide">
             </a>
           </div>
         @endforeach
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <button class="carousel-control-prev  " type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class=" bg-dark rounded-circle d-flex justify-content-center align-items-center " style="height:60px;width:60px" aria-hidden="true"><i class="fa fa-2x fa-arrow-left"></i></span>
           <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+        <span class=" bg-dark rounded-circle d-flex justify-content-center align-items-center " style="height:60px;width:60px" aria-hidden="true"><i class="fa fa-2x fa-arrow-right"></i></span>
+            
+        <span class="visually-hidden">Next</span>
         </button>
       </div>
 
     </div>
     <div class="col-md-12 col-xl-5 col-12">
-     <div class="card video-card" style="">
+     <div class="card shadow video-card"  style="background-color: none;">
       <div class="card-body">
-        <h4>
+        <h4 style="font-weight: 600;">
           Videos
         </h4>
-      <ul class="list-group">
+      <ul class="videos m-0 p-0">
         @foreach($videos as $video)
-        <li class="list-group-item">
-          <a class="my-video-links text-success" style="text-decoration: none;" data-autoplay="true" data-vbtype="video" href="{{$video->link}}">
+        <li class="rounded">
+          <a class="my-video-links" style="text-decoration: none;color:inherit" data-autoplay="true" data-vbtype="video" href="{{$video->link}}">
             <span class="" ><i class="fa fa-play"></i></span> {{$video->title}}
           </a>
         </li>
@@ -119,7 +120,11 @@ $numto = new NumberToBangla();
           <tbody class="">
             @foreach($latestResults as $exam)
             <tr>
-              <td>{{$exam->title}}</td>
+              <td>{{$exam->title}} <br>
+            <small>
+            {{$exam->sub_title}}
+            </small>
+            </td>
               <td>{{join(', ',$exam->subjects->pluck('name')->toArray())}}</td>
               <td><a class="btn btn-sm btn-danger" href="{{route('all-results-exam',$exam->uuid)}}">দেখুন</a></td>
             </tr>
@@ -241,7 +246,7 @@ $numto = new NumberToBangla();
   </a> -->
           </div>
         </div>
-        <a class="btn btn-outline-danger d-block mt-3 text-uppercase" href="{{route('package-details',[Str::slug($package->title),$package])}}"> বিস্তারিত দেখুন</a>
+        <a class="btn btn-outline-danger d-block my-3 text-uppercase" href="{{route('package-details',[Str::slug($package->title),$package])}}"> বিস্তারিত দেখুন</a>
       </div>
 
       @endif

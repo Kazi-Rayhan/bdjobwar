@@ -30,6 +30,25 @@
       font-family: 'AdorshoLipi', Arial, sans-serif !important;
       font-weight: 600;
     }
+    .videos{
+      list-style: none;
+    }
+    .videos li{
+      border : 2px solid #161E31;
+      color: #161E31;
+
+      padding: 10px;
+      margin: 10px 0px;
+      transition: .2s ease-in;
+      font-size: 15px;
+    }
+    .videos li:hover{
+      background-color :  #161E31;
+      color: #fff;
+      padding: 10px;
+      margin: 10px 0px;
+      
+    }
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
@@ -129,7 +148,7 @@
           @auth
 
           <li class="dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{Auth()->user()->name}}
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -147,10 +166,10 @@
           </li>
 
           @else
-          <li class="auth-item">
-            <a class="nav-link" aria-current="page" href="{{route('login')}}">লগইন</a>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{{route('login')}}">লগইন</a>
           </li>
-          <li class="auth-item">
+          <li class="nav-item">
             <a class="nav-link" href="{{route('register')}}"> রেজিস্ট্রেশন </a>
           </li>
           @endauth

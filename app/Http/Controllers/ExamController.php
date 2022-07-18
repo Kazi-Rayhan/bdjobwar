@@ -40,15 +40,20 @@ class ExamController extends Controller
         // dd(UserExam::filter(request(['search'])));
         
         $exam = Exam::where('uuid',$uuid)->first();
+    
         if($exam->to > now()){
           return view('frontEnd.exam.not_published',compact('exam'));
         
         }
       
-        $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('total')->orderByRaw('total DESC')->get();
+        $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('total')->orderByRaw('total DESC')->paginate(50);
         
+        if(UserExam::where('exam_id',$exam->id)->whereNotNull('total')->count()){
+            return view('frontEnd.exam.results',compact('exam','results'));
+        }else{
+            return redirect()->back()->with('error',"You didn't attend this exam");
+        }
         
-        return view('frontEnd.exam.results',compact('exam','results'));
     }
 
     public function start($uuid){
