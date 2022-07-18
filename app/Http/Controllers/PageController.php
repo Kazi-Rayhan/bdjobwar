@@ -76,7 +76,7 @@ class PageController extends Controller
             ->get();
         $upcomingExams = Exam::active()
             ->where('from', '>=', now())
-            ->limit(5)
+            ->limit(10)
             ->get();
 
        
