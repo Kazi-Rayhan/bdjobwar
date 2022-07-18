@@ -37,17 +37,17 @@
       border : 2px solid #161E31;
       color: #161E31;
 
-      padding: 10px;
+      padding: 5px;
       margin: 10px 0px;
       transition: .2s ease-in;
-      font-size: 15px;
+      
+    }
+    .videos li a{
+      font-size: 14px;
     }
     .videos li:hover{
       background-color :  #161E31;
       color: #fff;
-      padding: 10px;
-      margin: 10px 0px;
-      
     }
 
     /* Extra small devices (phones, 600px and down) */
