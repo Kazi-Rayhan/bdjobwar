@@ -240,8 +240,9 @@ $add = is_null($dataTypeContent->getKey());
                                             <div class="card-header" id="headingDescription">
                                                 <div class="form-group">
                                                         <label for="">Description</label>
-                                                        <input type="text" name="description" id="" value="{{old('description') ?? @$dataTypeContent->description}}"  class="form-control">
-                                                    
+                                                        <textarea  name="description" id="" value=""  class="form-control">
+                                                        {{old('description') ?? @$dataTypeContent->description}}
+                                                        </textarea>
                                                 </div>
                                                 <button class="btn btn-primary" type="button" data-toggle="collapse"
                                                     data-target="#collapseDescription" aria-expanded="true"
