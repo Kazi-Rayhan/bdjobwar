@@ -24,7 +24,7 @@ class CreateQuestionAction extends AbstractAction
     public function getAttributes()
     {
         return [
-            'class' => 'btn btn-sm btn-primary pull-left ',
+            'class' => 'btn btn-sm btn-primary pull-right ',
         ];
     }
 

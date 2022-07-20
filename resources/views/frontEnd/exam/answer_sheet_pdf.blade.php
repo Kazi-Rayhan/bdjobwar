@@ -1,3 +1,7 @@
+@php
+use Rakibhstu\Banglanumber\NumberToBangla;
+$numto = new NumberToBangla();
+@endphp
 <!DOCTYPE html>
 <!-- <html lang="en"> -->
 
@@ -78,15 +82,21 @@
 
         <h6 style=" margin:0px;">Answer Sheet</h6>
     </div>
+    @php
+    $count = 1;
+    @endphp
     <table style="width: 100%;">
         @foreach($questions->chunk(2) as $q)
 
         <tr>
-        @foreach($q as $question)
-            <td  width="50%">
+            @foreach($q as $question)
+            <td width="50%">
 
 
-                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0"> {{ $question->title }}</p>
+                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0"> {{ $numto->bnNum($count) }} / {{ $question->title }}</p>
+                @php
+    $count++;
+    @endphp
                 @if($question->title_image)
                 <div class="text-center">
                     <img src="{{Voyager::image($question->title_image)}}" width="200px" style="object-fit:contain" alt="">
@@ -120,7 +130,7 @@
                         <img class="" src="{{Voyager::image($choice->choice_image)}}" width="100px" style="object-fit:contain ;display: block;" alt="">
                         @endif
 
-                       
+
                     </div>
 
                     @endforeach
@@ -129,7 +139,7 @@
 
             </td>
             @endforeach
-          
+
         </tr>
 
 

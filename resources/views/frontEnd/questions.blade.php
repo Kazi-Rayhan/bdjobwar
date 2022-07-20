@@ -303,7 +303,7 @@ right: 10;">
     $('input[type="radio"]').on('change', function() {
         answered++
         examCard(answered, questions);
-        console.log($(this).parent().parent().siblings()[0]);
+        console.log($(this).parent().parent().siblorings()[0]);
         $(this).parent().parent().siblings()[0].classList.add('bg-success')
         $(this).closest('label').addClass('text-success')
         var isDisabled = $(this).closest('label').siblings().find('input').prop('disabled');

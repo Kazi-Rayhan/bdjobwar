@@ -24,6 +24,13 @@ class ExamController extends Controller
         return view('frontEnd.exam.answer_sheet',compact('exam'));
     }
 
+    public function read($uuid){
+    
+        $exam = Exam::where('uuid',$uuid)->with('questions')->first();
+    
+        return view('frontEnd.exam.read',compact('exam'));
+    }
+
     public function exam_start($uuid){
         $exam = Exam::where('uuid',$uuid)->first();
         return view('frontEnd.exam_start',compact('exam'));
@@ -65,7 +72,7 @@ class ExamController extends Controller
     public function exam($uuid)
     {
         $exam = Exam::where('uuid',$uuid)->first();
-
+        
         $questions= $exam->questions()->active()->inRandomOrder()->get();
         return view('frontEnd.questions',compact('exam','questions'));
     }
@@ -99,7 +106,7 @@ class ExamController extends Controller
     {
         $exam = Exam::where('uuid',$uuid)->first();
         $results = UserExam::where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
-        $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results]);
+        $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results,'exam'=>$exam]);
 
         return $pdf->download('results.pdf');
     }

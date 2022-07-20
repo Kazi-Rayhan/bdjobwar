@@ -137,7 +137,7 @@
 
 
           <li class="nav-item">
-            <a class="nav-link" style="font-size: 13px;" href="#">জব সলিউশন</a>
+            <a class="nav-link" style="font-size: 13px;" href="{{route('jobsolutions')}}">জব সলিউশন</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" style="font-size: 13px;" href="#">বুক স্টোর</a>
@@ -264,10 +264,11 @@
   </footer>
   <!-- footer section end -->
   <!-- JavaScript Bundle with Popper -->
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  @yield('js')
   <script>
     toastr.options = {
       "closeButton": true,
@@ -304,7 +305,7 @@
     selector: ".my-video-links"
 });
   </script>
-  @yield('js')
+ 
   <script>
     $(document).ready(function () { 
   $('.nav-item').click(function () {

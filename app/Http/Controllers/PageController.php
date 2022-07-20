@@ -67,6 +67,7 @@ class PageController extends Controller
             ->get();
 
         $courses = Course::latest()->get();
+
         $liveExaminees = DB::table('exam_user')
             ->whereBetween(
                 'updated_at',
@@ -113,7 +114,7 @@ class PageController extends Controller
     {
 
         $exam = Exam::active()->where('uuid', $uuid)->first();
-        $exams = Exam::active()->whereNotIn('id', [$exam->id])->get();
+        dd($exam);
         $questions = $exam->questions;
 
         return view('frontEnd/questions', compact('exam', 'exams', 'questions'));
@@ -174,5 +175,14 @@ class PageController extends Controller
 
     public function batchDetails(Batch $batch){
         return view('frontEnd.batch-details',compact('batch'));
+    }
+
+    public function jobsolutions()
+    {
+
+        if(!auth()->user()) return redirect()->route('login');
+        if(!auth()->user()->information->is_paid) return redirect(url(route('home_page').'#package'))->with('error',['']);
+        $exams = Exam::active()->where('isJobSolution',1)->paginate(20);
+        return view('frontEnd.jobsolutions',compact('exams'));
     }
 }

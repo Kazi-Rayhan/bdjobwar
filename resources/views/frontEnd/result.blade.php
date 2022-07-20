@@ -2,7 +2,7 @@
 @section('content')
 
 <div class=" container-fluid container-xl  my-5 d-flex flex-column gap-3 justify-content-center align-items-center">
-    <div class="d-flex flex-column gap-3 w-50">
+    <div class="d-flex flex-column gap-3 w-100  ">
        
         <div>
             <h2 class="text-dark">{{$result->title}}</h2>
@@ -135,11 +135,11 @@
     </div>
 
     
-    <div class="row row-cols-sm-1 row-cols-xl-3 gap-2 w-50">
+    <div class="row row-cols-sm-1 row-cols-xl-5 gap-2 w-100">
         <a href="{{route('answerSheet',$result->uuid)}}" class="btn btn-dark ">উত্তরপত্র</a>
-        <a href="{{route('dashboard')}}" class="btn btn-dark">প্রোফাইল</a>
-        <button  type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী পরিক্ষার সিলেবাস</button>
         <a href="{{route('all-results-exam',$result->uuid)}}" class="btn btn-dark"> মেধাতালিকা</a>
+        <button  type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী পরিক্ষার সিলেবাস</button>
+        <a href="{{route('dashboard')}}" class="btn btn-dark">প্রোফাইল</a>
     </div>
 
    

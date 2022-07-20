@@ -84,3 +84,4 @@ class DashboardController extends Controller
         return view('dashboard.test_history',compact('exams'));
     }
 }
+

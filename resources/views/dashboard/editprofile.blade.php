@@ -4,11 +4,6 @@
 <div class="container">
     <form action="{{route('dashboard.profile')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <!-- <img src="{{Voyager::image(auth()->user()->avatar)}}" alt="">
-    <div class="form-group my-3">
-            <label for="name">Image Change</label>
-            <input type="file" class="form-control" id="image" aria-describedby="image" value="" name="avatar">
-    </div> -->
         <div class="text-center mt-5">
             <img src="{{Voyager::image(auth()->user()->avatar)}}" height="100" width="100" style="object-fit:cover" class="img-fluid rounded-top " alt="">
 

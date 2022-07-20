@@ -71,6 +71,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
 Route::get('/package/{slug}/{package}', [PageController::class, 'packageDetails'])->name('package-details');
 
+Route::get('/jobsolutions',[PageController::class,'jobsolutions'])->name('jobsolutions');
+Route::get('exam/{uuid}/read',[ExamController::class,'read'])->name('exam.read');
 
 Route::group(['middleware'=>['auth','canAttendThisExam']],function(){
     Route::get('exam/{uuid}/answer-sheet',[ExamController::class,'answerSheet'])->name('answerSheet');
@@ -85,6 +87,7 @@ Route::get('batch-details/{batch}',[PageController::class,'batchDetails'])->name
 
 
 Route::group(['prefix' => 'exam', 'controller' => ExamController::class, 'middleware' => ['auth']], function () {
+
     Route::get('all/results/{uuid}','exam_all_results')->name('all-results-exam');
     Route::get('all/results/pdf/{uuid}','exam_all_results_pdf')->name('all-results-exam-pdf');
 
