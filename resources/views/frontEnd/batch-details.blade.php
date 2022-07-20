@@ -22,7 +22,7 @@
                 @if($batch->price > 0)
                 <a href="{{route('orderCreate',['type'=>'batch','id'=>$batch->id])}}" class="btn btn-success">ভর্তি হন</a>
                 @endif
-                <a href="{{$batch->link()}}" class="btn btn-success">পরীক্ষাসমুহ</a>
+                <a href="{{$batch->link()}}" class="btn btn-success">পরীক্ষাসমূহ</a>
                 @if(json_decode($batch->routine))
                 <a href="{{Voyager::image(json_decode($batch->routine)[0]->download_link)}}" class="btn btn-success">রুটিন ডাউনলোড করুন</a>
                 @endif
