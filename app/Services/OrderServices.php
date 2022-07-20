@@ -23,7 +23,7 @@ class OrderServices
     ];
 
     protected string $account;
-    protected string $trnxId;
+    protected  $trnxId;
     protected string $method;
     protected $model;
 
@@ -36,7 +36,7 @@ class OrderServices
         $this->model = $this::MODEL[$type]::find($id);
     }
 
-    public static function make(string $type, int $id, string $account, string $trnxId,string $method)
+    public static function make(string $type, int $id, string $account,  $trnxId,string $method)
     {
 
         return new static($type, $id, $account, $trnxId,$method);

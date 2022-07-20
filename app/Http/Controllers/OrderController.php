@@ -59,8 +59,7 @@ class OrderController extends Controller
         $request->validate([
             "account" => 'required',
             "trnxId" => 'nullable',
-            "method" => 'required',
-
+            "method" => 'required'
         ]);
         try {
             DB::beginTransaction();
