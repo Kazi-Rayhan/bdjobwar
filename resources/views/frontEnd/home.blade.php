@@ -188,13 +188,13 @@ $numto = new NumberToBangla();
             <div style="height:2px;width:100px" class="bg-danger"></div>
             <div class=" d-flex flex-sm-column flex-md-row gap-3  flex-wrap justify-content-between align-items-center mt-4">
 
-              <a class="btn btn-success btn-lg " href="{{$course->link()}}" style="font-size: 13px ;">বিস্তারিত </a>
+              <a class="btn btn-success btn-lg " href="{{$course->link()}}" style="font-size: 13px ;">ব্যাচসমূহ</a>
               <div class="d-flex  gap-5 text-dark" style="font-size: 14px;">
 
                 <span>
                   <i class="fa fa-users"> ব্যাচ</i> :
 
-                  {{$numto->bnNum($course->batches->count())}} </span>
+                  {{$numto->bnNum($course->batches()->active()->count())}} টি</span>
                 
               </div>
             </div>

@@ -8,16 +8,21 @@
         <h3>
             টাকা পরিশদের অ্যাকাউন্ট
         </h3>
-        <h1>
-            বিকাশ / নগদ : 01707725544
-        </h1>
+        <h4>
+            বিকাশ : {{setting('payment.bkash')}}
+        </h4>
+        <h4>
+            নগদ : {{setting('payment.nagad')}}
+        </h4>
 
-        <h1>
-            রকেট : 01707725543
-        </h1>
+        <h4>
+            রকেট : {{setting('payment.rocket')}}
+        </h4>
+        @if($type=='batch')
         <p>
-            অবশ্যই সেন্ডমানি করবেন ফ্লাক্সিলোড গ্রহণযোগ্য নয়
+            {{$data->payment_qoute}}
         </p>
+        @endif
         <div class="card shadow w-100">
             <div class="card-body d-flex justify-content-center align-items-center ">
                 <form action="{{ route('orderStore') }}" class="w-75" method="POST">
@@ -38,7 +43,7 @@
                     <div class="form-group mt-2 ">
                         <label for="trnxId" class="mb-3">ট্রানজেকশন আইডি </label>
 
-                        <input type="text" name="trnxId" value="{{old('trnxId')}}" class="form-control border border-dark @error('trnxId') is-invalid @enderror" id="trnxId" placeholder="ট্রানজেকশন আইডি লিখুন">
+                        <input type="text" name="trnxId" value="{{old('trnxId')}}" class="form-control border border-dark @error('trnxId') is-invalid @enderror" id="trnxId" placeholder="ট্রানজেকশন আইডি লিখুন (optional)">
                         @error('trnxId')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -47,14 +52,27 @@
 
                     </div>
                     <div class="form-group mt-2 ">
-                        <label for="method" class="mb-3">মূল্যপরিশোধ পদ্ধতি <span class="text-danger">*</span> </label>
-                        <select id="inputState" class="form-control @error('method') is-invalid @enderror" name="method">
-                            <option value="" selected>Choose...</option>
-                            <option value="0">Bkash</option>
-                            <option value="1">Nagad</option>
-                            <option value="2">Rocket</option>
-
-                        </select>
+                     <label for="method" class="mb-3">মূল্যপরিশোধ পদ্ধতি <span class="text-danger">*</span> </label>
+                    <div class="form-check">
+                      <input value="0" class="form-check-input" type="radio" name="method" id="bkash">
+                      <label class="form-check-label" for="bkash">
+                        Bkash
+                      </label>
+                    </div>
+                     <div class="form-check">
+                      <input value="1" class="form-check-input" type="radio" name="method" id="nagad">
+                      <label class="form-check-label" for="nagad">
+                       Nagad
+                      </label>
+                    </div>
+                     <div class="form-check">
+                      <input value="2" class="form-check-input" type="radio" name="method" id="rocket">
+                      <label class="form-check-label" for="rocket">
+                       Rocket
+                      </label>
+                    </div>
+                       
+                        
                         @error('method')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -213,7 +231,7 @@
                     </div>
                     <div class="card-footer text-center">
     
-                    <a class="btn btn-success btn-lg" href="{{route('home_page')}}#package">সাবস্ক্রাইব করুন</a>
+                    <a class="btn btn-success btn-lg" href="{{route('home_page')}}#package"> প্যাকেজ সাবস্ক্রাইব করুন</a>
                     </div>
                 </div>
                 

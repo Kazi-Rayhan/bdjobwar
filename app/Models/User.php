@@ -44,7 +44,8 @@ class User extends \TCG\Voyager\Models\User
         'phone_verified_at' => 'datetime',
     ];
 
-    public function getBatchNameAttribute(){
+    public function getBatchNameAttribute()
+    {
         return "{$this->name} - {$this->phone}";
     }
 
@@ -57,7 +58,7 @@ class User extends \TCG\Voyager\Models\User
     public function scopeCustomer($query)
     {
         $ids = UserMeta::select('user_id')->get()->pluck('user_id')->toArray();
-    
+
         return $query->where('active', 1)->where('role_id', 2)->whereNotIn('id', $ids);
     }
 
@@ -83,7 +84,7 @@ class User extends \TCG\Voyager\Models\User
             'phone_verified_at' => now()
         ]);
     }
-   
+
 
     public function verified(): bool
     {
@@ -129,7 +130,7 @@ class User extends \TCG\Voyager\Models\User
     {
         //if user already own this exam
         if ($this->exams->contains($exam->id)) {
-            
+
             return true;
         }
         //If user is paid user can particapate 
@@ -162,7 +163,8 @@ class User extends \TCG\Voyager\Models\User
         return true;
     }
 
-    public function orders(){
+    public function orders()
+    {
         return $this->hasMany(Order::class);
     }
 
@@ -171,4 +173,11 @@ class User extends \TCG\Voyager\Models\User
         return $this->morphToMany(Subject::class, 'subjectable');
     }
 
+    public function bought(int $batchId): bool
+    {
+        if ($this->batches->contains($batchId)) {
+            return true;
+        }
+        return false;
+    }
 }

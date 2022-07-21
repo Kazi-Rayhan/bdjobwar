@@ -9,7 +9,6 @@ $numto = new NumberToBangla();
         <a href="{{route('answerSheetPdf',$exam->uuid)}}" class="btn btn-dark " >উত্তরপত্র ডাউনলোড করুন</a>    
         <a href="{{route('answerSheetPdfWithOutMarking',$exam->uuid)}}" class="btn btn-dark " >প্রশ্নপত্র ডাউনলোড করুন</a>    
     <div class=" mt-1">
-
             <div id="exam-header " class="  text-center border border-success shadow  rounded text-light pt-2" style="background-color: #019514;">
                 <h3>উত্তর পত্র</h3>
             </div>

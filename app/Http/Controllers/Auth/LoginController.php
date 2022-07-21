@@ -80,7 +80,7 @@ class LoginController extends Controller
 
         return $this->guard()->attempt(
             ['phone' => @$user->phone, 'password' => $request->password],
-            $request->boolean('remember')
+            true
         );
     }
 

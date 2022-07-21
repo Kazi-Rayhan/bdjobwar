@@ -38,7 +38,7 @@ class ExamController extends Controller
     
     public function exam_result($uuid){
         $exam = Exam::where('uuid',$uuid)->first();
-        $count = UserExam::where('exam_id',$exam->id)->whereNotNull('total')->count();
+        $count = UserExam::where('exam_id',$exam->id)->whereNotNull('total')->orderBy('total','desc')->count();
         $result = Auth::user()->exams()->find($exam->id);
         return view('frontEnd.result',compact('result','count'));
     }
