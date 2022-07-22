@@ -47,13 +47,13 @@ class ExamController extends Controller
         // dd(UserExam::filter(request(['search'])));
         
         $exam = Exam::where('uuid',$uuid)->first();
-    
+        
         if($exam->to > now()){
           return view('frontEnd.exam.not_published',compact('exam'));
         
         }
       
-        $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('total')->orderByRaw('total DESC')->paginate(50);
+        $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('total')->orderByRaw('total DESC')->orderByRaw('created_at DESC')->paginate(50);
         
         if(UserExam::where('exam_id',$exam->id)->whereNotNull('total')->count()){
             return view('frontEnd.exam.results',compact('exam','results'));
@@ -105,7 +105,7 @@ class ExamController extends Controller
     public function exam_all_results_pdf($uuid)
     {
         $exam = Exam::where('uuid',$uuid)->first();
-        $results = UserExam::where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
+        $results = UserExam::where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->orderBy('created_at','DESC')->get();
         $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results,'exam'=>$exam]);
 
         return $pdf->download('results.pdf');

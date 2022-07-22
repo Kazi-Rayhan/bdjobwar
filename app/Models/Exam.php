@@ -63,12 +63,12 @@ class Exam extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot(['answers', 'total', 'wrong_answers', 'empty_answers', 'expire_at'])->withTimestamps();
+        return $this->belongsToMany(User::class)->withPivot(['answers', 'total', 'wrong_answers', 'empty_answers', 'expire_at','created_at'])->withTimestamps();
     }
 
     public function getRanking(User $user)
     {
-        $collection = collect($this->users()->orderBy('pivot_total', 'DESC')->get());
+        $collection = collect($this->users()->orderBy('pivot_total', 'DESC')->orderBy('pivot_created_at', 'DESC')->get());
 
         $data       = $collection->where('id', $user->id);
     

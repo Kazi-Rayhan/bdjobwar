@@ -24,15 +24,15 @@
         <p class="" style="color:#666666">
             <strong>প্রিমিয়াম বৈশিষ্ট্য :</strong>
             <br>
-            ১) প্রশ্ন ব্যাংক সার্স
+            ১) প্রশ্ন ব্যাংক সার্চ ।
             <br>
-            ২)সকল পেইড কোর্স
+            ২)সকল পেইড কোর্স ।
             <br>
-            ৩) জব সলিউশন
+            ৩) জব সলিউশন ।
             <br>
-            ৪) পিডিএফ ডাউনলোড
+            ৪) পিডিএফ ডাউনলোড ।
             <br>
-            ৫) সকল লাইভ ও আর্কাইভ পরীক্ষা
+            ৫) সকল লাইভ ও আর্কাইভ পরীক্ষা ।
         </p>
 
         <p style="color:#666666">
@@ -41,7 +41,7 @@
         </p>
         
     </div>
-    <a href="{{route('orderCreate',['package',$package->id])}}" class="btn btn-dark"> সাবস্ক্রাইব</a>
+    <a href="{{route('orderCreate',['package',$package->id])}}" class="btn btn-dark"> সাবস্ক্রাইব করুন</a>
 
 </div>
 @endsection

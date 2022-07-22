@@ -5,19 +5,6 @@
 <div class="container my-5">
     <div class="  d-flex flex-column justify-content-center align-items-center gap-3">
 
-        <h3>
-            টাকা পরিশদের অ্যাকাউন্ট
-        </h3>
-        <h4>
-            বিকাশ : {{setting('payment.bkash')}}
-        </h4>
-        <h4>
-            নগদ : {{setting('payment.nagad')}}
-        </h4>
-
-        <h4>
-            রকেট : {{setting('payment.rocket')}}
-        </h4>
         @if($type=='batch')
         <p>
             {{$data->payment_qoute}}
@@ -168,13 +155,12 @@
            
             <div class="modal-body">
                 <p class="text-center">
-                    সম্মানিত গ্রাহক, আপনি দুটি প্রক্রিয়ায় পেইড কোর্সে অংশোগ্রহণ করতে পারবেন । আপনি শুধু কোর্স কিনে সংশ্লিষ্ট কোর্সের আওতায় সকল পরীক্ষায় অংশগ্রহণ করতে পারবেন অথবা মাসিক / ত্রৈমাসিক / ষন্মাসিক / বার্ষিক যেকোনো একটি প্যাকেজ কিনে ওয়েবসাইটে বিদ্যমান সকল কোর্সে পরীক্ষা দিতে পারবেন । অর্থাৎ এক প্যকেজেই সকল পেইড বাটনের অনুমুতি পেয়ে যাবেন।
+                    সম্মানিত গ্রাহক, আপনি দুটি প্রক্রিয়ায় পেইড কোর্সে অংশগ্রহণ করতে পারবেন । আপনি শুধু কোর্স কিনে সংশ্লিষ্ট কোর্সের আওতায় সকল পরীক্ষায় অংশগ্রহণ করতে পারবেন অথবা মাসিক / ত্রৈমাসিক / ষন্মাসিক / বার্ষিক যেকোনো একটি প্যাকেজ কিনে ওয়েবসাইটে বিদ্যমান সকল কোর্সে পরীক্ষা দিতে পারবেন । অর্থাৎ এক প্যাকেজেই সকল পেইড বাটনের অনুমতি পেয়ে যাবেন।
                 </p>
                 <hr>
-                <div class="row d-flex justify-content-center align-items-center">
+                <div class="row d-flex justify-content-center align-items-center p-0">
                     <div class="col-md-6 col-sm-12">
-                        <div class="card shadow">
-                            <div class="card-body">
+                        
                                 <h4>
                                     কোর্স ক্রয়ের সুবিধা -
                                 </h4>
@@ -187,21 +173,17 @@
                                         ২ । আর্থিক সাশ্রয় হবে । কেননা, কোর্স ডিউরেশন যত বেশিই হোক না কেন আপনার কাছ থেকে একবারই ফি নেয়া হবে।
                                     </li>
                                     <li class="mb-3">
-                                        ৩ । কোর্স ক্রয়ে মাঝে মাঝে আকর্ষণীয় ডিস্কাউন্ট থাকবে
+                                        ৩ । কোর্স ক্রয়ে মাঝে মাঝে আকর্ষণীয় ডিস্কাউন্ট থাকবে ।
                                     </li>
                                 </ul>
-                            </div>
-                        </div>
+                         
 
                     </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="card">
-                            <img src="{{Voyager::image($data->thumbnail)}}" class="rounded-top" height="200px" style="object-fit:cover" alt="">
-                            <div class="card-footer text-center">
-                                <button type="button" class="btn btn-lg btn-success" data-bs-dismiss="modal">কোর্স টি কিনুন</button>
-
-                            </div>
-                        </div>
+                    <div class="col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center gap-2">
+                  
+                            <img src="{{Voyager::image($data->thumbnail)}}" class="rounded" height="250px" style="object-fit:contain" alt="">
+                            <button type="button" class="btn btn-lg btn-success" data-bs-dismiss="modal">কোর্স টি কিনুন</button>
+                            
                     </div>
                 </div>
                 <div class="card mt-4 shadow">
@@ -225,7 +207,7 @@
                          <i class="fa fa-check text-success"></i> সকল ফ্রি পরীক্ষার পিডিএফ ডাউনলোড সুবিধা ।  
                     </li>
                     <li class="mb-2">
-                    <i class="fa fa-check text-success"></i> মাসিক / ত্রৈমাসিক / ষন্মাসিক / বার্ষিক  সুবিধামত পেমেন্ট করার সুবিধা
+                    <i class="fa fa-check text-success"></i> মাসিক / ত্রৈমাসিক / ষন্মাসিক / বার্ষিক  সুবিধামত পেমেন্ট করার সুবিধা ।
                     </li>
                 </ul>
                     </div>

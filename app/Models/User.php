@@ -175,7 +175,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function bought(int $batchId): bool
     {
-        if ($this->batches->contains($batchId)) {
+        if ($this->batches->contains($batchId) || $this->information->is_paid  ) {
             return true;
         }
         return false;

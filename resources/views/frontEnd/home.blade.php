@@ -10,12 +10,7 @@ $numto = new NumberToBangla();
   <div class="row w-100 my-2">
     <div class="col-md-12 col-xl-7 col-12 mb-2">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-        @foreach($sliderExams as $exam)
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{$loop->index}}" class="@if($loop->first)active @endif" aria-current="true" aria-label="Slide {{$loop->iteration}}"></button>
-          @endforeach
-
-        </div>
+       
         <div class="carousel-inner " >
           @foreach($sliderExams as $exam)
           <div class="carousel-item @if($loop->first)active @endif">
@@ -65,9 +60,9 @@ $numto = new NumberToBangla();
     <h1 class="text-uppercase" style="font-weight:500 ; font-size:25px">লাইভ সেকশন</h1>
   </div>
   <div class="container">
-    <div class="row" id="live-section-free">
+    <div class="row " id="live-section-free">
       <div class="col-md-6">
-        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+        <h6 class="mt-2 fw-bold live-exam-heading mb-4">
           <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-danger"> লাইভ পরীক্ষা চলছে <sup>Free</sup></span>
         </h6>
         @foreach($liveExams as $exam)
@@ -75,7 +70,7 @@ $numto = new NumberToBangla();
         @endforeach
       </div>
       <div class="col-md-6">
-        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+        <h6 class="mt-2 fw-bold live-exam-heading mb-4">
           <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">সম্প্রতি বন্ধ <sup>Free</sup></span>
         </h6>
         @foreach($finishedExams as $exam)
@@ -86,7 +81,7 @@ $numto = new NumberToBangla();
     </div>
     <div class="row" id="live-section-paid">
       <div class="col-md-6">
-        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+        <h6 class="mt-2 fw-bold live-exam-heading mb-4">
           <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-danger"> লাইভ পরীক্ষা চলছে <sup>Paid</sup></span>
         </h6>
         @foreach($livePaidExams as $exam)
@@ -94,7 +89,7 @@ $numto = new NumberToBangla();
         @endforeach
       </div>
       <div class="col-md-6">
-        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+        <h6 class="mt-2 fw-bold live-exam-heading mb-4">
           <i class="fas fa-file-alt fs-3 text-muted"></i> <span class="text-success">সম্প্রতি বন্ধ <sup>Paid</sup></span>
         </h6>
         @foreach($finishedPaidExams as $exam)
@@ -106,7 +101,7 @@ $numto = new NumberToBangla();
     <div class="row">
 
       <div class="col-md-12 mb-4">
-        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+        <h6 class="mt-2 fw-bold live-exam-heading mb-4">
           <i class="fas fa-poll fs-3 text-muted"></i> <span class="text-success">সর্বশেষ ফলাফল </span>
         </h6>
         <table class="table table-striped table-light">
@@ -137,7 +132,7 @@ $numto = new NumberToBangla();
     </div>
     <div class="row">
       <div class="col-md-6">
-        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+        <h6 class="mt-2 fw-bold live-exam-heading mb-4">
           <i class="far fa-file-alt fs-3 text-muted"></i> <span class="text-success">আসন্ন পরীক্ষা </span>
         </h6>
         @foreach($upcomingExams as $exam)
@@ -149,7 +144,7 @@ $numto = new NumberToBangla();
         @endforeach
       </div>
       <div class="col-md-6">
-        <h6 class="mt-5 fw-bold live-exam-heading mb-4">
+        <h6 class="mt-2 fw-bold live-exam-heading mb-4">
           <i class="fas fa-file-invoice fs-3 text-muted"></i> <span class="text-success">নোটিশ বোর্ড </span>
         </h6>
         @foreach($notices as $notice)
@@ -234,19 +229,26 @@ $numto = new NumberToBangla();
 
             </h5>
             <ul class="premium-feature">
-              <li><span>প্রশ্ন ব্যাংক সার্স</span></li>
-              <li><span>সকল পেইড কোর্স</span></li>
-              <li><span>জব সলিউশন</span></li>
-              <li><span>পিডিএফ ডাউনলোড</span></li>
-              <li><span>সকল লাইভ ও আর্কাইভ পরীক্ষা</span></li>
+              <li><span>প্রশ্ন ব্যাংক সার্চ ।</span></li>
+              <li><span>সকল পেইড কোর্স ।</span></li>
+              <li><span>জব সলিউশন ।</span></li>
+              <li><span>পিডিএফ ডাউনলোড ।</span></li>
+              <li><span>সকল লাইভ ও আর্কাইভ পরীক্ষা ।</span></li>
 
             </ul>
-            <!-- <a href="{{route('orderCreate',['package',$package->id])}}" class="btn  btn-danger text-uppercase">
-    Subscribe
-  </a> -->
+      
           </div>
         </div>
+        @auth
+        @if(auth()->user()->information->package_id == $package->id)
+        <a class="btn btn-outline-danger d-block my-3 text-uppercase" href="#"> সাবস্ক্রাইবড</a>
+        @else
         <a class="btn btn-outline-danger d-block my-3 text-uppercase" href="{{route('package-details',[Str::slug($package->title),$package])}}"> বিস্তারিত দেখুন</a>
+        @endif
+        @else
+        <a class="btn btn-outline-danger d-block my-3 text-uppercase" href="{{route('package-details',[Str::slug($package->title),$package])}}"> বিস্তারিত দেখুন</a>
+        @endauth
+
       </div>
 
       @endif

@@ -48,7 +48,7 @@ $numto = new NumberToBangla();
             পরীক্ষার বিবরণ :
             </strong>
             <br>
-            প্রশ্নের সংখ্যা : {{$numto->bnNum($exam->questions->count())}}
+            প্রশ্নের সংখ্যা : {{$numto->bnNum($exam->questions()->active()->count())}}
             <br>
             পূর্ণ মান : {{$numto->bnNum($exam->fullMark)}} 
             <br>
