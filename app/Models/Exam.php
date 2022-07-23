@@ -36,7 +36,7 @@ class Exam extends Model
 
     public function getFullMarkAttribute()
     {
-        return  $this->point * $this->questions->count();
+        return  $this->point * $this->questions()->active()->count();
     }
 
     public function getPassMarkAttribute()

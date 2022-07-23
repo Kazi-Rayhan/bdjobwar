@@ -71,13 +71,14 @@ class OrderServices
             ]);
             if ($order->orderable instanceof Package) {
                 $user->ownThisPackage($order->orderable);
+                $message = "Bd job war এ আপনার".$order->orderable->information()['title']."প্যাকেজটি সফলভাবে চালু হয়েছে। প্যাকেজের মেয়াদ :".$order->user->information->expired_at->format('d M,Y')." পর্যন্ত। ভিজিট ওয়েবসাইট: https://www.bdjobwar.com";
             }
             if ($order->orderable instanceof Batch) {
                 $user->batches()->attach($order->orderable);
+                $message = $order->orderable->information()['title']." ব্যাচে আপনার ভর্তি সফলভাবে সম্পন্ন হয়েছে। পরীক্ষা দিতে আপনার ব্যাচ লিংক: ".$order->orderable->link()." অথবা ওয়েবসাইট ভিজিট করুন: https://www.bdjobwar.com";
             }
-            
             DB::commit();
-            SMS::compose($order->user->phone,'Your purchase is approved . order id :#'.$order->id)->send();
+            SMS::compose($order->user->phone,$message)->send();
             return $order;
         } catch (Exception $exception) {
             DB::rollBack();

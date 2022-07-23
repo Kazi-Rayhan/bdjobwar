@@ -31,7 +31,7 @@ class Sms{
      *
      * @param  mixed $to
      * @param  mixed $body
-     * @return void
+     * @return self
      */
     public static function compose($to,$body){
     
