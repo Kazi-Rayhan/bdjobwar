@@ -19,7 +19,9 @@ class Exam
     public function handle(Request $request, Closure $next)
     {
         $exam = ModelsExam::where('uuid',$request->uuid)->first();
-        if(Auth::user()->exams()->find($exam->id)->pivot->answers ){
+        
+        if(is_numeric(Auth::user()->exams()->find($exam->id)->pivot->total) ){
+            
             return \redirect()->route('result-exam',$exam->uuid);
         }
         if(!Auth::user()->exams()->find($exam->id)->pivot->expire_at){
