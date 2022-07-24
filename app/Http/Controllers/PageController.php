@@ -51,11 +51,10 @@ class PageController extends Controller
             ->get();
     
         // dd($yesterday);
-        $latestResults = Exam::free()
-            ->active()
+        $latestResults = Exam::active()
             ->where('to', '<=', now())
             ->latest()
-            ->limit(3)
+            ->limit(5)
             ->get();
             // dd($latestResults);
         $livePaidExams = Exam::paid()
