@@ -9,21 +9,21 @@ $numto = new NumberToBangla();
     <h3 class="text-success">
         {{$batch->title}}
     </h3>
-    <div style="height:2px;width:100px" class="bg-danger"></div>
+    <div style="height:2px;width:100px" class="bg-success"></div>
     <!-- <a href="{{route('batch.routines',$batch)}}" class="btn btn-dark mt-2"> রুটিন পিডিফ</a> -->
 
     <div class="mt-5">
         <nav class="navbar navbar-expand navbar-light ">
             <div class="nav navbar-nav">
-                <a class="nav-item nav-link @if(request()->filter == '')bg-danger text-light @endif border border-danger" href="{{$batch->link()}}">Live <span class="visually-hidden">(current)</span></a>
-                <a class="nav-item nav-link @if(request()->filter == 'upcoming')bg-danger text-light @endif border border-danger" href="{{$batch->link()}}?filter=upcoming">Upcoming</a>
-                <a class="nav-item nav-link @if(request()->filter == 'archived')bg-danger text-light @endif border border-danger" href="{{$batch->link()}}?filter=archived">Archived</a>
+                <a class="nav-item nav-link @if(request()->filter == '')bg-success text-light @endif border border-success" href="{{$batch->link()}}">Live <span class="visually-hidden">(current)</span></a>
+                <a class="nav-item nav-link @if(request()->filter == 'upcoming')bg-success text-light @endif border border-success" href="{{$batch->link()}}?filter=upcoming">Upcoming</a>
+                <a class="nav-item nav-link @if(request()->filter == 'archived')bg-success text-light @endif border border-success" href="{{$batch->link()}}?filter=archived">Archived</a>
             </div>
         </nav>
         <div>
             @if(request()->filter == '')
             <table class="table table-borderless table-hover text-center ">
-                <thead class="bg-danger text-light">
+                <thead class="bg-success text-light">
                     <tr>
                         <th scope="col">
                             শুরু
@@ -91,7 +91,7 @@ $numto = new NumberToBangla();
         @endif
         @if(request()->filter == 'upcoming')
         <table class="table table-borderless table-hover text-center " >
-            <thead class="bg-danger text-light">
+            <thead class="bg-success text-light">
                 <tr>
                     <th scope="col">
                         পরীক্ষার নাম
@@ -159,7 +159,7 @@ $numto = new NumberToBangla();
 @endif
 @if(request()->filter == 'archived')
 <table class="table table-borderless table-hover text-center " >
-    <thead class="bg-danger text-light">
+    <thead class="bg-success text-light">
         <tr>
             <th scope="col">
                 নাম

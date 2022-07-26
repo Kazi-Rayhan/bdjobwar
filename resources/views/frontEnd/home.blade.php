@@ -153,6 +153,7 @@ $numto = new NumberToBangla();
 
             <h6 class="up-exam-title"><a href="{{$notice->fileLink}}">{{$notice->title}}</a></h6>
             <p class="live-exam-date pt-2"><span><i class="far fa-calendar-alt"></i> {{ \Carbon\Carbon::parse($notice->created_at)->format('d M ,Y ') }} </span></p>
+            <a href="{{$notice->fileLink}}" class="btn btn-success">নোটিশ দেখুন</a>
           </div>
         </div>
         @endforeach
@@ -174,12 +175,12 @@ $numto = new NumberToBangla();
 
       <div class="col-md-4 mb-3">
         <div class="card border-success shadow package-hover">
-          <div class="">
-            <img src="{{Voyager::image($course->thumbnail)}}" height="300px" style="object-fit:contain" class="card-img-top" alt="...">
+          
+            <img src="{{Voyager::image($course->thumbnail)}}" height="300px" style="object-fit:stretch" class="card-img-top" alt="...">
 
-          </div>
+          
           <div class="card-body">
-            <h3 class="card-title">{{$course->title}}</h3>
+            <h4 class="card-title" title="{{$course->title}}">{{Str::limit($course->title,28)}}</h4>
             <div style="height:2px;width:100px" class="bg-danger"></div>
             <div class=" d-flex flex-sm-column flex-md-row gap-3  flex-wrap justify-content-between align-items-center mt-4">
 

@@ -19,9 +19,10 @@ class PageController extends Controller
 {
     public function home()
     {
-        $videos = Video::orderBy('order','asc')->get();
+        $videos = Video::orderBy('order', 'asc')->get();
         $sliderExams = Exam::whereNotNull('image')
             ->active()
+           
             // ->where('to', '>', now())
             ->latest()
             ->limit(3)
@@ -29,43 +30,48 @@ class PageController extends Controller
 
         $finishedExams = Exam::free()
             ->active()
+            ->with('users')
             ->where('to', '<', now())
-            ->orderBy('from','desc')
+            ->orderBy('from', 'desc')
             ->latest()
             ->limit(3)
             ->get();
         $finishedPaidExams = Exam::paid()
+            ->with('users')
             ->where('to', '<', now())
-            ->orderBy('from','desc')
-            ->latest()
-            ->limit(3)
-            ->get();
-  
-        $liveExams = Exam::free()
-            ->active()
-            ->where('from', '<', now())
-            ->where('to', '>', now())
-            ->orderBy('from','asc')
-            ->latest()
-            ->limit(3)
-            ->get();
-    
-        // dd($yesterday);
-        $latestResults = Exam::active()
-            ->where('to', '<=', now())
-            ->latest()
-            ->limit(5)
-            ->get();
-            // dd($latestResults);
-        $livePaidExams = Exam::paid()
-            ->where('from', '<', now())
-            ->where('to', '>', now())
-            ->orderBy('from','asc')
+            ->orderBy('from', 'desc')
             ->latest()
             ->limit(3)
             ->get();
 
-        $courses = Course::latest()->get();
+        $liveExams = Exam::free()
+            ->with('users')
+            ->active()
+            ->where('from', '<', now())
+            ->where('to', '>', now())
+            ->orderBy('from', 'asc')
+            ->latest()
+            ->limit(3)
+            ->get();
+
+        // dd($yesterday);
+        $latestResults = Exam::active()
+            ->with('users')
+            ->where('to', '<=', now())
+            ->latest()
+            ->limit(5)
+            ->get();
+        // dd($latestResults);
+        $livePaidExams = Exam::paid()
+            ->with('users')
+            ->where('from', '<', now())
+            ->where('to', '>', now())
+            ->orderBy('from', 'asc')
+            ->latest()
+            ->limit(3)
+            ->get();
+
+        $courses = Course::with('batches')->latest()->get();
 
         $liveExaminees = DB::table('exam_user')
             ->whereBetween(
@@ -79,12 +85,13 @@ class PageController extends Controller
             ->limit(5)
             ->get();
         $upcomingExams = Exam::active()
+
             ->where('from', '>=', now())
-            ->orderBy('from','asc')
+            ->orderBy('from', 'asc')
             ->limit(5)
             ->get();
 
-       
+
 
 
         $packages = Package::all();
@@ -119,40 +126,40 @@ class PageController extends Controller
         return view('frontEnd/questions', compact('exam', 'exams', 'questions'));
     }
 
-    public function course($slug,Course $course){
-       $batches =  Batch::active()->where('course_id',$course->id)->get();
-       return view('frontEnd/course',compact('course','batches'));
+    public function course($slug, Course $course)
+    {
+        $batches =  Batch::active()->where('course_id', $course->id)->get();
+        return view('frontEnd/course', compact('course', 'batches'));
     }
 
-    public function batch($slug,Batch $batch,Request $request){
-        
-        $exams = Exam::active()->where('batch_id',$batch->id);
+    public function batch($slug, Batch $batch, Request $request)
+    {
 
-        if($request->filter == 'upcoming'){
+        $exams = Exam::active()->where('batch_id', $batch->id);
+
+        if ($request->filter == 'upcoming') {
             $exams = $exams->where('from', '>', now());
             // $exam;
-        }
-        elseif($request->filter == 'archived'){
+        } elseif ($request->filter == 'archived') {
             $exams = $exams->where('to', '<', now());
-
-        }
-        else{
+        } else {
             $exams = $exams->where('from', '<', now())
-            ->where('to', '>', now());
+                ->where('to', '>', now());
         }
-        
-        $exams = $exams->get();
-        return view('frontEnd/batch',compact('batch','exams'));
-     }
 
-     public function batchRoutine(Batch $batch){
+        $exams = $exams->get();
+        return view('frontEnd/batch', compact('batch', 'exams'));
+    }
+
+    public function batchRoutine(Batch $batch)
+    {
         $exams = $batch->exams()->latest()->get();
-        $pdf = Mpdf::loadView('frontEnd.routines', ['exams' => $exams],[
-            'title' => $batch->title.' Routine',
+        $pdf = Mpdf::loadView('frontEnd.routines', ['exams' => $exams], [
+            'title' => $batch->title . ' Routine',
             'Author' => 'BD Job War'
-          ]);
+        ]);
         return $pdf->download('routines.pdf');
-     }
+    }
 
     //  public function batchResults(Batch $batch){
     //     dd(UserExam::where('exam_id',$batch->exams->pluck('id')->toArray())->get()->groupBy(function($data){
@@ -165,23 +172,25 @@ class PageController extends Controller
     //     //   return view('frontEnd.exam.not_published',compact('exam'));
     //     // }
     //     // $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
-     
+
     // }
 
-    public function packageDetails($slug,Package $package){
-        return view('frontEnd.packageDetails',compact('package'));
+    public function packageDetails($slug, Package $package)
+    {
+        return view('frontEnd.packageDetails', compact('package'));
     }
 
-    public function batchDetails(Batch $batch){
-        return view('frontEnd.batch-details',compact('batch'));
+    public function batchDetails(Batch $batch)
+    {
+        return view('frontEnd.batch-details', compact('batch'));
     }
 
     public function jobsolutions()
     {
 
-        if(!auth()->user()) return redirect()->route('login');
-        if(!auth()->user()->information->is_paid) return redirect(url(route('home_page').'#package'))->with('error','জব সলিউশন দেখার জন্য প্যাকেজ সাবস্ক্রাইব করুন');
-        $exams = Exam::active()->where('isJobSolution',1)->paginate(20);
-        return view('frontEnd.jobsolutions',compact('exams'));
+        if (!auth()->user()) return redirect()->route('login');
+        if (!auth()->user()->information->is_paid) return redirect(url(route('home_page') . '#package'))->with('error', 'জব সলিউশন দেখার জন্য প্যাকেজ সাবস্ক্রাইব করুন');
+        $exams = Exam::active()->where('isJobSolution', 1)->paginate(20);
+        return view('frontEnd.jobsolutions', compact('exams'));
     }
 }
