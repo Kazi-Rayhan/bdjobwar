@@ -14,7 +14,7 @@ $numto = new NumberToBangla();
         <div class="carousel-inner " >
           @foreach($sliderExams as $exam)
           <div class="carousel-item @if($loop->first)active @endif">
-            <a href="{{route('register')}}">
+            <a href="{{$exam->link}}">
               <img class="d-block rounded slider-img" style="object-fit:stretch;" height="400px" width="100%" src="{{Voyager::image($exam->image)}}" alt="First slide">
             </a>
           </div>
@@ -241,7 +241,7 @@ $numto = new NumberToBangla();
           </div>
         </div>
         @auth
-        @if(auth()->user()->information->package_id == $package->id)
+        @if(@auth()->user()->information->package_id == $package->id)
         <a class="btn btn-outline-danger d-block my-3 text-uppercase" href="#"> সাবস্ক্রাইবড</a>
         @else
         <a class="btn btn-outline-danger d-block my-3 text-uppercase" href="{{route('package-details',[Str::slug($package->title),$package])}}"> বিস্তারিত দেখুন</a>

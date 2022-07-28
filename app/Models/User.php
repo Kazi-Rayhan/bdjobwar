@@ -134,7 +134,7 @@ class User extends \TCG\Voyager\Models\User
             return true;
         }
         //If user is paid user can particapate 
-        if ($this->information->is_paid) {
+        if (@$this->information->is_paid) {
             $this->attachExam($exam);
             return true;
         }
@@ -175,7 +175,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function bought(int $batchId): bool
     {
-        if ($this->batches->contains($batchId) || $this->information->is_paid  ) {
+        if ($this->batches->contains($batchId) || @$this->information->is_paid  ) {
             return true;
         }
         return false;

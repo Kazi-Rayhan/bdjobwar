@@ -11,6 +11,7 @@ use App\Models\Exam;
 use App\Models\Notice;
 use App\Models\UserExam;
 use App\Video;
+use App\Slider;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Mpdf\Mpdf;
@@ -20,13 +21,7 @@ class PageController extends Controller
     public function home()
     {
         $videos = Video::orderBy('order', 'asc')->get();
-        $sliderExams = Exam::whereNotNull('image')
-            ->active()
-           
-            // ->where('to', '>', now())
-            ->latest()
-            ->limit(3)
-            ->get();
+        $sliderExams = Slider::latest()->get();
 
         $finishedExams = Exam::free()
             ->active()
@@ -53,15 +48,12 @@ class PageController extends Controller
             ->latest()
             ->limit(3)
             ->get();
-
-        // dd($yesterday);
         $latestResults = Exam::active()
             ->with('users')
-            ->where('to', '<=', now())
+            ->whereBetween('to',[now()->subDays(3),now()])
             ->latest()
-            ->limit(5)
             ->get();
-        // dd($latestResults);
+        
         $livePaidExams = Exam::paid()
             ->with('users')
             ->where('from', '<', now())
@@ -72,26 +64,12 @@ class PageController extends Controller
             ->get();
 
         $courses = Course::with('batches')->latest()->get();
-
-        $liveExaminees = DB::table('exam_user')
-            ->whereBetween(
-                'updated_at',
-                [
-                    now()->addMinutes(-120),
-                    now()->addMinutes(120)
-                ]
-            )
-            ->latest()
-            ->limit(5)
-            ->get();
         $upcomingExams = Exam::active()
 
             ->where('from', '>=', now())
             ->orderBy('from', 'asc')
             ->limit(5)
             ->get();
-
-
 
 
         $packages = Package::all();
@@ -105,7 +83,7 @@ class PageController extends Controller
                 'finishedExams',
                 'liveExams',
                 'upcomingExams',
-                'liveExaminees',
+          
                 'packages',
                 'notices',
                 'livePaidExams',

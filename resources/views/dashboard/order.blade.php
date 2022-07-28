@@ -24,10 +24,7 @@
                 <th scope="col">
                     Status
                 </th>
-                <th scope="col">
-                    Method
-                </th>
-                
+               
                 <th scope="col">
                     Account
                 </th>
@@ -49,9 +46,7 @@
                 <td>
                     {{array_search($order->status,$order::STATUS)}}
                 </td>
-                <td>
-                {{array_search($order->method,$order::METHOD)}}
-                </td>
+               
                 <td>
                    {{$order->account}} 
                 </td>

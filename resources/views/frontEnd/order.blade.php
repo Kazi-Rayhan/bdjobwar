@@ -17,7 +17,7 @@
                     <input type="hidden" name="type" value="{{$type}}">
                     <input type="hidden" name="id" value="{{$id}}">
                     <div class="form-group ">
-                        <label for="account" class="mb-3">অ্যাকাউন্ট <span class="text-danger">*</span> </label>
+                        <label for="account" class="mb-3">অ্যাকাউন্ট <span class="text-danger">*</span> <small>(যে নাম্বার থেকে টাকা দিয়েছেন)</small> </label>
 
                         <input type="text" name="account" value="{{old('account')}}" class="form-control border border-dark @error('account') is-invalid @enderror" id="account" placeholder="আপনার বিকাশ, নগদ বা রকেট অ্যাকাউন্ট নম্বর লিখুন">
                         @error('account')
@@ -28,7 +28,7 @@
 
                     </div>
                     <div class="form-group mt-2 ">
-                        <label for="trnxId" class="mb-3">ট্রানজেকশন আইডি </label>
+                        <label for="trnxId" class="mb-3">ট্রানজেকশন আইডি <small>(যদি থাকে)</small> </label>
 
                         <input type="text" name="trnxId" value="{{old('trnxId')}}" class="form-control border border-dark @error('trnxId') is-invalid @enderror" id="trnxId" placeholder="ট্রানজেকশন আইডি লিখুন (optional)">
                         @error('trnxId')
@@ -77,7 +77,7 @@
                     </div>
 
 
-                    <button type="submit" class="btn btn-outline-danger btn-lg mt-3">সাবমিট</button>
+                    <button type="submit" class="btn btn-success btn-lg mt-3">সাবমিট</button>
                 </form>
             </div>
         </div>
