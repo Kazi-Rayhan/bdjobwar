@@ -14,15 +14,15 @@
         </h3>
         <div style="height:2px;width:100px" class="bg-success"></div>
         @auth
-            @if (@auth()->user()->information->is_paid && $batch->reading_pdf)
+            @if (@auth()->user()->information->is_paid && json_decode($batch->reading_pdf))
                 <a href="{{ Voyager::image(json_decode($batch->reading_pdf)[0]->download_link) }}" class="btn btn-dark mt-2"> পড়ার
-                    পিডিফ</a>
+                পিডিএফ</a>
             @endif
         @endauth
-        <p class="w-50 mt-4">
+        <p class="w-100 mt-4">
             <span></span> Live = চলমান পরীক্ষা Live বাটনে দেখতে পাবেন ।
             <br>
-            Upcoming = আসান্ন পরীক্ষার সময় ও সিলেবাস দেখতে পাবেন ।
+            Upcoming = আসন্ন পরীক্ষার সময় ও সিলেবাস দেখতে পাবেন ।
             <br>
             Archived = পূর্বে শেষ হওয়া পরীক্ষা গুলো এখানে দেখতে পারবেন ।
         </p>
@@ -98,7 +98,7 @@
                                             data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
                                         @if (@auth()->user()->information->is_paid && $exam->reading_pdf)
                                             <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
-                                                class="btn btn-dark mt-2"> পড়ার পিডিফ</a>
+                                                class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
                                         @endif
             </div> 
         </div>
@@ -167,7 +167,7 @@
                                     data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
                                 @if (@auth()->user()->information->is_paid && $exam->reading_pdf)
                                     <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
-                                        class="btn btn-dark mt-2"> পড়ার পিডিফ</a>
+                                        class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
                                 @endif
                                 <!-- </div> -->
     </div>
@@ -237,7 +237,7 @@
                             <!-- </div> -->
                             @if (@auth()->user()->information->is_paid && $exam->reading_pdf)
                                 <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
-                                    class="btn btn-dark mt-2"> পড়ার পিডিফ</a>
+                                    class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
                             @endif
                         </td>
                     </tr>
