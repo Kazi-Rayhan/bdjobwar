@@ -93,7 +93,7 @@ $numto = new NumberToBangla();
             <td width="50%">
 
 
-                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0"> {{ $numto->bnNum($count) }} / {!! $question->title !!}</p>
+                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex" > {{ $numto->bnNum($count) }} / {!! $question->title !!}</p>
                 @php
     $count++;
     @endphp

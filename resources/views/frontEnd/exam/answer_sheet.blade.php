@@ -20,7 +20,7 @@ $numto = new NumberToBangla();
             <div class="card mb-3 shadow">
                 <div class="card-body">
 
-                    <h6 style="font-weight: 700;">{{ $numto->bnNum($loop->iteration) }}.{!! $question->title !!}</h6>
+                    <h6 style="font-weight: 700; " class="d-flex">{{ $numto->bnNum($loop->iteration) }}.{!! $question->title !!}</h6>
                     @if($question->title_image)
                     <div class="text-center">
                         <img src="{{Voyager::image($question->title_image)}}" width="300px" style="object-fit:contain" alt="">
@@ -54,7 +54,7 @@ $numto = new NumberToBangla();
                     <h6>ব্যাখ্যা :</h6>
                     <hr>
                     <p style="font-size: 12px;">
-                        {{$question->description}}
+                        {!!$question->description!!}
                     </p>
                     @if($question->image)
                     <div>
