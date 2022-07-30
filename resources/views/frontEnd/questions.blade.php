@@ -176,7 +176,7 @@ right: 10;">
                                     <div class="card-body shadow">
 
                                         <div class="p-2 rounded text-light h6  " style="background-color: #019514;">
-                                            <b>{{ $numto->bnNum($loop->iteration) }}. {{ $question->title }}</b>
+                                            <b>{{ $numto->bnNum($loop->iteration) }}. {!! $question->title !!}</b>
                                         </div>
                                         @if ($question->title_image)
                                             <div class="text-center">

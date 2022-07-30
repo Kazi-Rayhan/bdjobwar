@@ -240,8 +240,8 @@ $add = is_null($dataTypeContent->getKey());
                                             <div class="card-header" id="headingDescription">
                                                 <div class="form-group">
                                                         <label for="">Description</label>
-                                                        <textarea  name="description" id="" value=""  class="form-control">
-                                                        {{old('description') ?? @$dataTypeContent->description}}
+                                                        <textarea  name="description" id="" value=""  class="form-control richTextBox">
+                                                        {!! old('description') ?? @$dataTypeContent->description!!}
                                                         </textarea>
                                                 </div>
                                                 <button class="btn btn-primary" type="button" data-toggle="collapse"
@@ -448,5 +448,18 @@ $add = is_null($dataTypeContent->getKey());
             $('#delete_modal').modal('show');
         });
 </script>
+
+
+<script>
+        $(document).ready(function() {
+            var additionalConfig = {
+                selector: 'textarea.richTextBox[name="description"]',
+            }
+
+            $.extend(additionalConfig, {!! json_encode($options->tinymceOptions ?? '{}') !!})
+
+            tinymce.init(window.voyagerTinyMCE.getConfig(additionalConfig));
+        });
+    </script>
 
 @stop

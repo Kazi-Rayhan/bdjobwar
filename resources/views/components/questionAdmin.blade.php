@@ -15,7 +15,7 @@ $actions[] = $action;
 
     <div class="card-body">
         <p>
-            <span> {{$iteration}} |</span> {{ $question->title }}
+            <span> {{$iteration}} |</span> {!! $question->title !!}
 
             @if($question->title_image)
             <img class="" src="{{Voyager::image($question->title_image)}}" width="300px" height="300px" style="object-fit:contain ;display:block" alt="">
