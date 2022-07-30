@@ -1,46 +1,45 @@
+
 @extends('frontEnd.layouts.app')
 @section('content')
-    <div class="container my-5">
-        <h3 class="text-success">
-            Job Solutions
-        </h3>
-        <div style="height:2px;width:100px" class="bg-danger"></div>
-        <table class="table">
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    Exam
-                </th>
-                <th>
-                    Subjects
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-            @foreach ($exams as $exam)
-                <tr>
-                    <td>
-                        {{ $loop->iteration }}
-                    </td>
-                    <td>
-                        <h6 class="text-dark" style="font-weight: 700;">{{ $exam->title }}</h6>
-                        <p class="text-secondary mt-2" style="font-size: 14px;">
-                        {{ $exam->sub_title }}
-                        </p>
-                    </td>
-                    <td>
-                    {{join(' ,',$exam->subjects->pluck('name')->toArray())}}
-                    </td>
-                    <td>
-                    <a class="btn btn-primary" href="{{route('exam.read',$exam->uuid)}}">পড়ুন</a>
-                    </td>
-                </tr>
-            @endforeach
+@php
+use Rakibhstu\Banglanumber\NumberToBangla;
+$numto = new NumberToBangla();
+@endphp
 
-        </table>
-        {{$exams->links()}}
+<div class="container my-5">
+    <h3 class="text-success">
+        {{$course->title}}
+    </h3>
+    <div style="height:2px;width:100px" class="bg-danger"></div>
+    <div class="row mt-5">
+        @foreach($batches as $batch)
+        <div class="col-md-3 mb-2">
+            <div class="card border-success shadow package-hover">
+                <img src="{{Voyager::image($batch->thumbnail)}}" height="200px" style="object-fit:stretch" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">{{$batch->title}}</h3>
+                    <div style="height:2px;width:100px" class="bg-danger"></div>
+                    <div class="d-flex  gap-5 text-dark mt-2" style="font-size: 14px;">
+
+                        <span>
+                            <i class="fa fa-coins"> মূল্য : @if($batch->price > 0){{$numto->bnNum($batch->price)}} ৳ @else ফ্রি @endif </i> </span>
+                        <span>
+                            <i class="fa fa-certificate"> পরীক্ষা : {{$numto->bnNum($batch->exams()->count())}}</i>
+                        </span>
+
+                    </div>
+                    <div class=" btn-group gap-2 mt-5">
+                        <a href="{{route('job.solutions.batch.details',$batch)}}" class="btn btn-success">বিস্তারিত</a>
+                        <!-- <a href="#" class="btn btn-dark">রুটিন</a> -->
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        @endforeach
     </div>
+</div>
+
 @endsection

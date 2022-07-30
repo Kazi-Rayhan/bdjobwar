@@ -63,7 +63,7 @@ class PageController extends Controller
             ->limit(3)
             ->get();
 
-        $courses = Course::with('batches')->latest()->get();
+        $courses = Course::with('batches')->where('job_solutions',0)->latest()->get();
         $upcomingExams = Exam::active()
 
             ->where('from', '>=', now())
@@ -162,6 +162,11 @@ class PageController extends Controller
     {
         return view('frontEnd.batch-details', compact('batch'));
     }
+    public function jobSolutionsBatchDetails(Batch $batch)
+    {
+        $exams = Exam::active()->where('isJobSolution', 1)->paginate(20);
+        return view('frontEnd.job-solutions-batch-details', compact('batch','exams'));
+    }
 
     public function jobsolutions()
     {
@@ -169,6 +174,8 @@ class PageController extends Controller
         if (!auth()->user()) return redirect()->route('login');
         if (!auth()->user()->information->is_paid) return redirect(url(route('home_page') . '#package'))->with('error', 'জব সলিউশন দেখার জন্য প্যাকেজ সাবস্ক্রাইব করুন');
         $exams = Exam::active()->where('isJobSolution', 1)->paginate(20);
-        return view('frontEnd.jobsolutions', compact('exams'));
+        $course = Course::with('batches')->where('job_solutions',1)->firstOrFail();
+        $batches=$course->batches;
+        return view('frontEnd.jobsolutions', compact('exams','course','batches'));
     }
 }
