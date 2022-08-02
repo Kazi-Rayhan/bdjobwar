@@ -14,7 +14,7 @@
         </h3>
         <div style="height:2px;width:100px" class="bg-success"></div>
         @auth
-            @if (@auth()->user()->information->is_paid && json_decode($batch->reading_pdf))
+            @if (@auth()->user()->information->is_paid || auth()->user()->bought($batch->id) && json_decode($batch->reading_pdf))
                 <a href="{{ Voyager::image(json_decode($batch->reading_pdf)[0]->download_link) }}" class="btn btn-dark mt-2"> পড়ার
                 পিডিএফ</a>
             @endif
@@ -96,7 +96,7 @@
                                             দিন</a>
                                         <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
-                                        @if (@auth()->user()->information->is_paid && $exam->reading_pdf)
+                                        @if (@auth()->user()->information->is_paid || auth()->user()->bought($batch->id) && json_decode($exam->reading_pdf))
                                             <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
                                                 class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
                                         @endif
@@ -165,7 +165,7 @@
                                 <!-- <a href="{{ route('start-exam', $exam->uuid) }}" class="dropdown-item"> টেস্ট দিন</a> -->
                                 <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
-                                @if (@auth()->user()->information->is_paid && $exam->reading_pdf)
+                                @if (@auth()->user()->information->is_paid || auth()->user()->bought($batch->id) && json_decode($exam->reading_pdf))
                                     <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
                                         class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
                                 @endif
@@ -235,7 +235,7 @@
 
                             <!-- </div> -->
                             <!-- </div> -->
-                            @if (@auth()->user()->information->is_paid && $exam->reading_pdf)
+                            @if (auth()->user()->information->is_paid || auth()->user()->bought($batch->id) && json_decode($exam->reading_pdf))
                                 <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
                                     class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
                             @endif
