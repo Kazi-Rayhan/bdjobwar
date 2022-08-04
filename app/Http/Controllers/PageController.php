@@ -50,10 +50,10 @@ class PageController extends Controller
             ->get();
         $latestResults = Exam::active()
             ->with('users')
-            ->whereBetween('to',[now()->subDays(3),now()])
+            ->whereBetween('to', [now()->subDays(3), now()])
             ->latest()
             ->get();
-        
+
         $livePaidExams = Exam::paid()
             ->with('users')
             ->where('from', '<', now())
@@ -63,7 +63,7 @@ class PageController extends Controller
             ->limit(3)
             ->get();
 
-        $courses = Course::with('batches')->where('job_solutions',0)->latest()->get();
+        $courses = Course::with('batches')->where('job_solutions', 0)->latest()->get();
         $upcomingExams = Exam::active()
 
             ->where('from', '>=', now())
@@ -83,7 +83,7 @@ class PageController extends Controller
                 'finishedExams',
                 'liveExams',
                 'upcomingExams',
-          
+
                 'packages',
                 'notices',
                 'livePaidExams',
@@ -165,17 +165,18 @@ class PageController extends Controller
     public function jobSolutionsBatchDetails(Batch $batch)
     {
         $exams = Exam::active()->where('isJobSolution', 1)->paginate(20);
-        return view('frontEnd.job-solutions-batch-details', compact('batch','exams'));
+        return view('frontEnd.job-solutions-batch-details', compact('batch', 'exams'));
     }
 
     public function jobsolutions()
     {
 
         if (!auth()->user()) return redirect()->route('login');
-        if (!auth()->user()->information->is_paid) return redirect(url(route('home_page') . '#package'))->with('error', 'জব সলিউশন দেখার জন্য প্যাকেজ সাবস্ক্রাইব করুন');
+        if (!auth()->user()->information->is_paid) return redirect(route('home_page') . '#package')->with('error', 'জব সলিউশন দেখার জন্য প্যাকেজ সাবস্ক্রাইব করুন');
         $exams = Exam::active()->where('isJobSolution', 1)->paginate(20);
-        $course = Course::with('batches')->where('job_solutions',1)->firstOrFail();
-        $batches=$course->batches;
-        return view('frontEnd.jobsolutions', compact('exams','course','batches'));
+        $course = Course::with('batches')->where('job_solutions', 1)->first();
+        $batches = $course->batches;
+       
+        return view('frontEnd.jobsolutions', compact('exams', 'course', 'batches'));
     }
 }

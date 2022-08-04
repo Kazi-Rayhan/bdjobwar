@@ -19,15 +19,7 @@ $numto = new NumberToBangla();
                 <div class="card-body">
                     <h3 class="card-title">{{$batch->title}}</h3>
                     <div style="height:2px;width:100px" class="bg-danger"></div>
-                    <div class="d-flex  gap-5 text-dark mt-2" style="font-size: 14px;">
-
-                        <span>
-                            <i class="fa fa-coins"> মূল্য : @if($batch->price > 0){{$numto->bnNum($batch->price)}} ৳ @else ফ্রি @endif </i> </span>
-                        <span>
-                            <i class="fa fa-certificate"> পরীক্ষা : {{$numto->bnNum($batch->exams()->count())}}</i>
-                        </span>
-
-                    </div>
+                   
                     <div class=" btn-group gap-2 mt-5">
                         <a href="{{route('job.solutions.batch.details',$batch)}}" class="btn btn-success">বিস্তারিত</a>
                         <!-- <a href="#" class="btn btn-dark">রুটিন</a> -->
