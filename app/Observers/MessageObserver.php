@@ -17,7 +17,7 @@ class MessageObserver
     public function created(Message $message)
     {
         $numbers =  $message->numbers ?? join(',',User::all()->pluck('phone')->toArray());
-       $send = Sms::compose($numbers,$message->message)->send();
+        $send = Sms::compose($numbers,$message->message)->send();
  
     }
 

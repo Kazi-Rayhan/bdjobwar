@@ -13,8 +13,7 @@
     <!-- bratcam area  end-->
     <div
         class="container-fluid container-md my-md-5 my-2 d-flex flex-column gap-3 justify-content-center align-items-center">
-        <img src="{{ Voyager::image($batch->thumbnail) }}" style="width:100%;height:300px;object-fit:contain"
-            alt="">
+        
         <div class="d-flex flex-column gap-3 w-100 w-xl-50">
 
             <div>
@@ -24,19 +23,6 @@
 
 
             </div>
-
-
-
-
-
-
-
-            <p class="m-0 p-0" style="color:#666666">
-                {{ $batch->description }}
-
-            </p>
-
-
 
         </div>
         <h2>
