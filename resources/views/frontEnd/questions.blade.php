@@ -301,6 +301,7 @@ right: 10;">
                 
                 clearInterval(x);
                 document.getElementById("countdown").innerHTML = "EXPIRED";
+                return ;
 
             }
         }, 1000);

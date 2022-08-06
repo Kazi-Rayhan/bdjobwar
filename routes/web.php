@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\QuestionsVoyagerController;
 use App\Http\Controllers\SuccessController;
@@ -42,7 +43,9 @@ Route::post('/password/confirm', [AuthenticateController::class, 'confirmPasswor
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
     Route::group(['middleware' => 'admin.user'], function () {
+        Route::get('/exams/{exam}/duplicate',[ExamController::class,'duplicate'])->name('exam.duplicate');
         Route::get('/order/accept/{order}', [OrderController::class, 'accept'])->name('order.accept');
         Route::get('/order/declined/{order}', [OrderController::class, 'declined'])->name('order.decline');
         Route::post('/question/{question}/disable',[QuestionsVoyagerController::class,'disable'])->name('question-disable');

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -57,12 +58,20 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
-    
+
     protected function sendFailedLoginResponse(Request $request)
     {
-        throw ValidationException::withMessages([
-            $this->username() => ['আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন'],
-        ]);
+        $user = User::where('phone', $request->phone)->first();
+        if ($user && !Hash::check($request->password, $user->password)) {
+   
+            throw ValidationException::withMessages([
+                $this->username() => ['আপনার পাসওয়ার্ড ভুল, সঠিক পাসওয়ার্ড দিন।'],
+            ]);
+        } else {
+            throw ValidationException::withMessages([
+                $this->username() => ['আপনার কোন অ্যাকাউন্ট করা নেই। ফ্রি অ্যাকাউন্ট করতে ,নিচের ফ্রি অ্যাকাউন্ট খুলুন লিঙ্কে ক্লিক করুন'],
+            ]);
+        }
     }
 
     protected function attemptLogin(Request $request)

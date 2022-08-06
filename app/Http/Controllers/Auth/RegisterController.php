@@ -56,7 +56,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
         ],[
             'phone.unique' => 'আপনার মোবাইল নম্বরটি পূর্বে রেজিস্ট্রেশন করা হয়েছে । লগইন করতে লগইন বাটনে ক্লিক করুন ।'
         ]);

@@ -298,6 +298,7 @@
                                                     <button class="btn btn-primary copy"
                                             data-link="{{ route('share.exam', $data->uuid) }}">Copy
                                             Link</button>
+                                            <a href="{{route('exam.duplicate',$data)}}" class="btn btn-primary">Duplicate</a>
                                                 <div class="btn-group">
                                                     <button class="btn btn-default btn-lg dropdown-toggle" type="button"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

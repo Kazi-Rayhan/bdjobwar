@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Message;
 use App\Models\UserMeta;
+use App\Observers\MessageObserver;
 use App\Observers\UserMetaObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -29,6 +31,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-      
+      Message::observe(MessageObserver::class);
     }
 }
