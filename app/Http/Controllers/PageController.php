@@ -173,10 +173,12 @@ class PageController extends Controller
 
         if (!auth()->user()) return redirect()->route('login');
         // if (!auth()->user()->information->is_paid) return redirect(route('home_page') . '#package')->with('error', 'জব সলিউশন দেখার জন্য প্যাকেজ সাবস্ক্রাইব করুন');
-        $exams = Exam::active()->where('isJobSolution', 1)->paginate(20);
+        if (!auth()->user()) return redirect()->route('login');
+        
         $course = Course::with('batches')->where('job_solutions', 1)->first();
+        if (!$course) return back() ;
         $batches = $course->batches;
        
-        return view('frontEnd.jobsolutions', compact('exams', 'course', 'batches'));
+        return view('frontEnd.jobsolutions', compact( 'course', 'batches'));
     }
 }
