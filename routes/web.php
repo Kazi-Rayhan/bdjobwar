@@ -9,7 +9,9 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\QuestionsVoyagerController;
 use App\Http\Controllers\SuccessController;
+use App\Models\Exam;
 use App\Models\UserMeta;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,28 +79,40 @@ Route::get('/package/{slug}/{package}', [PageController::class, 'packageDetails'
 Route::get('/jobsolutions',[PageController::class,'jobsolutions'])->name('jobsolutions');
 Route::get('exam/{uuid}/read',[ExamController::class,'read'])->name('exam.read');
 
-Route::group(['middleware'=>['auth','canAttendThisExam']],function(){
+Route::group(['middleware'=>['auth','pin','canAttendThisExam']],function(){
     Route::get('exam/{uuid}/answer-sheet',[ExamController::class,'answerSheet'])->name('answerSheet');
     Route::get('exam/{uuid}/answer-sheet-pdf',[ExamController::class,'answerSheetPdf'])->name('answerSheetPdf');
     Route::get('exam/{uuid}/questions-sheet-pdf',[ExamController::class,'answerSheetPdfWithOutMarking'])->name('answerSheetPdfWithOutMarking');
 });
 
-Route::get('start/{uuid}',[ExamController::class,'exam_start'])->name('start-exam')->middleware('canAttendThisExam');
+Route::get('start/{uuid}',[ExamController::class,'exam_start'])->name('start-exam')->middleware(['canAttendThisExam']);
 Route::get('e/{uuid}',[ExamController::class,'exam_start'])->name('share.exam');
 Route::get('batch-details/{batch}',[PageController::class,'batchDetails'])->name('batch.details');
 Route::get('job-solutions-batch-details/{batch}',[PageController::class,'jobSolutionsBatchDetails'])->name('job.solutions.batch.details');
 
+Route::get('/givepin/{uuid}',function(){
+    return view('frontEnd.givepin');
+})->name('givepin');
+Route::post('/givepin/{uuid}',function(Request $request){
+$exam = Exam::where('uuid',$request->uuid)->first();
+if($exam->pin == $request->pin){
+    session()->put('exam',[$request->uuid=>true]);
+    
+    return redirect(session()->get('from'));
+}
+return redirect()->back()->withErrors('wrong pin');
 
+})->name('givepin');
 
 Route::group(['prefix' => 'exam', 'controller' => ExamController::class, 'middleware' => ['auth']], function () {
 
     Route::get('all/results/{uuid}','exam_all_results')->name('all-results-exam');
     Route::get('all/results/pdf/{uuid}','exam_all_results_pdf')->name('all-results-exam-pdf');
 
-    Route::get('{uuid}','exam')->name('question')->middleware(['canAttendThisExam','exam']);
-    Route::get('result/{uuid}','exam_result')->name('result-exam')->middleware(['canAttendThisExam']);
-    Route::get('start/2/{uuid}','start')->name('start')->middleware('canAttendThisExam');
-    Route::post('{uuid}/store','store')->name('exam.store')->middleware(['canAttendThisExam','exam']);
+    Route::get('{uuid}','exam')->name('question')->middleware(['canAttendThisExam','pin','exam']);
+    Route::get('result/{uuid}','exam_result')->name('result-exam')->middleware(['canAttendThisExam','pin']);
+    Route::get('start/2/{uuid}','start')->name('start')->middleware(['canAttendThisExam','pin']);
+    Route::post('{uuid}/store','store')->name('exam.store')->middleware(['canAttendThisExam','exam','pin']);
 }); 
 
 Route::get('{batch}/batch/routine',[PageController::class,'batchRoutine'])->name('batch.routines');

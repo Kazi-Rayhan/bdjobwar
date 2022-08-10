@@ -21,6 +21,7 @@ $numto = new NumberToBangla();
             <h2 class="text-dark">{{$exam->title}}</h2>
             <h5 style="color:#666666">{{$exam->sub_title}}</h5>
             <div style="height:2px;width:60px" class="bg-danger"></div>
+         
             <div class="d-flex gap-2 mt-2">
                 <a href="{{route('start',$exam->uuid)}}" class="btn btn-success">পরীক্ষা শুরু করুন</a>   
                 <button  type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">সিলেবাস দেখুন</button>
