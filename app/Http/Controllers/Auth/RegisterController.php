@@ -55,10 +55,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255', 'unique:users'],
+            'phone' => ['required', "regex:/(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/", 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
         ],[
-            'phone.unique' => 'আপনার মোবাইল নম্বরটি পূর্বে রেজিস্ট্রেশন করা হয়েছে । লগইন করতে লগইন বাটনে ক্লিক করুন ।'
+            'phone.unique' => 'আপনার মোবাইল নম্বরটি পূর্বে রেজিস্ট্রেশন করা হয়েছে । লগইন করতে লগইন বাটনে ক্লিক করুন ।',
+            'phone.regex' => 'আপনার মোবাইল নম্বরটি সঠিক না ।'
         ]);
     }
 
