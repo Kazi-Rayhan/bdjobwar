@@ -69,81 +69,89 @@ $numto = new NumberToBangla();
             margin-right: 40px;
             font-size: 16px;
         }
-
         .row {
             display: grid;
             grid-template-columns: reaped(2, 1fr);
         }
     </style>
 </head>
-
 <body>
     <div style="text-align: center;">
-
         <h6 style=" margin:0px;">Answer Sheet</h6>
     </div>
     @php
-    $count = 1;
+        $count = 1;
     @endphp
     <table style="width: 100%;">
-        @foreach($questions->chunk(2) as $q)
-
-        <tr>
-            @foreach($q as $question)
-            <td width="50%">
-
-
-                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex" > {{ $numto->bnNum($count) }} / {!! $question->title !!}</p>
-                @php
-    $count++;
-    @endphp
-                @if($question->title_image)
-                <div class="text-center">
-                    <img src="{{Voyager::image($question->title_image)}}" width="200px" style="object-fit:contain" alt="">
-
-                </div>
-                @endif
-
-                <div class="">
-                    @foreach($question->choices as $choice)
-                    <div>
-
-
-                        @if($choice->index == $question->answer)
-                        <p style="color:green">
-
-                            {{$choice->label}}. {{$choice->choice_text}} @if($choice->index == $question->answer)<sup class=" text-success "><i class="fa fa-check"></i> </sup>@elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )<sup class=" text-danger "><i class="fa fa-times"></i> </sup> @else @endif
-
-                        </p>
-
-                        @elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )
-                        <p style="color:red">
-                            {{$choice->label}}. {{$choice->choice_text}} @if($choice->index == $question->answer)<sup class=" text-success "><i class="fa fa-check"></i> </sup>@elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )<sup class=" text-danger "><i class="fa fa-times"></i> </sup> @else @endif
-                        </p>
-                        @else
-                        <p style="color:black">
-                            {{$choice->label}}. {{$choice->choice_text}} @if($choice->index == $question->answer)<sup class=" text-success "><i class="fa fa-check"></i> </sup>@elseif($exam->userChoice(auth()->user(),$question->id)== $choice->index )<sup class=" text-danger "><i class="fa fa-times"></i> </sup> @else @endif
-                        </p>
+        @foreach ($questions->chunk(2) as $q)
+            <tr>
+                @foreach ($q as $question)
+                    <td width="50%">
+                        <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex">
+                            {{ $numto->bnNum($count) }} / {!! $question->title !!}</p>
+                        @php
+                            $count++;
+                        @endphp
+                        @if ($question->title_image)
+                            <div class="text-center">
+                                <img src="{{ Voyager::image($question->title_image) }}" width="200px"
+                                    style="object-fit:contain" alt="">
+                            </div>
                         @endif
+                        <div class="">
+                            @foreach ($question->choices as $choice)
+                                <div>
+                                    @if ($choice->index == $question->answer)
+                                        <p style="color:green">
 
-                        @if($choice->choice_image)
-                        <img class="" src="{{Voyager::image($choice->choice_image)}}" width="100px" style="object-fit:contain ;display: block;" alt="">
-                        @endif
+                                            {{ $choice->label }}. {{ $choice->choice_text }}
+                                            @if ($choice->index == $question->answer)
+                                                <sup class=" text-success "><i class="fa fa-check"></i> </sup>
+                                            @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                                <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
+                                            @else
+                                                as
+                                            @endif
+                                        </p>
+                                    @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                        <p style="color:red">
+                                            {{ $choice->label }}. {{ $choice->choice_text }} 
+                                            @if ($choice->index == $question->answer)
+                                                <sup class=" text-success "><i class="fa fa-check"></i> </sup>
+                                            @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                                <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
+                                            @else
+                                                    asd
+                                            @endif
+                                        </p>
+                                    @else
+                                        <p style="color:black">
+                                            {{ $choice->label }}. {{ $choice->choice_text }} 
+                                            @if ($choice->index == $question->answer)
+                                                <sup class=" text-success "><i class="fa fa-check"></i> </sup>
+                                            @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                                <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
+                                            @else
+                                                    asd
+                                            @endif
+                                        </p>
+                                    @endif
+                                    @if ($choice->choice_image)
+                                        <img class="" src="{{ Voyager::image($choice->choice_image) }}"
+                                            width="100px" style="object-fit:contain ;display: block;" alt="">
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
 
 
-                    </div>
+                    </td>
+                @endforeach
 
-                    @endforeach
-                </div>
-
-
-            </td>
-            @endforeach
-
-        </tr>
+            </tr>
 
 
-        </div>
+            </div>
         @endforeach
     </table>
 
