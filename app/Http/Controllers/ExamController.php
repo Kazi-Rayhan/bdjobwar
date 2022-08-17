@@ -80,6 +80,7 @@ class ExamController extends Controller
         $exam = Exam::where('uuid', $uuid)->first();
 
         $timeLeft = UserExam::where('user_id',auth()->id())->where('exam_id',$exam->id)->first()->timeLeft();
+        
         $questions = $exam->questions()->active()->inRandomOrder()->get();
 
 

@@ -50,7 +50,7 @@ class UserExam extends Model
 
     public function timeLeft()
     {
-       return Carbon::parse($this->expire_at)->diffInSeconds(now());
+        $diff = now()->diffInSeconds($this->expire_at, false);
+        return $diff > 0 ? $diff : 0;
     }
- 
 }
