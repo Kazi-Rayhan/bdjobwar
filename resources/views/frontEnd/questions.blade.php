@@ -262,8 +262,7 @@ right: 10;">
                                     id="leftModal2">
                                 </span> উত্তর বাকি আছে।
                             </p>
-                            <button class="btn btn-lg btn-success" 
-                                type="submit">Submit</button>
+                            <button class="btn btn-lg btn-success" type="submit">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -273,39 +272,32 @@ right: 10;">
 @endsection
 @section('js')
     <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("{{ auth()->user()->exams()->find($exam)->pivot->expire_at }}").getTime();
-        const toBn = n => n.replace(/\d/g, d => "০১২৩৪৫৬৭৮৯" [d])
-        // Update the count down every 1 second
-        var x = setInterval(function() {
+        const countdown = (duration) => {
+            const toBn = n => n.replace(/\d/g, d => "০১২৩৪৫৬৭৮৯" [d])
+            var timer = duration,
+                minutes, seconds;
+            let x = setInterval(function() {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
 
-            // Get today's date and time
-            var now = Date.now();
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in an element with id="demo"
-            var time = hours + " ঘঃ " + minutes + " মিঃ " + seconds + " সেঃ";
-            document.getElementById("countdown").innerHTML = toBn(time);
-
-            // If the count down is over, write some text 
-            if (distance < 0) {
-              
+                var time = minutes + " মিঃ " + seconds + " সেঃ";
+                console.log(time);
+                document.getElementById("countdown").innerHTML = toBn(time);
+                if (--timer < 0) {
+                    timer = duration;
                     $("#staticBackdrop").modal('show');
-                
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "EXPIRED";
-                return ;
-
-            }
-        }, 1000);
+                    document.getElementById("countdown").innerHTML = "EXPIRED";
+                    clearInterval(x);
+                    return;
+                }
+            }, 1000);
+        }
+        countdown({{ $timeLeft }});
     </script>
+
     <script>
         var exampleModal = document.getElementById('exampleModal')
         exampleModal.addEventListener('show.bs.modal', function(event) {
