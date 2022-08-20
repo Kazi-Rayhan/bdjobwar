@@ -272,6 +272,9 @@ right: 10;">
 @endsection
 @section('js')
     <script>
+        let canSubmit = false;
+    </script>
+    <script>
         const countdown = (duration) => {
             const toBn = n => n.replace(/\d/g, d => "০১২৩৪৫৬৭৮৯" [d])
             var timer = duration,
@@ -287,6 +290,7 @@ right: 10;">
                 console.log(time);
                 document.getElementById("countdown").innerHTML = toBn(time);
                 if (--timer < 0) {
+                    canSubmit = true;
                     timer = duration;
                     $("#staticBackdrop").modal('show');
                     document.getElementById("countdown").innerHTML = "EXPIRED";
@@ -298,9 +302,20 @@ right: 10;">
         countdown({{ $timeLeft }});
     </script>
 
+    <script defer>
+        window.addEventListener("beforeunload", function(e) {
+            if(canSubmit) return undefined;
+            var confirmationMessage = 'It looks like you have been editing something. ' +
+                'If you leave before saving, your changes will be lost.';
+
+            (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+            return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+        });
+    </script>
     <script>
         var exampleModal = document.getElementById('exampleModal')
         exampleModal.addEventListener('show.bs.modal', function(event) {
+            canSubmit = true;
             // Button that triggered the modal
             var button = event.relatedTarget
             // Extract info from data-bs-* attributes

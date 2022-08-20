@@ -40,15 +40,17 @@ class QuestionsVoyagerController extends VoyagerBaseController
     //
     //****************************************
 
-    public function active(Question $question){
-        $question->update(['active'=>true]);
+    public function active(Question $question)
+    {
+        $question->update(['active' => true]);
         return redirect()->back()->with([
             'message'    => "Question is active now",
             'alert-type' => 'success',
         ]);
     }
-    public function disable(Question $question){
-        $question->update(['active'=>false]);
+    public function disable(Question $question)
+    {
+        $question->update(['active' => false]);
         return redirect()->back()->with([
             'message'    => "Question is disabled now",
             'alert-type' => 'success',
@@ -166,7 +168,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $defaultSearchKey = $dataType->default_search_key ?? null;
 
         // Actions
-     
+
         $actions = [];
         if (!empty($dataTypeContent->first())) {
             foreach (Voyager::actions() as $action) {
@@ -347,10 +349,10 @@ class QuestionsVoyagerController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-      
-      
 
-      
+
+
+
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
     }
 
@@ -366,8 +368,8 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $id = $id instanceof \Illuminate\Database\Eloquent\Model ? $id->{$id->getKeyName()} : $id;
 
         $model = app($dataType->model_name);
-        
-       
+
+
         $query = $model->query();
         if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
             $query = $query->{$dataType->scope}();
@@ -375,7 +377,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
             $query = $query->withTrashed();
         }
-        
+
         $data = $query->findOrFail($id);
 
         // Check permission
@@ -395,13 +397,13 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $data->answer = $request->answer;
         $data->description = $request->description;
         if ($request->image) {
-            if (Storage::exists( $data->image)) {
+            if (Storage::exists($data->image)) {
                 Storage::delete($data->image);
             }
             $data->image = $request->image->store('description');
         }
         $data->update();
-     
+
         foreach ($request->options as $option) {
             $choice = Choice::find($option['id']);
             if (array_key_exists('choice_image', $option)) {
@@ -421,10 +423,19 @@ class QuestionsVoyagerController extends VoyagerBaseController
 
         event(new BreadDataUpdated($dataType, $data));
 
+
         if (auth()->user()->can('browse', app($dataType->model_name))) {
-            $redirect = redirect()->route("voyager.{$dataType->slug}.index");
+            if (session()->has('exam')) {
+                $redirect = redirect()->route("voyager.questions.create", ['exam' => session()->get('exam')]);
+            } else {
+                $redirect = redirect()->back();
+            }
         } else {
-            $redirect = redirect()->back();
+            if (session()->has('exam')) {
+                $redirect = redirect()->route("voyager.questions.create", ['exam' => session()->get('exam')]);
+            } else {
+                $redirect = redirect()->back();
+            }
         }
 
         return $redirect->with([
@@ -451,6 +462,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
         $exam = new Exam;
         if ($request->has('exam')) {
             $exam = Exam::whereId($request->exam)->first();
+            session()->put('exam', $exam->id);
         }
 
         $slug = $this->getSlug($request);
@@ -798,7 +810,7 @@ class QuestionsVoyagerController extends VoyagerBaseController
 
         // Delete Files
         foreach ($dataType->deleteRows->where('type', 'file') as $row) {
-            
+
             if (isset($data->{$row->field})) {
                 foreach (json_decode($data->{$row->field}) as $file) {
                     $this->deleteFileIfExists($file->download_link);
