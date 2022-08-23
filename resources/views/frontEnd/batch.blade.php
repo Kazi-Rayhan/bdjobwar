@@ -101,7 +101,7 @@
                                             দিন</a>
                                         <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
-                                        @if (@auth()->user()->information->is_paid ||
+                                        @if (auth()->user()->information->is_paid ||
                                             auth()->user()->bought($batch->id))
                                             @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
                                                 <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
@@ -173,7 +173,7 @@
                                 <!-- <a href="{{ route('start-exam', $exam->uuid) }}" class="dropdown-item"> টেস্ট দিন</a> -->
                                 <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
-                                @if (@auth()->user()->information->is_paid ||
+                                @if (auth()->user()->information->is_paid ||
                                     auth()->user()->bought($batch->id))
                                     @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
                                         <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
