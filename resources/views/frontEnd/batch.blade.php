@@ -94,20 +94,22 @@
                                     <td>
                                         <!-- <div class="dropdown open"> -->
                                         <!-- <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Dropdown
-                                                        </a> -->
+                                                                        Dropdown
+                                                                    </a> -->
                                         <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
                                         <a href="{{ route('start-exam', $exam->uuid) }}" class="btn btn-primary"> টেস্ট
                                             দিন</a>
                                         <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
-                                        @if (auth()->user()->information->is_paid ||
-                                            auth()->user()->bought($batch->id))
-                                            @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
-                                                <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
-                                                    class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
+                                        @auth
+                                            @if (auth()->user()->information->is_paid ||
+                                                auth()->user()->bought($batch->id))
+                                                @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
+                                                    <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
+                                                        class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
+                                                @endif
                                             @endif
-                                        @endif
+                                        @endauth
             </div>
         </div>
 
@@ -166,20 +168,22 @@
 
                             <td>
                                 <!-- <div class="dropdown open">
-                                                        <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Dropdown
-                                                        </a> -->
+                                                                    <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        Dropdown
+                                                                    </a> -->
                                 <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
                                 <!-- <a href="{{ route('start-exam', $exam->uuid) }}" class="dropdown-item"> টেস্ট দিন</a> -->
                                 <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
-                                @if (auth()->user()->information->is_paid ||
-                                    auth()->user()->bought($batch->id))
-                                    @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
-                                        <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
-                                            class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
+                                @auth
+                                    @if (auth()->user()->information->is_paid ||
+                                        auth()->user()->bought($batch->id))
+                                        @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
+                                            <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
+                                                class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
+                                        @endif
                                     @endif
-                                @endif
+                                @endauth
                                 <!-- </div> -->
     </div>
 
@@ -234,9 +238,9 @@
 
                         <td>
                             <!-- <div class="dropdown open">
-                                                        <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Dropdown
-                                                        </a> -->
+                                                                    <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        Dropdown
+                                                                    </a> -->
                             <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
                             <a href="{{ route('start-exam', $exam->uuid) }}" class="btn btn-primary"> টেস্ট দিন</a>
                             <!-- <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button> -->
@@ -246,13 +250,15 @@
 
                             <!-- </div> -->
                             <!-- </div> -->
-                            @if (auth()->user()->information->is_paid ||
-                                auth()->user()->bought($batch->id))
-                                @if ( $exam->reading_pdf && count(json_decode($exam->reading_pdf)))
-                                    <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
-                                        class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
+                            @auth
+                                @if (auth()->user()->information->is_paid ||
+                                    auth()->user()->bought($batch->id))
+                                    @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
+                                        <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
+                                            class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
+                                    @endif
                                 @endif
-                            @endif
+                            @endauth
                         </td>
                     </tr>
                 @endforeach
