@@ -88,7 +88,7 @@ class ExamController extends Controller
         if (request()->practice) {
         
             if (!UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->answers) {
-                return redirect()->back()->withErrors('Please Attend Exam First after that you can do practice exam');
+                return redirect()->back()->withError('প্রাকটিস পরীক্ষা দিতে আপনাকে মূল পরীক্ষায় অংশগ্রহণ করতে হবে।');
             };
         }
     

@@ -257,7 +257,7 @@
             <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী
                 পরীক্ষার সিলেবাস</button>
             <a href="{{ route('dashboard') }}" class="btn btn-dark">প্রোফাইল</a>
-            <a href="{{ route('start', [$result->uuid, 'practice' => true]) }}" class="btn btn-info ">প্রস্তুতিমূলক
+            <a onclick="alert('বিঃদ্রঃ প্রাকটিস পরীক্ষা দিয়ে আপনি আপনার পড়া কতটুকু মনে রাখতে পেরেছেন তা যাচাই করতে পারবেন। আপনার পূর্ববর্তী মেধাতালিকার কোন পরিরবর্তন হবে না।')"  href="{{ route('start', [$result->uuid, 'practice' => true]) }}" class="btn btn-info ">প্রস্তুতিমূলক
                 পরীক্ষা</a>
         </div>
 

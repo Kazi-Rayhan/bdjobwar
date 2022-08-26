@@ -94,11 +94,12 @@
                                     <td>
                                         <!-- <div class="dropdown open"> -->
                                         <!-- <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        Dropdown
-                                                                    </a> -->
+                                                                                                Dropdown
+                                                                                            </a> -->
                                         <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
                                         <a href="{{ route('start-exam', $exam->uuid) }}" class="btn btn-primary"> টেস্ট
                                             দিন</a>
+
                                         <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
                                         @auth
@@ -168,9 +169,9 @@
 
                             <td>
                                 <!-- <div class="dropdown open">
-                                                                    <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        Dropdown
-                                                                    </a> -->
+                                                                                            <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                Dropdown
+                                                                                            </a> -->
                                 <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
                                 <!-- <a href="{{ route('start-exam', $exam->uuid) }}" class="dropdown-item"> টেস্ট দিন</a> -->
                                 <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
@@ -238,16 +239,21 @@
 
                         <td>
                             <!-- <div class="dropdown open">
-                                                                    <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        Dropdown
-                                                                    </a> -->
+                                                                                            <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                Dropdown
+                                                                                            </a> -->
                             <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
                             <a href="{{ route('start-exam', $exam->uuid) }}" class="btn btn-primary"> টেস্ট দিন</a>
                             <!-- <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button> -->
                             <a href="{{ route('all-results-exam', $exam->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
                             <a href="{{ route('answerSheet', $exam->uuid) }}" class="btn btn-info text-white">
                                 উত্তরমালা</a>
-
+                    
+                            <a onclick="alert('বিঃদ্রঃ প্রাকটিস পরীক্ষা দিয়ে আপনি আপনার পড়া কতটুকু মনে রাখতে পেরেছেন তা যাচাই করতে পারবেন। আপনার পূর্ববর্তী মেধাতালিকার কোন পরিরবর্তন হবে না।')" href="{{ route('start', [$exam->uuid, 'practice' => true]) }}"
+                                class="btn btn-info ">প্রস্তুতিমূলক
+                                পরীক্ষা
+                            </a>
+                        
                             <!-- </div> -->
                             <!-- </div> -->
                             @auth

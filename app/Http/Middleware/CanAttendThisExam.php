@@ -19,7 +19,7 @@ class CanAttendThisExam
     {
         $exam = Exam::where('uuid',$request->uuid)->first();
         
-        if(auth()->user()->participateToThisExam($exam)){
+        if( auth()->user()->participateToThisExam($exam)){
             return $next($request);
         }
         return redirect()->route('orderCreate',['batch',$exam->batch->id]);

@@ -85,7 +85,7 @@ Route::group(['middleware'=>['auth','pin','canAttendThisExam']],function(){
     Route::get('exam/{uuid}/questions-sheet-pdf',[ExamController::class,'answerSheetPdfWithOutMarking'])->name('answerSheetPdfWithOutMarking');
 });
 
-Route::get('start/{uuid}',[ExamController::class,'exam_start'])->name('start-exam')->middleware(['canAttendThisExam']);
+Route::get('start/{uuid}',[ExamController::class,'exam_start'])->name('start-exam')->middleware(['auth','canAttendThisExam']);
 Route::get('e/{uuid}',[ExamController::class,'exam_start'])->name('share.exam');
 Route::get('batch-details/{batch}',[PageController::class,'batchDetails'])->name('batch.details');
 Route::get('job-solutions-batch-details/{batch}',[PageController::class,'jobSolutionsBatchDetails'])->name('job.solutions.batch.details');
