@@ -202,10 +202,12 @@
         </div> -->
       <div class="container-fluid bg-footer " style="background-color:#161E31 !important">
         <div class="row justify-content-around">
-          <div class="col-md-4 d-flex justify-content-center align-items-center footer-info">
+          <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
             <img src="{{asset('frontEnd-assets/img/logo.png')}}" height="150" width="150" alt="">
-
-
+            <a href="https://play.google.com/store/apps/details?id=bdjobwar.com">
+               <img src="{{asset('download.png')}}" alt="" height="80"> 
+            </a>
+           
           </div>
 
 
