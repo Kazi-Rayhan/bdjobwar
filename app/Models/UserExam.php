@@ -50,7 +50,12 @@ class UserExam extends Model
 
     public function timeLeft()
     {
-        $diff = now()->diffInSeconds($this->expire_at, false);
+        if(request()->practice){
+            $diff = now()->diffInSeconds($this->practice_expire_at, false);
+        }else{
+            $diff = now()->diffInSeconds($this->expire_at, false);
+
+        }
         return $diff > 0 ? $diff : 0;
     }
 }

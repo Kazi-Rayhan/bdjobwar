@@ -70,7 +70,21 @@ class User extends \TCG\Voyager\Models\User
 
     public function exams()
     {
-        return $this->belongsToMany(Exam::class)->withPivot(['answers', 'total', 'wrong_answers', 'empty_answers', 'expire_at'])->withTimestamps();
+        return $this->belongsToMany(Exam::class)->withPivot(
+            [
+                'answers',
+                'total',
+                'wrong_answers',
+                'empty_answers',
+                'expire_at',
+                'answers',
+                'practice_total',
+                'practice_answers',
+                'practice_wrong_answers',
+                'practice_empty_answers',
+                'practice_expire_at'
+            ]
+        )->withTimestamps();
     }
 
     public function verify($otp)
@@ -175,7 +189,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function bought(int $batchId): bool
     {
-        if ($this->batches->contains($batchId) || @$this->information->is_paid  ) {
+        if ($this->batches->contains($batchId) || @$this->information->is_paid) {
             return true;
         }
         return false;

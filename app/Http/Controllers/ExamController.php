@@ -72,19 +72,30 @@ class ExamController extends Controller
     {
 
         $exam = Exam::where('uuid', $uuid)->first();
-        auth()->user()->exams()->updateExistingPivot($exam->id, ['expire_at' => now()->addMinutes($exam->duration)]);
-        return redirect()->route('question', $uuid);
+        if (request()->practice) {
+            auth()->user()->exams()->updateExistingPivot($exam->id, ['practice_expire_at' => now()->addMinutes($exam->duration)]);
+        } else {
+            auth()->user()->exams()->updateExistingPivot($exam->id, ['expire_at' => now()->addMinutes($exam->duration)]);
+        }
+        return redirect()->route('question', [$uuid, 'practice' => request()->practice]);
     }
     public function exam($uuid)
     {
-        $exam = Exam::where('uuid', $uuid)->first();
 
-        $timeLeft = UserExam::where('user_id',auth()->id())->where('exam_id',$exam->id)->first()->timeLeft();
+        $exam = Exam::where('uuid', $uuid)->first();
         
+        $timeLeft = UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->timeLeft();
+        if (request()->practice) {
+        
+            if (!UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->answers) {
+                return redirect()->back()->withErrors('Please Attend Exam First after that you can do practice exam');
+            };
+        }
+    
         $questions = $exam->questions()->active()->inRandomOrder()->get();
 
 
-        return view('frontEnd.questions', compact('exam', 'questions','timeLeft'));
+        return view('frontEnd.questions', compact('exam', 'questions', 'timeLeft'));
     }
     public function store($uuid, Request $request)
     {
@@ -107,7 +118,12 @@ class ExamController extends Controller
             $correctAnswers = 0;
         }
         $total_point = $correctAnswers - ($wrongAnswers * $exam->minius_mark);
-        $exam = auth()->user()->exams()->updateExistingPivot($exam->id, ['answers' => json_encode($student_answers), 'total' => $total_point, 'wrong_answers' => $wrongAnswers, 'empty_answers' => $emptyAnswers]);
+        if ($request->practice) {
+            $data = ['practice_answers' => json_encode($student_answers), 'practice_total' => $total_point, 'practice_wrong_answers' => $wrongAnswers, 'practice_empty_answers' => $emptyAnswers];
+        } else {
+            $data =  ['answers' => json_encode($student_answers), 'total' => $total_point, 'wrong_answers' => $wrongAnswers, 'empty_answers' => $emptyAnswers];
+        }
+        $exam = auth()->user()->exams()->updateExistingPivot($exam->id, $data);
         return redirect()->route('result-exam', $uuid);
     }
     public function exam_all_results_pdf($uuid)

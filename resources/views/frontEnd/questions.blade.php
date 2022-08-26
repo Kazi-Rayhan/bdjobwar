@@ -123,7 +123,9 @@ right: 10;">
 
         <form action="{{ route('exam.store', $exam->uuid) }}" id="question" method="post">
             @csrf
-
+            @if(request()->practice)
+            <input type="hidden" name="practice" value="true">
+            @endif
             <div>
                 <div id="exam-header " class="text-center border border-success shadow  text-light p-4"
                     style="background-color: #019514;">
