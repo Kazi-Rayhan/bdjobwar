@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,13 +19,9 @@ class Category extends Model
         return $this->hasMany(Category::class,'parent_id');
     }
     
-    public function exams()
-    {
-        return $this->morphedByMany(Exam::class, 'categoriable');
-    }
-
+    
     public function questions()
     {
-        return $this->morphedByMany(Question::class, 'categoriable');
+        return $this->hasMany(Question::class);
     }
 }

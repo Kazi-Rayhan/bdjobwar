@@ -65,6 +65,11 @@
         <span>Your Courses</span></a>
 </li>
 <li class="nav-item">
+    <a class="nav-link" href="{{route('favourites')}}">
+    <i class="fas fa-heart"></i>
+        <span>Your Favourites</span></a>
+</li>
+<li class="nav-item">
     <a class="nav-link" href="{{route('package')}}">
     <i class="fas fa-box"></i>
         <span>Subscribed Package</span></a>

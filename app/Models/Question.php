@@ -13,6 +13,10 @@ class Question extends Model
         return $this->belongsToMany(Exam::class);
     }
 
+    public function exam(){
+        return $this->exams()->find(auth()->id());
+    }
+
     public function scopeActive($query)
     {
         return $query->where('active', 1);

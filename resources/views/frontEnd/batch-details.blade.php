@@ -13,7 +13,7 @@
 
     <!-- bratcam area  end-->
     <div
-        class="container-fluid container-md my-md-5 my-2 d-flex flex-column gap-3 justify-content-center align-items-center">
+        class="position-relative container-fluid container-md my-md-5 my-2 d-flex flex-column gap-3 justify-content-center align-items-center">
         <img src="{{ Voyager::image($batch->thumbnail) }}" style="width:100%;height:300px;object-fit:contain"
             alt="">
         <div class="d-flex flex-column gap-3 w-100 w-xl-50">
@@ -23,62 +23,76 @@
                 <div style="height:2px;width:60px" class="bg-danger"></div>
 
                 <div class="d-flex flex-wrap gap-2 mt-2">
-                 
-                        @if ($batch->price > 0)
-                            @auth
-                            
-                                @if (!auth()->user()->bought($batch->id))
-                                    <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
-                                        class="btn btn-success">ভর্তি হন</a>
-                                @endif
-                                
-                            @else
+
+                    @if ($batch->price > 0)
+                        @auth
+
+                            @if (!auth()->user()->bought($batch->id))
                                 <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
                                     class="btn btn-success">ভর্তি হন</a>
-                            @endauth
-                        @endif
-                        <a href="{{ $batch->link() }}" class="btn btn-success">পরীক্ষাসমূহ</a>
-                        @if (json_decode($batch->routine))
-                            <a href="{{ Voyager::image(json_decode($batch->routine)[0]->download_link) }}"
-                                class="btn btn-success">রুটিন ডাউনলোড করুন</a>
-                        @endif
-                    </div>
+                            @endif
+                        @else
+                            <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
+                                class="btn btn-success">ভর্তি হন</a>
+                        @endauth
+                    @endif
+                    <a href="{{ $batch->link() }}" class="btn btn-success">পরীক্ষাসমূহ</a>
+                    @if (json_decode($batch->routine))
+                        <a href="{{ Voyager::image(json_decode($batch->routine)[0]->download_link) }}"
+                            class="btn btn-success">রুটিন ডাউনলোড করুন</a>
+                    @endif
                 </div>
-                @if ($batch->price > 0)
-                    <div class="">
+            </div>
+            @if ($batch->price > 0)
+                <div class="">
 
-                        <span class="h3">
+                    <span class="h3">
+                        {{ $batch->price }} ৳
+                    </span>
+                </div>
+            @endif
+
+
+
+
+
+
+            <p class="m-0 p-0" style="color:#666666">
+                {{ $batch->description }}
+
+            </p>
+
+
+
+        </div>
+        <h2>
+            Exams
+        </h2>
+        <div style="height:2px;width:60px" class="bg-danger"></div>
+        <div class="owl-carousel ">
+            @foreach ($batch->exams as $exam)
+                <x-exam-card :exam="$exam" />
+            @endforeach
+        </div>
+        <div class="card card-body position-fixed w-100 shadow  " style="z-index:10000;bottom:0">
+            <div class="d-grid">
+                @if ($batch->price > 0)
+                    <div >
+
+                        <span class="h3 float-end">
                             {{ $batch->price }} ৳
                         </span>
                     </div>
                 @endif
-
-
-
-
-
-
-                <p class="m-0 p-0" style="color:#666666">
-                    {{ $batch->description }}
-
-                </p>
-
-
-
-            </div>
-            <h2>
-                Exams
-            </h2>
-            <div style="height:2px;width:60px" class="bg-danger"></div>
-            <div class="owl-carousel ">
-                @foreach ($batch->exams as $exam)
-                    <x-exam-card :exam="$exam" />
-                @endforeach
+                <a  href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"class="btn btn-success" style="font-size:22px">
+                    কোর্সটি কিনুন <i class="fas fa-arrow-right ms-2"></i>
+                </a>
             </div>
         </div>
+    </div>
 
 
-    @endsection
+@endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
         integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="

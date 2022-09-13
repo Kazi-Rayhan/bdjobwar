@@ -1,22 +1,113 @@
 @extends('frontEnd.layouts.app')
+
 @section('content')
     @php
-    use Rakibhstu\Banglanumber\NumberToBangla;
-    $numto = new NumberToBangla();
+        use Rakibhstu\Banglanumber\NumberToBangla;
+        $numto = new NumberToBangla();
     @endphp
+    <div class="container   my-5">
+        <div class="row row-cols-mg-2 row-cols-lg-4 ">
+            <div class="col">
+                <a href="{{route('batch.routine',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                    <div class="card  border border-dark">
+                        <div class=" card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/routine.svg') }}" alt="">
+                            <h3 class="icon-text">
+                                রুটিন
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="{{route('batch.runningexam',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                    <div class="card  border border-dark">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/runningExam.svg') }}" alt="">
+                            <h3 class="icon-text">
+                                লাইভ পরীক্ষা
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="{{route('batch.upcommingexam',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                    <div class="card  border border-dark">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/upcomingexam.svg') }}" alt="">
+                            <h3 class="icon-text">
+                                আসন্ন পরীক্ষা
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="{{route('batch.archive',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                    <div class="card  border border-dark">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/archive.svg') }}" alt="">
+                            <h3 class="icon-text">
+                                আর্কাইভ
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row row-cols-mg-2 row-cols-lg-4  mt-4">
+            <div class="col">
+                <a href="{{route('batch.results',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                    <div class="card border border-dark">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/result.svg') }}" alt="">
+                            <h3 class="icon-text">
+                                মেধাতালিকা
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="{{route('batch.statics',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                    <div class="card   border border-dark">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/statics.svg') }}" alt="">
+                            <h3 class="icon-text">
+                                পরিসংখ্যান
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="{{route('favourites')}}" style="text-decoration:none;color:#000">
+                    <div class="card  border border-dark">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/fav.svg') }}" alt="">
+                            <h3 class="icon-text">
+                                ফেভারিট
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-    <div class="container-fluid container-md my-5">
+        </div>
+    </div>
+    {{-- <div class="container-fluid container-md my-5">
         <div class="d-flex justify-content-center ali">
 
         </div>
-        <h3 class="text-success">
+        <h3 class="icon-text" class="text-success">
             {{ $batch->title }}
         </h3>
         <div style="height:2px;width:100px" class="bg-success"></div>
 
         @auth
             @if (@auth()->user()->information->is_paid ||
-                auth()->user()->bought($batch->id))
+    auth()->user()->bought($batch->id))
                 @if ($batch->reading_pdf && count(json_decode($batch->reading_pdf)))
                     <a href="{{ Voyager::image(json_decode($batch->reading_pdf)[0]->download_link) }}" class="btn btn-dark mt-2">
                         পড়ার
@@ -104,7 +195,7 @@
                                             data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
                                         @auth
                                             @if (auth()->user()->information->is_paid ||
-                                                auth()->user()->bought($batch->id))
+    auth()->user()->bought($batch->id))
                                                 @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
                                                     <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
                                                         class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
@@ -178,7 +269,7 @@
                                     data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
                                 @auth
                                     @if (auth()->user()->information->is_paid ||
-                                        auth()->user()->bought($batch->id))
+    auth()->user()->bought($batch->id))
                                         @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
                                             <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
                                                 class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
@@ -257,7 +348,7 @@
                             <!-- </div> -->
                             @auth
                                 @if (auth()->user()->information->is_paid ||
-                                    auth()->user()->bought($batch->id))
+    auth()->user()->bought($batch->id))
                                     @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
                                         <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
                                             class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
@@ -291,7 +382,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 @section('js')
     <script>

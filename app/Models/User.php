@@ -168,12 +168,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function participateToThisExam(Exam $exam)
     {
-
-
-
-
         if (!$this->own($exam)) return false;
-
         return true;
     }
 
@@ -193,5 +188,13 @@ class User extends \TCG\Voyager\Models\User
             return true;
         }
         return false;
+    }
+
+    public function favourites(){
+        return $this->belongsToMany(Question::class,'question_user');     
+    }
+
+    public function isFavourite(Question $question){
+        return $this->favourites()->find($question->id);
     }
 }

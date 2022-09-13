@@ -16,9 +16,16 @@ class MessageObserver
      */
     public function created(Message $message)
     {
-        $numbers =  $message->numbers ?? join(',',User::all()->pluck('phone')->toArray());
-        $send = Sms::compose($numbers,$message->message)->send();
- 
+        $phones = [];
+        if (strlen($message->numbers) <= 0) {
+            $phones = array_reduce(User::take(10)->pluck('phone')->toArray(), function ($m, $str) {
+                if (preg_match('/(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/', $str, $matches))
+                    $m[] = $matches[1];
+                return $m;
+            }, []);
+        }
+        $numbers =  $message->numbers ?? join(',', $phones);
+        $send = Sms::compose($numbers, $message->message)->send();
     }
 
     /**
