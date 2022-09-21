@@ -65,16 +65,7 @@
 
 
         </div>
-        <h2>
-            Exams
-        </h2>
-        <div style="height:2px;width:60px" class="bg-danger"></div>
-        <div class="owl-carousel ">
-            @foreach ($batch->exams as $exam)
-                <x-exam-card :exam="$exam" />
-            @endforeach
-        </div>
-    
+  
     </div>
 
 

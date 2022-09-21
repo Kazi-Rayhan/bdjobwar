@@ -41,7 +41,7 @@
                                             class="btn btn-success">ভর্তি হন</a>
                                     @endauth
                                 @endif
-                                <a href="{{ route('batch.details', $course) }}" class="btn btn-success">বিস্তারিত দেখুন</a>
+                                <a href="{{ $batch->link() }}" class="btn btn-success">বিস্তারিত দেখুন</a>
                                 <!-- <a href="#" class="btn btn-dark">রুটিন</a> -->
 
                             </div>
