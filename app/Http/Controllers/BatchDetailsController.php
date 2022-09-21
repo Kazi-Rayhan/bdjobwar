@@ -30,7 +30,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('from', '>', now())->get();
-        return view('frontEnd.batchDetails.upcommingexam', compact('exams'));
+        return view('frontEnd.batchDetails.upcommingexam', compact('exams','batch'));
     }
 
     public function archive($slug, Batch $batch)
@@ -39,7 +39,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('to', '<', now())->get();
-        return view('frontEnd.batchDetails.archive', compact('exams'));
+        return view('frontEnd.batchDetails.archive', compact('exams','batch'));
     }
 
     public function result($slug, Batch $batch)
@@ -47,7 +47,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('to', '<', now())->get();
-        return view('frontEnd.batchDetails.result',compact('exams'));
+        return view('frontEnd.batchDetails.result',compact('exams','batch'));
     }
 
     public function statics($slug, Batch $batch)

@@ -56,7 +56,7 @@
                                 <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
                                 <a href="{{ route('start-exam', $exam->uuid) }}" class="btn btn-primary"> টেস্ট দিন</a>
                                 <!-- <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button> -->
-                                <a href="{{ route('all-results-exam', $exam->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
+
                                 <a href="{{ route('answerSheet', $exam->uuid) }}" class="btn btn-info text-white">
                                     উত্তরমালা</a>
 
