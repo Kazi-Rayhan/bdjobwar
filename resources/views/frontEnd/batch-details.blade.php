@@ -74,47 +74,9 @@
                 <x-exam-card :exam="$exam" />
             @endforeach
         </div>
-        <div class="card card-body position-fixed w-100 shadow  " style="z-index:10000;bottom:0">
-            <div class="d-grid">
-                @if ($batch->price > 0)
-                    <div >
-
-                        <span class="h3 float-end">
-                            {{ $batch->price }} ৳
-                        </span>
-                    </div>
-                @endif
-                <a  href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"class="btn btn-success" style="font-size:22px">
-                    কোর্সটি কিনুন <i class="fas fa-arrow-right ms-2"></i>
-                </a>
-            </div>
-        </div>
+    
     </div>
 
 
 @endsection
-@section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(document).ready(function() {
-            $(".owl-carousel").owlCarousel({
-                loop: true,
-                nav: false,
-                autoplay: true,
-                margin: 10,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 1,
 
-                    },
-                    600: {
-                        items: 3,
-                    },
-                }
-            });
-        });
-    </script>
-@endsection
