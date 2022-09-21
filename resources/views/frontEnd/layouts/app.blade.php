@@ -136,7 +136,7 @@
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{{ route('dashboard') }}">ড্যাশবোর্ড</a></li>
 
-                                <li><a class="dropdown-item" href="{{ route('courses') }}">কোর্সসমূহ</a></li>
+                                <li><a class="dropdown-item" href="{{ route('courses') }}">আপনার কোর্সসমূহ</a></li>
                                 <li>
                                     <!-- <a class="dropdown-item" href="#">Logout</a> -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
