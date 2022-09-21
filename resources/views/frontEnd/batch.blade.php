@@ -7,19 +7,7 @@
     @endphp
     <div class="container my-5">
         <div class="row g-2">
-            <div class="col-md-4 col-lg-3 col-sm-12 ">
-                <a href="{{ route('batch.routine', [Str::slug($batch->title), $batch]) }}"
-                    style="text-decoration:none;color:#000">
-                    <div class="card  border border-dark">
-                        <div class=" card-body d-flex flex-column justify-content-center align-items-center gap-3">
-                            <img height="100px" class="icon" src="{{ asset('icons/routine.svg') }}" alt="">
-                            <h3 class="icon-text">
-                                রুটিন
-                            </h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
+
             <div class="col-md-4 col-lg-3 col-sm-12">
                 <a href="{{ route('batch.runningexam', [Str::slug($batch->title), $batch]) }}"
                     style="text-decoration:none;color:#000">
@@ -59,8 +47,6 @@
                     </div>
                 </a>
             </div>
-
-   
             <div class="col-md-4 col-lg-3 col-sm-12">
                 <a href="{{ route('batch.results', [Str::slug($batch->title), $batch]) }}"
                     style="text-decoration:none;color:#000">
@@ -68,12 +54,27 @@
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/missedExam.svg') }}" alt="">
                             <h3 class="icon-text">
-                                Missed  পরীক্ষা
+                                Missed পরীক্ষা
                             </h3>
                         </div>
                     </div>
                 </a>
             </div>
+
+            <div class="col-md-4 col-lg-3 col-sm-12 ">
+                <a href="{{ route('batch.routine', [Str::slug($batch->title), $batch]) }}"
+                    style="text-decoration:none;color:#000">
+                    <div class="card  border border-dark">
+                        <div class=" card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/routine.svg') }}" alt="">
+                            <h3 class="icon-text">
+                                রুটিন
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
 
             <div class="col-md-4 col-lg-3 col-sm-12">
                 <a href="{{ route('batch.results', [Str::slug($batch->title), $batch]) }}"
@@ -116,7 +117,6 @@
 
         </div>
     </div>
-  
 @endsection
 @section('js')
     <script>
