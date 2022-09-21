@@ -8,7 +8,7 @@
         <div class="container ">
             <a href="{{ Voyager::image(json_decode($batch->routine)[0]->download_link) }}"
                 class="btn btn-outline-primary mb-2"> ডাউনলোড করুন <i class="fas fa-download"></i></a>
-            <div id='viewer' style="width:1024px;height:600px;margin:0 auto"></div>
+            {{-- <div id='viewer' style="width:1024px;height:600px;margin:0 auto"></div> --}}
         </div>
     @else
         <div class="container text-center my-5">
