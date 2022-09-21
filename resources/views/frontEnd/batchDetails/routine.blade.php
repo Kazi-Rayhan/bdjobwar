@@ -26,7 +26,7 @@
         const link = "{{ Voyager::image(json_decode($batch->routine)[0]->download_link) }}";
         WebViewer({
                 path: '/lib', // path to the PDF.js Express'lib' folder on your server
-                licenseKey: 'Insert free license key here',
+                licenseKey: 'EbVBz5i0x73ljZtKBc6c',
                 initialDoc: link,
                 // initialDoc: '/path/to/my/file.pdf',  // You can also use documents on your server
             }, document.getElementById('viewer'))
