@@ -6,7 +6,7 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
 <!-- Slider section start -->
-<section class="container-fluid  d-flex justify-content-center  " >
+<section class="container-fluid  d-flex justify-content-center  " style="background-color:#161E31">
   <div class="row w-100 my-2">
     <div class="col-md-12 col-xl-7 col-12 mb-2">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">

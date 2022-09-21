@@ -152,7 +152,7 @@ body{
 }
 
 .nav-item a {
-  color: #082c62;
+  color: white;
   /* margin: 0 10px; */
   padding: 10px 20px !important;
   font-weight: 400;
@@ -554,4 +554,3 @@ body{
     .w-lg-75 { width: 75%!important; }
     .w-lg-100 { width: 100%!important; }
 }
-

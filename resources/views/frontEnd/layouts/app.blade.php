@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -42,37 +41,29 @@
             font-family: 'AdorshoLipi', Arial, sans-serif !important;
             font-weight: 600;
         }
-
         .videos {
             list-style: none;
         }
-
         .videos li {
             border: 2px solid #161E31;
             color: #161E31;
-
             padding: 5px;
             margin: 10px 0px;
             transition: .2s ease-in;
-
         }
-
         .videos li a {
             font-size: 14px;
         }
-
         .videos li:hover {
             background-color: #161E31;
             color: #fff;
         }
-
         /* Extra small devices (phones, 600px and down) */
         @media only screen and (max-width: 600px) {
             .video {
                 width: 250px;
             }
         }
-
         /* Small devices (portrait tablets and large phones, 600px and up) */
         @media only screen and (min-width: 600px) {
             .video {
@@ -80,28 +71,24 @@
                 height: 315px;
             }
         }
-
-        .icon {
-            transition: .2s ease-in;
+        .icon{
+            transition:.2s ease-in;
         }
-
         .icon:hover {
             transform: rotate(5deg);
-
         }
-
-        .icon-text {
-            cursor: pointer;
+        .icon-text{
+            cursor:pointer;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow"
-        style="background-color:#fff !important">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="background-color:#161E31 !important">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('logo.png') }}" alt="" style="object-fit:cover">
+                <img src="{{ asset('frontEnd-assets/img/logo.png') }}" alt="" width="100" height="50"
+                    style="object-fit:cover">
             </a>
             <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -142,12 +129,11 @@
                     @auth
 
                         <li class="dropdown">
-                            <a class="nav-link dropdown-toggle " style="color:#082c62" href="#"
-                                id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth()->user()->name }}
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{{ route('dashboard') }}">ড্যাশবোর্ড</a></li>
 
                                 <li><a class="dropdown-item" href="{{ route('courses') }}">কোর্সসমূহ</a></li>
@@ -185,7 +171,19 @@
     <!-- footer section start-->
     <footer>
         <div class="">
-
+            <!-- <div class="row">
+        <div class="col-md-3 mt-3 footer-info">
+          <div class="brand">
+            <a class="navbar-brand" href="#">
+              <img src="{{ asset('frontEnd-assets/img/logo.png') }}" height="60" width="60" style="object-fit:contain" alt="">
+            </a>
+            <p class="location">Barishal, Bangladesh</p>
+            <div class="contact">
+              <p class=""><i class="fas fa-phone-alt text-danger"></i>+88 01*******</p>
+              <p class=""><i class="far fa-envelope text-danger"></i>test@test.com</p>
+            </div>
+          </div>
+        </div> -->
             <div class="container-fluid bg-footer " style="background-color:#161E31 !important">
                 <div class="row justify-content-around">
                     <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
@@ -233,15 +231,8 @@
                         <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 "></i></a>
                         <a class="social-link" href=""><i class="fab fa-instagram fs-3 ms-3  "></i></a>
                         <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 "></i></a>
-                        <p class="text-center`">
-                            বরিশাল, বাংলাদেশ <br>
-                            01707725544 <br>
-                            <a class="btn-link text-light"
-                                href="mailto:hafizurrahaman013@gmail.com">hafizurrahaman013@gmail.com</a>
 
-                        </p>
                     </div>
-
                 </div>
             </div>
             <!-- </div> -->
