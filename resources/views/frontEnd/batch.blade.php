@@ -8,7 +8,8 @@
     <div class="container   my-5">
         <div class="row row-cols-mg-2 row-cols-lg-4 ">
             <div class="col">
-                <a href="{{route('batch.routine',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                <a href="{{ route('batch.routine', [Str::slug($batch->title), $batch]) }}"
+                    style="text-decoration:none;color:#000">
                     <div class="card  border border-dark">
                         <div class=" card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/routine.svg') }}" alt="">
@@ -20,7 +21,8 @@
                 </a>
             </div>
             <div class="col">
-                <a href="{{route('batch.runningexam',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                <a href="{{ route('batch.runningexam', [Str::slug($batch->title), $batch]) }}"
+                    style="text-decoration:none;color:#000">
                     <div class="card  border border-dark">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/runningExam.svg') }}" alt="">
@@ -32,7 +34,8 @@
                 </a>
             </div>
             <div class="col">
-                <a href="{{route('batch.upcommingexam',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                <a href="{{ route('batch.upcommingexam', [Str::slug($batch->title), $batch]) }}"
+                    style="text-decoration:none;color:#000">
                     <div class="card  border border-dark">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/upcomingexam.svg') }}" alt="">
@@ -44,7 +47,8 @@
                 </a>
             </div>
             <div class="col">
-                <a href="{{route('batch.archive',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                <a href="{{ route('batch.archive', [Str::slug($batch->title), $batch]) }}"
+                    style="text-decoration:none;color:#000">
                     <div class="card  border border-dark">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/archive.svg') }}" alt="">
@@ -58,7 +62,22 @@
         </div>
         <div class="row row-cols-mg-2 row-cols-lg-4  mt-4">
             <div class="col">
-                <a href="{{route('batch.results',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                <a href="{{ route('batch.results', [Str::slug($batch->title), $batch]) }}"
+                    style="text-decoration:none;color:#000">
+                    <div class="card border border-dark">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/missedExam.svg') }}" alt="">
+                            <h3 class="icon-text">
+                                Missed  পরীক্ষা
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col">
+                <a href="{{ route('batch.results', [Str::slug($batch->title), $batch]) }}"
+                    style="text-decoration:none;color:#000">
                     <div class="card border border-dark">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/result.svg') }}" alt="">
@@ -70,7 +89,8 @@
                 </a>
             </div>
             <div class="col">
-                <a href="{{route('batch.statics',[Str::slug($batch->title),$batch])}}" style="text-decoration:none;color:#000">
+                <a href="{{ route('batch.statics', [Str::slug($batch->title), $batch]) }}"
+                    style="text-decoration:none;color:#000">
                     <div class="card   border border-dark">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/statics.svg') }}" alt="">
@@ -82,7 +102,7 @@
                 </a>
             </div>
             <div class="col">
-                <a href="{{route('favourites')}}" style="text-decoration:none;color:#000">
+                <a href="{{ route('favourites') }}" style="text-decoration:none;color:#000">
                     <div class="card  border border-dark">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/fav.svg') }}" alt="">
@@ -96,293 +116,7 @@
 
         </div>
     </div>
-    {{-- <div class="container-fluid container-md my-5">
-        <div class="d-flex justify-content-center ali">
-
-        </div>
-        <h3 class="icon-text" class="text-success">
-            {{ $batch->title }}
-        </h3>
-        <div style="height:2px;width:100px" class="bg-success"></div>
-
-        @auth
-            @if (@auth()->user()->information->is_paid ||
-    auth()->user()->bought($batch->id))
-                @if ($batch->reading_pdf && count(json_decode($batch->reading_pdf)))
-                    <a href="{{ Voyager::image(json_decode($batch->reading_pdf)[0]->download_link) }}" class="btn btn-dark mt-2">
-                        পড়ার
-                        পিডিএফ</a>
-                @endif
-            @endif
-        @endauth
-        <p class="w-100 mt-4">
-            <span></span> Live = চলমান পরীক্ষা Live বাটনে দেখতে পাবেন ।
-            <br>
-            Upcoming = আসন্ন পরীক্ষার সময় ও সিলেবাস দেখতে পাবেন ।
-            <br>
-            Archived = পূর্বে শেষ হওয়া পরীক্ষা গুলো এখানে দেখতে পারবেন ।
-        </p>
-        <div class="mt-5">
-            <nav class="navbar navbar-expand navbar-light ">
-                <div class="nav navbar-nav">
-                    <a class="nav-item nav-link @if (request()->filter == '') bg-success text-light @endif border border-success"
-                        href="{{ $batch->link() }}">Live <span class="visually-hidden">(current)</span></a>
-                    <a class="nav-item nav-link @if (request()->filter == 'upcoming') bg-success text-light @endif border border-success"
-                        href="{{ $batch->link() }}?filter=upcoming">Upcoming</a>
-                    <a class="nav-item nav-link @if (request()->filter == 'archived') bg-success text-light @endif border border-success"
-                        href="{{ $batch->link() }}?filter=archived">Archived</a>
-                </div>
-            </nav>
-            <div>
-                @if (request()->filter == '')
-                    <table class="table table-borderless table-hover text-center ">
-                        <thead class="bg-success text-light">
-                            <tr>
-                                <th scope="col">
-                                    শুরু
-                                </th>
-
-                                <th scope="col">
-                                    নাম
-                                </th>
-
-                                <th scope="col">
-                                    পূর্ণ নম্বর
-                                </th>
-                                <th scope="col">
-                                    শেষ
-                                </th>
-
-                                <th scope="col">
-
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($exams as $exam)
-                                @php
-                                    $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
-                                    $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
-                                @endphp
-                                <tr>
-                                    <td scope="row">
-                                        {{ $from->getDateTime()->format('j F, Y b h:i') }}
-
-
-                                    </td>
-
-                                    <td>
-                                        {{ $exam->title }}
-                                    </td>
-
-                                    <td>
-                                        {{ $exam->fullMark }}
-                                    </td>
-                                    <td>
-                                        {{ $to->getDateTime()->format('j F, Y b h:i') }}
-                                    </td>
-
-                                    <td>
-                                        <!-- <div class="dropdown open"> -->
-                                        <!-- <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                                Dropdown
-                                                                                            </a> -->
-                                        <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
-                                        <a href="{{ route('start-exam', $exam->uuid) }}" class="btn btn-primary"> টেস্ট
-                                            দিন</a>
-
-                                        <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
-                                        @auth
-                                            @if (auth()->user()->information->is_paid ||
-    auth()->user()->bought($batch->id))
-                                                @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
-                                                    <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
-                                                        class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
-                                                @endif
-                                            @endif
-                                        @endauth
-            </div>
-        </div>
-
-        </td>
-        </tr>
-        @endforeach
-        </tbody>
-        </table>
-        @endif
-        @if (request()->filter == 'upcoming')
-            <table class="table table-borderless table-hover text-center ">
-                <thead class="bg-success text-light">
-                    <tr>
-                        <th scope="col">
-                            পরীক্ষার নাম
-                        </th>
-                        <th scope="col">
-                            বিষয়
-                        </th>
-                        <th scope="col">
-                            শুরু
-                        </th>
-
-                        <th scope="col">
-                            শেষ
-                        </th>
-                        <th scope="col">
-
-                        </th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($exams as $exam)
-                        @php
-                            $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
-                            $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
-                        @endphp
-                        <tr>
-
-
-                            <td>
-                                {{ $exam->title }}
-                            </td>
-
-                            <td>
-                                {{ $exam->sub_title }}
-                            </td>
-
-                            <td>
-                                {{ $from->getDateTime()->format('j F, Y b h:i') }}
-                            </td>
-                            <td>
-                                {{ $to->getDateTime()->format('j F, Y b h:i') }}
-                            </td>
-
-                            <td>
-                                <!-- <div class="dropdown open">
-                                                                                            <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                                Dropdown
-                                                                                            </a> -->
-                                <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
-                                <!-- <a href="{{ route('start-exam', $exam->uuid) }}" class="dropdown-item"> টেস্ট দিন</a> -->
-                                <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
-                                @auth
-                                    @if (auth()->user()->information->is_paid ||
-    auth()->user()->bought($batch->id))
-                                        @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
-                                            <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
-                                                class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
-                                        @endif
-                                    @endif
-                                @endauth
-                                <!-- </div> -->
-    </div>
-
-    </td>
-    </tr>
-    @endforeach
-    </tbody>
-    </table>
-    </div>
-    @endif
-    @if (request()->filter == 'archived')
-        <table class="table table-borderless table-hover text-center ">
-            <thead class="bg-success text-light">
-                <tr>
-                    <th scope="col">
-                        নাম
-                    </th>
-                    <th scope="col">
-                        বিষয়
-                    </th>
-                    <th scope="col">
-                        পূর্ণ নম্বর
-                    </th>
-
-                    <th scope="col">
-
-                    </th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($exams as $exam)
-                    @php
-                        $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
-                        $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
-                    @endphp
-                    <tr>
-
-
-                        <td>
-                            {{ $exam->title }}
-                        </td>
-
-                        <td>
-                            {{ $exam->sub_title }}
-                        </td>
-
-                        <td>
-                            {{ $exam->fullMark }}
-                        </td>
-
-
-                        <td>
-                            <!-- <div class="dropdown open">
-                                                                                            <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                                Dropdown
-                                                                                            </a> -->
-                            <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
-                            <a href="{{ route('start-exam', $exam->uuid) }}" class="btn btn-primary"> টেস্ট দিন</a>
-                            <!-- <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button> -->
-                            <a href="{{ route('all-results-exam', $exam->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
-                            <a href="{{ route('answerSheet', $exam->uuid) }}" class="btn btn-info text-white">
-                                উত্তরমালা</a>
-                    
-                            <a class="btn btn-warning" onclick="alert('বিঃদ্রঃ প্রাকটিস পরীক্ষা দিয়ে আপনি আপনার পড়া কতটুকু মনে রাখতে পেরেছেন তা যাচাই করতে পারবেন। আপনার পূর্ববর্তী মেধাতালিকার কোন পরিরবর্তন হবে না।')" href="{{ route('start', [$exam->uuid, 'practice' => true]) }}"
-                                class="btn btn-info ">প্রাকটিস পরীক্ষা
-                            </a>
-                        
-                            <!-- </div> -->
-                            <!-- </div> -->
-                            @auth
-                                @if (auth()->user()->information->is_paid ||
-    auth()->user()->bought($batch->id))
-                                    @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
-                                        <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
-                                            class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
-                                    @endif
-                                @endif
-                            @endauth
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        </div>
-    @endif
-
-
-    </div>
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">পরিক্ষার সিলেবাস</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="syllabus">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                </div>
-            </div>
-        </div>
-    </div> --}}
+  
 @endsection
 @section('js')
     <script>

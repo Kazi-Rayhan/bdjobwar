@@ -22,7 +22,7 @@ class BatchDetailsController extends Controller
         $exams = $exams->where('from', '<', now())
             ->where('to', '>', now())->get();
 
-        return view('frontEnd.batchDetails.runningexam', compact('exams'));
+        return view('frontEnd.batchDetails.runningexam', compact('exams','batch'));
     }
 
     public function upcommingExam($slug, Batch $batch)

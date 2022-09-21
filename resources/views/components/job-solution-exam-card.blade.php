@@ -11,7 +11,7 @@ $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhak
         </div> -->
        <a 
          href="{{route('exam.read',$exam->uuid)}}" style="text-decoration:none"><h6 class="text-success" style="font-weight: 700;">{{$exam->title}}</h6></a> 
-        <div style="height:2px;width:100px" class="bg-danger"></div>
+       
         <!-- <p class="text-secondary mt-2" style="font-size: 14px;">
             {{$exam->sub_title}}
         </p> -->

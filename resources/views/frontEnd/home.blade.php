@@ -6,7 +6,7 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 $numto = new NumberToBangla();
 @endphp
 <!-- Slider section start -->
-<section class="container-fluid  d-flex justify-content-center  " style="background-color:#161E31">
+<section class="container-fluid  d-flex justify-content-center  " >
   <div class="row w-100 my-2">
     <div class="col-md-12 col-xl-7 col-12 mb-2">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -121,7 +121,7 @@ $numto = new NumberToBangla();
             </small>
             </td>
               <td>{{join(', ',$exam->subjects->pluck('name')->toArray())}}</td>
-              <td><a class="btn btn-sm btn-danger" href="{{route('all-results-exam',$exam->uuid)}}">দেখুন</a></td>
+              <td><a class="btn btn-sm btn-success" href="{{route('all-results-exam',$exam->uuid)}}">দেখুন</a></td>
             </tr>
             @endforeach
           </tbody>
@@ -181,7 +181,7 @@ $numto = new NumberToBangla();
           
           <div class="card-body">
             <h4 class="card-title" title="{{$course->title}}">{{Str::limit($course->title,28)}}</h4>
-            <div style="height:2px;width:100px" class="bg-danger"></div>
+           
             <div class=" d-flex flex-sm-column flex-md-row gap-3  flex-wrap justify-content-between align-items-center mt-4">
 
               <a class="btn btn-success btn-lg " href="{{$course->link()}}" style="font-size: 13px ;">ব্যাচসমূহ</a>

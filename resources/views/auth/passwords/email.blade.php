@@ -31,7 +31,7 @@
                   
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-danger">
+                    <button type="submit" class="btn btn-success">
     ওটিপি পাঠান
                     </button>
                 </div>

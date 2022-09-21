@@ -96,8 +96,8 @@
 @endsection
 @section('content')
     @php
-    use Rakibhstu\Banglanumber\NumberToBangla;
-    $numto = new NumberToBangla();
+        use Rakibhstu\Banglanumber\NumberToBangla;
+        $numto = new NumberToBangla();
     @endphp
     <div style="position: relative;">
         <div class="card text-dark border border-danger  shadow  mt-4"
@@ -123,8 +123,8 @@ right: 10;">
 
         <form action="{{ route('exam.store', $exam->uuid) }}" id="question" method="post">
             @csrf
-            @if(request()->practice)
-            <input type="hidden" name="practice" value="true">
+            @if (request()->practice)
+                <input type="hidden" name="practice" value="true">
             @endif
             <div>
                 <div id="exam-header " class="text-center border border-success shadow  text-light p-4"
@@ -306,7 +306,7 @@ right: 10;">
 
     <script defer>
         window.addEventListener("beforeunload", function(e) {
-            if(canSubmit) return undefined;
+            if (canSubmit) return undefined;
             var confirmationMessage = 'It looks like you have been editing something. ' +
                 'If you leave before saving, your changes will be lost.';
 
@@ -352,7 +352,6 @@ right: 10;">
         let questions = {{ $questions->count() }};
         $(document).ready(() => {
             examCard(answered, questions);
-            $('input[type="radio"]').prop('checked', false)
         })
         $('input[type="radio"]').on('change', function() {
             answered++
@@ -364,4 +363,9 @@ right: 10;">
             $(this).closest('label').siblings().find('input').prop('disabled', !isDisabled);
         });
     </script>
+    <script src="{{ asset('formcache.min.js') }}"></script>
+    <script>
+        $("#question").formcache()
+    </script>
 @endsection
+ 

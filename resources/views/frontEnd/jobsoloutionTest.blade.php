@@ -4,7 +4,7 @@
         <h3 class="text-success">
             Job Solutions
         </h3>
-        <div style="height:2px;width:100px" class="bg-danger"></div>
+       
         <table class="table">
             <tr>
                 <th>

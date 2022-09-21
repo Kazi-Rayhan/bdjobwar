@@ -36,7 +36,7 @@
                                 class="btn btn-success">ভর্তি হন</a>
                         @endauth
                     @endif
-                    <a href="{{ $batch->link() }}" class="btn btn-success">পরীক্ষাসমূহ</a>
+                    <a href="{{      }}" class="btn btn-success">পরীক্ষাসমূহ</a>
                     @if (json_decode($batch->routine))
                         <a href="{{ Voyager::image(json_decode($batch->routine)[0]->download_link) }}"
                             class="btn btn-success">রুটিন ডাউনলোড করুন</a>

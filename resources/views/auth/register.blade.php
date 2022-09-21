@@ -69,7 +69,7 @@
 
                         <div class="row mb-0">
                             <div class="ms-4">
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn btn-success">
                                 ফ্রি রেজিস্ট্রেশন করুন 
                                 </button>
                             </div>

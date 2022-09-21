@@ -87,7 +87,7 @@
     @else
      <div class="container text-center my-5">
                 <img src="{{ asset('icons/upcomingexam.svg') }}" height="200px" class="mb-5" alt="">
-                <h1>কোন পরীক্ষা নেই</h1>
+                <h1>এই মুহূর্তে কোন আপকামিং সিডিউল নেই।</h1>
                 <h5>
                     পড়ে আবার চেক করুণ
                 </h5>

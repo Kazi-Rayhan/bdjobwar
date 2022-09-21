@@ -78,11 +78,14 @@
         @else
             <div class="container text-center my-5">
                 <img src="{{ asset('icons/runningExam.svg') }}" height="200px" class="mb-5" alt="">
-                <h1>কোন পরীক্ষা নেই</h1>
+                <h1>এই মুহূর্তে কোন লাইভ পরীক্ষা নেই</h1>
+                <h5>
+                    পরবর্তী পরীক্ষার সিলেবাস দেখতে রুটিন/আপকামিং বাটন দেখুন। পুরনো পরীক্ষা দেখতে আর্কাইভ বাটন ভিজিট করুন।
+                </h5>
                 <h5>
                     পড়ে আবার চেক করুণ
                 </h5>
-            </div>
+                  </div>
         @endif
     </div>
 @endsection

@@ -137,18 +137,20 @@ class ExamController extends Controller
     public function answerSheetPdf($uuid)
     {
         $exam = Exam::where('uuid', $uuid)->first();
-
+        
         $questions = $exam->questions()->active()->get();
         $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf', ['questions' => $questions, 'exam' => $exam], [
             'title' => $exam->title . ' Answer Sheet',
             'Author' => 'BD Job War'
         ]);
 
-        return $pdf->download('answer_sheet.pdf');
+        return $pdf->stream('answer_sheet.pdf');
+        // return $pdf->download('answer_sheet.pdf');
     }
     public function answerSheetPdfWithOutMarking($uuid)
     {
         $exam = Exam::where('uuid', $uuid)->first();
+        
 
         $questions = $exam->questions()->active()->get();
         $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_without_marking', ['questions' => $questions, 'exam' => $exam], [
@@ -156,7 +158,8 @@ class ExamController extends Controller
             'Author' => 'BD Job War'
         ]);
 
-        return $pdf->download('questions.pdf');
+        return $pdf->stream('questions.pdf');
+        // return $pdf->download('questions.pdf');
     }
 
     public function duplicate(Exam $exam)

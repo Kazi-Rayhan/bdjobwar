@@ -78,14 +78,18 @@ $numto = new NumberToBangla();
 </head>
 
 <body>
-    <div style="text-align: center;">
    
-        <h6 style=" margin:0px;">Question Sheet</h6>
-    </div>
     @php
     $count = 1;
     @endphp
     <table style="width: 100%;">
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:20px">{!! 'প্রশ্নপত্র' !!}</p>
+                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:30px">{!! $exam->title !!}</p>
+                <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:20px">{!! $exam->sub_title !!}</p>
+            </td>
+        </tr>
         @foreach($questions->chunk(2) as $q)
 
         <tr>

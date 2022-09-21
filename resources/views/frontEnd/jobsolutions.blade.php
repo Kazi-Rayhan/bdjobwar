@@ -10,7 +10,7 @@ $numto = new NumberToBangla();
     <h3 class="text-success">
         {{$course->title}}
     </h3>
-    <div style="height:2px;width:100px" class="bg-danger"></div>
+   
     <div class="row mt-5">
         @foreach($batches as $batch)
         <div class="col-md-4 mb-2">
@@ -18,7 +18,7 @@ $numto = new NumberToBangla();
                 
                 <div class="card-body">
                     <h5 class="card-title">{{$batch->title}}</h5>
-                    <div style="height:2px;width:100px" class="bg-danger"></div>
+                   
                    
                     <div class=" btn-group gap-2 mt-2">
                         <a href="{{route('job.solutions.batch.details',$batch)}}" class="btn btn-sm btn-success">বিস্তারিত</a>

@@ -14,7 +14,7 @@
     @else
         <div class="container text-center my-5">
             <img src="{{ asset('icons/routine.svg') }}" height="200px" class="mb-5" alt="">
-            <h1>কোন রুটিন নেই</h1>
+            <h1>এই মুহূর্তে কোন রুটিন নেই।</h1>
             <h5>
                 পড়ে আবার চেক করুণ
             </h5>

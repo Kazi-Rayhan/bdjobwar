@@ -8,7 +8,7 @@
         <h3>
             {{ $exam->sub_title }}
         </h3>
-        <div style="height:2px;width:100px" class="bg-danger"></div>
+       
 
         <form class="my-3" action="#" method="get">
             <div class="row">

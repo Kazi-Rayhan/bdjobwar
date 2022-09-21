@@ -13,7 +13,7 @@
                             class="card-img-top" alt="...">
                         <div class="card-body">
                             <h3 class="card-title">{{ $course->title }}</h3>
-                            <div style="height:2px;width:100px" class="bg-danger"></div>
+                           
                             <div class="d-flex  gap-5 text-dark mt-2" style="font-size: 14px;">
 
                                 <span>

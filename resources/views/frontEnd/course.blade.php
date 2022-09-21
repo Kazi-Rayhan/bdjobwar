@@ -5,11 +5,11 @@
         $numto = new NumberToBangla();
     @endphp
 
-    <div class="container my-5">
+    <div class="container my-5" >
         <h3 class="text-success">
             {{ $course->title }}
         </h3>
-        <div style="height:2px;width:100px" class="bg-danger"></div>
+       
         <div class="row mt-5">
             @foreach ($batches as $batch)
                 <div class="col-md-4 mb-2">
@@ -18,7 +18,7 @@
                             class="card-img-top" alt="...">
                         <div class="card-body">
                             <h3 class="card-title">{{ $batch->title }}</h3>
-                            <div style="height:2px;width:100px" class="bg-danger"></div>
+                           
                             <div class="d-flex gap-2  justify-content-between align-items-center mt-3 flex-wrap text-dark "
                                 style="font-size: 16px;">
 
@@ -41,7 +41,7 @@
                                                 class="btn btn-success">ভর্তি হন</a>
                                         @endauth
                                     @endif
-                                    <a href="{{ route('batch.details', $batch) }}" class="btn btn-success">বিস্তারিত
+                                    <a href="{{ $batch->link() }}" class="btn btn-success">বিস্তারিত
                                         দেখুন</a>
                                     <!-- <a href="#" class="btn btn-dark">রুটিন</a> -->
 

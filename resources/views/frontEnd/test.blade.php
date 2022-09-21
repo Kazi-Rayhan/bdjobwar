@@ -82,17 +82,17 @@
                     <tr>
                       <td>Model test-1</td>
                       <td>BCS Prelim all subjects</td>
-                      <td><a href="" class="btn-danger">See</a></td>
+                      <td><a href="" class="btn-success">See</a></td>
                     </tr>
                     <tr>
                       <td>Model test-2</td>
                       <td>BCS Prelim all subjects</td>
-                      <td><a href="" class="btn-danger">See</a></td>
+                      <td><a href="" class="btn-success">See</a></td>
                     </tr>
                     <tr>
                       <td>Model test-3</td>
                       <td>BCS Prelim all subjects</td>
-                      <td><a href="" class="btn-danger">See</a></td>
+                      <td><a href="" class="btn-success">See</a></td>
                     </tr>
                   </tbody>
               </table>

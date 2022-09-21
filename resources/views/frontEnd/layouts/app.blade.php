@@ -80,24 +80,26 @@
             }
         }
 
-        .icon{
-            transition:.2s ease-in;
+        .icon {
+            transition: .2s ease-in;
         }
+
         .icon:hover {
             transform: rotate(5deg);
 
         }
-        .icon-text{
-            cursor:pointer;
+
+        .icon-text {
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="background-color:#161E31 !important">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow" style="background-color:#fff !important">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('frontEnd-assets/img/logo.png') }}" alt="" width="100" height="50"
+                <img src="{{ asset('logo.png') }}" alt=""  
                     style="object-fit:cover">
             </a>
             <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse"
@@ -139,11 +141,11 @@
                     @auth
 
                         <li class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                            <a class="nav-link dropdown-toggle " style="color:#082c62" href="#" id="navbarDarkDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth()->user()->name }}
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{{ route('dashboard') }}">ড্যাশবোর্ড</a></li>
 
                                 <li><a class="dropdown-item" href="{{ route('courses') }}">কোর্সসমূহ</a></li>
@@ -181,20 +183,7 @@
     <!-- footer section start-->
     <footer>
         <div class="">
-            <!-- <div class="row">
-        <div class="col-md-3 mt-3 footer-info">
-          <div class="brand">
-            <a class="navbar-brand" href="#">
-              <img src="{{ asset('frontEnd-assets/img/logo.png') }}" height="60" width="60" style="object-fit:contain" alt="">
-            </a>
-            <p class="location">Barishal, Bangladesh</p>
-            <div class="contact">
-              <p class=""><i class="fas fa-phone-alt text-danger"></i>+88 01*******</p>
-              <p class=""><i class="far fa-envelope text-danger"></i>test@test.com</p>
-            </div>
-          </div>
 
-        </div> -->
             <div class="container-fluid bg-footer " style="background-color:#161E31 !important">
                 <div class="row justify-content-around">
                     <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
@@ -242,8 +231,14 @@
                         <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 "></i></a>
                         <a class="social-link" href=""><i class="fab fa-instagram fs-3 ms-3  "></i></a>
                         <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 "></i></a>
+                        <p class="text-center`">
+                            বরিশাল, বাংলাদেশ <br>
+                            01707725544 <br>
+                           <a class="btn-link text-light" href="mailto:hafizurrahaman013@gmail.com">hafizurrahaman013@gmail.com</a> 
 
+                        </p>
                     </div>
+
                 </div>
             </div>
             <!-- </div> -->

@@ -45,7 +45,7 @@
      <div class="card-footer">
          <div class=" btn-group gap-2">
              @if ($question->description)
-                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                 <button class="btn btn-success btn-sm" data-bs-toggle="modal"
                      data-bs-target="#question{{ $question->id }}">ব্যাখ্যা</button>
              @endif
              @auth
@@ -83,7 +83,7 @@
                  @endif
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ফেরত যা</button>
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">okay</button>
 
              </div>
          </div>
