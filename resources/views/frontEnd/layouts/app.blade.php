@@ -1,3 +1,6 @@
+@php
+header("Access-Control-Allow-Origin: *");
+@endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -96,11 +99,11 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow" style="background-color:#fff !important">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow"
+        style="background-color:#fff !important">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('logo.png') }}" alt=""  
-                    style="object-fit:cover">
+                <img src="{{ asset('logo.png') }}" alt="" style="object-fit:cover">
             </a>
             <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -141,8 +144,9 @@
                     @auth
 
                         <li class="dropdown">
-                            <a class="nav-link dropdown-toggle " style="color:#082c62" href="#" id="navbarDarkDropdownMenuLink"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle " style="color:#082c62" href="#"
+                                id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 {{ Auth()->user()->name }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -234,7 +238,8 @@
                         <p class="text-center`">
                             বরিশাল, বাংলাদেশ <br>
                             01707725544 <br>
-                           <a class="btn-link text-light" href="mailto:hafizurrahaman013@gmail.com">hafizurrahaman013@gmail.com</a> 
+                            <a class="btn-link text-light"
+                                href="mailto:hafizurrahaman013@gmail.com">hafizurrahaman013@gmail.com</a>
 
                         </p>
                     </div>
