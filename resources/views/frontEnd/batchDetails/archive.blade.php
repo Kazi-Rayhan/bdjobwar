@@ -88,9 +88,7 @@
       <div class="container text-center my-5">
                 <img src="{{ asset('icons/archive.svg') }}" height="200px" class="mb-5" alt="">
                 <h1>এখন পর্যন্ত কোন পরীক্ষা শেষ হয়নি। সকল পুরনো পরীক্ষা এখানে দেখতে পাবেন।</h1>
-                <h5>
-                    পড়ে আবার চেক করুণ
-                </h5>
+               
             </div>
     @endif
 @endsection

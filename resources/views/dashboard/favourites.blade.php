@@ -94,9 +94,7 @@
 
                 <img src="{{ asset('icons/fav.svg') }}" height="200px" class="mb-5" alt="">
                 <h1>এই মুহূর্তে কোন রুটিন নেই।</h1>
-                <h5>
-                    পড়ে আবার চেক করুণ
-                </h5>
+               
             </div>
         @endif
 
