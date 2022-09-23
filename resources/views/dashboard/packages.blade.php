@@ -12,12 +12,7 @@
             {{auth()->user()->information->package->title}}
             </h4>
 
-            <h5 style="font-weight:700;">
-
-             Expire at : {{auth()->user()->information->expired_at->format('d M, Y')}}
-
-            </h5>
-            
+          
             <ul class="premium-feature">
                 <li><span>প্রশ্ন ব্যাংক সার্স</span></li>
                 <li><span>সকল পেইড কোর্স</span></li>

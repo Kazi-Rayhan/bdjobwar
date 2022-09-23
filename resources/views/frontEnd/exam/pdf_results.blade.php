@@ -11,9 +11,10 @@
             margin-left: 1cm;
             margin-right: 1cm;
         }
+
         @font-face {
-             font-family: "Nikosh";
-            src: url({{asset('Nikosh.ttf')}});
+            font-family: "Nikosh";
+            src: url({{ asset('Nikosh.ttf') }});
         }
 
         body {
@@ -22,7 +23,7 @@
             margin-left: 1cm;
             margin-right: 1cm; */
             font-family: "Nikosh";
-          
+
         }
 
         .cus-info {
@@ -34,104 +35,131 @@
         }
 
 
-        
-        table.content{
-            width:100%;
+
+        table.content {
+            width: 100%;
             border-collapse: collapse;
-            padding:0;
+            padding: 0;
             /* margin-left:30px; */
             font-size: 12px;
             line-height: 1.4;
         }
 
-       .content th{
-        border: solid 1px #000000;
-        text-align: center;
-        padding: 5px;
-        
-     
-       }
-
-     .content .row td{
-    border: solid 1px #000000;
-    text-align: center;
-    padding: 5px;
+        .content th {
+            border: solid 1px #000000;
+            text-align: center;
+            padding: 5px;
 
 
-    }
-    .content.thead{
-        background-color:#4e73df;
-        color:white;
-    }
+        }
 
-      
+        .content .row td {
+            border: solid 1px #000000;
+            text-align: center;
+            padding: 5px;
 
- 
 
+        }
+
+        .content.thead {
+            background-color: #4e73df;
+            color: white;
+        }
     </style>
     <title>Results</title>
 </head>
 
 <body>
-  
-    <div class="">
-   
-      <table class="content">
-         <tr >
 
-                <th>
-                Position
-                </th>
-                <th>
-                Name
-                </th>
-                <th>
-                Roll
-                </th>
-                <th>
-                Correct Answers
-                </th>
-                <th>
-                Wrong Answers
-                </th>
-                <th>
-                Total
-                </th>      
-         </tr>
-         @foreach($results as $pos => $result)
-         <tr class="row">
-         <td>
-                     {{$result->exam->getRanking($result->user)}}
+    <div class="">
+
+        <table class="content">
+            <tr>
+
+                <td colspan="6" style="text-align:center">
+                    <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:20px">
+                        {!! 'মেধাতালিকা' !!}</p>
+                    <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:30px">
+                        {!! $exam->title !!}</p>
+                    <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:15px">
+                        {!! $exam->sub_title !!}</p>
                 </td>
-             
-                <td>
-          
-                    {{$result->user->name}}
+            </tr>
+            <tr>
+                <td colspan="6" style="text-align:center">
+                    <p>
+                        {!! 'মোট উত্তীর্ণ' !!} :
+                        {{ $results->filter(function ($result) use ($exam) {
+                                return $result->total >= $exam->minimum_to_pass;
+                            })->count() }}
+                    </p>
+                    <p>
+                        {!! 'মোট অনুত্তীর্ণ' !!} :
+                        {{ $results->filter(function ($result) use ($exam) {
+                                return $result->total < $exam->minimum_to_pass;
+                            })->count() }}
+                    </p>
                 </td>
-             
-                <td>
-                    {{@$result->user->information->id}}
+            </tr>
+            <tr class="row">
+
+                <td style="text-align:center">
+                    {!! 'স্থান' !!}
                 </td>
-                <td>
-                {{count((array) json_decode($result->answers)) - ($result->wrong_answers )}}
-                
+                <td style="text-align:center">
+                    {!! 'নাম' !!}
                 </td>
-                <td>
-                {{$result->wrong_answers}}
+                <td style="text-align:center">
+                    {!! 'রোল' !!}
                 </td>
-                
-                <td>
-                    {{$result->total}}
+                <td style="text-align:center">
+                    {!! 'সঠিক উত্তর' !!}
                 </td>
-                
-         </tr>
-         @endforeach
-    
-  
-   
-      </table>
+                <td style="text-align:center">
+                    {!! 'ভুল উত্তর' !!}
+                </td>
+                <td style="text-align:center">
+                    {!! 'মোট' !!}
+                </td>
+            </tr>
+            @foreach ($results as $pos => $result)
+                <tr class="row">
+                    <td>
+                        {{ $result->exam->getRanking($result->user) }}
+                    </td>
+
+                    <td>
+
+                        {{ $result->user->name }}
+                    </td>
+
+                    <td>
+                        {{ @$result->user->information->id }}
+                    </td>
+                    <td>
+                        {{ count((array) json_decode($result->answers)) - $result->wrong_answers }}
+
+                    </td>
+                    <td>
+                        {{ $result->wrong_answers }}
+                    </td>
+
+                    <td>
+                        {{ $result->total }} @if ($result->total >= $exam->minimum_to_pass)
+                            <b>(P)</b>
+                        @else
+                            <b>(F)</b>
+                        @endif
+                    </td>
+
+                </tr>
+            @endforeach
+
+
+
+        </table>
     </div>
-   
+
 </body>
 
 </html>
