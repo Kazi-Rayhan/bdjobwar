@@ -63,7 +63,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('to', '<', now())->get()->filter(function($exam){
-            return !is_numeric(Auth::user()->exams()->find($exam->id)->pivot->total);
+            return !is_numeric(Auth::user()->exams()->find($exam->id)->pivot->total)??false;
         });
   
         return view('frontEnd.batchDetails.missed', compact('exams','batch'));
