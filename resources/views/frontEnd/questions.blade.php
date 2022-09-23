@@ -351,6 +351,8 @@ right: 10;">
         let answered = 0;
         let questions = {{ $questions->count() }};
         $(document).ready(() => {
+            answered =   $(':input[type="radio"]:checked').length;
+            
             examCard(answered, questions);
         })
         $('input[type="radio"]').on('change', function() {

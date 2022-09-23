@@ -48,7 +48,7 @@
                 </a>
             </div>
             <div class="col-md-4 col-lg-3 col-sm-12">
-                <a href="{{ route('batch.results', [Str::slug($batch->title), $batch]) }}"
+                <a href="{{ route('batch.missedexam', [Str::slug($batch->title), $batch]) }}"
                     style="text-decoration:none;color:#000">
                     <div class="card border border-dark">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">

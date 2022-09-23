@@ -93,7 +93,7 @@
             <div class="text-center">
 
                 <img src="{{ asset('icons/fav.svg') }}" height="200px" class="mb-5" alt="">
-                <h1>এই মুহূর্তে কোন রুটিন নেই।</h1>
+                <h1>আপনার কোন Favourie প্রশ্ন নেই।</h1>
                
             </div>
         @endif
