@@ -82,9 +82,26 @@
                 <h5>
                     পরবর্তী পরীক্ষার সিলেবাস দেখতে রুটিন/আপকামিং বাটন দেখুন। পুরনো পরীক্ষা দেখতে আর্কাইভ বাটন ভিজিট করুন।
                 </h5>
-               
-                  </div>
+
+            </div>
         @endif
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">পরিক্ষার সিলেবাস</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="syllabus">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('js')
