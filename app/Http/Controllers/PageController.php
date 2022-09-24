@@ -164,7 +164,11 @@ class PageController extends Controller
     }
     public function jobSolutionsBatchDetails(Batch $batch)
     {
-        $exams = Exam::active()->where('batch_id',$batch->id)->where('isJobSolution', 1)->paginate(20);
+        if(request()->has('year')){
+            $exams = Exam::active()->where('batch_id',$batch->id)->where('isJobSolution', 1)->where('year',request()->year)->paginate(20);
+        }else{
+            $exams = Exam::active()->where('batch_id',$batch->id)->where('isJobSolution', 1)->paginate(20);
+        }
         return view('frontEnd.job-solutions-batch-details', compact('batch', 'exams'));
     }
 
