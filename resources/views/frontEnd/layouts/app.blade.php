@@ -225,14 +225,18 @@
 
                     </div>
                     <div class="col-md-2 populer-course">
+                    <p>
+                    ঠিকানা: বরিশাল, বাংলাদেশ, মোবাইল: 01707725544, ইমেইল: hafizurrahaman013@gmail.com
+                    </p>
                         <h5 class="mt-3">সোসাল লিঙ্ক</h5>
                         <p class="text-white social-link">আমাদের সাথে থাকো</p>
                         <a class="social-link" href=""><i class="fab fa-facebook-f fs-3 "></i></a>
                         <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 "></i></a>
                         <a class="social-link" href=""><i class="fab fa-instagram fs-3 ms-3  "></i></a>
                         <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 "></i></a>
-
+                        
                     </div>
+                    
                 </div>
             </div>
             <!-- </div> -->

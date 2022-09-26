@@ -11,8 +11,7 @@
 @endsection
 @section('content')
     <!-- bratcam area  end-->
-    <div
-        class="container-fluid container-md my-md-5 my-2">
+    <div class="container-fluid container-md my-md-5 my-2">
 
         <div class="">
 
@@ -29,29 +28,31 @@
             <div class="col-md-2">
                 <div class="card">
                     <div class="card-body">
-                    <ul class="list-group">
-                     <li class="list-group-item  @if(!request()->year) active @endif">
-                        <a href="{{route('job.solutions.batch.details',[$batch])}}"  style="text-decoration:none;color:#000">
-                            All
-                        </a>
-                        </li>
-                    @php
-                    $years = range(2000,date("Y"));
-                    rsort($years);
-                    @endphp
-                    @foreach ( $years as $year )
-                        <li class="list-group-item  @if(request()->year == $year) active @endif">
-                        <a href="{{route('job.solutions.batch.details',[$batch,'year'=>$year])}}"  style="text-decoration:none;color:#000">
-                            {{$year}}
-                        </a>
-                        </li>
-                    @endforeach
-                    </ul>
+                        <ul class="list-group">
+                            <li class="list-group-item  @if (!request()->year) active @endif">
+                                <a href="{{ route('job.solutions.batch.details', [$batch]) }}"
+                                    style="text-decoration:none;color:#000">
+                                    All
+                                </a>
+                            </li>
+                            @php
+                                $years = range(2000, date('Y'));
+                                rsort($years);
+                            @endphp
+                            @foreach ($years as $year)
+                                <li class="list-group-item  @if (request()->year == $year) active @endif">
+                                    <a href="{{ route('job.solutions.batch.details', [$batch, 'year' => $year]) }}"
+                                        style="text-decoration:none;color:#000">
+                                        {{ $year }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-10">
-               
+
                 <table class="table">
                     <tr>
                         <th>

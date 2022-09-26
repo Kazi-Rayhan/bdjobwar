@@ -75,7 +75,10 @@ class ExamController extends Controller
         if (request()->practice) {
             auth()->user()->exams()->updateExistingPivot($exam->id, ['practice_expire_at' => now()->addMinutes($exam->duration)]);
         } else {
-            auth()->user()->exams()->updateExistingPivot($exam->id, ['expire_at' => now()->addMinutes($exam->duration)]);
+            
+            if(!auth()->user()->exams()->find($exam->id)->pivot->expire_at){
+                auth()->user()->exams()->updateExistingPivot($exam->id, ['expire_at' => now()->addMinutes($exam->duration)]);
+            }
         }
         return redirect()->route('question', [$uuid, 'practice' => request()->practice]);
     }

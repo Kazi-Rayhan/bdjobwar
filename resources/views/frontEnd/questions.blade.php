@@ -351,8 +351,8 @@ right: 10;">
         let answered = 0;
         let questions = {{ $questions->count() }};
         $(document).ready(() => {
-            answered =   $(':input[type="radio"]:checked').length;
-            
+            answered = $(':input[type="radio"]:checked').length;
+
             examCard(answered, questions);
         })
         $('input[type="radio"]').on('change', function() {
@@ -366,8 +366,14 @@ right: 10;">
         });
     </script>
     <script src="{{ asset('formcache.min.js') }}"></script>
-    <script>
-        $("#question").formcache()
-    </script>
+    @if (request()->has('practice'))
+        <script>
+
+           $().formcache('removeCaches')
+        </script>
+    @else
+        <script>
+            $("#question").formcache()
+        </script>
+    @endif
 @endsection
- 
