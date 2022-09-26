@@ -55,6 +55,18 @@
 
                 <table class="table">
                     <tr>
+                        <td colspan="4">
+                            <form action="{{route('job.solutions.batch.details',$batch)}}" method="get">
+                                <div class="form-group d-flex gap-2">
+                                    <input type="text" class="form-control" name="search" placeholder="পরীক্ষাগুলো খুঁজুন">
+                                    <button class="btn btn-primary">
+                                        খুঁজুন
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>
                             #
                         </th>
@@ -62,7 +74,7 @@
                             Exam
                         </th>
                         <th>
-                            Subjects
+                           
                         </th>
                         <th>
                             Actions
@@ -75,15 +87,17 @@
                             </td>
                             <td>
                                 <h6 class="text-dark" style="font-weight: 700;">{{ $exam->title }}</h6>
+                                
+                            </td>
+                            <td>
                                 <p class="text-secondary mt-2" style="font-size: 14px;">
                                     {{ $exam->sub_title }}
                                 </p>
                             </td>
                             <td>
-                                {{ join(' ,', $exam->subjects->pluck('name')->toArray()) }}
-                            </td>
-                            <td>
                                 <a class="btn btn-primary" href="{{ route('exam.read', $exam->uuid) }}">পড়ুন</a>
+                                <a class="btn btn-primary" href="{{ route('question', $exam->uuid) }}">পরিক্ষা দিন</a>
+
                             </td>
                         </tr>
                     @endforeach

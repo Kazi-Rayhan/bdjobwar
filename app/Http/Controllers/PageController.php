@@ -166,7 +166,11 @@ class PageController extends Controller
     {
         if(request()->has('year')){
             $exams = Exam::active()->where('batch_id',$batch->id)->where('isJobSolution', 1)->where('year',request()->year)->paginate(20);
-        }else{
+        }
+        elseif(request()->has('search')){
+            $exams = Exam::active()->where('batch_id',$batch->id)->where('isJobSolution', 1)->where('title','like','%'.request()->search.'%')->paginate(20);
+        }
+        else{
             $exams = Exam::active()->where('batch_id',$batch->id)->where('isJobSolution', 1)->paginate(20);
         }
         return view('frontEnd.job-solutions-batch-details', compact('batch', 'exams'));

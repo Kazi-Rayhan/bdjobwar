@@ -41,6 +41,9 @@
                                  </td>
                                  <td>
                                      <a class="btn btn-primary" href="{{ route('exam.read', $exam->uuid) }}">পড়ুন</a>
+                                     <a class="btn btn-primary"
+                                         href="{{ route('question', [$exam->uuid, 'practice' => 1]) }}">পরিক্ষা দিন</a>
+
                                  </td>
                              </tr>
                          @endforeach
