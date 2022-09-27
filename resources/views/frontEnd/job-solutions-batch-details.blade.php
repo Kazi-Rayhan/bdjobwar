@@ -25,40 +25,39 @@
 
         </div>
         <div class="row mt-5">
-            <div class="col-md-2">
-                <div class="card">
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item  @if (!request()->year) active @endif">
-                                <a href="{{ route('job.solutions.batch.details', [$batch]) }}"
-                                    style="text-decoration:none;color:#000">
-                                    All
-                                </a>
-                            </li>
-                            @php
-                                $years = range(2000, date('Y'));
-                                rsort($years);
-                            @endphp
-                            @foreach ($years as $year)
-                                <li class="list-group-item  @if (request()->year == $year) active @endif">
-                                    <a href="{{ route('job.solutions.batch.details', [$batch, 'year' => $year]) }}"
-                                        style="text-decoration:none;color:#000">
-                                        {{ $year }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
+            <div class="col-md-2 col-3">
+
+                <ul class="list-group">
+                    <li class="list-group-item  @if (!request()->year) active @endif">
+                        <a href="{{ route('job.solutions.batch.details', [$batch]) }}"
+                            style="text-decoration:none;color:#000">
+                            All
+                        </a>
+                    </li>
+                    @php
+                        $years = range(2000, date('Y'));
+                        rsort($years);
+                    @endphp
+                    @foreach ($years as $year)
+                        <li class="list-group-item  @if (request()->year == $year) active @endif">
+                            <a href="{{ route('job.solutions.batch.details', [$batch, 'year' => $year]) }}"
+                                style="text-decoration:none;color:#000">
+                                {{ $year }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 col-9 table-responsive">
 
                 <table class="table">
                     <tr>
                         <td colspan="4">
-                            <form action="{{route('job.solutions.batch.details',$batch)}}" method="get">
+                            <form action="{{ route('job.solutions.batch.details', $batch) }}" method="get">
                                 <div class="form-group d-flex gap-2">
-                                    <input type="text" class="form-control" name="search" placeholder="পরীক্ষাগুলো খুঁজুন">
+                                    <input type="text" class="form-control" name="search"
+                                        placeholder="পরীক্ষাগুলো খুঁজুন">
                                     <button class="btn btn-primary">
                                         খুঁজুন
                                     </button>
@@ -74,7 +73,7 @@
                             Exam
                         </th>
                         <th>
-                           
+
                         </th>
                         <th>
                             Actions
@@ -87,7 +86,7 @@
                             </td>
                             <td>
                                 <h6 class="text-dark" style="font-weight: 700;">{{ $exam->title }}</h6>
-                                
+
                             </td>
                             <td>
                                 <p class="text-secondary mt-2" style="font-size: 14px;">
@@ -95,9 +94,12 @@
                                 </p>
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="{{ route('exam.read', $exam->uuid) }}">পড়ুন</a>
-                                <a class="btn btn-primary" href="{{ route('question', $exam->uuid) }}">পরিক্ষা দিন</a>
+                                <div class="btn-group gap-2">
 
+                                    <a class="btn btn-primary" href="{{ route('exam.read', $exam->uuid) }}">পড়ুন</a>
+                                    <a class="btn btn-primary" href="{{ route('question', $exam->uuid) }}">পরীক্ষা দিন</a>
+
+                                </div>
                             </td>
                         </tr>
                     @endforeach
