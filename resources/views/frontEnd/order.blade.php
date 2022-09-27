@@ -8,6 +8,10 @@
                 <p>
                     {{ $data->payment_qoute }}
                 </p>
+            @elseif($type == 'order')
+                <p>
+                    {{ $data->payment_qoute }}
+                </p>
             @endif
             <div class="card shadow w-100">
                 <div class="card-body d-flex justify-content-center align-items-center ">
@@ -230,8 +234,8 @@
                             </ul>
                             <div class="text-center">
                                 <a class="btn btn-success btn-lg" href="{{ route('home_page') }}#package"> প্যাকেজ
-                                সাবস্ক্রাইব করুন</a>
-                        
+                                    সাবস্ক্রাইব করুন</a>
+
                             </div>
                         </div>
 
