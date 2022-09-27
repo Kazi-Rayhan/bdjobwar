@@ -42,7 +42,7 @@ class OrderController extends Controller
                 $data = Batch::find($id);
                 break;
         }
-      
+        dd($data);
         return view('frontEnd.order', compact('data', 'type', 'id'));
     }
 
