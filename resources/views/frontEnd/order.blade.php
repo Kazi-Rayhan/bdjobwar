@@ -8,7 +8,7 @@
                 <p>
                     {{ $data->payment_qoute }}
                 </p>
-            @elseif($type == 'order')
+            @elseif($type == 'package')
                 <p>
                     {{ $data->payment_qoute }}
                 </p>
