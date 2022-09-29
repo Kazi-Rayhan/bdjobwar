@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
+
+use App\Models\UserMeta;
 use Illuminate\Console\Command;
 
 class DisableUsers extends Command
@@ -38,11 +39,12 @@ class DisableUsers extends Command
      */
     public function handle()
     {
-        $users = User::where('active', 1)->whereRelation('information', 'is_paid', 1)->whereRelation('information', 'expired_at', '<', now())->get();
+        $users = UserMeta::where('is_paid', 1)->where('expired_at', '<', now())->get();
         foreach ($users as $user) {
-            $user->information()->update([
+            $user->update([
                 'is_paid' => 0,
-                'package' => 1,
+                'package' => 5,
+
             ]);
         }
         dd($users->count() . ' is now disabled');
