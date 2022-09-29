@@ -41,9 +41,10 @@ class DisableUsers extends Command
         $users = User::where('active', 1)->whereRelation('information', 'is_paid', 1)->whereRelation('information', 'expired_at', '<', now())->get();
         foreach ($users as $user) {
             $user->information()->update([
-                'is_paid' => 0
+                'is_paid' => 0,
+                'package' => 1,
             ]);
         }
-        dd($users->count().' is now disabled'); 
+        dd($users->count() . ' is now disabled');
     }
 }
