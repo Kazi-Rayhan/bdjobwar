@@ -368,12 +368,12 @@ right: 10;">
     <script src="{{ asset('formcache.min.js') }}"></script>
     @if (request()->has('practice'))
         <script>
-
            $().formcache('removeCaches')
         </script>
     @else
         <script>
             $("#question").formcache()
+            $("input[name='_token']").val('{{csrf_token()}}')
         </script>
     @endif
 @endsection
