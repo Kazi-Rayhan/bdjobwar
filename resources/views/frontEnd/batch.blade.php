@@ -53,9 +53,9 @@
                     <div class="card border border-dark">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/missedExam.svg') }}" alt="">
-                            <h3 class="icon-text">
+                            <h5 class="icon-text">
                                 Missed পরীক্ষা
-                            </h3>
+                            </h5>
                         </div>
                     </div>
                 </a>
