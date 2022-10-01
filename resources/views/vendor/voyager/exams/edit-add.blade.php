@@ -112,7 +112,7 @@ $add = is_null($dataTypeContent->getKey());
                             <div class="row">
                                 <div class="col-12 col-md-12">
                                     <h3>
-                                        Subjects
+                                        Categories
                                     </h3>
                                     <hr>
                                     <div class="row">
