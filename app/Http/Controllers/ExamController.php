@@ -76,9 +76,10 @@ class ExamController extends Controller
         if (request()->practice) {
             auth()->user()->exams()->updateExistingPivot($exam->id, ['practice_expire_at' => now()->addMinutes($exam->duration)]);
         } else {
-            if (!auth()->user()->exams()->find($exam->id)->pivot->expire_at || now()->lt(Carbon::parse(auth()->user()->exams()->find($exam->id)->pivot->expire_at)->addMinutes(10))) {
-             
-                if (auth()->user()->exams()->find($exam->id)->pivot->expire_at) {
+        
+            if (!auth()->user()->exams()->find($exam->id)->pivot->expire_at || Carbon::parse(auth()->user()->exams()->find($exam->id)->pivot->expire_at)->addMinutes(10)->toDateTime() < now()) {
+
+                if (Carbon::parse(auth()->user()->exams()->find($exam->id)->pivot->expire_at)->addMinutes(10)->toDateTime() < now()) {
 
                     $retry = true;
                 }
