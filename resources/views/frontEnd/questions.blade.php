@@ -266,7 +266,7 @@ right: 10;">
                             </p>
                             <button class="btn btn-lg btn-success" type="submit">Submit</button>
                             <p class="mt-3 bg-info py-2 text-light">
-                             অথবা ১০ মিনিট ({{Carbon\Carbon::parse(auth()->user()->exams()->find($exam->id)->pivot->expire_at)->addMinutes(10)->format('h:i a d M, Y')}}) এর পরে  পরীক্ষা টি আবার দিতে পারবেন ।
+                                ১০ মিনিটের মধ্যে সাবমিট দিন। ১০ মিনিটের মধ্যে সাবমিট না দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
                             </p>
                         </div>
                     </div>
