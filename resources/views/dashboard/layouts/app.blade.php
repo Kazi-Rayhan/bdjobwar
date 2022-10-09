@@ -27,14 +27,14 @@
 </head>
 
 <body id="page-top">
-    @if (auth()->user()->information->package->paid == false)
+    {{-- @if (auth()->user()->information->package->paid == false)
         <div class="alert alert-warning fixed-bottom m-0 text-center" role="alert">
 
             আপনি কোন প্যাকেজ ক্রয় করেননি । আমাদের প্যাকেজ সমূহ দেখতে <a class="btn btn-primary btn-sm"
                 href="{{ route('home_page') }}#package">এখানে ক্লিক
                 করুন</a>
         </div>
-    @endif
+    @endif --}}
     <!-- Page Wrapper -->
     <div id="wrapper">
 

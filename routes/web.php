@@ -151,7 +151,7 @@ Route::get('add-to-fav/{question}', function (Question $question) {
 
 
 Route::group(['prefix' => '/batch/{slug}/{batch}', 'as' => 'batch.', 'controller' => BatchDetailsController::class, 'middleware' => 'auth'], function () {
-    Route::get('/routine', 'routine')->name('routine');
+    Route::get('/routine', 'routine')->name('routine')->excludedMiddleware('auth');
     Route::get('/runningexam', 'runningExam')->name('runningexam');
     Route::get('/upcommingexam', 'upcommingExam')->name('upcommingexam');
     Route::get('/missedexam', 'missedExam')->name('missedexam');

@@ -93,14 +93,7 @@
 </head>
 
 <body>
-    @if (auth()->check() && auth()->user()->information->package->paid == false)
-        <div class="alert alert-warning fixed-bottom m-0 text-center" role="alert">
-
-            আপনি কোন প্যাকেজ ক্রয় করেননি । আমাদের প্যাকেজ সমূহ দেখতে <a class="btn btn-primary btn-sm"
-                href="{{ route('home_page') }}#package">এখানে ক্লিক
-                করুন</a>
-        </div>
-    @endif
+ 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="background-color:#161E31 !important">
 
         <div class="container">

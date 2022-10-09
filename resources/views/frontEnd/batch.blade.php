@@ -5,7 +5,7 @@
         use Rakibhstu\Banglanumber\NumberToBangla;
         $numto = new NumberToBangla();
     @endphp
-    <div class="container my-5">
+    <div class="container my-5 ">
         <div class="row g-2">
 
             <div class="col-md-4 col-lg-3 col-6">
@@ -116,20 +116,36 @@
             </div>
 
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 fixed-bottom">
+
             @auth
 
                 @if (!auth()->user()->bought($batch->id))
-                    <div class="d-grid">
-                        <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
-                            class="btn btn-success btn-lg">ভর্তি
-                            হন</a>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="text-end">
+                                {{ $batch->price }} ৳
+                            </h4>
+                            <div class="d-grid">
+                                <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
+                                    class="btn btn-success btn-lg">ভর্তি
+                                    হন</a>
+                            </div>
+                        </div>
                     </div>
                 @endif
             @else
-                <div class="d-grid">
-                    <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}" class="btn btn-success btn-lg">ভর্তি
-                        হন</a>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="text-end">
+                            {{ $batch->price }} ৳
+                        </h4>
+                        <div class="d-grid ">
+                            <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
+                                class="btn btn-success btn-lg">ভর্তি
+                                হন</a>
+                        </div>
+                    </div>
                 </div>
             @endauth
 
