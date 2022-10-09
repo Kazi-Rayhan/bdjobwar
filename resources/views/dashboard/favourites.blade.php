@@ -6,7 +6,7 @@
     @endphp
     <div class="container my-5 ">
 
-        @if ($favourites)
+        @if (count($favourites) > 1)
             <div class="row">
                 @foreach ($favourites as $question)
                     <div class="col-md-12 mx-auto">
@@ -94,7 +94,7 @@
 
                 <img src="{{ asset('icons/fav.svg') }}" height="200px" class="mb-5" alt="">
                 <h1>আপনার কোন Favourie প্রশ্ন নেই।</h1>
-               
+
             </div>
         @endif
 

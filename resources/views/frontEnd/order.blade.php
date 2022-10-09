@@ -161,7 +161,7 @@
 
     <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl shadow">
+        <div class="modal-dialog modal-xl modal-dialog-centered shadow">
             <div class="modal-content ">
 
                 <div class="modal-body mx-auto my-5" style="width:80%">
@@ -174,73 +174,90 @@
                     </p>
 
 
-                    <div class="row d-flex justify-content-center align-items-center p-0">
-                        <div class="col-md-6 col-sm-12">
 
-                            <h4>
-                                কোর্স ক্রয়ের সুবিধা -
-                            </h4>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h5>কোর্স ক্রয়ের সুবিধা
+                                    </h5>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="text-secondary" style="list-style: none;">
+                                        <li class="mb-3">
+                                            ১ । যে কোর্সটি কিনবেন ঐ কোর্সের আওতায় সকল লাইভ, আপকামিং, আর্কাইভ পরীক্ষা দিতে
+                                            পারবেন ।
+                                        </li>
+                                        <li class="mb-3">
+                                            ২ । আর্থিক সাশ্রয় হবে । কেননা, কোর্স ডিউরেশন যত বেশিই হোক না কেন আপনার কাছ থেকে
+                                            একবারই
+                                            ফি নেয়া হবে।
+                                        </li>
+                                        <li class="mb-3">
+                                            ৩ । কোর্স ক্রয়ে মাঝে মাঝে আকর্ষণীয় ডিস্কাউন্ট থাকবে ।
+                                        </li>
+                                    </ul>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-lg btn-success"
+                                            data-bs-dismiss="modal">কোর্স
+                                            টি
+                                            কিনুন</button>
+                                    </div>
 
-                            <ul class="text-secondary" style="list-style: none;">
-                                <li class="mb-3">
-                                    ১ । যে কোর্সটি কিনবেন ঐ কোর্সের আওতায় সকল লাইভ, আপকামিং, আর্কাইভ পরীক্ষা দিতে পারবেন ।
-                                </li>
-                                <li class="mb-3">
-                                    ২ । আর্থিক সাশ্রয় হবে । কেননা, কোর্স ডিউরেশন যত বেশিই হোক না কেন আপনার কাছ থেকে একবারই
-                                    ফি নেয়া হবে।
-                                </li>
-                                <li class="mb-3">
-                                    ৩ । কোর্স ক্রয়ে মাঝে মাঝে আকর্ষণীয় ডিস্কাউন্ট থাকবে ।
-                                </li>
-                            </ul>
-
-
-                        </div>
-                        <div class="col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center gap-2">
-
-                            <img src="{{ Voyager::image($data->thumbnail) }}" class="rounded" height="250px"
-                                style="object-fit:contain" alt="">
-                            <button type="button" class="btn btn-lg btn-success" data-bs-dismiss="modal">কোর্স টি
-                                কিনুন</button>
-
-                        </div>
-                    </div>
-                    <div class="row d-flex justify-content-center align-items-center p-0">
-                        <div class="col-md-12 col-sm-12">
-
-                            <h4 class="">
-                                প্যাকেজ সাবস্ক্রাইবের সুবিধা -
-                            </h4>
-                            <ul class="text-secondary" style="list-style: none;">
-                                <li class="mb-2">
-                                    <i class="fa fa-check text-success"></i> যেকোন একটি প্যাকেজ কিনে আপনি প্যাকেজের মেয়াদ
-                                    থাকাকালীন ওয়েবসাইটের সকল কোর্সে পরীক্ষা দেয়ার সুযোগ পাবেন ।
-                                </li>
-                                <li class="mb-2">
-                                    <i class="fa fa-check text-success"></i> মেয়াদ শেষে পুনরায় প্যাকেজ কিনতে হবে ।
-                                </li>
-
-                                <li class="mb-2">
-                                    <i class="fa fa-check text-success"></i> জব সলিউশন পড়ার সুবিধা ।
-                                </li>
-
-                                <li class="mb-2">
-                                    <i class="fa fa-check text-success"></i> সকল ফ্রি পরীক্ষার পিডিএফ ডাউনলোড সুবিধা ।
-                                </li>
-                                <li class="mb-2">
-                                    <i class="fa fa-check text-success"></i> মাসিক / ত্রৈমাসিক / ষন্মাসিক / বার্ষিক
-                                    সুবিধামত পেমেন্ট করার সুবিধা ।
-                                </li>
-                            </ul>
-                            <div class="text-center">
-                                <a class="btn btn-success btn-lg" href="{{ route('home_page') }}#package"> প্যাকেজ
-                                    সাবস্ক্রাইব করুন</a>
-
+                                </div>
                             </div>
                         </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <h5> প্যাকেজ সাবস্ক্রাইবের সুবিধা </h5>
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="text-secondary" style="list-style: none;">
+                                        <li class="mb-2">
+                                            <i class="fa fa-check text-success"></i> যেকোন একটি প্যাকেজ কিনে আপনি প্যাকেজের
+                                            মেয়াদ
+                                            থাকাকালীন ওয়েবসাইটের সকল কোর্সে পরীক্ষা দেয়ার সুযোগ পাবেন ।
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="fa fa-check text-success"></i> মেয়াদ শেষে পুনরায় প্যাকেজ কিনতে হবে ।
+                                        </li>
 
+                                        <li class="mb-2">
+                                            <i class="fa fa-check text-success"></i> জব সলিউশন পড়ার সুবিধা ।
+                                        </li>
+
+                                        <li class="mb-2">
+                                            <i class="fa fa-check text-success"></i> সকল ফ্রি পরীক্ষার পিডিএফ ডাউনলোড
+                                            সুবিধা ।
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="fa fa-check text-success"></i> মাসিক / ত্রৈমাসিক / ষন্মাসিক / বার্ষিক
+                                            সুবিধামত পেমেন্ট করার সুবিধা ।
+                                        </li>
+                                    </ul>
+                                    <div class="d-flex justify-content-end">
+                                        <a class="btn btn-success btn-lg" href="{{ route('home_page') }}#package">
+                                            প্যাকেজ
+                                            সাবস্ক্রাইব করুন</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
+                    <div class="d-flex justify-content-end">
+                    <a href="{{ route('home_page') }}" class="btn btn-primary mt-2">ফিরে যেতে চাই </a>
+                    
+                    </div>
 
                 </div>
             </div>

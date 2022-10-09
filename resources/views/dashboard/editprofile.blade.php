@@ -1,6 +1,10 @@
 @extends('dashboard.layouts.app')
 @section('content')
     <div class="container">
+        <h2>
+            Edit Profile Informations
+        </h2>
+        <hr>
         <form action="{{ route('dashboard.profile') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="text-center mt-5">
@@ -49,7 +53,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 form-group">
+                <div class="col-md-12 form-group">
                     <label for="phone">Phone</label>
                     <input type="phone" name="phone" disabled read
                         class="form-control @error('phone') is-invalid @enderror" id="phone" aria-describedby="phone"
@@ -61,19 +65,7 @@
                     @enderror
                 </div>
 
-                <div class=" col-md-6 form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                        id="password" aria-describedby="password">
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    <small>
-                        Leave empty if you do not want to change password
-                    </small>
-                </div>
+
             </div>
 
 
@@ -81,7 +73,41 @@
             <button type="submit" class="btn btn-success">Update</button>
 
         </form>
+        <h2 class="mt-5">
+            Change Password
+        </h2>
+        <hr>
+        <form action="{{ route('dashboard.changepass') }}" class="mt-2" method="POST" enctype="multipart/form-data">
+            @csrf
 
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="">Current Password</label>
+                        <input type="password" class="form-control" name="current" placeholder="Enter your current password">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="">New Password</label>
+                        <input type="password" class="form-control" name="new" placeholder="Enter your new password">
+                    </div>
+                </div>
+                 <div class="col-12">
+                    <div class="form-group">
+                        <label for="">Confirm New Password</label>
+                        <input type="password" class="form-control" name="confirm" placeholder="Confirm your new password">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <button type="submit" class="btn btn-success">Change Password</button>
+
+        </form>
 
     </div>
 @endsection

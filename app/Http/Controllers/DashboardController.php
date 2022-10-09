@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\User;
 use App\Models\UserExam;
 use PDF;
 use Illuminate\Support\Facades\Hash;
@@ -76,12 +77,26 @@ class DashboardController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
 
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request['password']);
-        }
 
         $user->update();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Profile is now updated');
+    }
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current' => 'required',
+            'new' => 'required|min:4|same:confirm',
+            'confirm' => 'required'
+        ]);
+        $user = User::find(auth()->id());
+
+        if (Hash::check($request->current, $user->password)) {
+            $user->password = Hash::make($request->new);
+            $user->update();
+        } else {
+            return redirect()->back()->withErrors('Incorrect Password');
+        }
+        return redirect()->back()->with('success', 'Password changed');
     }
     public function testHistory()
     {

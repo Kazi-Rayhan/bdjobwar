@@ -265,6 +265,9 @@ right: 10;">
                                 </span> উত্তর বাকি আছে।
                             </p>
                             <button class="btn btn-lg btn-success" type="submit">Submit</button>
+                            <p class="mt-3 bg-info py-2 text-light">
+                             অথবা ১০ মিনিট ({{Carbon\Carbon::parse(auth()->user()->exams()->find($exam->id)->pivot->expire_at)->addMinutes(10)->format('h:i a d M, Y')}}) এর পরে  পরীক্ষা টি আবার দিতে পারবেন ।
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -368,12 +371,18 @@ right: 10;">
     <script src="{{ asset('formcache.min.js') }}"></script>
     @if (request()->has('practice'))
         <script>
-           $().formcache('removeCaches')
+            $().formcache('removeCaches')
         </script>
     @else
-        <script>
-            $("#question").formcache()
-            $("input[name='_token']").val('{{csrf_token()}}')
-        </script>
+        @if (request()->has('retry'))
+            <script>
+                $().formcache('removeCaches')
+            </script>
+        @else
+            <script>
+                $("#question").formcache()
+                $("input[name='_token']").val('{{ csrf_token() }}')
+            </script>
+        @endif
     @endif
 @endsection

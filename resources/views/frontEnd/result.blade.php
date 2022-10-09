@@ -254,8 +254,10 @@
         <div class="row row-cols-sm-1 row-cols-xl-5 gap-2 w-100">
             <a href="{{ route('answerSheet', $result->uuid) }}" class="btn btn-dark ">উত্তরপত্র</a>
             <a href="{{ route('all-results-exam', $result->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী
-                পরীক্ষার সিলেবাস</button>
+            @if ($result->isJobSolution == 0)
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী
+                    পরীক্ষার সিলেবাস</button>
+            @endif
             <a href="{{ route('dashboard') }}" class="btn btn-dark">প্রোফাইল</a>
             <a class="btn btn-warning"
                 onclick="alert('বিঃদ্রঃ প্রাকটিস পরীক্ষা দিয়ে আপনি আপনার পড়া কতটুকু মনে রাখতে পেরেছেন তা যাচাই করতে পারবেন। আপনার পূর্ববর্তী মেধাতালিকার কোন পরিরবর্তন হবে না।')"
@@ -266,22 +268,23 @@
 
 
     </div>
+    @if ($result->isJobSolution == 0)
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">পরবর্তী পরিক্ষার সিলেবাস</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ $result->next_syllabus }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">পরবর্তী পরিক্ষার সিলেবাস</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    {{ $result->next_syllabus }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection

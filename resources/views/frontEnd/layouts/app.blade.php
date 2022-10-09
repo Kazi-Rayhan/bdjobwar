@@ -41,9 +41,11 @@
             font-family: 'AdorshoLipi', Arial, sans-serif !important;
             font-weight: 600;
         }
+
         .videos {
             list-style: none;
         }
+
         .videos li {
             border: 2px solid #161E31;
             color: #161E31;
@@ -51,19 +53,23 @@
             margin: 10px 0px;
             transition: .2s ease-in;
         }
+
         .videos li a {
             font-size: 14px;
         }
+
         .videos li:hover {
             background-color: #161E31;
             color: #fff;
         }
+
         /* Extra small devices (phones, 600px and down) */
         @media only screen and (max-width: 600px) {
             .video {
                 width: 250px;
             }
         }
+
         /* Small devices (portrait tablets and large phones, 600px and up) */
         @media only screen and (min-width: 600px) {
             .video {
@@ -71,21 +77,34 @@
                 height: 315px;
             }
         }
-        .icon{
-            transition:.2s ease-in;
+
+        .icon {
+            transition: .2s ease-in;
         }
+
         .icon:hover {
             transform: rotate(5deg);
         }
-        .icon-text{
-            cursor:pointer;
+
+        .icon-text {
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
+    @if (auth()->check() && auth()->user()->information->package->paid == false)
+        <div class="alert alert-warning fixed-bottom m-0 text-center" role="alert">
+
+            আপনি কোন প্যাকেজ ক্রয় করেননি । আমাদের প্যাকেজ সমূহ দেখতে <a class="btn btn-primary btn-sm"
+                href="{{ route('home_page') }}#package">এখানে ক্লিক
+                করুন</a>
+        </div>
+    @endif
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="background-color:#161E31 !important">
+
         <div class="container">
+
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('frontEnd-assets/img/logo.png') }}" alt="" width="100" height="50"
                     style="object-fit:cover">
@@ -164,6 +183,7 @@
             </div>
         </div>
     </nav>
+
     <!-- Main Nav end -->
     <main>
         @yield('content')
@@ -187,56 +207,69 @@
             <div class="container-fluid bg-footer " style="background-color:#161E31 !important">
                 <div class="row justify-content-around">
                     <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
-                        <img src="{{ asset('frontEnd-assets/img/logo.png') }}" height="150" width="150"
-                            alt="">
-                        <a href="https://play.google.com/store/apps/details?id=bdjobwar.com">
-                            <img src="{{ asset('download.png') }}" alt="" height="80">
-                        </a>
+                        <img src="{{ asset('frontEnd-assets/img/logo.png') }}" width="130" alt="">
+                        <div class="d-flex flex-column align-items-center gap-0 my-2">
+
+                            <p class="text-light p-0 m-0">
+                                আমাদের মোবাইল অ্যাপ ডাউনলোড করুন
+                            </p>
+                            <a href="https://play.google.com/store/apps/details?id=bdjobwar.com">
+                                <img src="{{ asset('download.png') }}" alt="" height="80">
+                            </a>
+
+                        </div>
 
                     </div>
-
+                    @php
+                        $fpackages = App\Models\Package::where('paid', 1)->get();
+                        $fcourses = App\Models\Course::with('batches')
+                            ->where('job_solutions', 0)
+                            ->latest()
+                            ->take(3)
+                            ->get();
+                        
+                    @endphp
 
                     <div class="col-md-2 populer-course ">
                         <h5 class="mt-3">জনপ্রিয় প্যাকেজ </h5>
-                        <a href="">
-                            <p>মাসিক </p>
-                        </a>
-                        <a href="">
-                            <p>ত্রৈমাসিক </p>
-                        </a>
-                        <a href="">
-                            <p>ষান্মাসিক </p>
-                        </a>
-                        <a href="">
-                            <p>বাৎসরিক </p>
-                        </a>
-                    </div>
-                    <div class="col-md-2 populer-course">
-                        <h5 class="mt-3">জব গাইডলাইন </h5>
-                        <a href="">
-                            <p>বিসিএস </p>
-                        </a>
-                        <a href="">
-                            <p>ব্যাংক </p>
-                        </a>
-                        <a href="">
-                            <p>ফোকাস রাইটিং </p>
-                        </a>
+                        @foreach ($fpackages as $package)
+                            @if (@auth()->user()->information->package_id == $package->id)
+                                <a href="javascript:void(0)"
+                                    onclick="alert('আপনি এই প্যাকেজটিতে সাবস্ক্রাইব করেছেন ')">
+                                    <p>{{ $package->title }} </p>
+                                </a>
+                            @else
+                                <a href="{{ route('package-details', [Str::slug($package->title), $package]) }}">
+                                    <p>{{ $package->title }} </p>
+                                </a>
+                            @endif
+                        @endforeach
+
 
                     </div>
                     <div class="col-md-2 populer-course">
-                    <p>
-                    ঠিকানা: বরিশাল, বাংলাদেশ, মোবাইল: 01707725544, ইমেইল: hafizurrahaman013@gmail.com
-                    </p>
+                        <h5 class="mt-3">জনপ্রিয় কোর্সসমূহ </h5>
+                        @foreach ($fcourses as $course)
+                            <a href="{{ $course->link() }}">
+                                <p>{{ Str::limit($course->title, 30) }}</p>
+                            </a>
+                        @endforeach
+
+
+                    </div>
+                    <div class="col-md-2 populer-course">
+                        <p>
+                            ঠিকানা: বরিশাল, বাংলাদেশ, মোবাইল: 01707725544, ইমেইল: hafizurrahaman013@gmail.com
+                        </p>
                         <h5 class="mt-3">সোসাল লিঙ্ক</h5>
                         <p class="text-white social-link">আমাদের সাথে থাকো</p>
                         <a class="social-link" href=""><i class="fab fa-facebook-f fs-3 "></i></a>
                         <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 "></i></a>
                         <a class="social-link" href=""><i class="fab fa-instagram fs-3 ms-3  "></i></a>
                         <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 "></i></a>
-                        
+
                     </div>
-                    
+
                 </div>
             </div>
             <!-- </div> -->
@@ -245,7 +278,8 @@
             <div class="text-center">
                 <div class="copyright">
                     <p>© {{ now()->year }} Copyright <a href="{{ url('/') }}">Bdjobwar.</a> All Right
-                        Reserved. Developed by <a target="blank" href="https://caregiver.com.bd/">Caregiver</a></p>
+                        Reserved. Developed by <a target="blank" href="http://uuizard.com/">Uuizard</a></p>
+                        
                 </div>
             </div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Exam;
 use App\Models\Question;
 use App\Models\UserExam;
+use Carbon\Carbon;
 use Error;
 use Exception;
 use Illuminate\Http\Request;
@@ -70,31 +71,41 @@ class ExamController extends Controller
 
     public function start($uuid)
     {
-
+        $retry = false;
         $exam = Exam::where('uuid', $uuid)->first();
         if (request()->practice) {
             auth()->user()->exams()->updateExistingPivot($exam->id, ['practice_expire_at' => now()->addMinutes($exam->duration)]);
         } else {
-            
-            if(!auth()->user()->exams()->find($exam->id)->pivot->expire_at){
+
+            if (!auth()->user()->exams()->find($exam->id)->pivot->expire_at or now() > Carbon::parse(auth()->user()->exams()->find($exam->id)->pivot->expire_at)->addMinutes(10)) {
+                if (now() > Carbon::parse(auth()->user()->exams()->find($exam->id)->pivot->expire_at)->addMinutes(10)) {
+                    $retry = true;
+                }
                 auth()->user()->exams()->updateExistingPivot($exam->id, ['expire_at' => now()->addMinutes($exam->duration)]);
             }
         }
-        return redirect()->route('question', [$uuid, 'practice' => request()->practice]);
+
+        if ($retry) {
+
+            return redirect()->route('question', [$uuid, 'practice' => request()->practice, 'retry' => 1]);
+        } else {
+
+            return redirect()->route('question', [$uuid, 'practice' => request()->practice]);
+        }
     }
     public function exam($uuid)
     {
 
         $exam = Exam::where('uuid', $uuid)->first();
-        
+
         $timeLeft = UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->timeLeft();
         if (request()->practice) {
-        
+
             if (!UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->answers) {
                 return redirect()->back()->withError('প্রাকটিস পরীক্ষা দিতে আপনাকে মূল পরীক্ষায় অংশগ্রহণ করতে হবে।');
             };
         }
-    
+
         $questions = $exam->questions()->active()->inRandomOrder()->get();
 
 
@@ -133,7 +144,7 @@ class ExamController extends Controller
     {
         $exam = Exam::where('uuid', $uuid)->first();
         $results = UserExam::where('exam_id', $exam->id)->whereNotNull('answers')->orderBy('total', 'desc')->orderBy('created_at', 'DESC')->get();
-    
+
         $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam]);
 
         return $pdf->download('results.pdf');
@@ -141,7 +152,7 @@ class ExamController extends Controller
     public function answerSheetPdf($uuid)
     {
         $exam = Exam::where('uuid', $uuid)->first();
-        
+
         $questions = $exam->questions()->active()->get();
         $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf', ['questions' => $questions, 'exam' => $exam], [
             'title' => $exam->title . ' Answer Sheet',
@@ -154,7 +165,7 @@ class ExamController extends Controller
     public function answerSheetPdfWithOutMarking($uuid)
     {
         $exam = Exam::where('uuid', $uuid)->first();
-        
+
 
         $questions = $exam->questions()->active()->get();
         $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_without_marking', ['questions' => $questions, 'exam' => $exam], [

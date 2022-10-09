@@ -46,7 +46,6 @@ class PageController extends Controller
             ->where('to', '>', now())
             ->orderBy('from', 'asc')
             ->latest()
-            ->limit(3)
             ->get();
         $latestResults = Exam::active()
             ->with('users')
@@ -60,7 +59,6 @@ class PageController extends Controller
             ->where('to', '>', now())
             ->orderBy('from', 'asc')
             ->latest()
-            ->limit(5)
             ->get();
 
         $courses = Course::with('batches')->where('job_solutions', 0)->latest()->get();
