@@ -150,12 +150,12 @@ Route::get('add-to-fav/{question}', function (Question $question) {
 })->name('fav')->middleware('auth');
 
 
-Route::group(['prefix' => '/batch/{slug}/{batch}','as'=>'batch.','controller' => BatchDetailsController::class], function () {
-    Route::get('/routine','routine')->name('routine');
-    Route::get('/runningexam','runningExam')->name('runningexam');
-    Route::get('/upcommingexam','upcommingExam')->name('upcommingexam');
-    Route::get('/missedexam','missedExam')->name('missedexam')->middleware('auth');
-    Route::get('/archive','archive')->name('archive');
-    Route::get('/results','result')->name('results');
-    Route::get('/statics','statics')->name('statics');
+Route::group(['prefix' => '/batch/{slug}/{batch}', 'as' => 'batch.', 'controller' => BatchDetailsController::class, 'middleware' => 'auth'], function () {
+    Route::get('/routine', 'routine')->name('routine');
+    Route::get('/runningexam', 'runningExam')->name('runningexam');
+    Route::get('/upcommingexam', 'upcommingExam')->name('upcommingexam');
+    Route::get('/missedexam', 'missedExam')->name('missedexam');
+    Route::get('/archive', 'archive')->name('archive');
+    Route::get('/results', 'result')->name('results');
+    Route::get('/statics', 'statics')->name('statics');
 });
