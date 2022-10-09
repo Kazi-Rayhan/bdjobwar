@@ -8,7 +8,7 @@
     <div class="container my-5">
         <div class="row g-2">
 
-            <div class="col-md-4 col-lg-3 col-6" >
+            <div class="col-md-4 col-lg-3 col-6">
                 <a href="{{ route('batch.runningexam', [Str::slug($batch->title), $batch]) }}"
                     style="text-decoration:none;color:#000">
                     <div class="card  border border-dark" style="min-height:200px">
@@ -114,6 +114,24 @@
                     </div>
                 </a>
             </div>
+
+        </div>
+        <div class="row mt-3">
+            @auth
+
+                @if (!auth()->user()->bought($batch->id))
+                    <div class="d-grid">
+                        <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
+                            class="btn btn-success btn-lg">ভর্তি
+                            হন</a>
+                    </div>
+                @endif
+            @else
+                <div class="d-grid">
+                    <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}" class="btn btn-success btn-lg">ভর্তি
+                        হন</a>
+                </div>
+            @endauth
 
         </div>
     </div>
