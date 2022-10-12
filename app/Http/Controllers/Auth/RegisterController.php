@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:4', 'confirmed'],
         ],[
             'phone.unique' => 'আপনার মোবাইল নম্বরটি পূর্বে রেজিস্ট্রেশন করা হয়েছে । লগইন করতে লগইন বাটনে ক্লিক করুন ।',
-            'phone.regex' => 'আপনার মোবাইল নম্বরটি সঠিক না ।'
+            'phone.regex' => 'আপনার মোবাইল নম্বরটি সঠিক নয়। ১১ ডিজিটের ইংরেজি মোবাইল নম্বর দিতে হবে।'
         ]);
     }
 

@@ -31,7 +31,7 @@ class BatchDetailsController extends Controller
     {
         $exams = Exam::active()->where('batch_id', $batch->id);
 
-        $exams = $exams->where('from', '>', now())->get();
+        $exams = $exams->where('from', '>', now())->orderBy('from', 'asc')->get();
         return view('frontEnd.batchDetails.upcommingexam', compact('exams','batch'));
     }
 

@@ -167,7 +167,7 @@
                 <div class="modal-body mx-auto my-5" style="width:80%">
                     <div class="d-flex flex-column justify-content-center align-items-center gap-3">
                         <h5 class="text-center">
-                            "{{ $data->title }}" এর সকল পরীক্ষা <br> দিতে  কোর্সটি কিনুন ।
+                            "{{ $data->title }}" ব্যাচের এর সকল পরীক্ষা <br> দিতে  কোর্সটি কিনুন ।
                         </h5>
 
                         <button type="button" class="btn   btn-success" data-bs-dismiss="modal">কোর্স
@@ -175,7 +175,7 @@
                             কিনুন</button>
 
                         <h5 class="text-center">
-                            BD Job War ওয়েবসাইটের সকল কোর্সে পরীক্ষা দিতে চাইলে <br> প্যকেজ সাবস্ক্রাইব করুন ।
+                            Bd Job War ওয়েবসাইটের সকল কোর্সে পরীক্ষা দিতে চাইলে <br> প্যাকেজ সাবস্ক্রাইব করুন ।
                         </h5>
                         <a class="btn btn-success " href="{{ route('home_page') }}#package">
                             প্যাকেজ
