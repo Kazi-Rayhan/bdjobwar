@@ -43,7 +43,7 @@ class DisableUsers extends Command
         foreach ($users as $user) {
             $user->update([
                 'is_paid' => 0,
-                'package' => 5,
+                'package_id' => 5,
 
             ]);
         }
