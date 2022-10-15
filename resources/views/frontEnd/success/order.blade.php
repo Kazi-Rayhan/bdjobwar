@@ -34,8 +34,9 @@
 
 
         @if($order->status == 2)<p class="text-dark">পেমেন্ট ভেরেফাই সফল হলে  আপনার ফোনে একটি Conformation SMS পাবেন</p>@elseif($order->status == 0) <p class="text-dark">আপনার পেমেন্ট টি Decline করা হয়েছে </p> @else<p class="text-dark">আপনার পেমেন্ট সফল হয়েছে </p> @endif
-
-
+        <p>
+        এডমিনকে মেসেজ দিতে <a href="https://www.facebook.com/hrsheik1996">এখানে ক্লিক করুণ</a>
+        </p>
 
         <div>
             <a href="{{route('dashboard')}}" class="btn btn-dark "> ড্যাশবোর্ড </a>

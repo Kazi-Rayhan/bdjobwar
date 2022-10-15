@@ -252,6 +252,10 @@
 
 
         <div class="row row-cols-sm-1 row-cols-xl-5 gap-2 w-100">
+            @if ($result->pivot->practice_total)
+                <a href="{{ route('practiceAnswerSheet', [$result->uuid,'practice'=>true]) }}" class="btn btn-dark">প্রস্তুতিমূলক
+                    পরীক্ষার উত্তরপত্র</a>
+            @endif
             <a href="{{ route('answerSheet', $result->uuid) }}" class="btn btn-dark ">উত্তরপত্র</a>
             <a href="{{ route('all-results-exam', $result->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
             @if ($result->isJobSolution == 0)

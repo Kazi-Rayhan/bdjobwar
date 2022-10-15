@@ -28,6 +28,17 @@ class ExamController extends Controller
         return view('frontEnd.exam.answer_sheet', compact('exam'));
     }
 
+    public function practiceAnswerSheet($uuid)
+    {
+        $exam = Exam::where('uuid', $uuid)->with('questions')->first();
+
+        if (!Auth::user()->exams()->find($exam->id)->pivot->practice_answers) {
+            return \redirect()->route('start-exam', $exam->uuid);
+        }
+        
+        return view('frontEnd.exam.answer_sheet', compact('exam'));
+    }
+
     public function read($uuid)
     {
 

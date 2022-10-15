@@ -89,6 +89,7 @@ Route::get('exam/{uuid}/read', [ExamController::class, 'read'])->name('exam.read
 
 Route::group(['middleware' => ['auth', 'pin', 'canAttendThisExam']], function () {
     Route::get('exam/{uuid}/answer-sheet', [ExamController::class, 'answerSheet'])->name('answerSheet');
+    Route::get('exam/{uuid}/practice-answer-sheet', [ExamController::class, 'practiceAnswerSheet'])->name('practiceAnswerSheet');
     Route::get('exam/{uuid}/answer-sheet-pdf', [ExamController::class, 'answerSheetPdf'])->name('answerSheetPdf');
     Route::get('exam/{uuid}/questions-sheet-pdf', [ExamController::class, 'answerSheetPdfWithOutMarking'])->name('answerSheetPdfWithOutMarking');
 });

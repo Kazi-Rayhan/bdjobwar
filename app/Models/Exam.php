@@ -17,7 +17,7 @@ class Exam extends Model
         'to' => 'datetime',
     ];
 
-    
+
 
 
     public function priceFormat()
@@ -29,8 +29,9 @@ class Exam extends Model
         }
     }
 
-    public function getParticipantsAttribute(){
-        return  (new NumberToBangla)->bnNum($this->users()->wherePivotNotNull('total')->count());
+    public function getParticipantsAttribute()
+    {
+        return (new NumberToBangla)->bnNum($this->users()->wherePivotNotNull('total')->count());
     }
 
 
@@ -51,19 +52,31 @@ class Exam extends Model
         return $this->morphToMany(Subject::class, 'subjectable');
     }
 
-    
+
     public function questions()
     {
         return $this->belongsToMany(Question::class);
     }
-   
 
 
-  
+
+
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot(['answers', 'total', 'wrong_answers', 'empty_answers', 'expire_at','created_at'])->withTimestamps();
+        return $this->belongsToMany(User::class)->withPivot( [
+            'answers',
+            'total',
+            'wrong_answers',
+            'empty_answers',
+            'expire_at',
+            'answers',
+            'practice_total',
+            'practice_answers',
+            'practice_wrong_answers',
+            'practice_empty_answers',
+            'practice_expire_at'
+        ])->withTimestamps();
     }
 
     public function getRanking(User $user)
@@ -71,7 +84,7 @@ class Exam extends Model
         $collection = collect($this->users()->orderBy('pivot_total', 'DESC')->orderBy('pivot_created_at', 'DESC')->get());
 
         $data       = $collection->where('id', $user->id);
-    
+
         $value      = $data->keys()->first() + 1;
         return $value;
     }
@@ -82,23 +95,29 @@ class Exam extends Model
 
     public function scopePaid($query)
     {
-        return $query->whereHas('batch',function($q){
-            $q->where('price','>',0);
+        return $query->whereHas('batch', function ($q) {
+            $q->where('price', '>', 0);
         });
     }
 
     public function scopeFree($query)
     {
-        return $query->whereHas('batch',function($q){
-            $q->where('price','<=',0);
+        return $query->whereHas('batch', function ($q) {
+            $q->where('price', '<=', 0);
         });
     }
 
-    public function userChoice(User $user,$index){
-    return json_decode($this->users()->find($user->id)->pivot->answers,true)[$index]??'';
+    public function userChoice(User $user, $index)
+    {
+        
+        if (request()->practice) {
+            return json_decode($this->users()->find($user->id)->pivot->practice_answers, true)[$index] ?? '';
+        }
+        return json_decode($this->users()->find($user->id)->pivot->answers, true)[$index] ?? '';
     }
 
-    public function batch(){
+    public function batch()
+    {
         return $this->belongsTo(Batch::class);
     }
 }

@@ -19,7 +19,7 @@
              @foreach ($question->choices as $choice)
                  <div class="d-flex justify-content-between align-items-center">
 
-
+            
                      <small
                          class="mb-3 @if ($choice->index == $question->answer) text-success @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index) text-danger @elseif($exam->userChoice(auth()->user(), $question->id) == '') text-warning  @else text-muted @endif">
                          {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
