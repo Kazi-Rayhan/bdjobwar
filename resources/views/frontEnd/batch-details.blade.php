@@ -26,10 +26,8 @@
 
                     @if ($batch->price > 0)
                         @auth
-
                             @if (!auth()->user()->bought($batch->id))
-                                <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
-                                    class="btn btn-success">ভর্তি হন</a>
+                                <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}" class="btn btn-success">ভর্তি হন</a>
                             @endif
                         @else
                             <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"

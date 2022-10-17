@@ -64,7 +64,7 @@ class Exam extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot( [
+        return $this->belongsToMany(User::class)->withPivot([
             'answers',
             'total',
             'wrong_answers',
@@ -107,10 +107,10 @@ class Exam extends Model
         });
     }
 
-    public function userChoice(User $user, $index)
+    public function userChoice(User $user, $index, $isPractice = false)
     {
-        
-        if (request()->practice) {
+
+        if (request()->practice || $isPractice) {
             return json_decode($this->users()->find($user->id)->pivot->practice_answers, true)[$index] ?? '';
         }
         return json_decode($this->users()->find($user->id)->pivot->answers, true)[$index] ?? '';

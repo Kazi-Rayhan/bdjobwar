@@ -24,7 +24,7 @@ class BatchDetailsController extends Controller
         $exams = $exams->where('from', '<', now())
             ->where('to', '>', now())->get();
 
-        return view('frontEnd.batchDetails.runningexam', compact('exams','batch'));
+        return view('frontEnd.batchDetails.runningexam', compact('exams', 'batch'));
     }
 
     public function upcommingExam($slug, Batch $batch)
@@ -32,7 +32,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('from', '>', now())->orderBy('from', 'asc')->get();
-        return view('frontEnd.batchDetails.upcommingexam', compact('exams','batch'));
+        return view('frontEnd.batchDetails.upcommingexam', compact('exams', 'batch'));
     }
 
     public function archive($slug, Batch $batch)
@@ -41,7 +41,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('to', '<', now())->get();
-        return view('frontEnd.batchDetails.archive', compact('exams','batch'));
+        return view('frontEnd.batchDetails.archive', compact('exams', 'batch'));
     }
 
     public function result($slug, Batch $batch)
@@ -49,7 +49,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('to', '<', now())->get();
-        return view('frontEnd.batchDetails.result',compact('exams','batch'));
+        return view('frontEnd.batchDetails.result', compact('exams', 'batch'));
     }
 
     public function statics($slug, Batch $batch)
@@ -62,10 +62,16 @@ class BatchDetailsController extends Controller
     {
         $exams = Exam::active()->where('batch_id', $batch->id);
 
-        $exams = $exams->where('to', '<', now())->get()->filter(function($exam){
+        $exams = $exams->where('to', '<', now())->get()->filter(function ($exam) {
             return !is_numeric(@User::find(auth()->id())->exams()->find($exam->id)->pivot->total);
         });
+
+        return view('frontEnd.batchDetails.missed', compact('exams', 'batch'));
+    }
+    public function materials($slug, Batch $batch)
+    {
+
   
-        return view('frontEnd.batchDetails.missed', compact('exams','batch'));
+        return view('frontEnd.batchDetails.materials', compact('batch'));
     }
 }

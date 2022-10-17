@@ -35,7 +35,7 @@ class ExamController extends Controller
         if (!Auth::user()->exams()->find($exam->id)->pivot->practice_answers) {
             return \redirect()->route('start-exam', $exam->uuid);
         }
-        
+
         return view('frontEnd.exam.answer_sheet', compact('exam'));
     }
 
@@ -87,7 +87,7 @@ class ExamController extends Controller
         if (request()->practice) {
             auth()->user()->exams()->updateExistingPivot($exam->id, ['practice_expire_at' => now()->addMinutes($exam->duration)]);
         } else {
-        
+
             if (!auth()->user()->exams()->find($exam->id)->pivot->expire_at || Carbon::parse(auth()->user()->exams()->find($exam->id)->pivot->expire_at)->addMinutes(10)->toDateTime() < now()) {
 
                 if (Carbon::parse(auth()->user()->exams()->find($exam->id)->pivot->expire_at)->addMinutes(10)->toDateTime() < now()) {
@@ -165,13 +165,22 @@ class ExamController extends Controller
     public function answerSheetPdf($uuid)
     {
         $exam = Exam::where('uuid', $uuid)->first();
+     
 
         $questions = $exam->questions()->active()->get();
-        $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf', ['questions' => $questions, 'exam' => $exam], [
-            'title' => $exam->title . ' Answer Sheet',
-            'Author' => 'BD Job War'
-        ]);
 
+        if (request()->pracitce) {
+            
+            $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf2', ['questions' => $questions, 'exam' => $exam], [
+                'title' => $exam->title . ' Answer Sheet',
+                'Author' => 'BD Job War'
+            ]);
+        } else {
+            $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf', ['questions' => $questions, 'exam' => $exam], [
+                'title' => $exam->title . ' Answer Sheet',
+                'Author' => 'BD Job War'
+            ]);
+        }
         return $pdf->stream('answer_sheet.pdf');
         // return $pdf->download('answer_sheet.pdf');
     }

@@ -12,18 +12,27 @@ class Batch extends Model
 
     public $additional_attributes = ['batch_name'];
 
-    public function course(){
+    public function course()
+    {
         return $this->belongsTo(Course::class);
     }
 
-    public function exams(){
-        return $this->hasMany(Exam::class);
-    }
-    public function link(){
-        return route('batch',[Str::slug($this->title),$this]);
+    public function files()
+    {
+        return json_decode($this->materials);
     }
 
-    public function getBatchNameAttribute(){
+    public function exams()
+    {
+        return $this->hasMany(Exam::class);
+    }
+    public function link()
+    {
+        return route('batch', [Str::slug($this->title), $this]);
+    }
+
+    public function getBatchNameAttribute()
+    {
         return "{$this->course->title} - {$this->title}";
     }
 
@@ -42,7 +51,7 @@ class Batch extends Model
         return [
             'title' => $this->title,
             'type' => 'কোর্স',
-            'price' => $this->price 
+            'price' => $this->price
         ];
     }
 }

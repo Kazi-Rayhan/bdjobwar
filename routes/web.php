@@ -159,4 +159,5 @@ Route::group(['prefix' => '/batch/{slug}/{batch}', 'as' => 'batch.', 'controller
     Route::get('/archive', 'archive')->name('archive');
     Route::get('/results', 'result')->name('results');
     Route::get('/statics', 'statics')->name('statics');
+    Route::get('/study-materials', 'materials')->name('materials');
 });

@@ -1,6 +1,6 @@
 @php
-use Rakibhstu\Banglanumber\NumberToBangla;
-$numto = new NumberToBangla();
+    use Rakibhstu\Banglanumber\NumberToBangla;
+    $numto = new NumberToBangla();
 @endphp
 <!DOCTYPE html>
 <!-- <html lang="en"> -->
@@ -120,17 +120,17 @@ $numto = new NumberToBangla();
 
                                             {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
                                                 <sup class=" text-success "><i class="fa fa-check"></i> </sup>
-                                            @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                            @elseif($exam->userChoice(auth()->user(), $question->id, true) == $choice->index)
                                                 <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
                                             @else
                                             @endif
 
                                         </p>
-                                    @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                    @elseif($exam->userChoice(auth()->user(), $question->id, true) == $choice->index)
                                         <p style="color:red">
                                             {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
                                                 <sup class=" text-success "><i class="fa fa-check"></i> </sup>
-                                            @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                            @elseif($exam->userChoice(auth()->user(), $question->id, true) == $choice->index)
                                                 <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
                                             @else
                                             @endif
@@ -139,7 +139,7 @@ $numto = new NumberToBangla();
                                         <p style="color:black">
                                             {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
                                                 <sup class=" text-success "><i class="fa fa-check"></i> </sup>
-                                            @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                            @elseif($exam->userChoice(auth()->user(), $question->id, true) == $choice->index)
                                                 <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
                                             @else
                                             @endif
