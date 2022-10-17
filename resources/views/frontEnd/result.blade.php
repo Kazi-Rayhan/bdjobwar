@@ -14,121 +14,10 @@
 
 
 
-            @if (!$result->pivot->answers)
-                <table class="table">
-                    <tr>
-                        <th>
-                            ভুল উত্তর:
-                        </th>
-                        <td>
-                            N/A
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            নেতিবাচক মার্ক:
-                        </th>
-                        <td>
-                            {{ $result->minius_mark }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            মিস :
-                        </th>
-                        <td>
-                            N/A
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            সঠিক উত্তর :
-                        </th>
-                        <td>
-                            N/A
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            পাস মার্ক :
-                        </th>
-                        <td>
-                            {{ $result->minimum_to_pass }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            মোট :
-                        </th>
-                        <td>
-                            N/A
-                        </td>
-                    </tr>
-                </table>
-            @else
-                <table class="table table-striped ">
-                    <tr>
-                        <th>
-                            সঠিক উত্তর :
-                        </th>
-                        <td>
-                            {{ ($result->questions->count() - ($result->pivot->wrong_answers + $result->pivot->empty_answers)) / $result->point }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            ভুল উত্তর:
-                        </th>
-                        <td>
-                            {{ $result->pivot->wrong_answers }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            নেগেটিভ মার্ক:
-                        </th>
-                        <td>
-                            {{ $result->minius_mark }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            পাস মার্ক :
-                        </th>
-                        <td>
-                            {{ $result->minimum_to_pass }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            প্রাপ্ত নম্বর :
-                        </th>
-                        <td>
-                            {{ $result->pivot->total }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            রেজাল্ট :
-                        </th>
-                        <td>
-                            @if ($result->pivot->total >= $result->minimum_to_pass)
-                                <span class="text-success">
 
-                                    Passed
-                                </span>
-                            @else
-                                <span class="text-danger">
 
-                                    Failed
-                                </span>
-                            @endif
-                        </td>
-                    </tr>
-                </table>
-            @endif
             @if ($result->pivot->practice_total)
-                <h4 class="bg-success text-light p-2">প্রস্তুতিমূলক
+                <h4 class="bg-success text-light p-2">প্রাকটিস
                     পরীক্ষা</h4>
                 @if (!$result->pivot->practice_answers)
                     <table class="table">
@@ -243,6 +132,120 @@
                         </tr>
                     </table>
                 @endif
+            @else
+                @if (!$result->pivot->answers)
+                    <table class="table">
+                        <tr>
+                            <th>
+                                ভুল উত্তর:
+                            </th>
+                            <td>
+                                N/A
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                নেতিবাচক মার্ক:
+                            </th>
+                            <td>
+                                {{ $result->minius_mark }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                মিস :
+                            </th>
+                            <td>
+                                N/A
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                সঠিক উত্তর :
+                            </th>
+                            <td>
+                                N/A
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                পাস মার্ক :
+                            </th>
+                            <td>
+                                {{ $result->minimum_to_pass }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                মোট :
+                            </th>
+                            <td>
+                                N/A
+                            </td>
+                        </tr>
+                    </table>
+                @else
+                    <table class="table table-striped ">
+                        <tr>
+                            <th>
+                                সঠিক উত্তর :
+                            </th>
+                            <td>
+                                {{ ($result->questions->count() - ($result->pivot->wrong_answers + $result->pivot->empty_answers)) / $result->point }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                ভুল উত্তর:
+                            </th>
+                            <td>
+                                {{ $result->pivot->wrong_answers }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                নেগেটিভ মার্ক:
+                            </th>
+                            <td>
+                                {{ $result->minius_mark }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                পাস মার্ক :
+                            </th>
+                            <td>
+                                {{ $result->minimum_to_pass }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                প্রাপ্ত নম্বর :
+                            </th>
+                            <td>
+                                {{ $result->pivot->total }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                রেজাল্ট :
+                            </th>
+                            <td>
+                                @if ($result->pivot->total >= $result->minimum_to_pass)
+                                    <span class="text-success">
+
+                                        Passed
+                                    </span>
+                                @else
+                                    <span class="text-danger">
+
+                                        Failed
+                                    </span>
+                                @endif
+                            </td>
+                        </tr>
+                    </table>
+                @endif
             @endif
 
 
@@ -253,12 +256,12 @@
 
         <div class="row row-cols-sm-1 row-cols-xl-5 gap-2 w-100">
             @if ($result->pivot->practice_total)
-                <a href="{{ route('practiceAnswerSheet', [$result->uuid,'practice'=>true]) }}" class="btn btn-dark">প্রাকটিস
-                    পরীক্ষার উত্তরপত্র</a>
+                <a href="{{ route('practiceAnswerSheet', [$result->uuid, 'practice' => true]) }}"
+                    class="btn btn-dark"> উত্তরপত্র</a>
             @endif
-            <a href="{{ route('answerSheet', $result->uuid) }}" class="btn btn-dark ">উত্তরপত্র</a>
+            <a href="{{ route('answerSheet', $result->uuid) }}" class="btn btn-dark ">মূল পরীক্ষার ফলাফল</a>
             <a href="{{ route('all-results-exam', $result->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
-            @if ($result->isJobSolution == 0)
+            @if ( !$result->pivot->practice_total && $result->isJobSolution == 0)
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী
                     পরীক্ষার সিলেবাস</button>
             @endif
