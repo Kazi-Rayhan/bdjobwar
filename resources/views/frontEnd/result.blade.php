@@ -262,13 +262,15 @@
                     উত্তরপত্র</a>
             @else
                 <a href="{{ route('answerSheet', $result->uuid) }}" class="btn btn-dark ">উত্তরপত্র</a>
+                <a href="{{ route('all-results-exam', $result->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
             @endif
 
-            <a href="{{ route('all-results-exam', $result->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
+
             @if (!$result->pivot->practice_total && $result->isJobSolution == 0)
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী
                     পরীক্ষার সিলেবাস</button>
             @endif
+
             <a href="{{ route('dashboard') }}" class="btn btn-dark">প্রোফাইল</a>
             <a class="btn btn-warning"
                 onclick="alert('বিঃদ্রঃ প্রাকটিস পরীক্ষা দিয়ে আপনি আপনার পড়া কতটুকু মনে রাখতে পেরেছেন তা যাচাই করতে পারবেন। আপনার পূর্ববর্তী মেধাতালিকার কোন পরিরবর্তন হবে না।')"
