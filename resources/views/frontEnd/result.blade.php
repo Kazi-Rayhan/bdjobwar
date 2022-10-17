@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.app')
+a@extends('frontEnd.layouts.app')
 @section('content')
 
     <div class=" container-fluid container-xl  my-5 d-flex flex-column gap-3 justify-content-center align-items-center">
@@ -6,10 +6,12 @@
 
             <div>
                 <h2 class="text-dark">{{ $result->title }}</h2>
-                <div style="height:2px;width:60px"
-                    class="mb-2 @if ($result->pivot->মোট >= $result->minimum_to_pass) bg-success @else bg-danger @endif "></div>
-                <h5 class="">মোট পরীক্ষার্থী সংখ্যা : {{ $count }}</h5>
-                <h5 class="text-success">আপনার অবস্থান : {{ $result->getRanking(auth()->user()) }}</h5>
+                @if (!$result->pivot->practice_total)
+                    <div style="height:2px;width:60px"
+                        class="mb-2 @if ($result->pivot->মোট >= $result->minimum_to_pass) bg-success @else bg-danger @endif "></div>
+                    <h5 class="">মোট পরীক্ষার্থী সংখ্যা : {{ $count }}</h5>
+                    <h5 class="text-success">আপনার অবস্থান : {{ $result->getRanking(auth()->user()) }}</h5>
+                @endif
             </div>
 
 
@@ -256,12 +258,14 @@
 
         <div class="row row-cols-sm-1 row-cols-xl-5 gap-2 w-100">
             @if ($result->pivot->practice_total)
-                <a href="{{ route('practiceAnswerSheet', [$result->uuid, 'practice' => true]) }}"
-                    class="btn btn-dark"> উত্তরপত্র</a>
+                <a href="{{ route('practiceAnswerSheet', [$result->uuid, 'practice' => true]) }}" class="btn btn-dark">
+                    উত্তরপত্র</a>
+            @else
+                <a href="{{ route('answerSheet', $result->uuid) }}" class="btn btn-dark ">উত্তরপত্র</a>
             @endif
-            <a href="{{ route('answerSheet', $result->uuid) }}" class="btn btn-dark ">মূল পরীক্ষার ফলাফল</a>
+
             <a href="{{ route('all-results-exam', $result->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
-            @if ( !$result->pivot->practice_total && $result->isJobSolution == 0)
+            @if (!$result->pivot->practice_total && $result->isJobSolution == 0)
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী
                     পরীক্ষার সিলেবাস</button>
             @endif
