@@ -50,7 +50,7 @@ class ExamController extends Controller
     public function exam_start($uuid)
     {
         $exam = Exam::where('uuid', $uuid)->first();
-        if (is_numeric(Auth::user()->exams()->find($exam->id)->pivot->total)) {
+        if (auth()->check() && is_numeric(Auth::user()->exams()->find($exam->id)->pivot->total)) {
 
             return redirect()->route('result-exam', $exam->uuid);
         }
