@@ -50,6 +50,11 @@ class ExamController extends Controller
     public function exam_start($uuid)
     {
         $exam = Exam::where('uuid', $uuid)->first();
+        if (is_numeric(Auth::user()->exams()->find($exam->id)->pivot->total)) {
+
+            return redirect()->route('result-exam', $exam->uuid);
+        }
+
         return view('frontEnd.exam_start', compact('exam'));
     }
 
@@ -151,6 +156,7 @@ class ExamController extends Controller
             $data =  ['answers' => json_encode($student_answers), 'total' => $total_point, 'wrong_answers' => $wrongAnswers, 'empty_answers' => $emptyAnswers];
         }
         $exam = auth()->user()->exams()->updateExistingPivot($exam->id, $data);
+        if ($request->practice)   return redirect()->route('result-exam', [$uuid, 'practice' => $request->practice]);
         return redirect()->route('result-exam', $uuid);
     }
     public function exam_all_results_pdf($uuid)
@@ -165,12 +171,12 @@ class ExamController extends Controller
     public function answerSheetPdf($uuid)
     {
         $exam = Exam::where('uuid', $uuid)->first();
-     
+
 
         $questions = $exam->questions()->active()->get();
 
         if (request()->pracitce) {
-            
+
             $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf2', ['questions' => $questions, 'exam' => $exam], [
                 'title' => $exam->title . ' Answer Sheet',
                 'Author' => 'BD Job War'

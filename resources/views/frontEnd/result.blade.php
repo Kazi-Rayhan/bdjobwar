@@ -6,7 +6,7 @@
 
             <div>
                 <h2 class="text-dark">{{ $result->title }}</h2>
-                @if (!$result->pivot->practice_total)
+                @if (!request()->practice)
                     <div style="height:2px;width:60px"
                         class="mb-2 @if ($result->pivot->মোট >= $result->minimum_to_pass) bg-success @else bg-danger @endif "></div>
                     <h5 class="">মোট পরীক্ষার্থী সংখ্যা : {{ $count }}</h5>
@@ -18,7 +18,7 @@
 
 
 
-            @if ($result->pivot->practice_total)
+            @if (request()->practice)
                 <h4 class="bg-success text-light p-2">প্রাকটিস
                     পরীক্ষা</h4>
                 @if (!$result->pivot->practice_answers)
@@ -257,7 +257,7 @@
 
 
         <div class="row row-cols-sm-1 row-cols-xl-5 gap-2 w-100">
-            @if ($result->pivot->practice_total)
+            @if (request()->practice)
                 <a href="{{ route('practiceAnswerSheet', [$result->uuid, 'practice' => true]) }}" class="btn btn-dark">
                     উত্তরপত্র</a>
             @else
@@ -266,7 +266,7 @@
             @endif
 
 
-            @if (!$result->pivot->practice_total && $result->isJobSolution == 0)
+            @if (!request()->practice && $result->isJobSolution == 0)
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">পরবর্তী
                     পরীক্ষার সিলেবাস</button>
             @endif
@@ -286,7 +286,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">পরবর্তী পরিক্ষার সিলেবাস</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">পরবর্তী পরীক্ষার সিলেবাস</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

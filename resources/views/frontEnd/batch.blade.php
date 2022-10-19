@@ -60,6 +60,18 @@
                     </div>
                 </a>
             </div>
+             <div class="col-md-4 col-lg-3 col-6">
+                <a href="{{ route('batch.materials', [Str::slug($batch->title), $batch]) }}" style="text-decoration:none;color:#000">
+                    <div class="card  border border-dark" style="min-height:200px">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
+                            <img height="100px" class="icon" src="{{ asset('icons/books.png') }}" alt="">
+                            <h3 class="icon-text">
+                                স্টাডি মেটিরিয়ালস
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
             <div class="col-md-4 col-lg-3 col-6 ">
                 <a href="{{ route('batch.routine', [Str::slug($batch->title), $batch]) }}"
                     style="text-decoration:none;color:#000">
@@ -73,6 +85,7 @@
                     </div>
                 </a>
             </div>
+            
             <div class="col-md-4 col-lg-3 col-6">
                 <a href="{{ route('batch.results', [Str::slug($batch->title), $batch]) }}"
                     style="text-decoration:none;color:#000">
@@ -111,18 +124,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4 col-lg-3 col-6">
-                <a href="{{ route('batch.materials', [Str::slug($batch->title), $batch]) }}" style="text-decoration:none;color:#000">
-                    <div class="card  border border-dark" style="min-height:200px">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
-                            <img height="100px" class="icon" src="{{ asset('icons/books.png') }}" alt="">
-                            <h3 class="icon-text">
-                                স্টাডি মেটিরিয়ালস
-                            </h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
+           
 
 
         </div>
