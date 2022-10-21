@@ -97,7 +97,7 @@
                                 <div class="btn-group gap-2">
 
                                     <a class="btn btn-primary" href="{{ route('exam.read', $exam->uuid) }}">পড়ুন</a>
-                                    <a class="btn btn-primary" href="{{ route('question', $exam->uuid) }}">পরীক্ষা দিন</a>
+                                    <a class="btn btn-primary" href="{{ route('start', [$exam->uuid, 'practice' => true]) }}">পরীক্ষা দিন</a>
 
                                 </div>
                             </td>

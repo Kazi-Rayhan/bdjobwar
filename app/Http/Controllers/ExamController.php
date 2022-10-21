@@ -119,7 +119,7 @@ class ExamController extends Controller
         $timeLeft = UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->timeLeft();
         if (request()->practice) {
 
-            if (!UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->answers) {
+            if (!$exam->isJobSolution && !UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->answers) {
                 return redirect()->back()->withError('প্রাকটিস পরীক্ষা দিতে আপনাকে মূল পরীক্ষায় অংশগ্রহণ করতে হবে।');
             };
         }
