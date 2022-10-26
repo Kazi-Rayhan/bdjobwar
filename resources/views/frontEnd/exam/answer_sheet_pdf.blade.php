@@ -100,7 +100,7 @@
             padding: 10px;">
 
                         <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex">
-                            <span>{{ $numto->bnNum($count) }}</span> / <span>{!! $question->title !!}</span>
+                            <sup style="font-size:14px">{{ $numto->bnNum($count) }} /</sup> <span>{!! $question->title !!}</span>
                         </p>
                         @php
                             $count++;
