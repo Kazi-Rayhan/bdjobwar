@@ -84,7 +84,7 @@
     <table style="width: 100%;  border-collapse: collapse;">
         <tr>
             <td colspan="2" style="text-align:center; border: 1px solid;
-            padding: 10px;" >
+            padding: 10px;">
                 <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:20px">
                     {!! 'উত্তরপত্র' !!}</p>
                 <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:30px">
@@ -100,7 +100,8 @@
             padding: 10px;">
 
                         <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex">
-                            {{ $numto->bnNum($count) }} / {!! $question->title !!}</p>
+                            <span>{{ $numto->bnNum($count) }}</span> / <span>{!! $question->title !!}</span>
+                        </p>
                         @php
                             $count++;
                         @endphp
