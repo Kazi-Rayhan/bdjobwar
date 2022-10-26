@@ -23,10 +23,7 @@
                                             @else
                                                 ফ্রি
                                             @endif </i> </span>
-                                    <span>
-                                        <i class="fa fa-certificate"> পরীক্ষা :
-                                            {{ $numto->bnNum($course->exams()->count()) }}</i>
-                                    </span>
+                                    
 
                                 </div>
                                 <div class=" btn-group gap-2 mt-5">
