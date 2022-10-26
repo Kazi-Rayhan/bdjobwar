@@ -22,7 +22,8 @@ class Exam extends Model
 
     public function priceFormat()
     {
-        if ($this->batch->price > 0) {
+        
+        if (@$this->batch->price > 0) {
             return 'পেইড';
         } else {
             return   'ফ্রি';

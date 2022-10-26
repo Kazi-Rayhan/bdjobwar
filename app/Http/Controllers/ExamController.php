@@ -249,8 +249,8 @@ class ExamController extends Controller
             $clone = $batch->replicate();
             $clone->created_at = now();
             $clone->routine = null;
-             $clone->save();
-         
+            $clone->save();
+
             foreach ($batch->exams as $exam) {
                 $this->clone($exam, $clone);
             }
@@ -277,12 +277,14 @@ class ExamController extends Controller
 
     protected function clone(Exam $exam, Batch $batch)
     {
+        
         $clone = $exam->replicate();
         $clone->uuid = 'EXM' . now()->format('y') . rand(99999, 999999);
         $clone->batch_id = $batch->id;
-        
+
         $clone->created_at = now();
         $clone->save();
+        
         foreach ($exam->subjects as $subject) {
             $clone->subjects()->attach($subject);
         }

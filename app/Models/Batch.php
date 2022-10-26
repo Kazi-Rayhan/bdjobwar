@@ -19,7 +19,7 @@ class Batch extends Model
 
     public function files()
     {
-        return json_decode($this->materials);
+        return json_decode( $this->materials);
     }
 
     public function exams()
