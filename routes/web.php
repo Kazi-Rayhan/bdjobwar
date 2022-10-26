@@ -54,6 +54,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware' => 'admin.user'], function () {
         Route::get('/exams/{exam}/duplicate', [ExamController::class, 'duplicate'])->name('exam.duplicate');
+        Route::get('/batches/{batch}/duplicate', [ExamController::class, 'batchDuplicate'])->name('batches.duplicate');
         Route::get('/order/accept/{order}', [OrderController::class, 'accept'])->name('order.accept');
         Route::get('/order/declined/{order}', [OrderController::class, 'declined'])->name('order.decline');
         Route::post('/question/{question}/disable', [QuestionsVoyagerController::class, 'disable'])->name('question-disable');

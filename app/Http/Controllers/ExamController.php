@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use App\Models\Exam;
 use App\Models\Question;
 use App\Models\UserExam;
@@ -238,5 +239,56 @@ class ExamController extends Controller
                 'alert-type' => 'error',
             ]);
         }
+    }
+    public function batchDuplicate(Batch $batch)
+    {
+        try {
+
+            DB::beginTransaction();
+
+            $clone = $batch->replicate();
+            $clone->created_at = now();
+            $clone->routine = null;
+             $clone->save();
+         
+            foreach ($batch->exams as $exam) {
+                $this->clone($exam, $clone);
+            }
+            DB::commit();
+
+            return redirect()->route('voyager.batches.edit', $clone->id)->with([
+                'message'    => 'duplicate created',
+                'alert-type' => 'success',
+            ]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('voyager.batches.index')->with([
+                'message'    => $e->getMessage(),
+                'alert-type' => 'error',
+            ]);
+        } catch (Error $e) {
+            DB::rollBack();
+            return redirect()->route('voyager.batches.index')->with([
+                'message'    => $e->getMessage(),
+                'alert-type' => 'error',
+            ]);
+        }
+    }
+
+    protected function clone(Exam $exam, Batch $batch)
+    {
+        $clone = $exam->replicate();
+        $clone->uuid = 'EXM' . now()->format('y') . rand(99999, 999999);
+        $clone->batch_id = $batch->id;
+        
+        $clone->created_at = now();
+        $clone->save();
+        foreach ($exam->subjects as $subject) {
+            $clone->subjects()->attach($subject);
+        }
+        foreach ($exam->questions as $question) {
+            $clone->questions()->attach($question);
+        }
+        return $clone;
     }
 }

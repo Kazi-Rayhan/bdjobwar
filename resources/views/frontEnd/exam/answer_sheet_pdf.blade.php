@@ -1,6 +1,6 @@
 @php
-use Rakibhstu\Banglanumber\NumberToBangla;
-$numto = new NumberToBangla();
+    use Rakibhstu\Banglanumber\NumberToBangla;
+    $numto = new NumberToBangla();
 @endphp
 <!DOCTYPE html>
 <!-- <html lang="en"> -->
@@ -11,7 +11,7 @@ $numto = new NumberToBangla();
     <title>Document</title>
     <style>
         @page {
-            margin-top: 3.5cm;
+            margin-top: 1cm;
             margin-bottom: 1cm;
             margin-left: 1cm;
             margin-right: 1cm;
@@ -30,7 +30,7 @@ $numto = new NumberToBangla();
     font-family: "Anek Bangla";
 } */
         body {
-            margin-top: 3.5cm;
+            margin-top: 1cm;
             margin-bottom: 1cm;
             margin-left: 1cm;
             margin-right: 1cm;
@@ -47,12 +47,12 @@ $numto = new NumberToBangla();
 
         }
 
-        table {
+        .table {
             border-collapse: collapse;
         }
 
-        th,
-        td {
+        .table>th,
+        .table>td {
             border: 1px solid;
             padding: 10px;
         }
@@ -81,9 +81,10 @@ $numto = new NumberToBangla();
     @php
         $count = 1;
     @endphp
-    <table style="width: 100%;">
+    <table style="width: 100%;  border-collapse: collapse;">
         <tr>
-            <td colspan="2" style="text-align:center">
+            <td colspan="2" style="text-align:center; border: 1px solid;
+            padding: 10px;" >
                 <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:20px">
                     {!! 'উত্তরপত্র' !!}</p>
                 <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:30px">
@@ -95,7 +96,8 @@ $numto = new NumberToBangla();
         @foreach ($questions->chunk(2) as $q)
             <tr>
                 @foreach ($q as $question)
-                    <td width="50%">
+                    <td width="50%" style=" border: 1px solid;
+            padding: 10px;">
 
                         <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex">
                             {{ $numto->bnNum($count) }} / {!! $question->title !!}</p>
@@ -110,48 +112,51 @@ $numto = new NumberToBangla();
                             </div>
                         @endif
 
-                        <div class="">
-                            @foreach ($question->choices as $choice)
-                                <div>
+                        <table class="">
+                            @foreach ($question->choices->chunk(2) as $datas)
+                                <tr>
+                                    @foreach ($datas as $choice)
+                                        <td>
+                                            @if ($choice->index == $question->answer)
+                                                <p style="color:green">
 
+                                                    {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
+                                                        <sup class=" text-success "><i class="fa fa-check"></i> </sup>
+                                                    @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                                        <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
+                                                    @else
+                                                    @endif
 
-                                    @if ($choice->index == $question->answer)
-                                        <p style="color:green">
-
-                                            {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
-                                                <sup class=" text-success "><i class="fa fa-check"></i> </sup>
+                                                </p>
                                             @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
-                                                <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
+                                                <p style="color:red">
+                                                    {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
+                                                        <sup class=" text-success "><i class="fa fa-check"></i> </sup>
+                                                    @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                                        <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
+                                                    @else
+                                                    @endif
+                                                </p>
                                             @else
+                                                <p style="color:black">
+                                                    {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
+                                                        <sup class=" text-success "><i class="fa fa-check"></i> </sup>
+                                                    @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
+                                                        <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
+                                                    @else
+                                                    @endif
+                                                </p>
                                             @endif
-
-                                        </p>
-                                    @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
-                                        <p style="color:red">
-                                            {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
-                                                <sup class=" text-success "><i class="fa fa-check"></i> </sup>
-                                            @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
-                                                <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
-                                            @else
+                                            @if ($choice->choice_image)
+                                                <img class="" src="{{ Voyager::image($choice->choice_image) }}"
+                                                    width="100px" style="object-fit:contain ;display: block;"
+                                                    alt="">
                                             @endif
-                                        </p>
-                                    @else
-                                        <p style="color:black">
-                                            {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
-                                                <sup class=" text-success "><i class="fa fa-check"></i> </sup>
-                                            @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)
-                                                <sup class=" text-danger "><i class="fa fa-times"></i> </sup>
-                                            @else
-                                            @endif
-                                        </p>
-                                    @endif
-                                    @if ($choice->choice_image)
-                                        <img class="" src="{{ Voyager::image($choice->choice_image) }}"
-                                            width="100px" style="object-fit:contain ;display: block;" alt="">
-                                    @endif
-                                </div>
+                                        </td>
+                                    @endforeach
+                                </tr>
                             @endforeach
-                        </div>
+                        </table>
 
 
                     </td>

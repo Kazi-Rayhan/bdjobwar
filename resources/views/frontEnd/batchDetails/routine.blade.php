@@ -8,7 +8,46 @@
         <div class="container ">
             <a href="{{ Voyager::image(json_decode($batch->routine)[0]->download_link) }}"
                 class="btn btn-outline-primary mb-2"> ডাউনলোড করুন <i class="fas fa-download"></i></a>
-            {{-- <div id='viewer' style="width:1024px;height:600px;margin:0 auto"></div> --}}
+            <div class="container d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table text-center">
+                            @foreach ($exams as $exam)
+                                @php
+                                    $from = new EasyBanglaDate\Types\BnDateTime($exam->from, new DateTimeZone('Asia/Dhaka'));
+                                    
+                                @endphp
+                                <tr>
+                                    <td>
+
+                                        <p>পরীক্ষা শুরু : {{ $from->getDateTime()->format('j F, Y ') }}</p>
+
+                                        <h3>{{ $exam->title }} </h3>
+                                        <h6>{{ $exam->sub_title }}</h6>
+
+                                        <small>Status : @if (Carbon\Carbon::parse($exam->to)->gt(now())  && Carbon\Carbon::parse($exam->from)->lt(now()))
+                                                <span class="text-primary"> Running </span>
+                                            @elseif(Carbon\Carbon::parse($exam->to)->gt(now()))
+                                                <span class="text-warning"> Upcomming </span>
+                                            @else
+                                                <span class="text-secondary"> Archived </span>
+                                            @endif
+                                        </small>
+
+                                        <p>পরীক্ষার সিলেবাস :  {{$exam->syllabus}}</p>
+                                          
+                                         
+                                        
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     @else
         <div class="container text-center my-5">

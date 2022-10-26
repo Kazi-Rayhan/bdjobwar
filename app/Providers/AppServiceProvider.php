@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Actions\AcceptOrderAction;
 use App\Actions\CreateQuestionAction;
 use App\Actions\DeclineOrderAction;
+use App\Actions\DuplicateBatchAction;
 use App\Actions\SubjectAction;
 use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Facades\Voyager;
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Voyager::addAction(CreateQuestionAction::class);
+        Voyager::addAction(DuplicateBatchAction::class);
         Voyager::addAction(AcceptOrderAction::class);
         Voyager::addAction(DeclineOrderAction::class);
         Voyager::addAction(SubjectAction::class);

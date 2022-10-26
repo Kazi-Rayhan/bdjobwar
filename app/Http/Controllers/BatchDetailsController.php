@@ -12,8 +12,9 @@ class BatchDetailsController extends Controller
 {
     public function routine($slug, Batch $batch)
     {
-
-        return view('frontEnd.batchDetails.routine', compact('batch'));
+        $exams = Exam::active()->where('batch_id', $batch->id)->orderBy('from', 'asc')->get();
+     
+        return view('frontEnd.batchDetails.routine', compact('batch', 'exams'));
     }
 
     public function runningExam($slug, Batch $batch)
@@ -71,7 +72,7 @@ class BatchDetailsController extends Controller
     public function materials($slug, Batch $batch)
     {
 
-  
+
         return view('frontEnd.batchDetails.materials', compact('batch'));
     }
 }

@@ -19,8 +19,14 @@
 
 
             @if (request()->practice)
-                <h4 class="bg-success text-light p-2">@if($result->isJobSolution) জব সলিউশন @else প্রাকটিস @endif
-                    পরীক্ষা</h4>
+                <h4 class="bg-success text-light p-2">
+                    @if ($result->isJobSolution)
+                        জব সলিউশন
+                    @else
+                        প্রাকটিস
+                    @endif
+                    পরীক্ষা
+                </h4>
                 @if (!$result->pivot->practice_answers)
                     <table class="table">
                         <tr>
@@ -271,22 +277,23 @@
                     পরীক্ষার সিলেবাস</button>
             @endif
 
-            @if($result->isJobSolution)
-             <a class="btn btn-warning"
-               
-                href="{{ route('start', [$result->uuid, 'practice' => true]) }}" class="btn btn-info ">পরীক্ষা দিন
-            </a>
-            <a 
-               
-                href="{{ route('job.solutions.batch.details',$result->batch_id) }}" class=" btn btn-dark ">Back
-            </a>
+            @if ($result->isJobSolution)
+                <a class="btn btn-warning" href="{{ route('start', [$result->uuid, 'practice' => true]) }}"
+                    class="btn btn-info ">পরীক্ষা দিন
+                </a>
+                <a href="{{ route('job.solutions.batch.details', $result->batch_id) }}" class=" btn btn-dark ">Back
+                </a>
             @else
-            <a href="{{ route('dashboard') }}" class="btn btn-dark">প্রোফাইল</a>
-            <a class="btn btn-warning"
-                onclick="alert('বিঃদ্রঃ প্রাকটিস পরীক্ষা দিয়ে আপনি আপনার পড়া কতটুকু মনে রাখতে পেরেছেন তা যাচাই করতে পারবেন। আপনার পূর্ববর্তী মেধাতালিকার কোন পরিরবর্তন হবে না।')"
-                href="{{ route('start', [$result->uuid, 'practice' => true]) }}" class="btn btn-info ">প্রাকটিস পরীক্ষা
-            </a>
+                <a class="btn btn-warning"
+                    onclick="alert('বিঃদ্রঃ প্রাকটিস পরীক্ষা দিয়ে আপনি আপনার পড়া কতটুকু মনে রাখতে পেরেছেন তা যাচাই করতে পারবেন। আপনার পূর্ববর্তী মেধাতালিকার কোন পরিরবর্তন হবে না।')"
+                    href="{{ route('start', [$result->uuid, 'practice' => true]) }}" class="btn btn-info ">প্রাকটিস পরীক্ষা
+                </a>
             @endif
+            <a href="{{ route('home_page') }}#courses" class="btn btn-dark">চলমান কোর্স সমূহ</a>
+            <a href="{{ route('dashboard') }}" class="btn btn-dark">প্রোফাইল</a>
+
+
+
         </div>
 
 
