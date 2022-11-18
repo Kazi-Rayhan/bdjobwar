@@ -15,15 +15,26 @@
                             <div class="card-body">
                                 <h3 class="card-title">{{ $course->title }}</h3>
 
-                                
-                            <div class="d-flex gap-2  justify-content-between align-items-center mt-3 flex-wrap text-dark "
-                                style="font-size: 16px;">
-                                    <span>
-                                        <i class="fa fa-coins"> মূল্য : @if ($course->price > 0)
-                                                {{ $numto->bnNum($course->price) }} ৳
-                                            @else
-                                                ফ্রি
-                                            @endif </i> </span>
+
+                                <div class="d-flex gap-2  justify-content-between align-items-center mt-3 flex-wrap text-dark "
+                                    style="font-size: 16px;">
+                                    @auth
+                                        @if (!auth()->user()->bought($course->id))
+                                          <span>
+                                            <i class="fa fa-coins"> মূল্য : @if ($course->price > 0)
+                                                    {{ $numto->bnNum($course->price) }} ৳
+                                                @else
+                                                    ফ্রি
+                                                @endif </i> </span>
+                                        @endif
+                                    @else
+                                        <span>
+                                            <i class="fa fa-coins"> মূল্য : @if ($course->price > 0)
+                                                    {{ $numto->bnNum($course->price) }} ৳
+                                                @else
+                                                    ফ্রি
+                                                @endif </i> </span>
+                                    @endauth
 
                                     <div class=" btn-group gap-2">
                                         @if ($course->price > 0)

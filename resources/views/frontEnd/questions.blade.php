@@ -264,9 +264,14 @@ right: 10;">
                                     id="leftModal2">
                                 </span> উত্তর বাকি আছে।
                             </p>
-                            <button class="btn btn-lg btn-success" type="submit">Submit</button>
+                            <div>
+                                <button class="btn btn-lg btn-success" id="buttonForSubmit"
+                                    type="submit">Submit</button>
+                            </div>
+
                             <p class="mt-3 bg-info py-2 text-light">
-                                <span id="tenMiniuteCountDown"> </span> মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
+                                <span id="tenMiniuteCountDown"> </span> মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না
+                                দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
                             </p>
                         </div>
                     </div>
@@ -280,7 +285,7 @@ right: 10;">
         let canSubmit = false;
     </script>
     <script>
-        const countdown = (duration,id) => {
+        const countdown = (duration, id, button = null) => {
             const toBn = n => n.replace(/\d/g, d => "০১২৩৪৫৬৭৮৯" [d])
             var timer = duration,
                 minutes, seconds;
@@ -298,15 +303,18 @@ right: 10;">
                     canSubmit = true;
                     timer = duration;
                     $("#staticBackdrop").modal('show');
+                    if (button) {
+                        document.getElementById(button).innerText = `Start exam again`;
+                    }
                     document.getElementById(id).innerHTML = "EXPIRED";
                     clearInterval(x);
                     return;
                 }
             }, 1000);
         }
-        
-        countdown({{ $timeLeft }},"countdown");
-        countdown({{ $extraTime }},"tenMiniuteCountDown");
+
+        countdown({{ $timeLeft }}, "countdown");
+        countdown({{ $extraTime }}, "tenMiniuteCountDown","buttonForSubmit");
     </script>
 
     <script defer>
