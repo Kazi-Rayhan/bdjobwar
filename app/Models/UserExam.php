@@ -10,6 +10,10 @@ class UserExam extends Model
 {
     use HasFactory;
     protected $table = 'exam_user';
+    protected $casts = [
+        'expire_at' => 'datetime',
+        'practice_expire_at' => 'datetime'
+    ];
 
     public function user()
     {
@@ -50,12 +54,23 @@ class UserExam extends Model
 
     public function timeLeft()
     {
-        if(request()->practice){
+        if (request()->practice) {
             $diff = now()->diffInSeconds($this->practice_expire_at, false);
-        }else{
+        } else {
             $diff = now()->diffInSeconds($this->expire_at, false);
-
         }
+        return $diff > 0 ? $diff : 0;
+    }
+
+    public function lastTenMin()
+    {
+
+        if (request()->practice) {
+            $diff = now()->diffInSeconds(Carbon::parse($this->practice_expire_at)->addMinutes(10), false);
+        } else {
+            $diff = now()->diffInSeconds(Carbon::parse($this->expire_at)->addMinutes(10), false);
+        }
+       
         return $diff > 0 ? $diff : 0;
     }
 }

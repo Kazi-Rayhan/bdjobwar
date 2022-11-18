@@ -116,7 +116,7 @@ class ExamController extends Controller
     {
 
         $exam = Exam::where('uuid', $uuid)->first();
-
+        $extraTime = UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->lastTenMin();
         $timeLeft = UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->timeLeft();
         if (request()->practice) {
 
@@ -128,7 +128,7 @@ class ExamController extends Controller
         $questions = $exam->questions()->active()->inRandomOrder()->get();
 
 
-        return view('frontEnd.questions', compact('exam', 'questions', 'timeLeft'));
+        return view('frontEnd.questions', compact('exam', 'questions', 'timeLeft','extraTime'));
     }
     public function store($uuid, Request $request)
     {

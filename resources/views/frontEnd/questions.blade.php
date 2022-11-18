@@ -266,7 +266,7 @@ right: 10;">
                             </p>
                             <button class="btn btn-lg btn-success" type="submit">Submit</button>
                             <p class="mt-3 bg-info py-2 text-light">
-                                ১০ মিনিটের মধ্যে সাবমিট দিন। ১০ মিনিটের মধ্যে সাবমিট না দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
+                                <span id="tenMiniuteCountDown"> </span> মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
                             </p>
                         </div>
                     </div>
@@ -280,7 +280,7 @@ right: 10;">
         let canSubmit = false;
     </script>
     <script>
-        const countdown = (duration) => {
+        const countdown = (duration,id) => {
             const toBn = n => n.replace(/\d/g, d => "০১২৩৪৫৬৭৮৯" [d])
             var timer = duration,
                 minutes, seconds;
@@ -293,18 +293,20 @@ right: 10;">
 
                 var time = minutes + " মিঃ " + seconds + " সেঃ";
                 console.log(time);
-                document.getElementById("countdown").innerHTML = toBn(time);
+                document.getElementById(id).innerHTML = toBn(time);
                 if (--timer < 0) {
                     canSubmit = true;
                     timer = duration;
                     $("#staticBackdrop").modal('show');
-                    document.getElementById("countdown").innerHTML = "EXPIRED";
+                    document.getElementById(id).innerHTML = "EXPIRED";
                     clearInterval(x);
                     return;
                 }
             }, 1000);
         }
-        countdown({{ $timeLeft }});
+        
+        countdown({{ $timeLeft }},"countdown");
+        countdown({{ $extraTime }},"tenMiniuteCountDown");
     </script>
 
     <script defer>
