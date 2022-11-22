@@ -264,12 +264,12 @@ right: 10;">
                                     id="leftModal2">
                                 </span> উত্তর বাকি আছে।
                             </p>
-                            <div>
-                                <button class="btn btn-lg btn-success" id="buttonForSubmit"
+                            <div id="buttonForSubmit" >
+                                <button class="btn btn-lg btn-success" 
                                     type="submit">Submit</button>
                             </div>
 
-                            <p class="mt-3 bg-info py-2 text-light">
+                            <p class="mt-3 bg-danger py-2 text-light">
                                 <span id="tenMiniuteCountDown"> </span> মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না
                                 দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
                             </p>
@@ -304,7 +304,9 @@ right: 10;">
                     timer = duration;
                     $("#staticBackdrop").modal('show');
                     if (button) {
-                        document.getElementById(button).innerText = `Start exam again`;
+                        
+                        document.getElementById(button).innerHTML = `<a href="{{route('start', $exam->uuid)}}" class="btn btn-lg btn-success" id="buttonForSubmit"
+                                    type="submit">Start Exam Again</a>`;
                     }
                     document.getElementById(id).innerHTML = "EXPIRED";
                     clearInterval(x);
