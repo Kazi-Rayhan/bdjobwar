@@ -444,7 +444,8 @@ $add = is_null($dataTypeContent->getKey());
      var deleteFormAction;
     
         $('.delete').on('click', function (e) {
-            $('#delete_form')[0].action = '{{ route('voyager.questions.destroy','__id') }}'.replace('__id', $(this).data('id'));
+
+            $('#delete_form')[0].action = e.target.dataset.url;
             $('#delete_modal').modal('show');
         });
 </script>

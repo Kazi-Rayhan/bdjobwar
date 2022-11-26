@@ -256,6 +256,7 @@ right: 10;">
                     <div class="modal-content">
 
                         <div class="modal-body text-center">
+                        <div id="endExamText">
                             <h1>পরীক্ষার সময় শেষ উত্তরপত্র সাবমিট করুণ ।</h1>
                             <p> <span>
 
@@ -264,13 +265,15 @@ right: 10;">
                                     id="leftModal2">
                                 </span> উত্তর বাকি আছে।
                             </p>
+                        
+                        </div>
                             <div id="buttonForSubmit" >
                                 <button class="btn btn-lg btn-success" 
                                     type="submit">Submit</button>
                             </div>
 
-                            <p class="mt-3 bg-danger py-2 text-light">
-                                <span id="tenMiniuteCountDown"> </span> মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না
+                            <p class="mt-3 bg-danger py-2 text-light" id="warning-text">
+                                <span id="tenMiniuteCountDown"> </span>  মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না
                                 দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
                             </p>
                         </div>
@@ -307,6 +310,15 @@ right: 10;">
                         
                         document.getElementById(button).innerHTML = `<a href="{{route('start', $exam->uuid)}}" class="btn btn-lg btn-success" id="buttonForSubmit"
                                     type="submit">Start Exam Again</a>`;
+                        document.getElementById('endExamText').innerHTML = `
+                          <h1>পরীক্ষা আবার শুরু করুন</h1>
+                            <p> 
+                                পরীক্ষাটি আবার দেওয়ার জন্য নিচের বাটনে ক্লিক করুন ।
+                            </p>
+                        `
+                        document.getElementById('warning-text').innerHTML = `
+                          আপনার পরিক্ষাটি সাবমিট করার সময় শেষ হয়ে গিয়েছে । পরিক্ষাটি আবার নতুন করে এখন দিতে পারবেন ।
+                        `
                     }
                     document.getElementById(id).innerHTML = "EXPIRED";
                     clearInterval(x);

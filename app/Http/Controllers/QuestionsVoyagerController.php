@@ -624,6 +624,22 @@ class QuestionsVoyagerController extends VoyagerBaseController
         return redirect()->back()->with($data);
     }
 
+    public function detach(Question $question, Exam $exam)
+    {
+        $res =  $question->exams()->detach($exam->id);
+        $data = $res
+        ? [
+            'message'    => __('voyager::generic.successfully_deleted') . "Question",
+            'alert-type' => 'success',
+        ]
+        : [
+            'message'    => __('voyager::generic.error_deleting') . "Question",
+            'alert-type' => 'error',
+        ];
+
+    return redirect()->back()->with($data);
+    }
+
     public function restore(Request $request, $id)
     {
         $slug = $this->getSlug($request);

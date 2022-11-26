@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/order/declined/{order}', [OrderController::class, 'declined'])->name('order.decline');
         Route::post('/question/{question}/disable', [QuestionsVoyagerController::class, 'disable'])->name('question-disable');
         Route::post('/question/{question}/active', [QuestionsVoyagerController::class, 'active'])->name('question-active');
+        Route::delete('/question/{question}/{exam}/detach', [QuestionsVoyagerController::class, 'detach'])->name('question-detach');
     });
 });
 
