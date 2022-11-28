@@ -317,7 +317,7 @@ right: 10;">
                             </p>
                         `
                         document.getElementById('warning-text').innerHTML = `
-                          আপনার পরিক্ষাটি সাবমিট করার সময় শেষ হয়ে গিয়েছে । পরিক্ষাটি আবার নতুন করে এখন দিতে পারবেন ।
+                          আপনার পরীক্ষাটি সাবমিট করার সময় শেষ হয়ে গিয়েছে । পরীক্ষাটি আবার নতুন করে এখন দিতে পারবেন ।
                         `
                     }
                     document.getElementById(id).innerHTML = "EXPIRED";
