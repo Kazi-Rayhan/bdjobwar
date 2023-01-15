@@ -14,6 +14,11 @@ class UserExam extends Model
         'expire_at' => 'datetime',
         'practice_expire_at' => 'datetime'
     ];
+    protected $guarded = [];
+
+    public function getAnswers(){
+        return (array) json_decode($this->answers);
+    }
 
     public function user()
     {

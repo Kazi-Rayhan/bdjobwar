@@ -13,7 +13,9 @@ use App\Http\Controllers\SuccessController;
 use App\Models\Exam;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\UserExam;
 use App\Models\UserMeta;
+use App\Services\Revaluation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +55,7 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
     Route::group(['middleware' => 'admin.user'], function () {
+        Route::get('/exam/{exam}/recheck', [ExamController::class, 'recheck'])->name('exam.recheck');
         Route::get('/exams/{exam}/duplicate', [ExamController::class, 'duplicate'])->name('exam.duplicate');
         Route::get('/batches/{batch}/duplicate', [ExamController::class, 'batchDuplicate'])->name('batches.duplicate');
         Route::get('/order/accept/{order}', [OrderController::class, 'accept'])->name('order.accept');
@@ -162,4 +165,12 @@ Route::group(['prefix' => '/batch/{slug}/{batch}', 'as' => 'batch.', 'controller
     Route::get('/results', 'result')->name('results');
     Route::get('/statics', 'statics')->name('statics');
     Route::get('/study-materials', 'materials')->name('materials');
+});
+
+Route::get('/test', function () {
+    $result = UserExam::whereNotNull('answers')->first();
+    $exam = Exam::find($result->exam_id);
+
+    return Revaluation::evaluate($exam, $result);
+    return Revaluation::getAnswers($exam);
 });

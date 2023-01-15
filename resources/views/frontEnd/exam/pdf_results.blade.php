@@ -141,7 +141,7 @@
 
                     </td>
                     <td>
-                        {{ $result->wrong_answers }}
+                        {{ $result->wrong_answers}}
                     </td>
 
                     <td>

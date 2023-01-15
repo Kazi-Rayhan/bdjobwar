@@ -47,6 +47,6 @@ class DisableUsers extends Command
 
             ]);
         }
-        dd($users->count() . ' is now disabled');
+       echo $users->count() . ' is now disabled';
     }
 }

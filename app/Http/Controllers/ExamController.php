@@ -6,6 +6,7 @@ use App\Models\Batch;
 use App\Models\Exam;
 use App\Models\Question;
 use App\Models\UserExam;
+use App\Services\Revaluation;
 use Carbon\Carbon;
 use Error;
 use Exception;
@@ -128,7 +129,7 @@ class ExamController extends Controller
         $questions = $exam->questions()->active()->inRandomOrder()->get();
 
 
-        return view('frontEnd.questions', compact('exam', 'questions', 'timeLeft','extraTime'));
+        return view('frontEnd.questions', compact('exam', 'questions', 'timeLeft', 'extraTime'));
     }
     public function store($uuid, Request $request)
     {
@@ -277,14 +278,14 @@ class ExamController extends Controller
 
     protected function clone(Exam $exam, Batch $batch)
     {
-        
+
         $clone = $exam->replicate();
         $clone->uuid = 'EXM' . now()->format('y') . rand(99999, 999999);
         $clone->batch_id = $batch->id;
 
         $clone->created_at = now();
         $clone->save();
-        
+
         foreach ($exam->subjects as $subject) {
             $clone->subjects()->attach($subject);
         }
@@ -292,5 +293,33 @@ class ExamController extends Controller
             $clone->questions()->attach($question);
         }
         return $clone;
+    }
+
+    public function recheck(Exam $exam)
+    {
+        try {
+            DB::beginTransaction();
+            $results = UserExam::whereNotNull('answers')->get();
+            foreach ($results as $result) {
+                Revaluation::evaluate($exam, $result);
+            }
+            DB::commit();
+            return redirect()->route('voyager.exams.index')->with([
+                'message'    => 'revalutain completed',
+                'alert-type' => 'success',
+            ]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('voyager.exams.index')->with([
+                'message'    => $e->getMessage(),
+                'alert-type' => 'error',
+            ]);
+        } catch (Error $e) {
+            DB::rollBack();
+            return redirect()->route('voyager.exams.index')->with([
+                'message'    => $e->getMessage(),
+                'alert-type' => 'error',
+            ]);
+        }
     }
 }
