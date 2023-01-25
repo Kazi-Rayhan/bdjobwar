@@ -41,7 +41,7 @@ class BatchDetailsController extends Controller
 
         $exams = Exam::active()->where('batch_id', $batch->id);
 
-        $exams = $exams->where('to', '<', now())->get();
+        $exams = $exams->where('to', '<', now())->paginate(10);
         return view('frontEnd.batchDetails.archive', compact('exams', 'batch'));
     }
 
