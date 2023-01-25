@@ -13,7 +13,7 @@ class BatchDetailsController extends Controller
     public function routine($slug, Batch $batch)
     {
         $exams = Exam::active()->where('batch_id', $batch->id)->orderBy('from', 'asc')->get();
-     
+
         return view('frontEnd.batchDetails.routine', compact('batch', 'exams'));
     }
 
@@ -23,7 +23,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('from', '<', now())
-            ->where('to', '>', now())->get();
+            ->where('to', '>', now())->paginate(20);
 
         return view('frontEnd.batchDetails.runningexam', compact('exams', 'batch'));
     }

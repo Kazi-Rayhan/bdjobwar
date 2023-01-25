@@ -82,7 +82,7 @@
                     @endforeach
                 </tbody>
             </table>
-
+            {{$exams->links()}}
         </div>
     @else
       <div class="container text-center my-5">
