@@ -61,12 +61,8 @@ class BatchDetailsController extends Controller
 
     public function missedExam($slug, Batch $batch)
     {
-        $exams = Exam::active()->where('batch_id', $batch->id);
-
-        $exams = $exams->where('to', '<', now())->get()->filter(function ($exam) {
-            return !is_numeric(@User::find(auth()->id())->exams()->find($exam->id)->pivot->total);
-        });
-
+        $completed = User::find(auth()->id())->exams()->active()->where('batch_id', $batch->id)->where('to', '<', now())->wherePivotNotNull('total')->get()->pluck('id');
+        $exams = Exam::active()->where('batch_id', $batch->id)->where('to', '<', now())->whereNotIn('id',$completed)->paginate(10);
         return view('frontEnd.batchDetails.missed', compact('exams', 'batch'));
     }
     public function materials($slug, Batch $batch)
