@@ -300,7 +300,7 @@ class ExamController extends Controller
     {
         try {
             DB::beginTransaction();
-            $results = UserExam::whereNotNull('answers')->get();
+            $results = UserExam::whereNotNull('answers')->where('exam_id', $exam->id)->get();
             foreach ($results as $result) {
                 Revaluation::evaluate($exam, $result);
             }
