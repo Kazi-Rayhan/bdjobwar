@@ -146,12 +146,13 @@ class ExamController extends Controller
             $emptyAnswers = count(array_diff_key($correct_answers, $student_answers));
             $wrongAnswers = count(array_diff_assoc($correct_answers, $student_answers)) - $emptyAnswers;
             $correctAnswers = count($student_answers) - $wrongAnswers;
+            $total_point = $correctAnswers - ($wrongAnswers * $exam->minius_mark);
         } else {
             $emptyAnswers = count($correct_answers);
             $wrongAnswers = 0;
             $correctAnswers = 0;
+            $total_point = 0;
         }
-        $total_point = $correctAnswers - ($wrongAnswers * $exam->minius_mark);
         if ($request->practice) {
             $data = ['practice_answers' => json_encode($student_answers), 'practice_total' => $total_point, 'practice_wrong_answers' => $wrongAnswers, 'practice_empty_answers' => $emptyAnswers];
         } else {
