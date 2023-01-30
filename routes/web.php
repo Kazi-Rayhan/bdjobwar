@@ -55,6 +55,8 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
     Route::group(['middleware' => 'admin.user'], function () {
+        Route::get('/exams/{exam}/results',[ExamController::class, 'results'])->name('exam.results');
+        Route::get('/exams/{userExam}/remove',[ExamController::class, 'resultsDestroy'])->name('exam.results.destroy');
         Route::get('/exam/{exam}/recheck', [ExamController::class, 'recheck'])->name('exam.recheck');
         Route::get('/exams/{exam}/duplicate', [ExamController::class, 'duplicate'])->name('exam.duplicate');
         Route::get('/batches/{batch}/duplicate', [ExamController::class, 'batchDuplicate'])->name('batches.duplicate');

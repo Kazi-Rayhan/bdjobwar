@@ -323,4 +323,23 @@ class ExamController extends Controller
             ]);
         }
     }
+
+    public function results(Exam $exam, Request $request)
+    {
+       
+        $results = UserExam::filter(request(['search', 'roll']))->where('exam_id', $exam->id)->whereNotNull('total')->orderByRaw('total DESC')->orderByRaw('created_at DESC')->paginate(50);
+
+
+        return view('vendor.voyager.exams.results', compact('exam', 'results'));
+    }
+    public function resultsDestroy(UserExam $userExam)
+    {
+ 
+        $userExam->delete();
+
+        return redirect()->back()->with([
+            'message'    => 'Result Removed',
+            'alert-type' => 'success',
+        ]);;
+    }
 }

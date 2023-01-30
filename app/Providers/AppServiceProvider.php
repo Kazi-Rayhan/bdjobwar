@@ -6,6 +6,7 @@ use App\Actions\AcceptOrderAction;
 use App\Actions\CreateQuestionAction;
 use App\Actions\DeclineOrderAction;
 use App\Actions\DuplicateBatchAction;
+use App\Actions\ExamResultsAction;
 use App\Actions\RevaluateAction;
 use App\Actions\SubjectAction;
 use Illuminate\Support\ServiceProvider;
@@ -37,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
         Voyager::addAction(DeclineOrderAction::class);
         Voyager::addAction(SubjectAction::class);
         Voyager::addAction(RevaluateAction::class);
+        Voyager::addAction(ExamResultsAction::class);
         Paginator::useBootstrap();
     }
 }
