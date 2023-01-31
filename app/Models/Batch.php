@@ -26,6 +26,10 @@ class Batch extends Model
     {
         return $this->hasMany(Exam::class);
     }
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
     public function link()
     {
         return route('batch', [Str::slug($this->title), $this]);
@@ -45,6 +49,7 @@ class Batch extends Model
     {
         return $this->morphMany(Order::class, 'orderable');
     }
+
 
     public function information()
     {

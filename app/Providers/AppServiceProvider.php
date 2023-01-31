@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Actions\AcceptOrderAction;
+use App\Actions\BatchMessageAction;
 use App\Actions\CreateQuestionAction;
 use App\Actions\DeclineOrderAction;
 use App\Actions\DuplicateBatchAction;
@@ -39,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
         Voyager::addAction(SubjectAction::class);
         Voyager::addAction(RevaluateAction::class);
         Voyager::addAction(ExamResultsAction::class);
+        Voyager::addAction(BatchMessageAction::class);
         Paginator::useBootstrap();
     }
 }
