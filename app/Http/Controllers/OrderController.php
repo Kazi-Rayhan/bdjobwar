@@ -42,6 +42,15 @@ class OrderController extends Controller
                 $data = Batch::find($id);
                 break;
         }
+
+        define('DECLINED', 0);
+        $orders = $data->orders->where('user_id', auth()->id())->where('status', '!=', DECLINED)->first();
+
+        if ($orders) {
+            return redirect()
+                ->route('success.order', $orders)
+                ->with('success', 'Already has a order ');
+        }
         return view('frontEnd.order', compact('data', 'type', 'id'));
     }
 
@@ -70,7 +79,7 @@ class OrderController extends Controller
             DB::commit();
 
             return redirect()
-                ->route('success.order', compact('order'))
+                ->route('success.order', $order)
                 ->with('success', 'Order created successfully');
         } catch (Exception $e) {
             // return $e->getMessage();
@@ -111,5 +120,4 @@ class OrderController extends Controller
             return $e->getMessage();
         }
     }
-    
 }

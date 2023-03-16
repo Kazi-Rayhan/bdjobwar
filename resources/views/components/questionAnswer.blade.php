@@ -3,7 +3,7 @@
      $numto = new NumberToBangla();
  @endphp
 
- <div class="card mb-3 shadow">
+ <div class="card mb-3 shadow" id="{{$question->id}}">
      <div class="card-body">
 
          <h6 style="font-weight: 700; " class="d-flex">{{ $numto->bnNum($loop->iteration) }}.{!! $question->title !!}</h6>
@@ -19,7 +19,7 @@
              @foreach ($question->choices as $choice)
                  <div class="d-flex justify-content-between align-items-center">
 
-            
+
                      <small
                          class="mb-3 @if ($choice->index == $question->answer) text-success @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index) text-danger @elseif($exam->userChoice(auth()->user(), $question->id) == '') text-warning  @else text-muted @endif">
                          {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
@@ -49,7 +49,7 @@
                      data-bs-target="#question{{ $question->id }}">ব্যাখ্যা</button>
              @endif
              @auth
-                 <a href="{{ route('fav', $question) }}"
+                 <a href="{{ route('fav', [$question, "#".($question->id-1)]) }}"
                      class="btn btn-sm @if (auth()->user()->isFavourite($question)) btn-danger  @else btn-outline-danger @endif"><i
                          class="fa fa-heart"></i></a>
              @endauth

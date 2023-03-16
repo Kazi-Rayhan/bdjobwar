@@ -10,6 +10,8 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\QuestionsVoyagerController;
 use App\Http\Controllers\SuccessController;
+use App\Models\Batch;
+use App\Models\Course;
 use App\Models\Exam;
 use App\Models\Question;
 use App\Models\User;
@@ -175,4 +177,17 @@ Route::get('/test', function () {
 
     return Revaluation::evaluate($exam, $result);
     return Revaluation::getAnswers($exam);
+});
+
+
+Route::get('/test2',function(){
+    $array = ['Rayhan','Shuvo','Tamim','Loop'];
+    
+    //SELECT * FROM batches
+    $rayhan = '';
+    $courses = Course::all();
+
+    //SELECT * FROM batches WHERE price = 0
+    $batches = Batch::where('price',0)->get();
+    return view('test',compact('array','batches','courses'));
 });
