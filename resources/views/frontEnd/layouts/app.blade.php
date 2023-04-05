@@ -12,7 +12,7 @@
     <meta name="keywords"
         content="admin template, Koho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
 
     <title>BD Job War</title>
     <!-- Google font-->
@@ -305,19 +305,19 @@
                 <!-- Container-fluid Ends-->
             </div>
             <!-- footer start-->
-            <footer class="footer p-0">
+            <footer class=" p-0">
                 <div class="container-fluid bg-primary p-0">
                     <div class="row justify-content-around ">
                         <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
-                            <img src="{{ asset('logo.png') }}" width="200px" style="object-fit:stretch"
+                            <img src="{{ asset('logo.png') }}" width="150px" style="object-fit:stretch"
                                 alt="">
-                            <div class="d-flex flex-column align-items-center gap-0 ">
+                            <div class="d-flex flex-column align-items-center ">
 
-                                <p class="text-light p-0 m-0">
+                                <p class="text-light p-0 mt-3">
                                     আমাদের মোবাইল অ্যাপ ডাউনলোড করুন
                                 </p>
                                 <a href="https://play.google.com/store/apps/details?id=bdjobwar.com">
-                                    <img src="{{ asset('download.png') }}" alt="" height="80">
+                                    <img src="{{ asset('download.png') }}" alt="" height="50">
                                 </a>
 
                             </div>
@@ -366,10 +366,10 @@
                             </p>
                             <h5 class="mt-3">সোসাল লিঙ্ক</h5>
                             <p class="text-white social-link">আমাদের সাথে থাকো</p>
-                            <a class="social-link" href=""><i class="fab fa-facebook-f fs-3 "></i></a>
-                            <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 "></i></a>
+                            <a class="social-link" href="https://www.facebook.com/groups/bcsprimary2021"><i class="fab fa-facebook-f fs-3 "></i></a>
+                            {{-- <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 "></i></a>
                             <a class="social-link" href=""><i class="fab fa-instagram fs-3 ms-3  "></i></a>
-                            <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 "></i></a>
+                            <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 "></i></a> --}}
 
                         </div>
 
