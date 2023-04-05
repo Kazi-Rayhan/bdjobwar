@@ -23,43 +23,9 @@ class PageController extends Controller
         $videos = Video::orderBy('order', 'asc')->get();
         $sliderExams = Slider::latest()->get();
 
-        $finishedExams = Exam::free()
-            ->active()
-            ->with('users')
-            ->where('to', '<', now())
-            ->orderBy('from', 'desc')
-            ->latest()
-            ->limit(3)
-            ->get();
-        $finishedPaidExams = Exam::paid()
-            ->with('users')
-            ->where('to', '<', now())
-            ->orderBy('from', 'desc')
-            ->latest()
-            ->limit(3)
-            ->get();
 
-        $liveExams = Exam::free()
-            ->with('users')
-            ->active()
-            ->where('from', '<', now())
-            ->where('to', '>', now())
-            ->orderBy('from', 'asc')
-            ->latest()
-            ->get();
-        $latestResults = Exam::active()
-            ->with('users')
-            ->whereBetween('to', [now()->subDays(3), now()])
-            ->latest()
-            ->get();
 
-        $livePaidExams = Exam::paid()
-            ->with('users')
-            ->where('from', '<', now())
-            ->where('to', '>', now())
-            ->orderBy('from', 'asc')
-            ->latest()
-            ->get();
+
 
         $courses = Course::with('batches')->where('job_solutions', 0)->latest()->get();
         $upcomingExams = Exam::active()
@@ -78,25 +44,30 @@ class PageController extends Controller
             'frontEnd/home',
             compact(
                 'sliderExams',
-                'finishedExams',
-                'liveExams',
-                'upcomingExams',
-
                 'packages',
                 'notices',
-                'livePaidExams',
-                'finishedPaidExams',
                 'courses',
-                'latestResults',
-                'videos'
             )
         );
+    }
+
+    public function liveexams()
+    {
+        $liveExams = Exam::with('users')
+            ->active()
+            ->where('from', '<', now())
+            ->where('to', '>', now())
+            ->orderBy('from', 'asc')
+            ->latest()
+            ->get();
+
+        return view('frontEnd/liveexams', compact('liveExams'));
     }
     public function question($uuid)
     {
 
         $exam = Exam::active()->where('uuid', $uuid)->first();
-        dd($exam);
+
         $questions = $exam->questions;
 
         return view('frontEnd/questions', compact('exam', 'exams', 'questions'));
@@ -162,14 +133,12 @@ class PageController extends Controller
     }
     public function jobSolutionsBatchDetails(Batch $batch)
     {
-        if(request()->has('year')){
-            $exams = Exam::active()->where('batch_id',$batch->id)->where('isJobSolution', 1)->where('year',request()->year)->paginate(20);
-        }
-        elseif(request()->has('search')){
-            $exams = Exam::active()->where('batch_id',$batch->id)->where('isJobSolution', 1)->where('title','like','%'.request()->search.'%')->paginate(20);
-        }
-        else{
-            $exams = Exam::active()->where('batch_id',$batch->id)->where('isJobSolution', 1)->paginate(20);
+        if (request()->has('year')) {
+            $exams = Exam::active()->where('batch_id', $batch->id)->where('isJobSolution', 1)->where('year', request()->year)->paginate(20);
+        } elseif (request()->has('search')) {
+            $exams = Exam::active()->where('batch_id', $batch->id)->where('isJobSolution', 1)->where('title', 'like', '%' . request()->search . '%')->paginate(20);
+        } else {
+            $exams = Exam::active()->where('batch_id', $batch->id)->where('isJobSolution', 1)->paginate(20);
         }
         return view('frontEnd.job-solutions-batch-details', compact('batch', 'exams'));
     }
@@ -180,11 +149,11 @@ class PageController extends Controller
         if (!auth()->user()) return redirect()->route('login');
         // if (!auth()->user()->information->is_paid) return redirect(route('home_page') . '#package')->with('error', 'জব সলিউশন দেখার জন্য প্যাকেজ সাবস্ক্রাইব করুন');
         if (!auth()->user()) return redirect()->route('login');
-        
+
         $course = Course::with('batches')->where('job_solutions', 1)->first();
-        if (!$course) return back() ;
+        if (!$course) return back();
         $batches = $course->batches;
-       
-        return view('frontEnd.jobsolutions', compact( 'course', 'batches'));
+
+        return view('frontEnd.jobsolutions', compact('course', 'batches'));
     }
 }

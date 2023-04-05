@@ -7,6 +7,7 @@
     @if (count($courses) > 0)
         <div class="container">
             <div class="row">
+            
                 @foreach ($courses as $course)
                     <div class="col-md-4 mb-2">
                         <div class="card border-success shadow package-hover">

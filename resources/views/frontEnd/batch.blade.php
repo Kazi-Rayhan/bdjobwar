@@ -6,6 +6,43 @@
         $numto = new NumberToBangla();
     @endphp
     <div class="container my-5 ">
+        <div class="row mt-3 ">
+            @if ($batch->price > 0)
+                @auth
+
+                    @if (!auth()->user()->bought($batch->id))
+                        <div class="card">
+
+                            <div class="card-body ">
+                            
+                                <div class="d-flex justify-content-between">
+
+                                    <h1 class="text-end">
+                                        মূল্য : {{ $batch->price }} ৳
+                                    </h1>
+                                    <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
+                                        class="btn btn-success btn-lg">ভর্তি
+                                        হন</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @else
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="text-end">
+                                {{ $batch->price }} ৳
+                            </h4>
+                            <div class="d-grid ">
+                                <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
+                                    class="btn btn-success btn-lg">ভর্তি
+                                    হন</a>
+                            </div>
+                        </div>
+                    </div>
+                @endauth
+            @endif
+        </div>
         <div class="row g-2">
 
             <div class="col-md-4 col-lg-3 col-6">
@@ -60,8 +97,9 @@
                     </div>
                 </a>
             </div>
-             <div class="col-md-4 col-lg-3 col-6">
-                <a href="{{ route('batch.materials', [Str::slug($batch->title), $batch]) }}" style="text-decoration:none;color:#000">
+            <div class="col-md-4 col-lg-3 col-6">
+                <a href="{{ route('batch.materials', [Str::slug($batch->title), $batch]) }}"
+                    style="text-decoration:none;color:#000">
                     <div class="card  border border-dark" style="min-height:200px">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/books.png') }}" alt="">
@@ -85,7 +123,7 @@
                     </div>
                 </a>
             </div>
-            
+
             <div class="col-md-4 col-lg-3 col-6">
                 <a href="{{ route('batch.results', [Str::slug($batch->title), $batch]) }}"
                     style="text-decoration:none;color:#000">
@@ -124,44 +162,11 @@
                     </div>
                 </a>
             </div>
-           
+
 
 
         </div>
-        <div class="row mt-3 fixed-bottom">
-        @if($batch->price > 0)
-            @auth
 
-                @if (!auth()->user()->bought($batch->id))
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="text-end">
-                                {{ $batch->price }} ৳
-                            </h4>
-                            <div class="d-grid">
-                                <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
-                                    class="btn btn-success btn-lg">ভর্তি
-                                    হন</a>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            @else
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="text-end">
-                            {{ $batch->price }} ৳
-                        </h4>
-                        <div class="d-grid ">
-                            <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
-                                class="btn btn-success btn-lg">ভর্তি
-                                হন</a>
-                        </div>
-                    </div>
-                </div>
-            @endauth
-        @endif
-        </div>
     </div>
 @endsection
 @section('js')

@@ -127,7 +127,7 @@ right: 10;">
                 <input type="hidden" name="practice" value="true">
             @endif
             <div>
-                <div id="exam-header " class="text-center border border-success shadow  text-light p-4"
+                <div id="exam-header " class="text-center border border-success shadow  text-dark p-4"
                     style="background-color: #019514;">
                     <h3 class="exam-title">
                         {{ $exam->title }}
@@ -178,7 +178,7 @@ right: 10;">
                                     <div class="card-body shadow">
 
                                         <div class="p-2 rounded text-light h6  d-flex" style="background-color: #019514;">
-                                            <b>{{ $numto->bnNum($loop->iteration) }}.</b> {!! $question->title !!}
+                                            <b>{{ $numto->bnNum($loop->iteration) }}. &nbsp;</b> {!! $question->title !!}
                                         </div>
                                         @if ($question->title_image)
                                             <div class="text-center">
@@ -272,7 +272,7 @@ right: 10;">
                                     type="submit">Submit</button>
                             </div>
 
-                            <p class="mt-3 bg-danger py-2 text-light" id="warning-text">
+                            <p class="mt-3 bg-danger py-2 text-dark" id="warning-text">
                                 <span id="tenMiniuteCountDown"> </span>  মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না
                                 দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
                             </p>

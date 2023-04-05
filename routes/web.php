@@ -52,13 +52,13 @@ Route::get('/reset-password/verify', [AuthenticateController::class, 'resetPassw
 Route::post('/reset/otp/check', [AuthenticateController::class, 'resetOtpCheck'])->name('resetOtpCheck');
 Route::get('/password/set', [AuthenticateController::class, 'setPassword'])->name('setPassword');
 Route::post('/password/confirm', [AuthenticateController::class, 'confirmPassword'])->name('confirmPassword');
-
+Route::get('/live-exams', [PageController::class, 'liveexams'])->name('liveexams');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
     Route::group(['middleware' => 'admin.user'], function () {
-        Route::get('/exams/{exam}/results',[ExamController::class, 'results'])->name('exam.results');
-        Route::get('/exams/{userExam}/remove',[ExamController::class, 'resultsDestroy'])->name('exam.results.destroy');
+        Route::get('/exams/{exam}/results', [ExamController::class, 'results'])->name('exam.results');
+        Route::get('/exams/{userExam}/remove', [ExamController::class, 'resultsDestroy'])->name('exam.results.destroy');
         Route::get('/exam/{exam}/recheck', [ExamController::class, 'recheck'])->name('exam.recheck');
         Route::get('/exams/{exam}/duplicate', [ExamController::class, 'duplicate'])->name('exam.duplicate');
         Route::get('/batches/{batch}/duplicate', [ExamController::class, 'batchDuplicate'])->name('batches.duplicate');
@@ -180,14 +180,14 @@ Route::get('/test', function () {
 });
 
 
-Route::get('/test2',function(){
-    $array = ['Rayhan','Shuvo','Tamim','Loop'];
-    
+Route::get('/test2', function () {
+    $array = ['Rayhan', 'Shuvo', 'Tamim', 'Loop'];
+
     //SELECT * FROM batches
     $rayhan = '';
     $courses = Course::all();
 
     //SELECT * FROM batches WHERE price = 0
-    $batches = Batch::where('price',0)->get();
-    return view('test',compact('array','batches','courses'));
+    $batches = Batch::where('price', 0)->get();
+    return view('test', compact('array', 'batches', 'courses'));
 });
