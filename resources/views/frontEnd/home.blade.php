@@ -13,7 +13,7 @@
                         @foreach ($sliderExams as $exam)
                             <div class="carousel-item @if ($loop->first) active @endif">
                                 <a href="{{ $exam->link }}">
-                                    <img class="d-block rounded slider-img" style="object-fit:cover;" height="300px"
+                                    <img class="d-block rounded slider-img" style="object-fit:contain;" height="300px"
                                         width="100%" src="{{ Voyager::image($exam->image) }}" alt="First slide">
                                 </a>
                             </div>
@@ -35,35 +35,35 @@
                         </button>
                     @endif
                     <div>
-                    <p class="marquee">
-                        @foreach ($notices as $notice)
-                            @if ($notice->file)
-                                @php
-                                    $link = Storage::url(json_decode($notice->file)[0]->download_link) ?? '';
-                                @endphp
-                                <a href="{{ $link }}"> **** {{ $notice->title }} **** </a>
-                            @else
-                                <span>
-                                    **** {{ $notice->title }} ****
-                                </span>
-                            @endif
-                        @endforeach
-                    
+                        <p class="marquee">
+                            @foreach ($notices as $notice)
+                                @if ($notice->file)
+                                    @php
+                                        $link = Storage::url(json_decode($notice->file)[0]->download_link) ?? '';
+                                    @endphp
+                                    <a href="{{ $link }}"> **** {{ $notice->title }} **** </a>
+                                @else
+                                    <span>
+                                        **** {{ $notice->title }} ****
+                                    </span>
+                                @endif
+                            @endforeach
 
-                    </p>
+
+                        </p>
+                    </div>
+
                 </div>
 
             </div>
-
-        </div>
-        <div class="row">
-            <div class="col-6 d-grid">
-                <a href="{{ route('liveexams') }}" class="btn btn-danger live"> Live Exam</a>
+            <div class="row">
+                <div class="col-6 d-grid">
+                    <a href="{{ route('liveexams') }}" class="btn btn-danger live"> Live Exam</a>
+                </div>
+                <div class="col-6 d-grid">
+                    <a href="{{ route('courses') }}" class="btn btn-outline-primary">My Courses</a>
+                </div>
             </div>
-            <div class="col-6 d-grid">
-                <a href="{{ route('courses') }}" class="btn btn-outline-primary">My Courses</a>
-            </div>
-        </div>
     </section>
     <section class="mt-2 container" id="courses">
 
@@ -132,7 +132,7 @@
 
             <h1 class="text-uppercase " style="font-weight:700 ;font-size:35px">আমাদের প্যাকেজসমূহ :</h1>
             <hr>
-            <div class="container"  id="package">
+            <div class="container" id="package">
                 <div class="row py-5">
                     @foreach ($packages as $package)
                         @if ($package->paid)
