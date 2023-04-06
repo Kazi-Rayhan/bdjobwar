@@ -34,6 +34,7 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     @endif
+                    <div>
                     <p class="marquee">
                         @foreach ($notices as $notice)
                             @if ($notice->file)
@@ -47,6 +48,7 @@
                                 </span>
                             @endif
                         @endforeach
+                    
 
                     </p>
                 </div>
