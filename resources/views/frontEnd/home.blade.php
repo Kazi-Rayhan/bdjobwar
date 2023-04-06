@@ -13,7 +13,7 @@
                         @foreach ($sliderExams as $exam)
                             <div class="carousel-item @if ($loop->first) active @endif">
                                 <a href="{{ $exam->link }}">
-                                    <img class="d-block rounded slider-img" style="object-fit:contain;" height="300px"
+                                    <img class="d-block rounded slider-img" style="object-fit:cover;" height="300px"
                                         width="100%" src="{{ Voyager::image($exam->image) }}" alt="First slide">
                                 </a>
                             </div>
