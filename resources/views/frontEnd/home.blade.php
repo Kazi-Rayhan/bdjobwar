@@ -9,7 +9,7 @@
             <div class="col-md-12 col-xl-12 col-12 mb-2">
                 <div id="carouselExampleDark" class="carousel carousel-dark slide mx-auto" data-bs-ride="carousel">
 
-                    <div class="carousel-inner bg-dark">
+                    <div class="carousel-inner ">
                         @foreach ($sliderExams as $exam)
                             <div class="carousel-item @if ($loop->first) active @endif">
                                 <a href="{{ $exam->link }}">
