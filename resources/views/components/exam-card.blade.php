@@ -12,7 +12,7 @@
                 <h6> {{ $exam->sub_title }}</h6>
 
                 <div class="d-flex justify-content-start">
-                    @if ($exam?->batch?->price > 0)
+                    @if (@$exam->batch->price > 0)
                         <span class="badge badge-info h5">
                             <i class="fa fa-coins"></i>
                         </span>
