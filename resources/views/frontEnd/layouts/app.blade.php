@@ -53,7 +53,7 @@
     <style>
         body {
             font-family: 'AdorshoLipi', Arial, sans-serif !important;
-          
+
         }
 
         .videos {
@@ -112,9 +112,9 @@
         }
 
         .live {
-            background-color: #1c87c9;
+            background-color: #0cf724;
 
-           
+
             border: none;
             color: #eeeeee;
             cursor: pointer;
@@ -128,18 +128,18 @@
 
         @keyframes glowing {
             0% {
-                background-color: #ff0000;
-                box-shadow: 0 0 5px #ff0000;
+                background-color: #0cf724;
+                box-shadow: 0 0 5px #0cf724;
             }
 
             50% {
-                background-color: #ff0000;
-                box-shadow: 0 0 20px #ff0000;
+                background-color: #0cf724;
+                box-shadow: 0 0 20px #0cf724;
             }
 
             100% {
-                background-color:#ff0000;
-                box-shadow: 0 0 5px #ff0000;
+                background-color: #0cf724;
+                box-shadow: 0 0 5px #0cf724
             }
         }
 
@@ -262,8 +262,7 @@
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="nav-link" style="font-size: 13px;"
-                                        href="{{ route('liveexams') }}"> <i
+                                    <a class="nav-link" style="font-size: 13px;" href="{{ route('liveexams') }}"> <i
                                             data-feather="target"></i><span>লাইভ
                                             সেকশন</span></a>
                                 </li>
@@ -299,7 +298,7 @@
             <div class="page-body">
 
                 <!-- Container-fluid starts-->
-                <div class="container-fluid  p-3 default-page">
+                <div class="container-fluid pt-5 default-page">
                     @yield('content')
                 </div>
                 <!-- Container-fluid Ends-->
@@ -366,7 +365,8 @@
                             </p>
                             <h5 class="mt-3">সোসাল লিঙ্ক</h5>
                             <p class="text-white social-link">আমাদের সাথে থাকো</p>
-                            <a class="social-link" href="https://www.facebook.com/groups/bcsprimary2021"><i class="fab fa-facebook-f fs-3 "></i></a>
+                            <a class="social-link" href="https://www.facebook.com/groups/bcsprimary2021"><i
+                                    class="fab fa-facebook-f fs-3 "></i></a>
                             {{-- <a class="social-link" href=""><i class="fab fa-youtube fs-3 ms-3 "></i></a>
                             <a class="social-link" href=""><i class="fab fa-instagram fs-3 ms-3  "></i></a>
                             <a class="social-link" href=""><i class="fab fa-twitter fs-3 ms-3 "></i></a> --}}

@@ -15,9 +15,10 @@
     @endphp
 
     <!-- bratcam area  end-->
-    <div class="container my-md-5 my-2 d-flex flex-column gap-3 justify-content-center align-items-center">
-        <div class="d-flex flex-column gap-3">
+    <div class="container my-md-5 my-2 w-100">
+        <div class="d-flex flex-column  align-items-start gap-3">
             <div>
+            
                 <h2 class="text-dark">{{ $exam->title }}</h2>
                 <h5 style="color:#666666">{{ $exam->sub_title }}</h5>
                 <div style="height:2px;width:60px" class="bg-danger"></div>

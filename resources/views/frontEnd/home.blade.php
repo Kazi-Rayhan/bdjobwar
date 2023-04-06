@@ -20,14 +20,14 @@
                         @endforeach
                     </div>
                     @if (count($sliderExams) > 1)
-                        <button class="carousel-control-prev  " type="button" data-bs-target="#carouselExampleDark"
+                        <button class="carousel-control-prev  "  style="background:none;border:none" type="button" data-bs-target="#carouselExampleDark"
                             data-bs-slide="prev">
                             <span class=" bg-dark rounded-circle d-flex justify-content-center align-items-center "
                                 style="height:40px;width:40px" aria-hidden="true"><i class="fa  fa-arrow-left"></i></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                            data-bs-slide="next">
+                        <button class="carousel-control-next" style="background:none;border:none" type="button"
+                            data-bs-target="#carouselExampleDark" data-bs-slide="next">
                             <span class=" bg-dark rounded-circle d-flex justify-content-center align-items-center "
                                 style="height:40px;width:40px" aria-hidden="true"><i class="fa  fa-arrow-right"></i></span>
 
@@ -58,7 +58,7 @@
             </div>
             <div class="row">
                 <div class="col-6 d-grid">
-                    <a href="{{ route('liveexams') }}" class="btn btn-danger live"> Live Exam</a>
+                    <a href="{{ route('liveexams') }}" class="btn btn-successh live"> Live Exam</a>
                 </div>
                 <div class="col-6 d-grid">
                     <a href="{{ route('courses') }}" class="btn btn-outline-primary">My Courses</a>
@@ -130,7 +130,9 @@
             @endforeach
 
 
-            <h1 class="text-uppercase " style="font-weight:700 ;font-size:35px">আমাদের প্যাকেজসমূহ :</h1>
+            <div class="live-section-title" style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
+                <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px">আমাদের প্যাকেজসমূহ</h1>
+            </div>
             <hr>
             <div class="container" id="package">
                 <div class="row py-5">

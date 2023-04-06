@@ -39,7 +39,7 @@
                 </h5>
                 <div class="d-flex justify-content-end mt-3">
                     @if ($exam->from <= now())
-                        <a class="btn btn-primary btn-sm " href="{{ route('start-exam', $exam->uuid) }}"
+                        <a class="btn btn-success btn-sm " href="{{ route('start-exam', $exam->uuid) }}"
                             style="font-size: 13px ;">টেস্ট দিন </a>
                     @else
                         <button class="btn btn-secondary btn-sm " style="font-size: 13px ;">শীঘ্রই আসছে</button>

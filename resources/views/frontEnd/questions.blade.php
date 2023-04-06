@@ -92,6 +92,11 @@
         .options input[type="radio"]:checked~.checkmark:after {
             transform: translate(-50%, -50%) scale(1);
         }
+
+        .q-title, .q-title p {
+            font-size:15px;
+            color: #fff;
+        }
     </style>
 @endsection
 @section('content')
@@ -129,7 +134,7 @@ right: 10;">
             <div>
                 <div id="exam-header " class="text-center border border-success shadow  text-dark p-4"
                     style="background-color: #019514;">
-                    <h3 class="exam-title">
+                    <h3 class="exam-title ">
                         {{ $exam->title }}
                     </h3>
                     <h4 class="exam-subtitle" style="font-weight: 700;">
@@ -177,7 +182,7 @@ right: 10;">
 
                                     <div class="card-body shadow">
 
-                                        <div class="p-2 rounded text-light h6  d-flex" style="background-color: #019514;">
+                                        <div class="p-2 rounded q-title h6  d-flex" style="background-color: #019514;">
                                             <b>{{ $numto->bnNum($loop->iteration) }}. &nbsp;</b> {!! $question->title !!}
                                         </div>
                                         @if ($question->title_image)
@@ -256,24 +261,23 @@ right: 10;">
                     <div class="modal-content">
 
                         <div class="modal-body text-center">
-                        <div id="endExamText">
-                            <h1>পরীক্ষার সময় শেষ উত্তরপত্র সাবমিট করুণ ।</h1>
-                            <p> <span>
+                            <div id="endExamText">
+                                <h1>পরীক্ষার সময় শেষ উত্তরপত্র সাবমিট করুণ ।</h1>
+                                <p> <span>
 
-                                    {{ $questions->count() }}
-                                </span> টি প্রশ্নের মধ্যে আপনি <span id="answeredModal2"> </span> টির উত্তর করেছেন <span
-                                    id="leftModal2">
-                                </span> উত্তর বাকি আছে।
-                            </p>
-                        
-                        </div>
-                            <div id="buttonForSubmit" >
-                                <button class="btn btn-lg btn-success" 
-                                    type="submit">Submit</button>
+                                        {{ $questions->count() }}
+                                    </span> টি প্রশ্নের মধ্যে আপনি <span id="answeredModal2"> </span> টির উত্তর করেছেন
+                                    <span id="leftModal2">
+                                    </span> উত্তর বাকি আছে।
+                                </p>
+
+                            </div>
+                            <div id="buttonForSubmit">
+                                <button class="btn btn-lg btn-success" type="submit">Submit</button>
                             </div>
 
                             <p class="mt-3 bg-danger py-2 text-dark" id="warning-text">
-                                <span id="tenMiniuteCountDown"> </span>  মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না
+                                <span id="tenMiniuteCountDown"> </span> মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না
                                 দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
                             </p>
                         </div>
@@ -307,8 +311,8 @@ right: 10;">
                     timer = duration;
                     $("#staticBackdrop").modal('show');
                     if (button) {
-                        
-                        document.getElementById(button).innerHTML = `<a href="{{route('start', $exam->uuid)}}" class="btn btn-lg btn-success" id="buttonForSubmit"
+
+                        document.getElementById(button).innerHTML = `<a href="{{ route('start', $exam->uuid) }}" class="btn btn-lg btn-success" id="buttonForSubmit"
                                     type="submit">Start Exam Again</a>`;
                         document.getElementById('endExamText').innerHTML = `
                           <h1>পরীক্ষা আবার শুরু করুন</h1>
@@ -328,7 +332,7 @@ right: 10;">
         }
 
         countdown({{ $timeLeft }}, "countdown");
-        countdown({{ $extraTime }}, "tenMiniuteCountDown","buttonForSubmit");
+        countdown({{ $extraTime }}, "tenMiniuteCountDown", "buttonForSubmit");
     </script>
 
     <script defer>
