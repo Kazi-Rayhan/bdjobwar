@@ -191,3 +191,7 @@ Route::get('/test2', function () {
     $batches = Batch::where('price', 0)->get();
     return view('test', compact('array', 'batches', 'courses'));
 });
+
+Route::get('/nav',function(){
+    return view('nav');
+});

@@ -44,14 +44,14 @@
 
                         @if (!auth()->user()->bought($batch->id))
                             <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
-                                class="btn btn-success">ভর্তি হন</a>
+                                class="btn btn-success ">ভর্তি হন</a>
                         @endif
                     @else
                         <a href="{{ route('orderCreate', ['type' => 'batch', 'id' => $batch->id]) }}"
                             class="btn btn-success">ভর্তি হন</a>
                     @endauth
                 @endif
-                <a href="{{ $batch->link() }}" class="btn btn-success">বিস্তারিত
+                <a href="{{ $batch->link() }}" class="btn btn-success outline-success">বিস্তারিত
                     দেখুন</a>
                 <!-- <a href="#" class="btn btn-dark">রুটিন</a> -->
 

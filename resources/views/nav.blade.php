@@ -1,85 +1,7 @@
-<!-- <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <ul class="navbar-nav ms-auto">
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Mirrored from adminlte.io/themes/v3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Jan 2023 02:47:58 GMT -->
 
 <head>
     <meta charset="utf-8">
@@ -97,13 +19,8 @@
 
 
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min2167.css?v=3.2.0')}}">
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<!-- 
+    <link rel="stylesheet" href="{{asset('dist/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}"> -->
 
 </head>
 
@@ -918,15 +835,28 @@
             </div>
 
         </aside>
-        @yield('content')
+
     </div>
 
 
     <script src="{{asset('dist/plugins/jquery/jquery.min.js')}}"></script>
 
     <script src="{{asset('dist/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<!-- 
+    <script src="{{asset('dist/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script> -->
+
+
+    <!-- <script src="{{asset('dist/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script> -->
+
+    <!-- <script src="{{asset('dist/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script> -->
 
     <script src="{{asset('dist/js/adminlte2167.js')}}?v=3.2.0"></script>
+
+    <!-- <script src="{{asset('dist/js/demo.js')}}"></script> -->
+<!-- 
+    <script src="{{asset('dist/js/pages/dashboard.js')}}"></script> -->
 </body>
+
+<!-- Mirrored from adminlte.io/themes/v3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Jan 2023 02:48:01 GMT -->
 
 </html>
