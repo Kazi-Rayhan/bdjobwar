@@ -6,7 +6,7 @@
  <div class="card mb-3 shadow" id="{{$question->id}}">
      <div class="card-body">
 
-         <h6 style="font-weight: 700; " class="d-flex">{{ $numto->bnNum($loop->iteration) }}.{!! $question->title !!}</h6>
+         <h6 style="font-weight: 700; " class="d-flex h6">{{ $numto->bnNum($loop->iteration) }}.{!! $question->title !!}</h6>
          @if ($question->title_image)
              <div class="text-center">
                  <img src="{{ Voyager::image($question->title_image) }}" width="300px" style="object-fit:contain"
@@ -21,7 +21,7 @@
 
 
                      <small
-                         class="mb-3 @if ($choice->index == $question->answer) text-success @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index) text-danger @elseif($exam->userChoice(auth()->user(), $question->id) == '') text-warning  @else text-muted @endif">
+                         class="mb-3 h6 @if ($choice->index == $question->answer) text-success @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index) text-danger @elseif($exam->userChoice(auth()->user(), $question->id) == '') text-warning  @else text-muted @endif">
                          {{ $choice->label }}. {{ $choice->choice_text }} @if ($choice->index == $question->answer)
                              <sup class=" text-success "><i class="fa fa-check"></i> </sup>
                          @elseif($exam->userChoice(auth()->user(), $question->id) == $choice->index)

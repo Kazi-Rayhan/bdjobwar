@@ -55,8 +55,10 @@ class BatchDetailsController extends Controller
 
     public function statics($slug, Batch $batch)
     {
+        $exams = Exam::active()->where('batch_id', $batch->id);
 
-        return view('frontEnd.batchDetails.statics');
+        $exams = $exams->where('to', '<', now())->paginate(10);
+        return view('frontEnd.batchDetails.statics',compact('exams'));
     }
 
     public function missedExam($slug, Batch $batch)

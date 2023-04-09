@@ -1,4 +1,30 @@
-.outline-success:hover{
+.btn-success:hover{
     background-color: transparent !important;
     color: #67C100;
+  }
+  .btn-primary:hover{
+    background-color: transparent !important;
+    color: #161e31 !important ;
+  }
+  .btn-info:hover{
+    background-color: transparent !important;
+    color: #3EBCB9  !important ;
+  }
+  .btn-warning:hover{
+    background-color: transparent !important;
+    color: #E56809   !important ;
+  }
+  .btn-dark:hover{
+    background-color: transparent !important;
+    color: #2c323f !important ;
+  }
+  .btn-secondary:hover{
+    background-color: transparent !important;
+    color: var(--theme-secondary) !important ;
+  }
+  .h6 {
+    font-size: 20px !important;
+  }
+  .modal-text{
+    font-size: 20px !important;
   }

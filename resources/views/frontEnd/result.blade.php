@@ -28,14 +28,16 @@
                     পরীক্ষা
                 </h4>
                 @if (!$result->pivot->practice_answers)
-                    <table class="table">
+                    <table class="table text-center">
                         <tr>
+                            
                             <th>
                                 ভুল উত্তর:
                             </th>
                             <td>
                                 N/A
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -44,6 +46,7 @@
                             <td>
                                 {{ $result->minius_mark }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -52,6 +55,7 @@
                             <td>
                                 N/A
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -60,6 +64,7 @@
                             <td>
                                 N/A
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -68,6 +73,7 @@
                             <td>
                                 {{ $result->minimum_to_pass }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -76,10 +82,11 @@
                             <td>
                                 N/A
                             </td>
+                            <td></td>
                         </tr>
                     </table>
                 @else
-                    <table class="table table-striped ">
+                    <table class="table table-striped text-center">
                         <tr>
                             <th>
                                 সঠিক উত্তর :
@@ -87,6 +94,7 @@
                             <td>
                                 {{ ($result->questions->count() - ($result->pivot->practice_wrong_answers + $result->pivot->practice_empty_answers)) / $result->point }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -95,6 +103,7 @@
                             <td>
                                 {{ $result->pivot->practice_wrong_answers }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -103,6 +112,7 @@
                             <td>
                                 {{ $result->minius_mark }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -111,6 +121,7 @@
                             <td>
                                 {{ $result->minimum_to_pass }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -119,6 +130,7 @@
                             <td>
                                 {{ $result->pivot->practice_total }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -137,12 +149,13 @@
                                     </span>
                                 @endif
                             </td>
+                            <td></td>
                         </tr>
                     </table>
                 @endif
             @else
                 @if (!$result->pivot->answers)
-                    <table class="table">
+                    <table class="table text-center">
                         <tr>
                             <th>
                                 ভুল উত্তর:
@@ -150,6 +163,7 @@
                             <td>
                                 N/A
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -158,6 +172,7 @@
                             <td>
                                 {{ $result->minius_mark }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -166,6 +181,7 @@
                             <td>
                                 N/A
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -174,6 +190,7 @@
                             <td>
                                 N/A
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -182,6 +199,7 @@
                             <td>
                                 {{ $result->minimum_to_pass }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -190,17 +208,19 @@
                             <td>
                                 N/A
                             </td>
+                            <td></td>
                         </tr>
                     </table>
                 @else
-                    <table class="table table-striped ">
-                        <tr>
+                    <table class="table table-striped text-center">
+                        <tr >
                             <th>
                                 সঠিক উত্তর :
                             </th>
                             <td>
                                 {{ ($result->questions->count() - ($result->pivot->wrong_answers + $result->pivot->empty_answers)) / $result->point }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -209,6 +229,7 @@
                             <td>
                                 {{ $result->pivot->wrong_answers }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -217,6 +238,7 @@
                             <td>
                                 {{ $result->minius_mark }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -225,6 +247,7 @@
                             <td>
                                 {{ $result->minimum_to_pass }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -233,6 +256,7 @@
                             <td>
                                 {{ $result->pivot->total }}
                             </td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>
@@ -251,6 +275,7 @@
                                     </span>
                                 @endif
                             </td>
+                            <td></td>
                         </tr>
                     </table>
                 @endif
@@ -262,7 +287,7 @@
         </div>
 
 
-        <div class="row row-cols-sm-1 row-cols-xl-5 gap-2 w-100">
+        <div class="row row-cols-sm-1 row-cols-xl-5 gap-2 w-100 justify-content-center">
             @if (request()->practice)
                 <a href="{{ route('practiceAnswerSheet', [$result->uuid, 'practice' => true]) }}" class="btn btn-dark">
                     উত্তরপত্র</a>

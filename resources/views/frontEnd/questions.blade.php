@@ -240,7 +240,7 @@ right: 10;">
 
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <p class="p-4">
+                        <p class="p-4 modal-text">
                             <span>
 
                                 {{ $questions->count() }}

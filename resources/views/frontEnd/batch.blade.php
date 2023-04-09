@@ -144,13 +144,14 @@
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
                             <img height="100px" class="icon" src="{{ asset('icons/statics.svg') }}" alt="">
                             <h3 class="icon-text">
-                                পরিসংখ্যান
+                            প্রাকটিস পরীক্ষা
+
                             </h3>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-md-4 col-lg-3 col-6">
+            <!-- <div class="col-md-4 col-lg-3 col-6">
                 <a href="{{ route('favourites') }}" style="text-decoration:none;color:#000">
                     <div class="card  border border-dark" style="min-height:200px">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center gap-3">
@@ -161,7 +162,7 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> -->
 
 
 

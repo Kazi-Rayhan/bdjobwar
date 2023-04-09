@@ -23,6 +23,7 @@
     <link href="{{ asset('dashboard/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <link rel="stylesheet" href="{{asset('frontEnd-assets/css/overright.css')}}">
 
 </head>
 

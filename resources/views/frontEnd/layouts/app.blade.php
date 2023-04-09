@@ -215,7 +215,7 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #161e31;">
 
-            <a href="index3.html" class="brand-link text-center">
+            <a href="{{ url('/') }}" class="brand-link text-center">
                 <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" class="" style="opacity: .8;height:28px">
                 <!-- <span class="brand-text font-weight-light">Bd Job War</span> -->
             </a>
@@ -276,7 +276,7 @@
             </div>
 
         </aside>
-        <div class="content-wrapper pt-3 container">
+        <div class="content-wrapper pt-3">
             @yield('content')
         </div>
 
