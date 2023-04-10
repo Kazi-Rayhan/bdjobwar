@@ -276,7 +276,8 @@
             </div>
 
         </aside>
-        <div class="content-wrapper pt-3">
+        <div class="content-wrapper px-3 pt-3">
+
             @yield('content')
         </div>
 
@@ -477,10 +478,10 @@
             setInterval(() => {
                 element.style.marginLeft = --flag + "px";
 
-                if (elementWidth == -flag) {
+                if (elementWidth  == -flag) {
                     flag = parentWidth;
                 }
-            }, 10);
+            }, 1);
         }
 
         [...document.getElementsByClassName('marquee')].map(e => {
