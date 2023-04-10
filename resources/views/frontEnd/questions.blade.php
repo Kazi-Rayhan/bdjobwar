@@ -93,8 +93,9 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
-        .q-title, .q-title p {
-            font-size:15px;
+        .q-title,
+        .q-title p {
+            font-size: 16px;
             color: #fff;
         }
     </style>
@@ -134,16 +135,16 @@ right: 10;">
             <div>
                 <div id="exam-header " class="text-center border border-success shadow  text-dark p-4"
                     style="background-color: #019514;">
-                    <h3 class="exam-title ">
+                    <h3 class="exam-title  text-light">
                         {{ $exam->title }}
                     </h3>
-                    <h4 class="exam-subtitle" style="font-weight: 700;">
+                    <h4 class="exam-subtitle  text-light" style="font-weight: 700;">
                         {{ $exam->sub_title }}
                     </h4>
-                    <h6 class="fullmark" style="font-weight: 700;">
+                    <h6 class="fullmark  text-light" style="font-weight: 700;">
                         পূর্ণমান : {{ $numto->bnNum($exam->fullMark) }}
                     </h6>
-                    <div class="d-flex justify-content-around " style="font-weight: 700;">
+                    <div class="d-flex justify-content-around  text-light" style="font-weight: 700;">
                         <span class="">
                             প্রশ্ন : {{ $numto->bnNum($questions->count()) }}
                         </span>
@@ -152,7 +153,7 @@ right: 10;">
                             পাশ মার্ক : {{ $numto->bnNum($exam->minimum_to_pass) }}
                         </span>
                     </div>
-                    <div class="d-flex justify-content-around " style="font-weight: 700;">
+                    <div class="d-flex justify-content-around  text-light " style="font-weight: 700;">
                         <span class="">
                             প্রশ্ন প্রতি মার্ক : {{ $numto->bnNum($exam->point) }}
                         </span>
@@ -162,7 +163,7 @@ right: 10;">
                         </span>
                     </div>
 
-                    <div class="d-flex justify-content-center " style="font-weight: 700;">
+                    <div class="d-flex justify-content-center  text-light" style="font-weight: 700;">
                         <span class="">
                             সময়কাল : {{ $numto->bnNum($exam->duration) }} মিনিট
                         </span>
@@ -178,13 +179,13 @@ right: 10;">
                         <div class="p-2 d-flex flex-column justify-content-center align-items-center mt-md-5"
                             id="tab1">
                             @foreach ($questions as $question)
-                                <div class="question border border-success card ml-sm-5 pl-sm-5 pt-2 mb-2">
+                                <div class="question border border-success card  shadow">
+                                    <div class="p-2 rounded q-title  d-flex" style="background-color: #019514;">
+                                        <b>{{ $numto->bnNum($loop->iteration) }}. &nbsp;</b> {!! $question->title !!}
+                                    </div>
+                                    <div class="card-body ">
 
-                                    <div class="card-body shadow">
 
-                                        <div class="p-2 rounded q-title h6  d-flex" style="background-color: #019514;">
-                                            <b>{{ $numto->bnNum($loop->iteration) }}. &nbsp;</b> {!! $question->title !!}
-                                        </div>
                                         @if ($question->title_image)
                                             <div class="text-center">
                                                 <img src="{{ Voyager::image($question->title_image) }}" width="80%"

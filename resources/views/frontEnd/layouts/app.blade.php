@@ -146,6 +146,20 @@
         .live {
             animation: glowing 1300ms infinite;
         }
+        .nav-hover-secondary:hover{
+            background-color: #67c100;
+        }
+.nav-custom >a{
+            color:#015b25 !important;
+        }
+       
+        .nav-sidebar li>a{
+            color:#015b25 !important;
+        }
+        .nav-sidebar li>a:hover{
+            color:#fff !important;
+            background-color:#015b25 !important;
+        }
     </style>
 
 
@@ -159,23 +173,23 @@
         <nav class="main-header navbar navbar-expand navbar-white navbar-light sticky-top" style="z-index:10000">
 
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('home_page') }}" class="nav-link">হোম</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('liveexams') }}" class="nav-link">লাইভ সেকশন</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('home_page') }}#courses" class="nav-link"> কোর্স
                         সমূহ</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('home_page') }}#package" class="nav-link"> প্যাকেজসমূহ</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                </li> 
+                <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('jobsolutions') }}" class="nav-link"> জব সলিউশন</a>
                 </li>
             </ul>
@@ -184,26 +198,16 @@
 
 
 
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
+          
                 @auth
-                <!-- <li class="nav-item ">
-                        <a class="nav-link d-flex" data-widget="control-sidebar" data-controlsidebar-slide="true"
-                            href="#" role="button">
-                            <img src="{{ auth()->user()->avatar ? Storage::url(auth()->user()->avatar) : asset('profile.png') }}" style="height:30px" alt="">
-                            {{ auth()->user()->name }}
-                        </a>
-                    </li> -->
+         
                 <li class="nav-item dropdown me-5">
                     <a class="btn btn-outline dropdown-toggle w-100 " data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ auth()->user()->avatar ? Storage::url(auth()->user()->avatar) : asset('profile.png') }}" style="height:30px" alt="">
                         {{ auth()->user()->name }}
                     </a>
                     <ul class="dropdown-menu ">
-                        <li class="nav-item ">
+                        <li class="nav-item nav-hover-secondary">
                             <a href="{{ route('dashboard') }}" class="d-flex aling-items-center">
                                 <i data-feather="user"></i>
                                 <p class="ms-2 mt-2">
@@ -211,19 +215,19 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item nav-hover-secondary">
                             <a href="{{ route('courses') }}" class="d-flex aling-items-center">
                                 <i data-feather="book"></i>
                                 <p class="ms-2 mt-2">
-                                    আপনার কোর্সসমূহ
+                                 কোর্সসমূহ
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item nav-hover-secondary">
                             <a href="{{ route('courses') }}" class="d-flex aling-items-center">
                                 <i data-feather="edit-2"></i>
                                 <p class="ms-2 mt-2">
-                                    আপনার পরীক্ষাসমূহ
+                                   পরীক্ষাসমূহ
                                 </p>
                             </a>
                         </li>
@@ -243,13 +247,13 @@
                     </ul>
                 </li>
                 @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">
-                        Log In
+                <li class="nav-item mr-2">
+                    <a class="btn btn-success" href="{{ route('login') }}">
+                        Login
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">
+                    <a class="btn btn-success" href="{{ route('register') }}">
                         Register
                     </a>
                 </li>
@@ -266,10 +270,10 @@
                 <!-- <span class="brand-text font-weight-light">Bd Job War</span> -->
             </a>
 
-            <div class="sidebar">
+            <div class="sidebar " style="background-color: #fff;">
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills  nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 
                         <li class="nav-item ">
@@ -327,8 +331,8 @@
             @yield('content')
         </div>
 
-        <footer class="main-footer p-0 mb-0">
-            <div class="container-fluid bg-primary p-0 row justify-content-around ">
+        <footer class="p-0 mb-0  w-100 bg-primary" style="width:100%;">
+            <div class="container-fluid  p-5 row justify-content-around " style="object-fit:cover">
              
                     <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
                         <img src="{{ asset('logo.png') }}" width="150px" style="object-fit:stretch" alt="">

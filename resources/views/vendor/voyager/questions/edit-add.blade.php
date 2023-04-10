@@ -319,7 +319,7 @@ $add = is_null($dataTypeContent->getKey());
 </div>
 
 <div class="modal fade modal-danger" id="confirm_delete_modal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -343,7 +343,7 @@ $add = is_null($dataTypeContent->getKey());
 </div>
   {{-- Single delete modal --}}
     <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"
