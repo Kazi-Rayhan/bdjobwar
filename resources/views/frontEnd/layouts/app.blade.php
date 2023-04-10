@@ -163,7 +163,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light sticky-top">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light sticky-top" style="z-index:10000">
 
             <ul class="navbar-nav">
                 <li class="nav-item">
