@@ -328,8 +328,8 @@
         </div>
 
         <footer class="main-footer p-0 mb-0">
-            <div class="container-fluid bg-primary p-0">
-                <div class="row justify-content-around ">
+            <div class="container-fluid bg-primary p-0 row justify-content-around ">
+             
                     <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
                         <img src="{{ asset('logo.png') }}" width="150px" style="object-fit:stretch" alt="">
                         <div class="d-flex flex-column align-items-center ">
@@ -393,7 +393,6 @@
 
                     </div>
 
-                </div>
             </div>
         </footer>
 
