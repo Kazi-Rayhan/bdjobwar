@@ -146,9 +146,7 @@
         .live {
             animation: glowing 1300ms infinite;
         }
-        .nav-hover-secondary:hover{
-            background-color: #67c100;
-        }
+       
 .nav-custom >a{
             color:#015b25 !important;
         }
