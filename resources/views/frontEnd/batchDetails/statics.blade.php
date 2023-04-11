@@ -2,7 +2,7 @@
 
 @section('content')
 <h2 class="m-5">
-    আর্কাইভ
+    প্রাকটিস পরীক্ষা
 </h2>
 @if ($exams->count())
 <div class="container my-5" style="height:80vh;overflow-y:scroll">

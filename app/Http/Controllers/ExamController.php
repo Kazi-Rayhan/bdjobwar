@@ -52,6 +52,7 @@ class ExamController extends Controller
     public function exam_start($uuid)
     {
         $exam = Exam::where('uuid', $uuid)->first();
+        
         if (auth()->check() && @is_numeric(Auth::user()->exams()->find($exam->id)->pivot->total)) {
 
             return redirect()->route('result-exam', $exam->uuid);
@@ -92,6 +93,7 @@ class ExamController extends Controller
         $retry = false;
         $exam = Exam::where('uuid', $uuid)->first();
         if (request()->practice) {
+            
             auth()->user()->exams()->updateExistingPivot($exam->id, ['practice_expire_at' => now()->addMinutes($exam->duration)]);
         } else {
 
@@ -122,7 +124,8 @@ class ExamController extends Controller
         if (request()->practice) {
 
             if (!$exam->isJobSolution && !UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->answers) {
-                return redirect()->back()->withError('প্রাকটিস পরীক্ষা দিতে আপনাকে মূল পরীক্ষায় অংশগ্রহণ করতে হবে।');
+                
+                return redirect()->route('start-exam', $exam->uuid)->with('success','প্রাকটিস পরীক্ষা দিতে আপনাকে মূল পরীক্ষায় অংশগ্রহণ করতে হবে।');
             };
         }
 

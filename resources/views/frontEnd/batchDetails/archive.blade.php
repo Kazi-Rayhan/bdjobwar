@@ -60,12 +60,7 @@
                                 <a href="{{ route('answerSheet', $exam->uuid) }}" class="btn btn-info text-white">
                                     উত্তরমালা</a>
 
-                                <a class="btn btn-warning"
-                                    onclick="alert('বিঃদ্রঃ প্রাকটিস পরীক্ষা দিয়ে আপনি আপনার পড়া কতটুকু মনে রাখতে পেরেছেন তা যাচাই করতে পারবেন। আপনার পূর্ববর্তী মেধাতালিকার কোন পরিরবর্তন হবে না।')"
-                                    href="{{ route('start', [$exam->uuid, 'practice' => true]) }}"
-                                    class="btn btn-info ">প্রাকটিস পরীক্ষা
-                                </a>
-
+                              
                                 <!-- </div> -->
                                 <!-- </div> -->
                                 @auth

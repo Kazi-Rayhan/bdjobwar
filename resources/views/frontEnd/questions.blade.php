@@ -92,12 +92,6 @@
         .options input[type="radio"]:checked~.checkmark:after {
             transform: translate(-50%, -50%) scale(1);
         }
-
-        .q-title,
-        .q-title p {
-            font-size: 16px;
-            color: #fff;
-        }
     </style>
 @endsection
 @section('content')
@@ -133,18 +127,18 @@ right: 10;">
                 <input type="hidden" name="practice" value="true">
             @endif
             <div>
-                <div id="exam-header " class="text-center border border-success shadow  text-dark p-4"
+                <div id="exam-header " class="text-center border border-success shadow  text-light p-4"
                     style="background-color: #019514;">
-                    <h3 class="exam-title  text-light">
+                    <h3 class="exam-title">
                         {{ $exam->title }}
                     </h3>
-                    <h4 class="exam-subtitle  text-light" style="font-weight: 700;">
+                    <h4 class="exam-subtitle" style="font-weight: 700;">
                         {{ $exam->sub_title }}
                     </h4>
-                    <h6 class="fullmark  text-light" style="font-weight: 700;">
+                    <h6 class="fullmark" style="font-weight: 700;">
                         পূর্ণমান : {{ $numto->bnNum($exam->fullMark) }}
                     </h6>
-                    <div class="d-flex justify-content-around  text-light" style="font-weight: 700;">
+                    <div class="d-flex justify-content-around " style="font-weight: 700;">
                         <span class="">
                             প্রশ্ন : {{ $numto->bnNum($questions->count()) }}
                         </span>
@@ -153,7 +147,7 @@ right: 10;">
                             পাশ মার্ক : {{ $numto->bnNum($exam->minimum_to_pass) }}
                         </span>
                     </div>
-                    <div class="d-flex justify-content-around  text-light " style="font-weight: 700;">
+                    <div class="d-flex justify-content-around " style="font-weight: 700;">
                         <span class="">
                             প্রশ্ন প্রতি মার্ক : {{ $numto->bnNum($exam->point) }}
                         </span>
@@ -163,7 +157,7 @@ right: 10;">
                         </span>
                     </div>
 
-                    <div class="d-flex justify-content-center  text-light" style="font-weight: 700;">
+                    <div class="d-flex justify-content-center " style="font-weight: 700;">
                         <span class="">
                             সময়কাল : {{ $numto->bnNum($exam->duration) }} মিনিট
                         </span>
@@ -179,13 +173,13 @@ right: 10;">
                         <div class="p-2 d-flex flex-column justify-content-center align-items-center mt-md-5"
                             id="tab1">
                             @foreach ($questions as $question)
-                                <div class="question border border-success card  shadow">
-                                    <div class="p-2 rounded q-title  d-flex" style="background-color: #019514;">
-                                        <b>{{ $numto->bnNum($loop->iteration) }}. &nbsp;</b> {!! $question->title !!}
-                                    </div>
+                                <div class="question border border-success card ml-sm-5 pl-sm-5 pt-2 mb-2 shadow">
+
                                     <div class="card-body ">
 
-
+                                        <div class="p-2 rounded text-light h6  d-flex" style="background-color: #019514;">
+                                            <b>{{ $numto->bnNum($loop->iteration) }}.</b> {!! $question->title !!}
+                                        </div>
                                         @if ($question->title_image)
                                             <div class="text-center">
                                                 <img src="{{ Voyager::image($question->title_image) }}" width="80%"
@@ -241,7 +235,7 @@ right: 10;">
 
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <p class="p-4 modal-text">
+                        <p class="p-4">
                             <span>
 
                                 {{ $questions->count() }}
@@ -277,7 +271,7 @@ right: 10;">
                                 <button class="btn btn-lg btn-success" type="submit">Submit</button>
                             </div>
 
-                            <p class="mt-3 bg-danger py-2 text-dark" id="warning-text">
+                            <p class="mt-3 bg-danger py-2 text-light" id="warning-text">
                                 <span id="tenMiniuteCountDown"> </span> মিনিটের মধ্যে সাবমিট দিন। এই সময়ের মধ্যে সাবমিট না
                                 দিলে পরীক্ষাটি পুনরায় দিতে হবে ।
                             </p>
@@ -386,7 +380,17 @@ right: 10;">
             answered = $(':input[type="radio"]:checked').length;
 
             examCard(answered, questions);
+
+            [...$('input[type="radio"]').filter(':checked')].map(el => {
+                answered++
+                examCard(answered, questions);
+                $(el).parent().parent().siblings()[0].classList.add('bg-success')
+                $(el).closest('label').addClass('text-success')
+                var isDisabled = $(el).closest('label').siblings().find('input').prop('disabled');
+                $(el).closest('label').siblings().find('input').prop('disabled', !isDisabled);
+            })
         })
+
         $('input[type="radio"]').on('change', function() {
             answered++
             examCard(answered, questions);
