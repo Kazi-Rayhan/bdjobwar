@@ -20,7 +20,7 @@
 
             <div class="row">
                 @foreach ($liveExamsPaid as $exam)
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <x-exam-card :exam="$exam" />
                     </div>
                 @endforeach
@@ -33,7 +33,7 @@
           
             <div class="row">
                 @foreach ($liveExamsFree as $exam)
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <x-exam-card :exam="$exam" />
                     </div>
                 @endforeach
