@@ -106,9 +106,10 @@
     <section class="mt-2 container" id="courses">
 
         <div class="row py-5">
-            <div class="col-12">
-                <h1 class="text-uppercase " style="font-weight:700 ;font-size:35px">আমাদের কোর্সসমূহ :</h1>
-                <hr>
+            <div class="col-12 mb-2">
+                <div class="live-section-title" style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
+                    <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px">আমাদের কোর্সসমূহ</h1>
+                </div>
             </div>
             @foreach ($courses as $course)
                 <div class="col-md-4 mb-3">

@@ -53,7 +53,16 @@ class PageController extends Controller
 
     public function liveexams()
     {
-        $liveExams = Exam::with('users')
+        $liveExamsPaid = Exam::with('users')
+            ->paid()
+            ->active()
+            ->where('from', '<', now())
+            ->where('to', '>', now())
+            ->orderBy('from', 'asc')
+            ->latest()
+            ->get();
+        $liveExamsFree = Exam::with('users')
+            ->free()
             ->active()
             ->where('from', '<', now())
             ->where('to', '>', now())
@@ -61,7 +70,7 @@ class PageController extends Controller
             ->latest()
             ->get();
 
-        return view('frontEnd/liveexams', compact('liveExams'));
+        return view('frontEnd/liveexams', compact('liveExamsPaid', 'liveExamsFree'));
     }
     public function question($uuid)
     {
