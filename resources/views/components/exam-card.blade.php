@@ -6,10 +6,11 @@
 
 <div class="card shadow">
     <div class="card-body">
+        <h5>
+            {{ $from->getDateTime()->format('j F b h:i') }} - {{ $to->getDateTime()->format('j F b h:i') }}
+        </h5>
         <div class="d-flex justify-content-between align-items-start">
-            <h5>
-                {{ $from->getDateTime()->format('j F b h:i') }} - {{ $to->getDateTime()->format('j F b h:i') }}
-            </h5>
+
             <div>
                 <h3>{{ $exam->title }}</h3>
                 <h6> {{ $exam->sub_title }}</h6>
