@@ -27,10 +27,11 @@
             </div>
         </div>
         <div class="col-md-6 col-12">
-         <div class="live-section-title" style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
-                <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px"> ফ্রি পরিক্ষা চলছে : {{ $numto->bnNum(count($liveExamsFree)) }} টি</h1>
+            <div class="live-section-title" style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
+                <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px"> ফ্রি পরিক্ষা চলছে :
+                    {{ $numto->bnNum(count($liveExamsFree)) }} টি</h1>
             </div>
-          
+
             <div class="row">
                 @foreach ($liveExamsFree as $exam)
                     <div class="col-md-12">

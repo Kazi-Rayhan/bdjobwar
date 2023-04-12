@@ -7,6 +7,9 @@
 <div class="card shadow">
     <div class="card-body">
         <div class="d-flex justify-content-between align-items-start">
+            <h5>
+                {{ $from->getDateTime()->format('j F b h:i') }} - {{ $to->getDateTime()->format('j F b h:i') }}
+            </h5>
             <div>
                 <h3>{{ $exam->title }}</h3>
                 <h6> {{ $exam->sub_title }}</h6>
@@ -34,9 +37,7 @@
                 </div>
             </div>
             <div>
-                <h5>
-                    {{ $from->getDateTime()->format('j F b h:i') }} - {{ $to->getDateTime()->format('j F b h:i') }}
-                </h5>
+
                 <div class="d-flex justify-content-end mt-3">
                     @if ($exam->from <= now())
                         <a class="btn btn-success btn-sm " href="{{ route('start-exam', $exam->uuid) }}"
@@ -46,6 +47,7 @@
                     @endif
                 </div>
             </div>
+
         </div>
 
 
