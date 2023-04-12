@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Exception;
+use App\Models\Comment;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -190,11 +191,13 @@ class User extends \TCG\Voyager\Models\User
         return false;
     }
 
-    public function favourites(){
-        return $this->belongsToMany(Question::class,'question_user');     
+    public function favourites()
+    {
+        return $this->belongsToMany(Question::class, 'question_user');
     }
 
-    public function isFavourite(Question $question){
+    public function isFavourite(Question $question)
+    {
         return $this->favourites()->find($question->id);
     }
 }
