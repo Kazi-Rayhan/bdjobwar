@@ -16,8 +16,8 @@
                                     {{ $post->excerpt }}
                                 </p>
 
-                                <div class="d-flex justify-content-between">
-                                    <span class="mt-5">{{ $post->created_at->diffForHumans() }}</span>
+                                <div class="d-flex justify-content-between mt-5">
+                                    <span class="">{{ $post->created_at->diffForHumans() }}</span>
                                     <span>Read more ...</span>
                                 </div>
 
