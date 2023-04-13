@@ -166,6 +166,9 @@
             color: #fff !important;
             background-color: #015b25 !important;
         }
+        th{
+            color:#fff  !important;
+        }
     </style>
 
 
