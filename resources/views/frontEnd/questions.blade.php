@@ -14,14 +14,16 @@
             font-size: 16px;
         }
 
+        .exam-title p{
+            display:inline
+        }
+
         @media screen and (max-width: 600px) {
             .question {
                 width: 100%;
             }
 
-            .exam-title {
-                font-size: 23px;
-            }
+           
 
             .exam-subtitle {
                 font-size: 18px;
@@ -177,8 +179,8 @@ right: 10;">
 
                                     <div class="card-body ">
 
-                                        <div class="p-2 rounded text-light h6  d-flex" style="background-color: #019514;">
-                                            <b>{{ $numto->bnNum($loop->iteration) }}.</b> {!! $question->title !!}
+                                        <div class="p-2 rounded text-light exam-title" style="background-color: #019514;">
+                                            <small>{{$loop->iteration}}</small>. {!! $question->title !!}
                                         </div>
                                         @if ($question->title_image)
                                             <div class="text-center">

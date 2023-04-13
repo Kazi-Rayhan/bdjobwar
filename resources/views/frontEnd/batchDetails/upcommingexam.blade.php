@@ -56,16 +56,17 @@
 
                             <td>
                                 <!-- <div class="dropdown open">
-                                                                                                    <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                                        Dropdown
-                                                                                                    </a> -->
+                                                                                                        <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                            Dropdown
+                                                                                                        </a> -->
                                 <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
+
 
                                 <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
                                 @auth
                                     @if (auth()->user()->information->is_paid ||
-                                        auth()->user()->bought($batch->id))
+                                            auth()->user()->bought($batch->id))
                                         @if ($exam->reading_pdf && count(json_decode($exam->reading_pdf)))
                                             <a href="{{ Voyager::image(json_decode($exam->reading_pdf)[0]->download_link) }}"
                                                 class="btn btn-dark mt-2"> পড়ার পিডিএফ</a>
@@ -111,9 +112,11 @@
 @endsection
 @section('js')
     <script>
-        $('#exampleModal').on('show.bs.modal', function(event) {
+        var exampleModal = document.getElementById('exampleModal')
+        exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var recipient = button.data('syllabus') // Extract info from data-* attributes
+
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)

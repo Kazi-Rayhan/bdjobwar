@@ -13,7 +13,7 @@
             position: absolute;
             white-space: nowrap;
             will-change: transform;
-            animation: marquee 32s linear infinite;
+            animation: marquee 60s linear infinite;
         }
 
         @keyframes marquee {
@@ -36,23 +36,22 @@
 
     <div class="b-success position-relative" style="overflow:hidden">
 
-        <span class="h3 px-2 bg-success position-absolute d-flex justify-content-center align-items-center :" style="height:100%;z-index:20">Notice</span>
+        <span class="h3 px-2 bg-success position-absolute d-flex justify-content-center align-items-center :"
+            style="height:100%;z-index:20">Notice</span>
         <div class="marquee">
-            <div class="track">
-                <div class="content ">&nbsp; @foreach ($notices as $notice)
-                        @if ($notice->file)
-                            @php
-                                $link = Storage::url(json_decode($notice->file)[0]->download_link) ?? '';
-                            @endphp
-                            <a class="text-success" href="{{ $link }}"> **** {{ $notice->title }} **** </a>
-                        @else
-                            <span class="text-success">
-                                **** {{ $notice->title }} ****
-                            </span>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
+            @foreach ($notices as $notice)
+                @if ($notice->file)
+                    @php
+                        $link = Storage::url(json_decode($notice->file)[0]->download_link) ?? '';
+                    @endphp
+                    <a class="text-success" href="{{ $link }}"> **** {{ $notice->title }} **** </a>
+                @else
+                    <span class="text-success">
+                        **** {{ $notice->title }} ****
+                    </span>
+                @endif
+            @endforeach
+
         </div>
     </div>
 
@@ -99,7 +98,7 @@
                     <a href="{{ route('liveexams') }}" class="btn btn-successh live"> Live Exam</a>
                 </div>
                 <div class="col-6 d-grid">
-                    <a href="{{ route('courses') }}" class="btn btn-outline-primary">My Courses</a>
+                    <a href="{{ route('courses') }}" class="btn btn-success">My Courses</a>
                 </div>
             </div>
     </section>
