@@ -190,8 +190,7 @@
                     <a href="{{ route('liveexams') }}" class="nav-link">লাইভ সেকশন</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block  nav-custom">
-                    <a href="{{ route('home_page') }}#courses" class="nav-link"> কোর্স
-                        সমূহ</a>
+                    <a href="{{ route('home_page') }}#courses" class="nav-link"> কোর্সসমূহ</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('home_page') }}#package" class="nav-link"> প্যাকেজসমূহ</a>
