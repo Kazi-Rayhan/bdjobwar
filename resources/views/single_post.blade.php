@@ -65,7 +65,7 @@
                 @else
                     <div class="card">
                         <div class="card-body">
-                            <small> কমেন্ট করার জন্য <a class="" href="{{ route('login') }}">Login</a> করুন</small>
+                            <h4> কমেন্ট করার জন্য <a class="" href="{{ route('login') }}">Login</a> করুন</h4>
                         </div>
                     </div>
 
