@@ -4,9 +4,9 @@
         <div class="row justify-content-center align-items-center">
             @foreach ($posts as $post)
                 <div class="col-md-5 col-mb-4 col-sm-12">
-                    <div class="card Larger shadow">
-                        <a href="{{ route('single_post', $post->slug) }}">
-                            <img class="rounded" style="object-fit:cover;height:300px; width:420px;"
+                    <a href="{{ route('single_post', $post->slug) }}">
+                        <div class="card Larger shadow">
+                            <img class="rounded" style="object-fit:cover;height:300px;"
                                 src="{{ voyager::image($post->image) }}" alt="">
                             <div class="card-body shadow">
 
@@ -20,8 +20,8 @@
 
 
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
 
                 </div>
             @endforeach
