@@ -25,55 +25,50 @@
 
 
 
-            </div>
-            @auth
-                <div class="col-md-8">
-                    <div class="row">
-                        <h2 class="ms-4">Comments</h2>
+
+                @auth
+                    <h2 class="ms-4">Comments</h2>
 
 
-                        <form action="{{ route('comment') }}" method="POST">
-                            @csrf
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                            <textarea name="comment" id="" cols="84" rows="4"></textarea>
-
-                                        </div>
-                                        <button type="submit" class="btn btn-primary mt-3">comment</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="mb-4" style="border-bottom: 1px solid #b5b5b5;"></div>
-
+                    <form action="{{ route('comment') }}" method="POST">
+                        @csrf
                         <div class="card">
                             <div class="card-body">
                                 <div class="col-md-12">
-                                    @foreach ($post->comments as $comment)
-                                        <div class="row">
-                                            <p>{{ $comment->comment }}</p>
-                                            <hr>
-                                            <span>{{ $comment->user->name }}</span>
-                                            <small>{{ $comment->created_at->diffForHumans() }}</small>
-                                        </div>
-                                    @endforeach
+                                    <div class="row">
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                        <textarea name="comment" id="" cols="84" rows="4"></textarea>
+
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3">comment</button>
                                 </div>
                             </div>
                         </div>
+                    </form>
 
-                        
+                    <div class="mb-4" style="border-bottom: 1px solid #b5b5b5;"></div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                @foreach ($post->comments as $comment)
+                                    <div class="row">
+                                        <p>{{ $comment->comment }}</p>
+                                        <hr>
+                                        <span>{{ $comment->user->name }}</span>
+                                        <small>{{ $comment->created_at->diffForHumans() }}</small>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
+                @else
+                    <h2> কমেন্ট করার জন্য <a class="d-flex justify-content-center p-3" href="{{ route('login') }}">Login</a>
+                        করুন
+                    </h2>
 
-
-
-                </div>
-            @else
-                <h2> কমেন্ট করার জন্য <a class="d-flex justify-content-center p-3" href="{{ route('login') }}">Login</a> করুন</h2>
-            @endauth
+                @endauth
+            </div>
 
     </section>
 @endsection
