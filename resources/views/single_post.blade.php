@@ -63,9 +63,11 @@
                         </div>
                     </div>
                 @else
-                    <h2> কমেন্ট করার জন্য <a class="d-flex justify-content-center p-3" href="{{ route('login') }}">Login</a>
-                        করুন
-                    </h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <small> কমেন্ট করার জন্য <a class="" href="{{ route('login') }}">Login</a> করুন</small>
+                        </div>
+                    </div>
 
                 @endauth
             </div>
