@@ -58,21 +58,21 @@
                                             <p>{{ $comment->comment }}</p>
                                             <hr>
                                             <span>{{ $comment->user->name }}</span>
-                                            <small>{{ $comment->created_at->format('d,M,Y') }}</small>
+                                            <small>{{ $comment->created_at->diffForHumans() }}</small>
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
                         </div>
 
-                        s
+                        
                     </div>
 
 
 
                 </div>
             @else
-                <h2><a class="d-flex justify-content-center p-3" href="{{ route('login') }}">Please login your account.</a></h2>
+                <h2> কমেন্ট করার জন্য <a class="d-flex justify-content-center p-3" href="{{ route('login') }}">Login</a> করুন</h2>
             @endauth
 
     </section>
