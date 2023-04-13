@@ -199,6 +199,9 @@
                 <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('jobsolutions') }}" class="nav-link"> জব সলিউশন</a>
                 </li>
+                <li class="nav-item d-none d-sm-inline-block  nav-custom">
+                    <a href="{{ route('post') }}" class="nav-link"> পোস্ট</a>
+                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -413,7 +416,57 @@
             </div>
         </footer>
 
+        <aside class="control-sidebar control-sidebar-dark">
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
 
+
+                    <li class="nav-item ">
+                        <a href="{{ route('dashboard') }}" class="d-flex aling-items-center">
+                            <i data-feather="user"></i>
+                            <p class="ms-2 mt-3">
+                                ড্যাশবোর্ড
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{{ route('courses') }}" class="d-flex aling-items-center">
+                            <i data-feather="book"></i>
+                            <p class="ms-2 mt-3">
+                                আপনার কোর্সসমূহ
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{{ route('courses') }}" class="d-flex aling-items-center">
+                            <i data-feather="edit-2"></i>
+                            <p class="ms-2 mt-3">
+                                আপনার পরীক্ষাসমূহ
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+
+                        <a href="{{ route('logout') }}" class="d-flex aling-items-center"
+                            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+                            <i data-feather="log-out"></i>
+                            <p class="ms-2 mt-3">
+                                লগ আউট
+                            </p>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+
+
+
+
+                </ul>
+            </nav>
+        </aside>
 
     </div>
 

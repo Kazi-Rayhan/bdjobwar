@@ -12,6 +12,8 @@ use App\Models\Notice;
 use App\Models\UserExam;
 use App\Video;
 use App\Slider;
+use App\Post;
+
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Mpdf\Mpdf;
@@ -164,5 +166,14 @@ class PageController extends Controller
         $batches = $course->batches;
 
         return view('frontEnd.jobsolutions', compact('course', 'batches'));
+    }
+    public function post()
+    {
+        $posts = Post::latest()->paginate(2);
+        return view('post', compact('posts'));
+    }
+    public function single_post(Post $post)
+    {
+        return view('single_post', compact('post'));
     }
 }

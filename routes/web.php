@@ -4,6 +4,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\BatchDetailsController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
@@ -38,6 +39,9 @@ Auth::routes();
 // Route::post('/login', [AuthenticateController::class, 'login'])->name('login');
 
 Route::get('/', [PageController::class, 'home'])->name('home_page');
+Route::get('/post', [PageController::class, 'post'])->name('post');
+Route::get('/single_post/{post:slug}', [PageController::class, 'single_post'])->name('single_post');
+Route::post('/comment', [CommentController::class, 'comment'])->name('comment')->middleware('auth');
 
 
 Route::get('download/{notice}', [HomeController::class, 'download'])->name('download');
@@ -192,6 +196,6 @@ Route::get('/test2', function () {
     return view('test', compact('array', 'batches', 'courses'));
 });
 
-Route::get('/nav',function(){
+Route::get('/nav', function () {
     return view('nav');
 });
