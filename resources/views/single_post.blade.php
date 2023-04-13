@@ -10,14 +10,12 @@
                     <div class="card-body Larger shadow">
 
 
-                        <h2>{{ $post->title }}</h2>
+                        <h1>{{ $post->title }}</h1>
                         <div style="border-bottom: 1px solid #b5b5b5;"></div>
-                        <p>
 
-                        </p>
-                        <p>{!! $post->body !!}</p>
+                        {!! $post->body !!}
 
-                        <span class="mt-5">{{ $post->created_at->format('d,M,Y') }}</span>
+                        <span class="mt-5">{{ $post->created_at->diffForHumans() }}</span>
 
 
 

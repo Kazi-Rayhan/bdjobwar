@@ -16,7 +16,7 @@
                                     {{ $post->excerpt }}
                                 </p>
 
-                                <span class="mt-5">{{ $post->created_at->format('d,M,Y') }}</span>
+                                <span class="mt-5">{{ $post->created_at->diffForHumans() }}</span>
 
 
                             </div>
