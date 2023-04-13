@@ -200,7 +200,7 @@
                     <a href="{{ route('jobsolutions') }}" class="nav-link"> জব সলিউশন</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block  nav-custom">
-                    <a href="{{ route('post') }}" class="nav-link"> পোস্ট</a>
+                    <a href="{{ route('post') }}" class="nav-link"> ব্লগ</a>
                 </li>
             </ul>
 
