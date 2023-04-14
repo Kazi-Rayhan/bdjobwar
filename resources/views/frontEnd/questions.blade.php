@@ -14,8 +14,8 @@
             font-size: 16px;
         }
 
-        .exam-title p{
-            display:inline
+        .exam-title p {
+            display: inline
         }
 
         @media screen and (max-width: 600px) {
@@ -23,7 +23,7 @@
                 width: 100%;
             }
 
-           
+
 
             .exam-subtitle {
                 font-size: 18px;
@@ -93,6 +93,12 @@
 
         .options input[type="radio"]:checked~.checkmark:after {
             transform: translate(-50%, -50%) scale(1);
+        }
+
+        .exam-title * {
+            font-size: 17px !important;
+            color: #fff !important;
+
         }
     </style>
 @endsection
@@ -180,7 +186,7 @@ right: 10;">
                                     <div class="card-body ">
 
                                         <div class="p-2 rounded text-light exam-title" style="background-color: #019514;">
-                                            <small>{{$loop->iteration}}</small>. {!! $question->title !!}
+                                            {{ $loop->iteration }}. {!! $question->title !!}
                                         </div>
                                         @if ($question->title_image)
                                             <div class="text-center">

@@ -157,54 +157,54 @@
                 @if (!$result->pivot->answers)
                     <table class="table text-center">
                         <tr>
-                            <th>
+                            <td>
                                 ভুল উত্তর:
-                            </th>
+                            </td>
                             <td>
                                 N/A
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 নেতিবাচক মার্ক:
-                            </th>
+                            </td>
                             <td>
                                 {{ $result->minius_mark }}
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 মিস :
-                            </th>
+                            </td>
                             <td>
                                 N/A
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 সঠিক উত্তর :
-                            </th>
+                            </td>
                             <td>
                                 N/A
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 পাস মার্ক :
-                            </th>
+                            </td>
                             <td>
                                 {{ $result->minimum_to_pass }}
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 মোট :
-                            </th>
+                            </td>
                             <td>
                                 N/A
                             </td>
@@ -214,54 +214,54 @@
                 @else
                     <table class="table table-striped text-center">
                         <tr >
-                            <th>
+                            <td>
                                 সঠিক উত্তর :
-                            </th>
+                            </td>
                             <td>
                                 {{ ($result->questions->count() - ($result->pivot->wrong_answers + $result->pivot->empty_answers)) / $result->point }}
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 ভুল উত্তর:
-                            </th>
+                            </td>
                             <td>
                                 {{ $result->pivot->wrong_answers }}
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 নেগেটিভ মার্ক:
-                            </th>
+                            </td>
                             <td>
                                 {{ $result->minius_mark }}
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 পাস মার্ক :
-                            </th>
+                            </td>
                             <td>
                                 {{ $result->minimum_to_pass }}
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 প্রাপ্ত নম্বর :
-                            </th>
+                            </td>
                             <td>
                                 {{ $result->pivot->total }}
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th>
+                            <td>
                                 রেজাল্ট :
-                            </th>
+                            </td>
                             <td>
                                 @if ($result->pivot->total >= $result->minimum_to_pass)
                                     <span class="text-success">
