@@ -271,12 +271,12 @@
                     </li>
                 @else
                     <li class="nav-item mr-2">
-                        <a class="btn btn-success" href="{{ route('login') }}">
+                        <a class="btn btn-sm btn-success" href="{{ route('login') }}">
                             Login
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-success" href="{{ route('register') }}">
+                        <a class="btn btn-sm btn-success" href="{{ route('register') }}">
                             Register
                         </a>
                     </li>
