@@ -206,8 +206,8 @@
                     <a href="{{ route('post') }}" class="nav-link"> ব্লগ</a>
                 </li>
                 <li class="d-md-none d-sm-inline-block  ">
-                    <a href="{{ url('/') }}" class="ms-5">
-                        <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" style="height:50px;color:#fff">
+                    <a href="{{ url('/') }}" class="">
+                        <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" style="height:40px;color:#fff">
                         <!-- <span class="brand-text font-weight-light">Bd Job War</span> -->
                     </a>
 
@@ -221,7 +221,7 @@
 
                 @auth
 
-                    <li class="nav-item dropdown " style="margin-right:20px">
+                    <li class="nav-item dropdown " style="margin-right:10px">
                         <a class="btn btn-outline dropdown-toggle w-100 " data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img src="{{ auth()->user()->avatar ? Storage::url(auth()->user()->avatar) : asset('profile.png') }}"
@@ -359,7 +359,7 @@
             <div class="container-fluid  p-5 row justify-content-around ">
 
                 <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
-                    <img src="{{ asset('logo.png') }}" height="150px" style="object-fit:stretch" alt="">
+                    <img src="{{ asset('logo-light.png') }}" height="150px" style="object-fit:stretch" alt="">
                     <div class="d-flex flex-column align-items-center ">
 
                         <p class="text-light p-0 mt-3">
