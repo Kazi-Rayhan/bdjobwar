@@ -9,8 +9,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
+ 
     <script src="https://kit.fontawesome.com/10ec6aaa98.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
@@ -185,7 +184,7 @@
     <!-- footer section start-->
     <footer>
         <div class="">
-           
+
             <div class="container-fluid bg-footer " style="background-color:#161E31 !important">
                 <div class="row justify-content-around">
                     <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">

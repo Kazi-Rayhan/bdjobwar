@@ -11,8 +11,8 @@
     <meta name="keywords"
         content="admin template, Koho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
     <title>BD Job War</title>
+   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
     <script src="https://kit.fontawesome.com/10ec6aaa98.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
@@ -166,8 +166,9 @@
             color: #fff !important;
             background-color: #015b25 !important;
         }
-        th{
-            color:#fff  !important;
+
+        th {
+            color: #fff !important;
         }
     </style>
 
@@ -181,7 +182,7 @@
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light sticky-top" style="z-index:10000">
 
-            <ul class="navbar-nav">
+            <ul class="navbar-nav d-flex justify-content-center align-items-center">
                 <li class="nav-item ">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
@@ -204,6 +205,13 @@
                 <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('post') }}" class="nav-link"> ব্লগ</a>
                 </li>
+                <li class="d-md-none d-sm-inline-block  ">
+                    <a href="{{ url('/') }}" class="ms-5">
+                        <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" style="height:50px;color:#fff">
+                        <!-- <span class="brand-text font-weight-light">Bd Job War</span> -->
+                    </a>
+
+                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -213,7 +221,7 @@
 
                 @auth
 
-                    <li class="nav-item dropdown me-5">
+                    <li class="nav-item dropdown " style="margin-right:20px">
                         <a class="btn btn-outline dropdown-toggle w-100 " data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img src="{{ auth()->user()->avatar ? Storage::url(auth()->user()->avatar) : asset('profile.png') }}"
@@ -278,11 +286,10 @@
         </nav>
 
 
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #161e31;">
+        <aside class="main-sidebar  elevation-4">
 
             <a href="{{ url('/') }}" class="brand-link text-center">
-                <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" class=""
-                    style="opacity: .8;height:28px">
+                <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" style="height:35px;color:#fff">
                 <!-- <span class="brand-text font-weight-light">Bd Job War</span> -->
             </a>
 
@@ -348,11 +355,11 @@
             @yield('content')
         </div>
 
-        <footer class="p-0 mb-0  w-100 bg-primary" style="width:100%;">
-            <div class="container-fluid  p-5 row justify-content-around " style="object-fit:cover">
+        <footer class="p-0 mb-0   bg-primary">
+            <div class="container-fluid  p-5 row justify-content-around ">
 
                 <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
-                    <img src="{{ asset('logo.png') }}" width="150px" style="object-fit:stretch" alt="">
+                    <img src="{{ asset('logo.png') }}" height="150px" style="object-fit:stretch" alt="">
                     <div class="d-flex flex-column align-items-center ">
 
                         <p class="text-light p-0 mt-3">
@@ -459,8 +466,8 @@
     </script>
     @yield('js')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <script>
         toastr.options = {
             "closeButton": true,
