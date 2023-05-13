@@ -4,7 +4,7 @@
     <h2 class="m-5">
         প্রাকটিস পরীক্ষা
     </h2>
-    @if (!$exams->count())
+    @if ($exams->count())
         <div class="container my-5" style="height:80vh;overflow-y:scroll">
 
             <table class="table table-borderless table-hover text-center ">
