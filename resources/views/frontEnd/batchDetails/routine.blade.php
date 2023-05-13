@@ -50,12 +50,13 @@
             </div>
         </div>
     @else
-        <div class="container text-center my-5">
-            <img src="{{ asset('icons/routine.svg') }}" height="200px" class="mb-5" alt="">
-            <h1>এই মুহূর্তে কোন রুটিন নেই।</h1>
-            <h5>
-                পড়ে আবার চেক করুণ
-            </h5>
+       <div class=" d-flex  justify-content-center align-items-center mt-5">
+            <div class="card shadow w-lg-50">
+                <div class="card-body text-center ">
+                    <h2 class="mb-4">এখনো কোন রুটিন আপলোড করা হয়নি । পরীক্ষার <br> রুটিন এই বাটনে সাজানো থাকবে</h2>
+                    <a href="{{ route('batch', [$slug, $batch]) }}" class="btn btn-primary">Go Back</a>
+                </div>
+            </div>
         </div>
     @endif
 @endsection

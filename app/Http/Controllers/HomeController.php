@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Package;
 use App\Models\User;
 use App\Models\Notice;
@@ -33,17 +34,17 @@ class HomeController extends Controller
     // }
     // public function packageBuy(Package $package)
     // {
-   
+
     //     User::where('id',auth()->id())->update([
     //         'package_id'=> $package->id,
 
     //      ]);
     //     return back();
-  
+
     // }
 
     public function download(Notice $notice)
-    
+
     {
         dd($notice->fileLink);
         // dd(Voyager::image($notice->file));
@@ -51,14 +52,15 @@ class HomeController extends Controller
         // $path = storage_path()."/app/public".$notice->file;
         // dd($path);
         // $path = Voyager::image($notice->file);
-    //     $url = Storage::disk('public')->url($notice->file);
-    //    dd($url);
+        //     $url = Storage::disk('public')->url($notice->file);
+        //    dd($url);
         // $path = Storage::disk('public')->url($notice->file);
-        $file=json_decode($notice->file);
+        $file = json_decode($notice->file);
         $path = Storage::disk('public')->url($file[0]->download_link);
-       
+
 
         return download($path);
     }
 
+    
 }

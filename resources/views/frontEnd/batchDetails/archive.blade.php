@@ -5,7 +5,7 @@
         আর্কাইভ
     </h2>
     @if ($exams->count())
-        <div class="container my-5" style="height:80vh;overflow-y:scroll">
+        <div class="container  my-5" style="height:80vh;overflow-y:scroll">
 
             <table class="table table-borderless table-hover text-center ">
                 <thead class="bg-success text-light">
@@ -50,9 +50,9 @@
 
                             <td>
                                 <!-- <div class="dropdown open">
-                                                                                                        <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                                            Dropdown
-                                                                                                        </a> -->
+                                                                                                            <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                                Dropdown
+                                                                                                            </a> -->
                                 <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
                                 <a href="{{ route('start-exam', $exam->uuid) }}" class="btn btn-primary"> টেস্ট দিন</a>
                                 <!-- <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"> সিলেবাস</button> -->
@@ -60,7 +60,7 @@
                                 <a href="{{ route('answerSheet', $exam->uuid) }}" class="btn btn-info text-white">
                                     উত্তরমালা</a>
 
-                              
+
                                 <!-- </div> -->
                                 <!-- </div> -->
                                 @auth
@@ -81,10 +81,18 @@
 
         </div>
     @else
-        <div class="container text-center my-5">
+        {{-- <div class="container text-center my-5">
             <img src="{{ asset('icons/archive.svg') }}" height="200px" class="mb-5" alt="">
             <h1>এখন পর্যন্ত কোন পরীক্ষা শেষ হয়নি। সকল পুরনো পরীক্ষা এখানে দেখতে পাবেন।</h1>
 
+        </div> --}}
+        <div class=" d-flex  justify-content-center align-items-center mt-5">
+            <div class="card shadow">
+                <div class="card-body text-center ">
+                    <h2 class="mb-4">এখন পর্যন্ত কোন পরীক্ষা শেষ হয়নি। সকল পুরনো পরীক্ষা এখানে দেখতে পাবেন।</h2>
+                    <a href="{{ route('batch', [$slug, $batch]) }}" class="btn btn-primary">Go Back</a>
+                </div>
+            </div>
         </div>
     @endif
 

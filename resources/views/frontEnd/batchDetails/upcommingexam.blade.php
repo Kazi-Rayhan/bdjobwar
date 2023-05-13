@@ -56,9 +56,9 @@
 
                             <td>
                                 <!-- <div class="dropdown open">
-                                                                                                        <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                                            Dropdown
-                                                                                                        </a> -->
+                                                                                                            <a class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                                Dropdown
+                                                                                                            </a> -->
                                 <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
 
 
@@ -86,10 +86,19 @@
 
         </div>
     @else
-        <div class="container text-center my-5">
+        {{-- <div class="container text-center my-5">
             <img src="{{ asset('icons/upcomingexam.svg') }}" height="200px" class="mb-5" alt="">
             <h1>এই মুহূর্তে কোন আপকামিং সিডিউল নেই।</h1>
 
+        </div> --}}
+
+        <div class=" d-flex justify-content-center align-items-center mt-5">
+            <div class="card shadow w-lg-50">
+                <div class="card-body text-center ">
+                    <h2 class="mb-4">এই মুহূর্তে কোন আপকামিং সিডিউল নেই।</h2>
+                    <a href="{{ route('batch', [$slug, $batch]) }}" class="btn btn-primary">Go Back</a>
+                </div>
+            </div>
         </div>
     @endif
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

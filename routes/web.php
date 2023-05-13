@@ -44,7 +44,8 @@ Route::get('/single_post/{post:slug}', [PageController::class, 'single_post'])->
 Route::post('/comment', [CommentController::class, 'comment'])->name('comment')->middleware('auth');
 
 
-Route::get('download/{notice}', [HomeController::class, 'download'])->name('download');
+Route::get('notices', [PageController::class, 'notices'])->name('notices');
+// Route::get('download/{notice}', [HomeController::class, 'download'])->name('download');
 
 Route::get('/verify/otp/send', [AuthenticateController::class, 'otpSend'])->name('otpSend');
 Route::post('/verify/otp/check', [AuthenticateController::class, 'checkOtp'])->name('checkOtp');

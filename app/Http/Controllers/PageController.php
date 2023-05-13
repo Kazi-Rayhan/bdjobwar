@@ -40,14 +40,14 @@ class PageController extends Controller
 
         $packages = Package::all();
 
-        $notices = Notice::latest()->limit(5)->get();
+        $notice = Notice::latest()->first();
 
         return view(
             'frontEnd/home',
             compact(
                 'sliderExams',
                 'packages',
-                'notices',
+                'notice',
                 'courses',
             )
         );
@@ -175,5 +175,16 @@ class PageController extends Controller
     public function single_post(Post $post)
     {
         return view('single_post', compact('post'));
+    }
+
+    public function notices()
+    {
+        if (request()->has('notice')) {
+            $notice = Notice::findOrNew(request()->notice);
+        } else {
+            $notice = Notice::firstOrNew();
+        }
+        $notices = Notice::paginate(10);
+        return view('notices', compact('notices', 'notice'));
     }
 }

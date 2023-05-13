@@ -180,7 +180,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light sticky-top" style="z-index:10000">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light sticky-top" style="z-index:50">
 
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
                 <li class="nav-item ">
@@ -341,6 +341,22 @@
                                 <p class="ms-2">
                                     জব
                                     সলিউশন
+                                </p>
+                            </a>
+                        </li>
+                          <li class="nav-item ">
+                            <a href="{{ route('notices') }}" class="nav-link d-flex aling-items-center">
+                                <i data-feather="file-text"></i>
+                                <p class="ms-2">
+                                    ব্লগ
+                                </p>
+                            </a>
+                        </li>
+                         <li class="nav-item ">
+                            <a href="{{ route('notices') }}" class="nav-link d-flex aling-items-center">
+                                <i data-feather="bell"></i>
+                                <p class="ms-2">
+                                    নোটিশ
                                 </p>
                             </a>
                         </li>
@@ -511,7 +527,7 @@
                 if (elementWidth == -flag) {
                     flag = parentWidth;
                 }
-            }, 1);
+            }, 40);
         }
 
         [...document.getElementsByClassName('marquee')].map(e => {

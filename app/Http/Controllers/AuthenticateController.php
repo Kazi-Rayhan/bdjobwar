@@ -95,7 +95,7 @@ class AuthenticateController extends Controller
 
 
 
-       
+
         return redirect()
             ->route('resetPasswordVerify')
             ->with('success', 'Successfully OTP Send');
@@ -107,18 +107,24 @@ class AuthenticateController extends Controller
     public function resetOtpCheck(Request $request)
     {
         $request->validate([
-            "otp" => 'required'
+            "otp" => 'required',
+            "password" => 'required|confirmed'
         ]);
         try {
             $user = Session::get('user');
             $user->verify($request->otp);
+            $user->password = Hash::make($request['password']);
+            $user->update();
+            Auth::login($user);
+
+            // Session::forget('user');
             return redirect()
-                ->route('setPassword')
-                ->with('success', 'Successfully OTP Submitted');
+                ->route('home_page')
+                ->with('success', 'Successfully password changed');
         } catch (Exception $e) {
             return redirect()
-            ->back()
-            ->with('error', $e->getMessage());
+                ->back()
+                ->with('error', $e->getMessage());
         } catch (Error $e) {
             return redirect()
                 ->back()

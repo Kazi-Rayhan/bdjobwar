@@ -30,10 +30,16 @@
 
         </div>
     @else
-        <div class="container text-center my-5">
-            <img src="{{ asset('icons/books.png') }}" height="200px" class="mb-5" alt="">
-            <h1>এখন পর্যন্ত কোন স্টাডি মেটিরিয়ালস দেয়া হয়নি। সকল স্টাডি মেটিরিয়ালস এখানে দেখতে পাবেন।</h1>
-
+    <div class=" d-flex  justify-content-center align-items-center mt-5">
+            <div class="card shadow">
+                <div class="card-body text-center w-lg-50">
+                    <h2 class="mb-4">এই ব্যাচের জন্য এখন পর্যন্ত কোন পড়ার পিডিএফ দেয়া হয় নি । <br>
+                    পিডিএফ দেওয়া হলে এখানে ডাউনলোড করে পড়তে পারবেন।
+                     </h2>
+                    <a href="{{ route('batch', [$slug, $batch]) }}" class="btn btn-primary">Go Back</a>
+                </div>
+            </div>
         </div>
+        
     @endif
 @endsection

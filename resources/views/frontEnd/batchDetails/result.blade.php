@@ -4,7 +4,7 @@
     <h2 class="m-5">
         মেধাতালিকা
     </h2>
-    @if ($exams->count())
+    @if (!$exams->count())
         <div class="container table-responsive my-5" style="height:80vh;overflow-y:scroll">
 
             <table class="table table-borderless table-hover text-center ">
@@ -13,7 +13,7 @@
                         <th scope="col">
                             নাম
                         </th>
-                      
+
                         <th scope="col">
                             পূর্ণ নম্বর
                         </th>
@@ -37,22 +37,22 @@
 
 
                             <td>
-                                {{ $exam->title }} -   {{ $exam->sub_title }}
+                                {{ $exam->title }} - {{ $exam->sub_title }}
 
                             </td>
 
-                           
+
 
                             <td>
-                                {{ (new Rakibhstu\Banglanumber\NumberToBangla)->bnNum($exam->fullMark) }}
+                                {{ (new Rakibhstu\Banglanumber\NumberToBangla())->bnNum($exam->fullMark) }}
                             </td>
                             <td>
-                                {{$exam->participants}}
+                                {{ $exam->participants }}
                             </td>
 
 
                             <td>
-                      
+
                                 <a href="{{ route('all-results-exam', $exam->uuid) }}" class="btn btn-dark"> মেধাতালিকা</a>
                                 <a href="{{ route('answerSheet', $exam->uuid) }}" class="btn btn-info text-white">
                                     উত্তরমালা</a>
@@ -65,12 +65,14 @@
 
         </div>
     @else
-        <div class="container text-center my-5">
-            <img src="{{ asset('icons/archive.svg') }}" height="200px" class="mb-5" alt="">
-            <h1>কোন পরীক্ষা নেই</h1>
-            <h5>
-                পড়ে আবার চেক করুণ
-            </h5>
+        <div class=" d-flex  justify-content-center align-items-center mt-5">
+            <div class="card shadow w-lg-50">
+                <div class="card-body text-center  ">
+                    <h2 class="mb-4">এখন পর্যন্ত কোন মেধাতালিকা প্রকাশ করা হয়নি। <br> লাইভ শেষে সকল পরীক্ষার মেধাতালিকা এখানে দেখতে পাবেন।
+                    </h2>
+                    <a href="{{ route('batch', [$slug, $batch]) }}" class="btn btn-primary">Go Back</a>
+                </div>
+            </div>
         </div>
     @endif
 @endsection

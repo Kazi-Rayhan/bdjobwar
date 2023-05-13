@@ -2,19 +2,9 @@
 @section('css')
     <style>
         .marquee {
-            position: relative;
-            width: 100vw;
-            max-width: 100%;
-            height: 200px;
-            overflow-x: hidden;
         }
 
-        .track {
-            position: absolute;
-            white-space: nowrap;
-            will-change: transform;
-            animation: marquee 60s linear infinite;
-        }
+
 
         @keyframes marquee {
             from {
@@ -39,19 +29,11 @@
         <span class="h3 px-2 bg-success position-absolute d-flex justify-content-center align-items-center :"
             style="height:100%;z-index:20">Notice</span>
         <div class="marquee">
-            @foreach ($notices as $notice)
-                @if ($notice->file)
-                    @php
-                        $link = Storage::url(json_decode($notice->file)[0]->download_link) ?? '';
-                    @endphp
-                    <a class="text-success" href="{{ $link }}"> **** {{ $notice->title }} **** </a>
-                @else
-                    <span class="text-success">
-                        **** {{ $notice->title }} ****
-                    </span>
-                @endif
-            @endforeach
-
+         
+                <span class="text-success" style="white-space: nowrap;">
+                    **** {{ $notice->description }} ****
+                </span>
+         
         </div>
     </div>
 

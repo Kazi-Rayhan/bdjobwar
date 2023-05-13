@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -19,7 +20,7 @@ class Batch extends Model
 
     public function files()
     {
-        return json_decode( $this->materials);
+        return json_decode($this->materials);
     }
 
     public function exams()
@@ -58,5 +59,16 @@ class Batch extends Model
             'type' => 'কোর্স',
             'price' => $this->price
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('active', 1);
+        });
+    }
+    public function scopeRemoveScope($query)
+    {
+        return  $query->withoutGlobalScope('active');
     }
 }
