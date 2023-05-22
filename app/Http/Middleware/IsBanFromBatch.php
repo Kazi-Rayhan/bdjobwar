@@ -17,8 +17,8 @@ class IsBanFromBatch
     public function handle(Request $request, Closure $next)
     {
 
-        if (auth()->check() && @auth()->user()->bought($request->batch->id) && @!$request->batch->studentStatus(auth()->user())) {
-            return abort(403,'আপনি ব্যচটি থেকে বহিষ্কার হয়েছেন । অনুগ্রহ করে এডমিনের সাথে যোগাযোগ করুন ।');
+        if (auth()->check() && @auth()->user()->bought($request->batch->id) && !auth()->user()->information->is_paid && @!$request->batch->studentStatus(auth()->user())) {
+            return abort(403, 'আপনি ব্যচটি থেকে বহিষ্কার হয়েছেন । অনুগ্রহ করে এডমিনের সাথে যোগাযোগ করুন ।');
         } else {
             return $next($request);
         }
