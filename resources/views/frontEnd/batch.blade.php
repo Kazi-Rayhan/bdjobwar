@@ -12,11 +12,8 @@
 
                     @if (!auth()->user()->bought($batch->id))
                         <div class="card">
-
-                            <div class="card-body ">
-                            
+                            <div class="card-body ">        
                                 <div class="d-flex justify-content-between">
-
                                     <h1 class="text-end">
                                         মূল্য : {{ $batch->price }} ৳
                                     </h1>

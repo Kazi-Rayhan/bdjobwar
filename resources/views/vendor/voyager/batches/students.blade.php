@@ -23,7 +23,7 @@
                                 <th>
                                     Phone
                                 </th>
-                               
+
                             </tr>
                             @foreach ($users as $user)
                                 <tr>
@@ -36,7 +36,16 @@
                                     <td>
                                         {{ $user->phone }}
                                     </td>
-                                    
+                                    <td>
+                                        <a href="{{ route('voyager.users.show', $user) }}" class="btn btn-primary">View</a>
+                                        @if ($batch->studentStatus($user))
+                                            <a href="{{ route('batch.students.ban', [$batch, $user]) }}" onclick="return confirm('Are you sure ?')"
+                                                class="btn btn-danger">Ban</a>
+                                        @else
+                                            <a href="{{ route('batch.students.unban', [$batch, $user]) }}"  onclick="return confirm('Are you sure ?')"
+                                                class="btn btn-success">Unban</a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>

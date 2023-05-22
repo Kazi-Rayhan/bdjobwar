@@ -29,7 +29,7 @@ class Batch extends Model
     }
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withPivot('active');
     }
     public function link()
     {
@@ -43,7 +43,7 @@ class Batch extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('active', 1);
+        return $query->where('batches.active', 1);
     }
 
     public function orders()
@@ -51,6 +51,13 @@ class Batch extends Model
         return $this->morphMany(Order::class, 'orderable');
     }
 
+    public function studentStatus(User $user)
+    {
+
+        $isActive = $this->users()->where('user_id', $user->id)->first()->pivot->active;
+
+        return $isActive;
+    }
 
     public function information()
     {
@@ -61,14 +68,5 @@ class Batch extends Model
         ];
     }
 
-    protected static function booted(): void
-    {
-        static::addGlobalScope('active', function (Builder $builder) {
-            $builder->where('active', 1);
-        });
-    }
-    public function scopeRemoveScope($query)
-    {
-        return  $query->withoutGlobalScope('active');
-    }
+
 }

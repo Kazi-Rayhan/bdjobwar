@@ -74,6 +74,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/question/{question}/active', [QuestionsVoyagerController::class, 'active'])->name('question-active');
         Route::delete('/question/{question}/{exam}/detach', [QuestionsVoyagerController::class, 'detach'])->name('question-detach');
         Route::get('/batches/{batch}/users', [AdminController::class, 'students'])->name('batch.students');
+        Route::get('/batches/{batch}/users/{user}/ban', [AdminController::class, 'ban'])->name('batch.students.ban');
+        Route::get('/batches/{batch}/users/{user}/unban', [AdminController::class, 'unban'])->name('batch.students.unban');
     });
 });
 

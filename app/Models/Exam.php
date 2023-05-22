@@ -22,7 +22,7 @@ class Exam extends Model
 
     public function priceFormat()
     {
-        
+
         if (@$this->batch->price > 0) {
             return 'পেইড';
         } else {
@@ -120,5 +120,19 @@ class Exam extends Model
     public function batch()
     {
         return $this->belongsTo(Batch::class);
+    }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope('activeBatch', function (Builder $builder) {
+            $builder->whereHas('batch', function ($query) {
+                $query->where('active', 1);
+            });
+        });
+    }
+
+    public function scopeRemove()
+    {
+        return $this->withoutGlobalScopes('activeBatch');
     }
 }

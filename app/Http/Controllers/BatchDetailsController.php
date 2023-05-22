@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class BatchDetailsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('IsBanFromBatch');
+    }
     public function routine($slug, Batch $batch)
     {
         $exams = Exam::active()->where('batch_id', $batch->id)->orderBy('from', 'asc')->get();
