@@ -69,8 +69,6 @@ class BatchDetailsController extends Controller
     }
     public function materials($slug, Batch $batch)
     {
-
-
         return view('frontEnd.batchDetails.materials', compact('batch','slug'));
     }
 }

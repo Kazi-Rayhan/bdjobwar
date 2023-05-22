@@ -33,8 +33,6 @@
                             $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
                         @endphp
                         <tr>
-
-
                             <td>
                                 {{ $exam->title }}
                             </td>

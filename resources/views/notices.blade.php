@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 ">
+            <div class="col-md-7 ">
                 <div class="card shadow">
                     <div class="card-header">
                         <h3>{{ $notice->title }}</h3>
@@ -28,15 +28,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                    <h3>Notices :</h3>
+                    <h3>Latest Notices </h3>
                         <ul class="">
                             @foreach ($notices as $n)
-                                <li class="list-group-item shadow @if($notice == $n) bg-primary @endif"> <a
+                                <li class="list-group-item shadow @if($notice == $n) bg-primary @endif"> <a class="h4"
                                         href="{{ route('notices', ['notice' => $n->id]) }}">{{ $loop->iteration }}.
                                         {{ $n->title }}</a>
+                                        <br>
+                                        <small class="ms-3">{{$n->created_at->format('d M, Y')}}</small>
                                 </li>
                             @endforeach
                         </ul>

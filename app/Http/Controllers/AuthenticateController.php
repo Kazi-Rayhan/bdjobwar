@@ -115,11 +115,11 @@ class AuthenticateController extends Controller
             $user->verify($request->otp);
             $user->password = Hash::make($request['password']);
             $user->update();
-            Auth::login($user);
+
 
             // Session::forget('user');
             return redirect()
-                ->route('home_page')
+                ->route('login')
                 ->with('success', 'Successfully password changed');
         } catch (Exception $e) {
             return redirect()

@@ -251,14 +251,14 @@
                                             </td>
                                         @endforeach
                                         <td class="no-sort no-click bread-actions">
-                                        <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u={{route('batch.details',$data)}}&display=popup&ref=plugin&src=share_button" style="margin-left: 2px;"> <i class="voyager-facebook"></i> Share on facebook</a>
-                                        <button class="btn btn-primary copy" data-link="{{route('batch.details',$data)}}" >Copy Link</button> 
+                                       <button class="btn btn-primary copy" data-link="{{route('batch.details',$data)}}" >Copy Link</button> 
                                    
                                         @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))
                                                     @include('voyager::bread.partials.actions', ['action' => $action])
                                                 @endif
                                             @endforeach
+                                            <a class="btn btn-primary" href="{{route('batch.students',$data)}}">Students</a>
                                         </td>
                                     </tr>
                                     @endforeach

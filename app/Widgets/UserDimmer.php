@@ -24,6 +24,7 @@ class UserDimmer extends BaseDimmer
     public function run()
     {
         $count = User::where('role_id',2)->count();
+       
         $string = trans_choice('voyager::dimmer.user', $count);
 
         return view('voyager::dimmer', array_merge($this->config, [
@@ -45,6 +46,6 @@ class UserDimmer extends BaseDimmer
      */
     public function shouldBeDisplayed()
     {
-        return Auth::user()->can('browse', Voyager::model('User'));
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthenticateController;
@@ -72,6 +73,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/question/{question}/disable', [QuestionsVoyagerController::class, 'disable'])->name('question-disable');
         Route::post('/question/{question}/active', [QuestionsVoyagerController::class, 'active'])->name('question-active');
         Route::delete('/question/{question}/{exam}/detach', [QuestionsVoyagerController::class, 'detach'])->name('question-detach');
+        Route::get('/batches/{batch}/users', [AdminController::class, 'students'])->name('batch.students');
     });
 });
 
@@ -176,26 +178,7 @@ Route::group(['prefix' => '/batch/{slug}/{batch}', 'as' => 'batch.', 'controller
     Route::get('/study-materials', 'materials')->name('materials');
 });
 
-Route::get('/test', function () {
-    $result = UserExam::whereNotNull('answers')->first();
-    $exam = Exam::find($result->exam_id);
 
-    return Revaluation::evaluate($exam, $result);
-    return Revaluation::getAnswers($exam);
-});
-
-
-Route::get('/test2', function () {
-    $array = ['Rayhan', 'Shuvo', 'Tamim', 'Loop'];
-
-    //SELECT * FROM batches
-    $rayhan = '';
-    $courses = Course::all();
-
-    //SELECT * FROM batches WHERE price = 0
-    $batches = Batch::where('price', 0)->get();
-    return view('test', compact('array', 'batches', 'courses'));
-});
 
 Route::get('/nav', function () {
     return view('nav');

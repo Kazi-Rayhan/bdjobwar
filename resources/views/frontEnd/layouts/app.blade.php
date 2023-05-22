@@ -12,7 +12,7 @@
         content="admin template, Koho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <title>BD Job War</title>
-   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
     <script src="https://kit.fontawesome.com/10ec6aaa98.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
@@ -178,6 +178,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
     <div class="wrapper">
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light sticky-top" style="z-index:50">
@@ -344,7 +345,7 @@
                                 </p>
                             </a>
                         </li>
-                          <li class="nav-item ">
+                        <li class="nav-item ">
                             <a href="{{ route('notices') }}" class="nav-link d-flex aling-items-center">
                                 <i data-feather="file-text"></i>
                                 <p class="ms-2">
@@ -352,7 +353,7 @@
                                 </p>
                             </a>
                         </li>
-                         <li class="nav-item ">
+                        <li class="nav-item ">
                             <a href="{{ route('notices') }}" class="nav-link d-flex aling-items-center">
                                 <i data-feather="bell"></i>
                                 <p class="ms-2">
@@ -367,7 +368,17 @@
 
         </aside>
         <div class="content-wrapper px-3 pt-3">
-
+            @if (session()->has('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
+            @if (session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+        
             @yield('content')
         </div>
 
@@ -375,7 +386,8 @@
             <div class="container-fluid  p-5 row justify-content-around ">
 
                 <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
-                    <img src="{{ asset('logo-light.png') }}" height="150px" style="object-fit:stretch" alt="">
+                    <img src="{{ asset('logo-light.png') }}" height="150px" style="object-fit:stretch"
+                        alt="">
                     <div class="d-flex flex-column align-items-center ">
 
                         <p class="text-light p-0 mt-3">
@@ -441,6 +453,7 @@
             </div>
         </footer>
 
+
     </div>
 
     <!-- latest jquery-->
@@ -503,17 +516,7 @@
             "hideMethod": "fadeOut"
         }
     </script>
-
-    @if (session()->has('error'))
-        <script>
-            toastr.error("{{ session('error') }}")
-        </script>
-    @endif
-    @if (session()->has('success'))
-        <script>
-            toastr.success("{{ session('success') }}")
-        </script>
-    @endif
+    <script></script>
 
     <script>
         function animate(element) {

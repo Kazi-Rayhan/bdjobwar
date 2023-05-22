@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5">
 
-            <div class="card shadow-lg">
+            <div class="card shadow-lg mt-5">
                 <div class="card-header py-3 bg-success text-white fs-5">লগইন ফরম</div>
 
                 <div class="card-body">
@@ -62,7 +62,7 @@
                             @endif
                             <br>
                             যদি কোন একাউন্ট না থাকে তাহলে <a href="{{ route('register') }}"
-                                class="text-primary font-italic">register</a> করুন।
+                                class="text-primary font-italic">Register</a> করুন।
                         </div>
                     </form>
                 </div>

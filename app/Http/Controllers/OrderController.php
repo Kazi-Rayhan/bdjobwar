@@ -44,7 +44,7 @@ class OrderController extends Controller
         }
 
         define('DECLINED', 0);
-        $orders = $data->orders->where('user_id', auth()->id())->where('status', '!=', DECLINED)->first();
+        $orders = $data->orders->where('user_id', auth()->id())->where('status', '==', 2)->first();
 
         if ($orders) {
             return redirect()
@@ -63,7 +63,6 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
-        //    dd($request->all());
         $request->validate([
             "account" => 'required',
             "trnxId" => 'nullable',

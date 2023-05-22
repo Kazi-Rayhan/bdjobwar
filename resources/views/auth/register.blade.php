@@ -5,11 +5,6 @@
     <div class="container my-5 py-5">
         <div class="row justify-content-center">
             <div class="col-md-5">
-                <p>
-                    আপনি নতুন ইউজার হয়ে থাকলে রেজিস্ট্রেশন ফর্ম পূরণ করুন। পূর্বে রেজিস্ট্রেশন করে থাকলে পুনরায় রেজিস্ট্রেশন
-                    করার প্রয়োজন নেই। রেজিস্ট্রেশনকৃত মোবাইল নম্বর ও পাসওয়ার্ড দিয়ে লগইন করলেই হবে। লগইন করতে <a href="{{route('login')}}">এখানে ক্লিক
-                    করুন।</a> 
-                </p>
                 <div class="card shadow-lg">
                     <div class="card-header py-3 bg-success text-white fs-5">{{ __('রেজিস্ট্রেশন ফরম') }}</div>
 
@@ -20,9 +15,9 @@
                             <div class="row mb-4 px-4 pt-4">
 
                                 <div class="col-md-12">
-                                    <input id="name" placeholder="আপনার নাম" type="text"
-                                        class="border border-success form-control py-2 @error('name') is-invalid @enderror"
-                                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="name" placeholder="আপনার নাম" type="text" style="border:1px solid"
+                                        class="form-control py-2 @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -35,9 +30,9 @@
                             <div class="row mb-4 px-4">
 
                                 <div class="col-md-12">
-                                    <input id="phone" type="phone" placeholder="মোবাইল নম্বর"
-                                        class=" border border-success form-control py-2 @error('phone') is-invalid @enderror"
-                                        name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                    <input id="phone" type="phone" placeholder="মোবাইল নম্বর" style="border:1px solid"
+                                        class="form-control py-2 @error('phone') is-invalid @enderror" name="phone"
+                                        value="{{ old('phone') }}" required autocomplete="phone">
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -45,8 +40,8 @@
                                     @enderror
                                 </div>
                                 <!-- <div class="col-md-3 mt-2">
-                                    <a href="#" class="btn-danger" id="otp-btn" style="cursor:pointer">OTP send</a>
-                                </div>  -->
+                                            <a href="#" class="btn-danger" id="otp-btn" style="cursor:pointer">OTP send</a>
+                                        </div>  -->
                             </div>
 
 
@@ -54,9 +49,9 @@
                             <div class="row mb-4 px-4">
 
                                 <div class="col-md-12">
-                                    <input id="password" type="password" placeholder="পাসওয়ার্ড"
-                                        class=" border border-success form-control py-2 @error('password') is-invalid @enderror"
-                                        name="password" required autocomplete="new-password">
+                                    <input id="password" type="password" placeholder="পাসওয়ার্ড" style="border:1px solid"
+                                        class="form-control py-2 @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="new-password">
                                     <button type="button" id="hidePassword" style="" onclick="myFunction()"
                                         class="field-icon"><i class=" text-secondary fas fa-eye"></i></button>
                                     <div id="emailHelp" class="form-text">আপনার পছন্দমত পাসওয়ার্ড সেট করুন ।</div>
@@ -73,7 +68,7 @@
 
                                 <div class="col-md-12">
                                     <input id="password-confirm" type="password" placeholder="কনফার্ম পাসওয়ার্ড"
-                                        class=" border border-success form-control py-2" name="password_confirmation"
+                                        style="border:1px solid" class="form-control py-2" name="password_confirmation"
                                         required autocomplete="new-password">
                                     <button type="button" id="hideConfirmPassword" style="" onclick="myFunction2()"
                                         class="field-icon"><i class=" text-secondary fas fa-eye"></i></button>
@@ -86,6 +81,9 @@
                                     <button type="submit" class="btn btn-success">
                                         ফ্রি রেজিস্ট্রেশন করুন
                                     </button>
+                                    <p class="mt-2">
+                                        যদি কোন অ্যাকাউন্ট থাকে তাহলে <a class="text-primary font-italic" href="{{ route('login') }}">Log In</a> করুন।
+                                    </p>
                                 </div>
                             </div>
                         </form>
