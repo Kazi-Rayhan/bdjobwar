@@ -8,7 +8,7 @@
         <div class="container table-responsive my-5" style="height:80vh;overflow-y:scroll">
 
             <table class="table table-borderless table-hover text-center ">
-                <thead class="bg-success text-light">
+                <thead class="bg-success text-white">
                     <tr>
                         <th scope="col">
                             নাম

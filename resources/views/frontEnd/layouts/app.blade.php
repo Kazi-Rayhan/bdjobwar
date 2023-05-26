@@ -167,8 +167,8 @@
             background-color: #015b25 !important;
         }
 
-        th {
-            color: #fff !important;
+        .text-white th {
+            color: #fff;
         }
     </style>
 
@@ -181,12 +181,20 @@
 
     <div class="wrapper">
 
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light sticky-top" style="z-index:50">
+        <nav class=" navbar navbar-expand navbar-white navbar-light sticky-top" style="z-index:3000">
 
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
+
                 <li class="nav-item ">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
+                </li>
+                <li class=" mr-5">
+                    <a href="{{ url('/') }}" class="">
+                        <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" style="height:60px;color:#fff">
+                        <!-- <span class="brand-text font-weight-light">Bd Job War</span> -->
+                    </a>
+
                 </li>
                 <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('home_page') }}" class="nav-link">হোম</a>
@@ -206,13 +214,7 @@
                 <li class="nav-item d-none d-sm-inline-block  nav-custom">
                     <a href="{{ route('post') }}" class="nav-link"> ব্লগ</a>
                 </li>
-                <li class="d-md-none d-sm-inline-block  ">
-                    <a href="{{ url('/') }}" class="">
-                        <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" style="height:40px;color:#fff">
-                        <!-- <span class="brand-text font-weight-light">Bd Job War</span> -->
-                    </a>
 
-                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -247,7 +249,7 @@
                                 </a>
                             </li>
                             <li class="nav-item nav-hover-secondary">
-                                <a href="{{ route('courses') }}" class="d-flex aling-items-center">
+                                <a href="{{ route('exams') }}" class="d-flex aling-items-center">
                                     <i data-feather="edit-2"></i>
                                     <p class="ms-2 mt-2">
                                         পরীক্ষাসমূহ
@@ -289,14 +291,11 @@
 
         <aside class="main-sidebar  elevation-4">
 
-            <a href="{{ url('/') }}" class="brand-link text-center">
-                <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" style="height:35px;color:#fff">
-                <!-- <span class="brand-text font-weight-light">Bd Job War</span> -->
-            </a>
 
-            <div class="sidebar " style="background-color: #fff;">
 
-                <nav class="mt-2">
+            <div class="sidebar mt-5" style="background-color: #fff;">
+
+                <nav class="mt-5">
                     <ul class="nav nav-pills  nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
@@ -378,7 +377,7 @@
                     {{ session('success') }}
                 </div>
             @endif
-        
+
             @yield('content')
         </div>
 

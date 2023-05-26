@@ -9,7 +9,7 @@
 
 
             <table class="table table-border table-hover text-center ">
-                <thead class="bg-success text-light">
+                <thead class="bg-success text-white">
                     <tr>
                         <th scope="col">
                             পরীক্ষার নাম

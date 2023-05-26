@@ -49,7 +49,8 @@ class DashboardController extends Controller
     }
     public function exams()
     {
-        $exams = UserExam::where('user_id', Auth()->user()->id)->get();
+        $exams = UserExam::where('user_id', Auth()->user()->id)->has('exam')->with('exam','exam:title,uuid,sub_title,id')->paginate(10);
+     
         return view('dashboard.exams', compact('exams'));
     }
     public function favourites()
