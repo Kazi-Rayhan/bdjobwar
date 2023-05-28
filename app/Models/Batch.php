@@ -29,7 +29,7 @@ class Batch extends Model
     }
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot('active');
+        return $this->belongsToMany(User::class)->withTimestamps()->withPivot('active');
     }
     public function link()
     {
@@ -67,6 +67,4 @@ class Batch extends Model
             'price' => $this->price
         ];
     }
-
-
 }

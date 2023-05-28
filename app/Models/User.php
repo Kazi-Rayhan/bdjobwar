@@ -65,7 +65,7 @@ class User extends \TCG\Voyager\Models\User
 
     public function batches()
     {
-        return $this->belongsToMany(Batch::class);
+        return $this->belongsToMany(Batch::class)->withTimestamps();
     }
 
 

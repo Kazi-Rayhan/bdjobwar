@@ -224,12 +224,12 @@
 
                 @auth
 
-                    <li class="nav-item dropdown mr-3">
+                    <li class="nav-item dropdown mr-5">
                         <a class="btn btn-success dropdown-toggle w-100 " data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img src="{{ auth()->user()->avatar ? Storage::url(auth()->user()->avatar) : asset('profile.png') }}"
-                                style="height:30px" alt="">
-                            {{ Str::limit(auth()->user()->name, 10) }}
+                                style="height:30px" class="rounded-circle" alt="">
+                            {{ Str::limit(auth()->user()->name, 5,'.. ') }}
                         </a>
                         <ul class="dropdown-menu ">
                             <li class="nav-item nav-hover-secondary">

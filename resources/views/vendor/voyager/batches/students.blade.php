@@ -14,41 +14,60 @@
                     <div class="panel-body">
                         <table class="table table-primary">
                             <tr>
+                                <td colspan="3">
+                                    <form action="{{ route('batch.students', $batch) }}" method="get">
+
+                                        <div class="form-group">
+                                            <label for="">Search</label>
+                                            <input type="text" name="q" class="form-control"
+                                                placeholder="I am looking for ...." value="{{request()->q}}">
+                                        </div>
+                                        <button class="btn btn-primary">
+                                            Find
+                                        </button>
+                                        <a class="btn btn-info" href="{{ route('batch.students', $batch) }}">Reset</a>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+
                                 <th>
-                                    Image
+                                    Roll
                                 </th>
                                 <th>
-                                    Name
+                                    Roll
                                 </th>
                                 <th>
-                                    Phone
+                                    Actions
                                 </th>
 
                             </tr>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td>
-                                        <img height="100" src="{{ Voyager::image($user->avatar) }}" alt="">
-                                    </td>
+
                                     <td>
                                         {{ $user->name }}
                                     </td>
                                     <td>
-                                        {{ $user->phone }}
+                                        {{ $user->information->id }}
                                     </td>
+
                                     <td>
                                         <a href="{{ route('voyager.users.show', $user) }}" class="btn btn-primary">View</a>
                                         @if ($batch->studentStatus($user))
-                                            <a href="{{ route('batch.students.ban', [$batch, $user]) }}" onclick="return confirm('Are you sure ?')"
-                                                class="btn btn-danger">Ban</a>
+                                            <a href="{{ route('batch.students.ban', [$batch, $user]) }}"
+                                                onclick="return confirm('Are you sure ?')" class="btn btn-danger">Ban</a>
                                         @else
-                                            <a href="{{ route('batch.students.unban', [$batch, $user]) }}"  onclick="return confirm('Are you sure ?')"
-                                                class="btn btn-success">Unban</a>
+                                            <a href="{{ route('batch.students.unban', [$batch, $user]) }}"
+                                                onclick="return confirm('Are you sure ?')" class="btn btn-success">Unban</a>
                                         @endif
+                                        <a href="{{ route('batch.students.remove', [$batch, $user]) }}"
+                                            onclick="return confirm('Are you sure ?')" class="btn btn-warning">Remove</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </table>
+                        {{$users->links()}}
                     </div>
 
                 </div>

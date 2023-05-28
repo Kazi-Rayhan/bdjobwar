@@ -73,9 +73,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/question/{question}/disable', [QuestionsVoyagerController::class, 'disable'])->name('question-disable');
         Route::post('/question/{question}/active', [QuestionsVoyagerController::class, 'active'])->name('question-active');
         Route::delete('/question/{question}/{exam}/detach', [QuestionsVoyagerController::class, 'detach'])->name('question-detach');
-        Route::get('/batches/{batch}/users', [AdminController::class, 'students'])->name('batch.students');
-        Route::get('/batches/{batch}/users/{user}/ban', [AdminController::class, 'ban'])->name('batch.students.ban');
-        Route::get('/batches/{batch}/users/{user}/unban', [AdminController::class, 'unban'])->name('batch.students.unban');
+        Route::get('/batches/{batch}/users', [AdminController::class, 'batch_students'])->name('batch.students');
+        Route::get('/batches/{batch}/users/{user}/ban', [AdminController::class, 'batch_ban'])->name('batch.students.ban');
+        Route::get('/batches/{batch}/users/{user}/unban', [AdminController::class, 'batch_unban'])->name('batch.students.unban');
+        Route::get('/packages/{batch}/users/{user}/remove', [AdminController::class, 'batch_remove'])->name('batch.students.remove');
+        Route::get('/packages/{package}/users', [AdminController::class, 'package_students'])->name('package.students');
+        Route::get('/packages/{package}/users/{user}/cancel', [AdminController::class, 'package_remove'])->name('package.students.remove');
     });
 });
 
