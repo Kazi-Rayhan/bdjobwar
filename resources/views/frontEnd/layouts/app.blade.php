@@ -224,8 +224,8 @@
 
                 @auth
 
-                    <li class="nav-item dropdown " style="margin-right:10px">
-                        <a class="btn btn-outline dropdown-toggle w-100 " data-bs-toggle="dropdown"
+                    <li class="nav-item dropdown mr-3">
+                        <a class="btn btn-success dropdown-toggle w-100 " data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img src="{{ auth()->user()->avatar ? Storage::url(auth()->user()->avatar) : asset('profile.png') }}"
                                 style="height:30px" alt="">
@@ -278,7 +278,7 @@
                             Login
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item d-none d-lg-block">
                         <a class="btn btn-sm btn-success" href="{{ route('register') }}">
                             Register
                         </a>
