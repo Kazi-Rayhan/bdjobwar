@@ -18252,7 +18252,7 @@ ul.pro-services li:nth-child(n+2) {
   top: 50%;
   right: 8px;
   transform: translateY(-50%);
-  content: "\f107";
+  /* content: "\f107"; */
   border: none;
   font-family: FontAwesome;
   font-size: 18px;
