@@ -170,6 +170,14 @@
         .text-white th {
             color: #fff;
         }
+
+        .dropdown-menu {
+            width: 50%;
+        }
+
+        .dropdown-menu>.nav-item a {
+            padding: 0px !important;
+        }
     </style>
 
 
@@ -229,7 +237,7 @@
                             aria-expanded="false">
                             <img src="{{ auth()->user()->avatar ? Storage::url(auth()->user()->avatar) : asset('profile.png') }}"
                                 style="height:30px" class="rounded-circle" alt="">
-                            {{ Str::limit(auth()->user()->name, 5,'.. ') }}
+                            {{ Str::limit(auth()->user()->name, 5, '.. ') }}
                         </a>
                         <ul class="dropdown-menu ">
                             <li class="nav-item nav-hover-secondary">

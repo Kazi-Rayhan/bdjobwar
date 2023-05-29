@@ -60,7 +60,10 @@
                             <tr>
 
                                 <th>
-                                    Roll
+                                    Name
+                                </th>
+                                  <th>
+                                    Phone
                                 </th>
                                 <th>
                                     Roll
@@ -80,6 +83,9 @@
 
                                     <td>
                                         {{ $user->name }}
+                                    </td>
+                                      <td>
+                                        {{ $user->phone }}
                                     </td>
                                     <td>
                                         {{ $user->information->id }}

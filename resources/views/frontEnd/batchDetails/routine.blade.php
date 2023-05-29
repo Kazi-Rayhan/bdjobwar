@@ -25,7 +25,7 @@
                                         <h3>{{ $exam->title }} </h3>
                                         <h6>{{ $exam->sub_title }}</h6>
 
-                                        <small>Status : @if (Carbon\Carbon::parse($exam->to)->gt(now())  && Carbon\Carbon::parse($exam->from)->lt(now()))
+                                        <small>Status : @if (Carbon\Carbon::parse($exam->to)->gt(now()) && Carbon\Carbon::parse($exam->from)->lt(now()))
                                                 <span class="text-primary"> Running </span>
                                             @elseif(Carbon\Carbon::parse($exam->to)->gt(now()))
                                                 <span class="text-warning"> Upcomming </span>
@@ -34,10 +34,10 @@
                                             @endif
                                         </small>
 
-                                        <p>পরীক্ষার সিলেবাস :  {{$exam->syllabus}}</p>
-                                          
-                                         
-                                        
+                                        <p>পরীক্ষার সিলেবাস : {!! $exam->syllabus !!}</p>
+
+
+
                                     </td>
 
                                 </tr>
@@ -50,7 +50,7 @@
             </div>
         </div>
     @else
-       <div class=" d-flex  justify-content-center align-items-center mt-5">
+        <div class=" d-flex  justify-content-center align-items-center mt-5">
             <div class="card shadow w-lg-50">
                 <div class="card-body text-center ">
                     <h2 class="mb-4">এখনো কোন রুটিন আপলোড করা হয়নি । পরীক্ষার <br> রুটিন এই বাটনে সাজানো থাকবে</h2>

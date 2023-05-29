@@ -18,7 +18,7 @@
     <div class="container my-md-5 my-2 w-100">
         <div class="d-flex flex-column  align-items-start gap-3">
             <div>
-            
+
                 <h2 class="text-dark">{{ $exam->title }}</h2>
                 <h5 style="color:#666666">{{ $exam->sub_title }}</h5>
                 <div style="height:2px;width:60px" class="bg-danger"></div>
@@ -70,7 +70,9 @@
             </p>
 
             <p style="color:#666666" class="m-0 p-0">
-                <strong class="text-dark">বিঃদ্রঃ : </strong>পরীক্ষা শুরু করার পর পরীক্ষা শেষ না করে বের হওয়া যাবে না।  ইন্টারনেট প্রবলেম, মোবাইলে চার্জ শেষ হয়ে যাওয়া, কল আসার কারনে পরীক্ষা বন্ধ হয়ে গেলে প্রশ্নে নির্ধারিত সময় শেষ হওয়ার ১০ মিনিট পর আবার পরীক্ষা দিতে পারবেন।
+                <strong class="text-dark">বিঃদ্রঃ : </strong>পরীক্ষা শুরু করার পর পরীক্ষা শেষ না করে বের হওয়া যাবে না।
+                ইন্টারনেট প্রবলেম, মোবাইলে চার্জ শেষ হয়ে যাওয়া, কল আসার কারনে পরীক্ষা বন্ধ হয়ে গেলে প্রশ্নে নির্ধারিত সময়
+                শেষ হওয়ার ১০ মিনিট পর আবার পরীক্ষা দিতে পারবেন।
             </p>
 
 
@@ -86,7 +88,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        {{ $exam->syllabus }}
+                        {!! $exam->syllabus !!}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

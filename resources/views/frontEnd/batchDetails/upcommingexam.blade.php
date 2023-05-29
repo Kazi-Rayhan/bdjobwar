@@ -62,7 +62,7 @@
                                 <!-- <div class="dropdown-menu" aria-labelledby="triggerId"> -->
 
 
-                                <button data-syllabus="{{ $exam->syllabus }}" type="button" data-bs-toggle="modal"
+                                <button data-syllabus="{{ strip_tags($exam->syllabus) }}" type="button" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" class="btn btn-dark"> সিলেবাস</button>
                                 @auth
                                     @if (auth()->user()->information->is_paid ||

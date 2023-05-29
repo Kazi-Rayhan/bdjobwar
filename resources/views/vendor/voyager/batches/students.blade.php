@@ -20,7 +20,7 @@
                                         <div class="form-group">
                                             <label for="">Search</label>
                                             <input type="text" name="q" class="form-control"
-                                                placeholder="I am looking for ...." value="{{request()->q}}">
+                                                placeholder="I am looking for ...." value="{{ request()->q }}">
                                         </div>
                                         <button class="btn btn-primary">
                                             Find
@@ -32,7 +32,10 @@
                             <tr>
 
                                 <th>
-                                    Roll
+                                    Name
+                                </th>
+                                <th>
+                                    Phone
                                 </th>
                                 <th>
                                     Roll
@@ -47,6 +50,9 @@
 
                                     <td>
                                         {{ $user->name }}
+                                    </td>
+                                    <td>
+                                        {{ $user->phone }}
                                     </td>
                                     <td>
                                         {{ $user->information->id }}
@@ -67,7 +73,7 @@
                                 </tr>
                             @endforeach
                         </table>
-                        {{$users->links()}}
+                        {{ $users->links() }}
                     </div>
 
                 </div>

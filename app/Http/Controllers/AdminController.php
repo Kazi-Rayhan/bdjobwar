@@ -15,6 +15,7 @@ class AdminController extends Controller
 
         $users = $batch->users()->where(function ($queryBuilder) use ($query) {
             $queryBuilder->where('name', 'LIKE', '%' . $query . '%')
+                ->orWhere('phone', 'LIKE', '%' . $query . '%')
                 ->orWhereHas('information', function ($queryBuilder) use ($query) {
                     $queryBuilder->where('id', $query);
                 });
@@ -56,8 +57,7 @@ class AdminController extends Controller
         $usersQuery = User::whereHas('information', function ($queryBuilder) use ($package) {
             $queryBuilder->where('package_id', $package->id);
         })->where(function ($queryBuilder) use ($query, $status) {
-            $queryBuilder->where('name', 'LIKE', '%' . $query . '%');
-
+            $queryBuilder->where('name', 'LIKE', '%' . $query . '%')->orWhere('phone', 'LIKE', '%' . $query . '%');
             if ($status === 'RUNNING') {
                 $queryBuilder->whereHas('information', function ($queryBuilder) {
                     $queryBuilder->whereDate('expired_at', '>=', now());
