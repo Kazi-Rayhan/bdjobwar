@@ -189,9 +189,9 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
-                <li class=" mr-5">
+                <li class=" mr-2">
                     <a href="{{ url('/') }}" class="">
-                        <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" style="height:60px;color:#fff">
+                        <img src="{{ asset('logo.png') }}" alt="AdminLTE Logo" style="height:50px;color:#fff">
                         <!-- <span class="brand-text font-weight-light">Bd Job War</span> -->
                     </a>
 
