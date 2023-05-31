@@ -42,11 +42,9 @@ class DisableUsers extends Command
         $users = UserMeta::where('is_paid', 1)->where('expired_at', '<', now())->get();
         foreach ($users as $user) {
             $user->update([
-                'is_paid' => 0,
-                'package_id' => 5,
-
+                'is_paid' => 0
             ]);
         }
-       echo $users->count() . ' is now disabled';
+        echo $users->count() . ' is now disabled';
     }
 }

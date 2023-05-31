@@ -58,11 +58,13 @@
                                 </td>
                             </tr>
                             <tr>
-
+                                <th>
+                                    #
+                                </th>
                                 <th>
                                     Name
                                 </th>
-                                  <th>
+                                <th>
                                     Phone
                                 </th>
                                 <th>
@@ -80,11 +82,16 @@
                             </tr>
                             @foreach ($users as $user)
                                 <tr>
-
+                                    @php
+                                        $index = ($users->currentPage() - 1) * $users->perPage() + $loop->index + 1;
+                                    @endphp
+                                    <td>
+                                        {{ $index }}
+                                    </td>
                                     <td>
                                         {{ $user->name }}
                                     </td>
-                                      <td>
+                                    <td>
                                         {{ $user->phone }}
                                     </td>
                                     <td>

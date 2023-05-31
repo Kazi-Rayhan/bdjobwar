@@ -14,9 +14,16 @@
                     <div class="panel-body">
                         <table class="table table-primary">
                             <tr>
-                                <td colspan="3">
+                                <td colspan="5">
                                     <form action="{{ route('batch.students', $batch) }}" method="get">
-
+                                        <div class="form-group">
+                                            <label for="">Filter</label>
+                                            <select name="f" id="" class="form-control">
+                                                <option value="" >All</option>
+                                                <option value="0" @if(request()->f == 0) selected @endif>Ban</option>
+                                                <option value="1" @if(request()->f == 1) selected @endif>Unban</option>
+                                            </select>
+                                        </div>
                                         <div class="form-group">
                                             <label for="">Search</label>
                                             <input type="text" name="q" class="form-control"
@@ -30,7 +37,9 @@
                                 </td>
                             </tr>
                             <tr>
-
+                                <th>
+                                    #
+                                </th>
                                 <th>
                                     Name
                                 </th>
@@ -47,7 +56,12 @@
                             </tr>
                             @foreach ($users as $user)
                                 <tr>
-
+                                    @php
+                                        $index = ($users->currentPage() - 1) * $users->perPage() + $loop->index + 1;
+                                    @endphp
+                                    <td>
+                                        {{ $index }}
+                                    </td>
                                     <td>
                                         {{ $user->name }}
                                     </td>

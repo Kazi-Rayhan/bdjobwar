@@ -13,7 +13,9 @@ class AdminController extends Controller
     {
         $query = $request->get('q'); // Get the search query from the request
 
-        $users = $batch->users()->where(function ($queryBuilder) use ($query) {
+        $users = $batch->users()->when($request->filled('f'), function ($query) {
+            return $query->where('batch_user.active', request()->f);
+        })->where(function ($queryBuilder) use ($query) {
             $queryBuilder->where('name', 'LIKE', '%' . $query . '%')
                 ->orWhere('phone', 'LIKE', '%' . $query . '%')
                 ->orWhereHas('information', function ($queryBuilder) use ($query) {

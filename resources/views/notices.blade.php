@@ -14,12 +14,7 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <h3>{{ $notice->title }}</h3>
-                        @if ($notice->file)
-                            @php
-                                $link = Storage::url(json_decode($notice->file)[0]->download_link) ?? '';
-                            @endphp
-                            <a class="btn btn-sm btn-primary mt-3" href="{{ $link }}">Download</a>
-                        @endif
+                      
                     </div>
                     <div class="card-body">
                         <p>
