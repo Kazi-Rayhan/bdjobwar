@@ -6,6 +6,7 @@ use App\Models\Batch;
 use App\Models\Package;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -23,7 +24,25 @@ class AdminController extends Controller
                 });
         })->paginate(20);
 
-        return view('vendor.voyager.batches.students', compact('users', 'batch'));
+        $count = [
+            'total' => $batch->users()->count(),
+            'ban' => $batch->users()->where('batch_user.active', 0)->count(),
+            'active' => $batch->users()->where('batch_user.active', 1)->count(),
+        ];
+
+        return view('vendor.voyager.batches.students', compact('users', 'batch', 'count'));
+    }
+    public function batch_students_pdf(Batch $batch, Request $request)
+    {
+
+
+        $users = $batch->users;
+
+        $pdf = PDF::loadView('vendor.voyager.batches.students_pdf', ['users' => $users, 'batch' => $batch], [
+            'title' => $batch->title . ' Admissions',
+            'Author' => 'BD Job War'
+        ]);
+        return $pdf->download($batch->title . ' Admissions' . '.pdf');
     }
 
     public function batch_ban(Batch $batch, User $user)
@@ -87,6 +106,21 @@ class AdminController extends Controller
         ];
 
         return view('vendor.voyager.packages.students', compact('users', 'package', 'userCounts'));
+    }
+
+    public function package_students_pdf(Package $package, Request $request)
+    {
+
+
+        $users = User::whereHas('information', function ($queryBuilder) use ($package) {
+            $queryBuilder->where('package_id', $package->id);
+        })->get();
+
+        $pdf = PDF::loadView('vendor.voyager.packages.students_pdf', ['users' => $users, 'package' => $package], [
+            'title' => $package->title . 'Subscribers',
+            'Author' => 'BD Job War'
+        ]);
+        return $pdf->download($package->title . ' Admissions' . '.pdf');
     }
 
 

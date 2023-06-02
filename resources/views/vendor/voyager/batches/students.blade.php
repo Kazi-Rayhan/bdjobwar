@@ -9,7 +9,11 @@
         <div class="row ">
             <div class="col-md-12">
                 <h3>{{ $batch->title }}</h3>
-
+                <ul class="list-group">
+                @foreach ($count as $key => $data)
+                <li class="list-group-item"> <strong>{{ucwords($key)}} :</strong> {{$data}}</li>
+                @endforeach
+                </ul>
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <table class="table table-primary">
@@ -33,6 +37,7 @@
                                             Find
                                         </button>
                                         <a class="btn btn-info" href="{{ route('batch.students', $batch) }}">Reset</a>
+                                        <a class="btn btn-info" href="{{ route('batch.students.pdf', $batch) }}">Download PDF</a>
                                     </form>
                                 </td>
                             </tr>

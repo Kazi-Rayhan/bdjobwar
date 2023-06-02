@@ -54,6 +54,7 @@
                                             Find
                                         </button>
                                         <a class="btn btn-info" href="{{ route('package.students', $package) }}">Reset</a>
+                                         <a class="btn btn-info" href="{{ route('package.students.pdf', $package) }}">Download PDF</a>
                                     </form>
                                 </td>
                             </tr>
