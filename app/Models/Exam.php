@@ -122,17 +122,11 @@ class Exam extends Model
         return $this->belongsTo(Batch::class);
     }
 
-    protected static function booted(): void
+    public function scopeActiveBatch($query)
     {
-        static::addGlobalScope('activeBatch', function (Builder $builder) {
-            $builder->whereHas('batch', function ($query) {
-                $query->where('active', 1);
-            });
+        return $query->whereHas('batch', function ($query) {
+            $query->where('active', 1);
         });
     }
-
-    public function scopeRemove()
-    {
-        return $this->withoutGlobalScopes('activeBatch');
-    }
+  
 }

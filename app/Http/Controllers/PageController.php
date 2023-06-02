@@ -55,7 +55,7 @@ class PageController extends Controller
 
     public function liveexams()
     {
-        $liveExamsPaid = Exam::with('users')
+        $liveExamsPaid = Exam::activeBatch()->with('users')
             ->paid()
             ->active()
             ->where('from', '<', now())
@@ -63,7 +63,7 @@ class PageController extends Controller
             ->orderBy('from', 'asc')
             ->latest()
             ->get();
-        $liveExamsFree = Exam::with('users')
+        $liveExamsFree = Exam::activeBatch()->with('users')
             ->free()
             ->active()
             ->where('from', '<', now())
