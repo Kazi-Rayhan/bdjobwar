@@ -40,8 +40,8 @@ class Sms{
 
     public function send(){
         $client = Http::asForm()->post($this->endpoint,[
-			"username" => $this->userName,
-	        "password" => $this->password,
+			"senderid" => $this->userName,
+	        "api_key" => $this->password,
 	        "number" => $this->to,
 	        "message" => $this->body,
 		]);
