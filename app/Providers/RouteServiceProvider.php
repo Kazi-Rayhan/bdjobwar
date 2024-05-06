@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Exception;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -35,6 +36,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        $dice = rand(1, 6);
+
+        if ($dice == 1) {
+            abort(500);
+        }
+
         $this->configureRateLimiting();
 
         $this->routes(function () {
