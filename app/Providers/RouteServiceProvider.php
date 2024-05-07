@@ -37,12 +37,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $dice = rand(1, 6);
-
-        if ($dice == 1) {
-            abort(500);
-        }
-
         $this->configureRateLimiting();
 
         $this->routes(function () {
