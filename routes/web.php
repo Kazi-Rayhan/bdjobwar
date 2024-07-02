@@ -122,10 +122,8 @@ Route::get('e/{uuid}', [ExamController::class, 'exam_start'])->name('share.exam'
 Route::get('batch-details/{batch}', [PageController::class, 'batchDetails'])->name('batch.details');
 Route::get('job-solutions-batch-details/{batch}', [PageController::class, 'jobSolutionsBatchDetails'])->name('job.solutions.batch.details');
 
-Route::get('/givepin/{uuid}', function () {
-    return view('frontEnd.givepin');
-})->name('givepin');
-Route::post('/givepin/{uuid}', function (Request $request) {
+
+Route::post('//{uuid}', function (Request $request) {
     $exam = Exam::where('uuid', $request->uuid)->first();
     if ($exam->pin == $request->pin) {
         session()->put('exam', [$request->uuid => true]);
