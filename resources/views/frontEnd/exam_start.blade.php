@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.app')
+@extends('frontend.layouts.app')
 @section('css')
     <meta property="og:url" content="{{ request()->url() }}" />
     <meta property="og:type" content="website" />

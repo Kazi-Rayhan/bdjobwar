@@ -18,7 +18,7 @@ class BatchDetailsController extends Controller
     {
         $exams = Exam::active()->where('batch_id', $batch->id)->orderBy('from', 'asc')->get();
 
-        return view('frontEnd.batchDetails.routine', compact('batch', 'exams','slug'));
+        return view('frontend.batchDetails.routine', compact('batch', 'exams','slug'));
     }
 
     public function runningExam($slug, Batch $batch)
@@ -29,7 +29,7 @@ class BatchDetailsController extends Controller
             $exams = $exams->where('from', '<', now())
                 ->where('to', '>', now())->paginate(20);
 
-        return view('frontEnd.batchDetails.runningexam', compact('exams', 'batch','slug'));
+        return view('frontend.batchDetails.runningexam', compact('exams', 'batch','slug'));
     }
 
     public function upcommingExam($slug, Batch $batch)
@@ -37,7 +37,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('from', '>', now())->orderBy('from', 'asc')->get();
-        return view('frontEnd.batchDetails.upcommingexam', compact('exams', 'batch','slug'));
+        return view('frontend.batchDetails.upcommingexam', compact('exams', 'batch','slug'));
     }
 
     public function archive($slug, Batch $batch)
@@ -46,7 +46,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('to', '<', now())->paginate(10);
-        return view('frontEnd.batchDetails.archive', compact('exams', 'batch','slug'));
+        return view('frontend.batchDetails.archive', compact('exams', 'batch','slug'));
     }
 
     public function result($slug, Batch $batch)
@@ -54,7 +54,7 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('to', '<', now())->paginate(10);
-        return view('frontEnd.batchDetails.result', compact('exams', 'batch','slug'));
+        return view('frontend.batchDetails.result', compact('exams', 'batch','slug'));
     }
 
     public function statics($slug, Batch $batch)
@@ -62,17 +62,17 @@ class BatchDetailsController extends Controller
         $exams = Exam::active()->where('batch_id', $batch->id);
 
         $exams = $exams->where('to', '<', now())->paginate(10);
-        return view('frontEnd.batchDetails.statics',compact('exams','batch','slug'));
+        return view('frontend.batchDetails.statics',compact('exams','batch','slug'));
     }
 
     public function missedExam($slug, Batch $batch)
     {
         $completed = User::find(auth()->id())->exams()->active()->where('batch_id', $batch->id)->where('to', '<', now())->wherePivotNotNull('total')->get()->pluck('id');
         $exams = Exam::active()->where('batch_id', $batch->id)->where('to', '<', now())->whereNotIn('id',$completed)->paginate(10);
-        return view('frontEnd.batchDetails.missed', compact('exams', 'batch','slug'));
+        return view('frontend.batchDetails.missed', compact('exams', 'batch','slug'));
     }
     public function materials($slug, Batch $batch)
     {
-        return view('frontEnd.batchDetails.materials', compact('batch','slug'));
+        return view('frontend.batchDetails.materials', compact('batch','slug'));
     }
 }

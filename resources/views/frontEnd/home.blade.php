@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.app')
+@extends('frontend.layouts.app')
 @section('css')
     <style>
         .marquee {
@@ -88,7 +88,7 @@
 
         <div class="row py-5">
             <div class="col-12 mb-2">
-                <div class="live-section-title" style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
+                <div class="live-section-title" style="background-image: url({{ asset('frontend-assets/img/Blog.png') }})">
                     <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px">আমাদের কোর্সসমূহ</h1>
                 </div>
             </div>
@@ -150,7 +150,7 @@
             @endforeach
 
 
-            <div class="live-section-title" style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
+            <div class="live-section-title" style="background-image: url({{ asset('frontend-assets/img/Blog.png') }})">
                 <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px">আমাদের প্যাকেজসমূহ</h1>
             </div>
             <hr>

@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
 <!-- bratcam area  start-->

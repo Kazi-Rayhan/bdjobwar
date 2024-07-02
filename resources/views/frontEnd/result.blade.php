@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.app')
+@extends('frontend.layouts.app')
 @section('content')
 
     <div class=" container-fluid container-xl  my-5 d-flex flex-column gap-3 justify-content-center align-items-center">

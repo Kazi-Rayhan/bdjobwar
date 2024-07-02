@@ -43,7 +43,7 @@ class PageController extends Controller
         $notice = Notice::latest()->first();
 
         return view(
-            'frontEnd/home',
+            'frontend/home',
             compact(
                 'sliderExams',
                 'packages',
@@ -72,7 +72,7 @@ class PageController extends Controller
             ->latest()
             ->get();
 
-        return view('frontEnd/liveexams', compact('liveExamsPaid', 'liveExamsFree'));
+        return view('frontend/liveexams', compact('liveExamsPaid', 'liveExamsFree'));
     }
     public function question($uuid)
     {
@@ -81,13 +81,13 @@ class PageController extends Controller
 
         $questions = $exam->questions;
 
-        return view('frontEnd/questions', compact('exam', 'exams', 'questions'));
+        return view('frontend/questions', compact('exam', 'exams', 'questions'));
     }
 
     public function course($slug, Course $course)
     {
         $batches =  Batch::active()->where('course_id', $course->id)->get();
-        return view('frontEnd/course', compact('course', 'batches'));
+        return view('frontend/course', compact('course', 'batches'));
     }
 
     public function batch($slug, Batch $batch, Request $request)
@@ -106,13 +106,13 @@ class PageController extends Controller
         }
 
         $exams = $exams->get();
-        return view('frontEnd/batch', compact('batch', 'exams'));
+        return view('frontend/batch', compact('batch', 'exams'));
     }
 
     public function batchRoutine(Batch $batch)
     {
         $exams = $batch->exams()->latest()->get();
-        $pdf = Mpdf::loadView('frontEnd.routines', ['exams' => $exams], [
+        $pdf = Mpdf::loadView('frontend.routines', ['exams' => $exams], [
             'title' => $batch->title . ' Routine',
             'Author' => 'BD Job War'
         ]);
@@ -127,7 +127,7 @@ class PageController extends Controller
     //     });
     //     // $exam = Exam::where('uuid',$uuid)->first();
     //     // if($exam->to > now()){
-    //     //   return view('frontEnd.exam.not_published',compact('exam'));
+    //     //   return view('frontend.exam.not_published',compact('exam'));
     //     // }
     //     // $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
 
@@ -135,12 +135,12 @@ class PageController extends Controller
 
     public function packageDetails($slug, Package $package)
     {
-        return view('frontEnd.packageDetails', compact('package'));
+        return view('frontend.packageDetails', compact('package'));
     }
 
     public function batchDetails(Batch $batch)
     {
-        return view('frontEnd.batch-details', compact('batch'));
+        return view('frontend.batch-details', compact('batch'));
     }
     public function jobSolutionsBatchDetails(Batch $batch)
     {
@@ -151,7 +151,7 @@ class PageController extends Controller
         } else {
             $exams = Exam::active()->where('batch_id', $batch->id)->where('isJobSolution', 1)->paginate(20);
         }
-        return view('frontEnd.job-solutions-batch-details', compact('batch', 'exams'));
+        return view('frontend.job-solutions-batch-details', compact('batch', 'exams'));
     }
 
     public function jobsolutions()
@@ -165,7 +165,7 @@ class PageController extends Controller
         if (!$course) return back();
         $batches = $course->batches;
 
-        return view('frontEnd.jobsolutions', compact('course', 'batches'));
+        return view('frontend.jobsolutions', compact('course', 'batches'));
     }
     public function post()
     {

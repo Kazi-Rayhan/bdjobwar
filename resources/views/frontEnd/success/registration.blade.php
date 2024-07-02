@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.app')
+@extends('frontend.layouts.app')
 @section('css')
     <link rel="stylesheet" href="{{ asset('exams/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('exams/css/responsive.css') }}" />

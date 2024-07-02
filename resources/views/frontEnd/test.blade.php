@@ -1,15 +1,15 @@
-@extends('frontEnd.layouts.app')
+@extends('frontend.layouts.app')
 @section('content')
 <!-- Slider section start -->
 <section class="slider">
   <a href="">
-    <img src="{{asset('frontEnd-assets/img/slider.png')}}" alt="">
+    <img src="{{asset('frontend-assets/img/slider.png')}}" alt="">
   </a>
 </section>
 <!-- Slider section end -->
 <!-- Live section start -->
-<section class="live-section" style="background-image: url({{asset('frontEnd-assets/img/bg.png')}})">
-  <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
+<section class="live-section" style="background-image: url({{asset('frontend-assets/img/bg.png')}})">
+  <div class="live-section-title" style="background-image: url({{asset('frontend-assets/img/Blog.png')}})">
     <h1>Live Section</h1>
   </div>
         <div class="container">
@@ -123,7 +123,7 @@
 <!-- Live section end -->
 <!-- Package section start -->
 <section class="live-section">
-  <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
+  <div class="live-section-title" style="background-image: url({{asset('frontend-assets/img/Blog.png')}})">
     <h1>Our packages</h1>
   </div>
    <div class="container">
@@ -241,39 +241,39 @@
 </section>
 <!-- Courses section start -->
 <section class="live-section">
-  <div class="live-section-title" style="background-image: url({{asset('frontEnd-assets/img/Blog.png')}})">
+  <div class="live-section-title" style="background-image: url({{asset('frontend-assets/img/Blog.png')}})">
     <h1>Our Courses</h1>
   </div>
    <div class="container">
     <div class="row mt-5">
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Bcs-prep.png')}}" alt="">
+        <img class="img-fluid" src="{{asset('frontend-assets/img/Bcs-prep.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Subject-Care.png')}}" alt="">
+        <img class="img-fluid" src="{{asset('frontend-assets/img/Subject-Care.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Job-Solution.png')}}" alt="">
+        <img class="img-fluid" src="{{asset('frontend-assets/img/Job-Solution.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Bcs-prep.png')}}" alt="">
+        <img class="img-fluid" src="{{asset('frontend-assets/img/Bcs-prep.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Subject-Care.png')}}" alt="">
+        <img class="img-fluid" src="{{asset('frontend-assets/img/Subject-Care.png')}}" alt="">
         </a>
       </div>
       <div class="col-md-4 mb-5 ">
         <a href="">
-        <img class="img-fluid" src="{{asset('frontEnd-assets/img/Job-Solution.png')}}" alt="">
+        <img class="img-fluid" src="{{asset('frontend-assets/img/Job-Solution.png')}}" alt="">
         </a>
       </div>
    </div>

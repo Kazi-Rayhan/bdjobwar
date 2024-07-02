@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class SuccessController extends Controller
 {
     public function registration(){
-        return view('frontEnd.success.registration');
+        return view('frontend.success.registration');
     }
 
     public function order(Order $order){
-        return view('frontEnd.success.order',compact('order'));
+        return view('frontend.success.order',compact('order'));
     }
 }

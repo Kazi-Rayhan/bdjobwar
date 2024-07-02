@@ -18,7 +18,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
         integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="{{ asset('frontEnd-assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend-assets/css/style.css') }}" rel="stylesheet">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -98,7 +98,7 @@
         <div class="container">
 
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('frontEnd-assets/img/logo.png') }}" alt="" width="100" height="50"
+                <img src="{{ asset('frontend-assets/img/logo.png') }}" alt="" width="100" height="50"
                     style="object-fit:cover">
             </a>
             <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse"
@@ -188,7 +188,7 @@
             <div class="container-fluid bg-footer " style="background-color:#161E31 !important">
                 <div class="row justify-content-around">
                     <div class="col-md-4 d-flex flex-column justify-content-center align-items-center footer-info">
-                        <img src="{{ asset('frontEnd-assets/img/logo.png') }}" width="130" alt="">
+                        <img src="{{ asset('frontend-assets/img/logo.png') }}" width="130" alt="">
                         <div class="d-flex flex-column align-items-center gap-0 my-2">
 
                             <p class="text-light p-0 m-0">

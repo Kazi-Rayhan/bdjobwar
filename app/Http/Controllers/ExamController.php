@@ -27,7 +27,7 @@ class ExamController extends Controller
             return \redirect()->route('start-exam', $exam->uuid);
         }
 
-        return view('frontEnd.exam.answer_sheet', compact('exam'));
+        return view('frontend.exam.answer_sheet', compact('exam'));
     }
 
     public function practiceAnswerSheet($uuid)
@@ -38,7 +38,7 @@ class ExamController extends Controller
             return \redirect()->route('start-exam', $exam->uuid);
         }
 
-        return view('frontEnd.exam.answer_sheet', compact('exam'));
+        return view('frontend.exam.answer_sheet', compact('exam'));
     }
 
     public function read($uuid)
@@ -46,7 +46,7 @@ class ExamController extends Controller
 
         $exam = Exam::where('uuid', $uuid)->with('questions')->first();
 
-        return view('frontEnd.exam.read', compact('exam'));
+        return view('frontend.exam.read', compact('exam'));
     }
 
     public function exam_start($uuid)
@@ -58,7 +58,7 @@ class ExamController extends Controller
             return redirect()->route('result-exam', $exam->uuid);
         }
 
-        return view('frontEnd.exam_start', compact('exam'));
+        return view('frontend.exam_start', compact('exam'));
     }
 
     public function exam_result($uuid)
@@ -66,7 +66,7 @@ class ExamController extends Controller
         $exam = Exam::where('uuid', $uuid)->first();
         $count = UserExam::where('exam_id', $exam->id)->whereNotNull('total')->orderBy('total', 'desc')->count();
         $result = Auth::user()->exams()->find($exam->id);
-        return view('frontEnd.result', compact('result', 'count'));
+        return view('frontend.result', compact('result', 'count'));
     }
 
     public function exam_all_results($uuid)
@@ -76,13 +76,13 @@ class ExamController extends Controller
         $exam = Exam::where('uuid', $uuid)->first();
 
         if ($exam->to > now()) {
-            return view('frontEnd.exam.not_published', compact('exam'));
+            return view('frontend.exam.not_published', compact('exam'));
         }
 
         $results = UserExam::filter(request(['search', 'roll']))->where('exam_id', $exam->id)->whereNotNull('total')->orderByRaw('total DESC')->orderByRaw('created_at DESC')->paginate(50);
 
         if (UserExam::where('exam_id', $exam->id)->whereNotNull('total')->count()) {
-            return view('frontEnd.exam.results', compact('exam', 'results'));
+            return view('frontend.exam.results', compact('exam', 'results'));
         } else {
             return redirect()->back()->with('error', "You didn't attend this exam");
         }
@@ -132,7 +132,7 @@ class ExamController extends Controller
         $questions = $exam->questions()->active()->inRandomOrder()->get();
 
 
-        return view('frontEnd.questions', compact('exam', 'questions', 'timeLeft', 'extraTime'));
+        return view('frontend.questions', compact('exam', 'questions', 'timeLeft', 'extraTime'));
     }
     public function store($uuid, Request $request)
     {
@@ -170,7 +170,7 @@ class ExamController extends Controller
         $exam = Exam::where('uuid', $uuid)->first();
         $results = UserExam::where('exam_id', $exam->id)->whereNotNull('answers')->orderBy('total', 'desc')->orderBy('created_at', 'DESC')->get();
 
-        $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam]);
+        $pdf = MPDF::loadView('frontend.exam.pdf_results', ['results' => $results, 'exam' => $exam]);
 
         return $pdf->download('results.pdf');
     }
@@ -183,12 +183,12 @@ class ExamController extends Controller
 
         if (request()->pracitce) {
 
-            $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf2', ['questions' => $questions, 'exam' => $exam], [
+            $pdf = MPDF::loadView('frontend.exam.answer_sheet_pdf2', ['questions' => $questions, 'exam' => $exam], [
                 'title' => $exam->title . ' Answer Sheet',
                 'Author' => 'BD Job War'
             ]);
         } else {
-            $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_pdf', ['questions' => $questions, 'exam' => $exam], [
+            $pdf = MPDF::loadView('frontend.exam.answer_sheet_pdf', ['questions' => $questions, 'exam' => $exam], [
                 'title' => $exam->title . ' Answer Sheet',
                 'Author' => 'BD Job War'
             ]);
@@ -202,7 +202,7 @@ class ExamController extends Controller
 
 
         $questions = $exam->questions()->active()->get();
-        $pdf = MPDF::loadView('frontEnd.exam.answer_sheet_without_marking', ['questions' => $questions, 'exam' => $exam], [
+        $pdf = MPDF::loadView('frontend.exam.answer_sheet_without_marking', ['questions' => $questions, 'exam' => $exam], [
             'title' => $exam->title . ' Answer Sheet',
             'Author' => 'BD Job War'
         ]);
