@@ -7,7 +7,7 @@
                     <a href="{{ route('single_post', $post->slug) }}">
                         <div class="card Larger shadow">
                             <img class="rounded" style="object-fit:cover;height:300px;"
-                                src="{{ voyager::image($post->image) }}" alt="">
+                                src="{{ Voyager::image($post->image) }}" alt="">
                             <div class="card-body shadow">
 
                                 <h1>{{ $post->title }}</h1>
