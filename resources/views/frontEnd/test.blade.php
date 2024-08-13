@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontEnd.layouts.app')
 @section('content')
 <!-- Slider section start -->
 <section class="slider">

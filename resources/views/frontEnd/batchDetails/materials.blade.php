@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontEnd.layouts.app')
 
 @section('content')
     <h2 class="m-5">

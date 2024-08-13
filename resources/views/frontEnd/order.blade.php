@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontEnd.layouts.app')
 @section('content')
     <!-- bratcam area  end-->
     <div class="container my-5">

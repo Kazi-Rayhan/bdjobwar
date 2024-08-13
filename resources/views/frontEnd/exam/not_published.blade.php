@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontEnd.layouts.app')
 @php
 $to = new EasyBanglaDate\Types\BnDateTime($exam->to, new DateTimeZone('Asia/Dhaka'));
 @endphp

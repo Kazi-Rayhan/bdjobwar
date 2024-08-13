@@ -112,7 +112,7 @@ class PageController extends Controller
     public function batchRoutine(Batch $batch)
     {
         $exams = $batch->exams()->latest()->get();
-        $pdf = Mpdf::loadView('frontend.routines', ['exams' => $exams], [
+        $pdf = Mpdf::loadView('frontEnd.routines', ['exams' => $exams], [
             'title' => $batch->title . ' Routine',
             'Author' => 'BD Job War'
         ]);
@@ -127,7 +127,7 @@ class PageController extends Controller
     //     });
     //     // $exam = Exam::where('uuid',$uuid)->first();
     //     // if($exam->to > now()){
-    //     //   return view('frontend.exam.not_published',compact('exam'));
+    //     //   return view('frontEnd.exam.not_published',compact('exam'));
     //     // }
     //     // $results = UserExam::filter(request(['search','roll']))->where('exam_id',$exam->id)->whereNotNull('answers')->orderBy('total','desc')->get();
 
@@ -135,12 +135,12 @@ class PageController extends Controller
 
     public function packageDetails($slug, Package $package)
     {
-        return view('frontend.packageDetails', compact('package'));
+        return view('frontEnd.packageDetails', compact('package'));
     }
 
     public function batchDetails(Batch $batch)
     {
-        return view('frontend.batch-details', compact('batch'));
+        return view('frontEnd.batch-details', compact('batch'));
     }
     public function jobSolutionsBatchDetails(Batch $batch)
     {
@@ -151,7 +151,7 @@ class PageController extends Controller
         } else {
             $exams = Exam::active()->where('batch_id', $batch->id)->where('isJobSolution', 1)->paginate(20);
         }
-        return view('frontend.job-solutions-batch-details', compact('batch', 'exams'));
+        return view('frontEnd.job-solutions-batch-details', compact('batch', 'exams'));
     }
 
     public function jobsolutions()
@@ -165,7 +165,7 @@ class PageController extends Controller
         if (!$course) return back();
         $batches = $course->batches;
 
-        return view('frontend.jobsolutions', compact('course', 'batches'));
+        return view('frontEnd.jobsolutions', compact('course', 'batches'));
     }
     public function post()
     {

@@ -51,7 +51,7 @@ class OrderController extends Controller
                 ->route('success.order', $orders)
                 ->with('success', 'Already has a order ');
         }
-        return view('frontend.order', compact('data', 'type', 'id'));
+        return view('frontEnd.order', compact('data', 'type', 'id'));
     }
 
     /**

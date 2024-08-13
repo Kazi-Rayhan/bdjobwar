@@ -1,5 +1,5 @@
 
-@extends('frontend.layouts.app')
+@extends('frontEnd.layouts.app')
 @section('content')
 @php
 use Rakibhstu\Banglanumber\NumberToBangla;
