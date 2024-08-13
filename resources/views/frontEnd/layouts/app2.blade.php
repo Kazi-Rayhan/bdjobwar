@@ -47,7 +47,7 @@
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
 
-    <link href="{{ asset('frontend-assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontEnd-assets/css/style.css') }}" rel="stylesheet">
     <link href="https://fonts.maateen.me/adorsho-lipi/font.css" rel="stylesheet">
     @yield('css')
     <style>

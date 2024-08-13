@@ -63,8 +63,8 @@
     <!-- Slider section end -->
     <!-- Live section start -->
     <section class="live-section" id="live-section"
-        style="background-image: url({{ asset('frontend-assets/img/bg.png') }})">
-        <div class="live-section-title" style="background-image: url({{ asset('frontend-assets/img/Blog.png') }})">
+        style="background-image: url({{ asset('frontEnd-assets/img/bg.png') }})">
+        <div class="live-section-title" style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
             <h1 class="text-uppercase" style="font-weight:500 ; font-size:25px">লাইভ সেকশন</h1>
         </div>
         <div class="container">
@@ -181,7 +181,7 @@
         </div>
     </section>
     <section class="live-section" id="courses">
-        <div class="live-section-title" style="background-image: url({{ asset('frontend-assets/img/Blog.png') }})">
+        <div class="live-section-title" style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
             <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px">আমাদের কোর্সসমূহ</h1>
         </div>
         <div class="container">
@@ -224,7 +224,7 @@
     <!-- Live section end -->
     <!-- Package section start -->
     <section class="live-section" id="package">
-        <div class="live-section-title" style="background-image: url({{ asset('frontend-assets/img/Blog.png') }})">
+        <div class="live-section-title" style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
             <h1 class="text-uppercase" style="font-weight:700 ;font-size:25px">আমাদের প্যাকেজসমূহ</h1>
         </div>
         <div class="container">
@@ -286,7 +286,7 @@
 
         <section class="">
             <div class=" py-4 d-flex flex-column flex-md-row justify-content-around gap-3"
-                style="background-image: url({{ asset('frontend-assets/img/Blog.png') }})">
+                style="background-image: url({{ asset('frontEnd-assets/img/Blog.png') }})">
                 <div class="d-flex flex-column justify-content-center align-items-center text-light">
                     <i class="fa fa-users fa-3x"></i>
                     <h6>সাবস্ক্রাইবার </h6>
