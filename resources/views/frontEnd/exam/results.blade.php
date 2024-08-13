@@ -93,7 +93,7 @@
                             </td>
 
                             <td>
-                                {{ (new Rakibhstu\Banglanumber\NumberToBangla())->bnNum($result->user->information->id) }}
+                                {{ @$result->user->information->id  ? (new Rakibhstu\Banglanumber\NumberToBangla())->bnNum($result->user->information->id) : 'N/A' }}
                             </td>
                             <td>
                                 {{ (new Rakibhstu\Banglanumber\NumberToBangla())->bnNum(count((array) json_decode($result->answers)) - $result->wrong_answers) }}
