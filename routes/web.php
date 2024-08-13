@@ -127,7 +127,7 @@ Route::post('//{uuid}', function (Request $request) {
     $exam = Exam::where('uuid', $request->uuid)->first();
     if ($exam->pin == $request->pin) {
         session()->put('exam', [$request->uuid => true]);
-
+        //gewl
         return redirect(session()->get('from'));
     }
     return redirect()->back()->withErrors('wrong pin');
