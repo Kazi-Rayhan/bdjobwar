@@ -43,7 +43,7 @@ class PageController extends Controller
         $notice = Notice::latest()->first();
 
         return view(
-            'frontend/home',
+            'frontEnd/home',
             compact(
                 'sliderExams',
                 'packages',
@@ -72,7 +72,7 @@ class PageController extends Controller
             ->latest()
             ->get();
 
-        return view('frontend/liveexams', compact('liveExamsPaid', 'liveExamsFree'));
+        return view('frontEnd/liveexams', compact('liveExamsPaid', 'liveExamsFree'));
     }
     public function question($uuid)
     {
@@ -81,13 +81,13 @@ class PageController extends Controller
 
         $questions = $exam->questions;
 
-        return view('frontend/questions', compact('exam', 'exams', 'questions'));
+        return view('frontEnd/questions', compact('exam', 'exams', 'questions'));
     }
 
     public function course($slug, Course $course)
     {
         $batches =  Batch::active()->where('course_id', $course->id)->get();
-        return view('frontend/course', compact('course', 'batches'));
+        return view('frontEnd/course', compact('course', 'batches'));
     }
 
     public function batch($slug, Batch $batch, Request $request)
@@ -106,7 +106,7 @@ class PageController extends Controller
         }
 
         $exams = $exams->get();
-        return view('frontend/batch', compact('batch', 'exams'));
+        return view('frontEnd/batch', compact('batch', 'exams'));
     }
 
     public function batchRoutine(Batch $batch)
