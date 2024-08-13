@@ -8,7 +8,7 @@
         <h3>
             {{ $exam->sub_title }}
         </h3>
-       
+
 
         <form class="my-3" action="#" method="get">
             <div class="row">
@@ -93,10 +93,10 @@
                             </td>
 
                             <td>
-                                                                {{ (new Rakibhstu\Banglanumber\NumberToBangla())->bnNum(@$result->user->information->id) }}
+                                {{ (new Rakibhstu\Banglanumber\NumberToBangla())->bnNum($result->user->information->id) }}
                             </td>
                             <td>
-                               {{ (new Rakibhstu\Banglanumber\NumberToBangla())->bnNum(count((array) json_decode($result->answers)) - $result->wrong_answers) }}
+                                {{ (new Rakibhstu\Banglanumber\NumberToBangla())->bnNum(count((array) json_decode($result->answers)) - $result->wrong_answers) }}
 
                             </td>
                             <td>

@@ -11,7 +11,7 @@
                             <div class="card-body shadow">
 
                                 <h1>{{ $post->title }}</h1>
-                                <div style="border-bottom: 1px solid #b5b5b5;width: 100%;"></div>
+                            <div style="border-bottom: 1px solid #b5b5b5;width: 100%;"></div>
                                 <p class="mt-4">
                                     {{ $post->excerpt }}
                                 </p>
