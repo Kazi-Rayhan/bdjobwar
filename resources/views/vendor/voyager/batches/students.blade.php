@@ -4,6 +4,7 @@
 
 
 @section('content')
+
     <div class="page-content  browse container" style="margin-top:50px">
         @include('voyager::alerts')
         <div class="row ">
@@ -59,7 +60,6 @@
                                 </th>
 
                             </tr>
-                            @dd($users);
                             @foreach ($users as $user)
                                 <tr>
                                     @php
