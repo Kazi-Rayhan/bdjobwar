@@ -186,14 +186,14 @@ Route::group(['prefix' => '/batch/{slug}/{batch}', 'as' => 'batch.', 'controller
 
 
 
-Route::get('/nav', function () {
-    return view('nav');
-});
-
-Route::get('/test',function(){
-    
-    foreach(User::doesntHave('information')->get() as $user){
+Route::get('/test-test',function(){
+    $users = User::doesntHave('information')->get();
+    foreach($users as $user){
         dd(Package::find(env('FREE_PACKAGE')));
         $user->ownThisPackage(Package::find(env('FREE_PACKAGE')));
     }
+});
+
+Route::get('/nav', function () {
+    return view('nav');
 });
