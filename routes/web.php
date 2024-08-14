@@ -193,6 +193,7 @@ Route::get('/nav', function () {
 Route::get('/test',function(){
     
     foreach(User::doesntHave('information')->get() as $user){
+        dd(Package::find(env('FREE_PACKAGE')));
         $user->ownThisPackage(Package::find(env('FREE_PACKAGE')));
     }
 });
