@@ -109,7 +109,7 @@
                     {!! $user->name !!}
                 </td>
                 <td style="text-align:center">
-                    {!! $user->information->id !!}
+                    {!! @$user?->information->id !!}
                 </td>
                 <td style="text-align:center">
                     {{$user->pivot->active ? 'চলমান' : 'বহিষ্কৃত'}}

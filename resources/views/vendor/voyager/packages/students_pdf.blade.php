@@ -112,13 +112,13 @@
                     {!! $user->name !!}
                 </td>
                  <td style="text-align:center">
-                    {!! $user->information->id !!}
+                    {!! @$user?->information->id !!}
                 </td>
                 <td style="text-align:center">
-                    {!! $user->information->expired_at->format('d M, Y') !!}
+                    {!! @$user?->information->expired_at->format('d M, Y') !!}
                 </td>
                 <td style="text-align:center">
-                    {{$user->information->is_paid ? 'চলমান' : 'স্থগিত'}}
+                    {{@$user?->information->is_paid ? 'চলমান' : 'স্থগিত'}}
                 </td>
             </tr>
             @endforeach

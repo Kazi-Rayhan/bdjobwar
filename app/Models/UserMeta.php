@@ -19,10 +19,7 @@ class UserMeta extends Model
     ];
     public $incrementing = false;
 
-    public function getIdAttribute($value)
-    {
-        return $value ?? 'N/A';
-    }
+    
     /**
      * Defines one to one relation between user_metas table and pacakages table
      *
