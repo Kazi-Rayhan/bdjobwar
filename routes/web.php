@@ -124,7 +124,7 @@ Route::get('batch-details/{batch}', [PageController::class, 'batchDetails'])->na
 Route::get('job-solutions-batch-details/{batch}', [PageController::class, 'jobSolutionsBatchDetails'])->name('job.solutions.batch.details');
 
 
-Route::post('//{uuid}', function (Request $request) {
+Route::post('/{uuid}', function (Request $request) {
     $exam = Exam::where('uuid', $request->uuid)->first();
     if ($exam->pin == $request->pin) {
         session()->put('exam', [$request->uuid => true]);
