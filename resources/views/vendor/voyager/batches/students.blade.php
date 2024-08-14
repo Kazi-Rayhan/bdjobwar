@@ -59,6 +59,7 @@
                                 </th>
 
                             </tr>
+                            @dd($users);
                             @foreach ($users as $user)
                                 <tr>
                                     @php
