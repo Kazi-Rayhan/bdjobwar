@@ -19,7 +19,7 @@ class UserMeta extends Model
     ];
     public $incrementing = false;
 
-    public function getId($value)
+    public function getIdAttribute($value)
     {
         return $value ?? 'N/A';
     }
