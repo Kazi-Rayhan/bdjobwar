@@ -75,7 +75,7 @@
                                         {{ $user->phone }}
                                     </td>
                                     <td>
-                                        {{ $user?->information?->id }}
+                                        {{ $user->information->id }}
                                     </td>
 
                                     <td>
