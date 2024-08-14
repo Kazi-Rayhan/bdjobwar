@@ -188,7 +188,7 @@ Route::group(['prefix' => '/batch/{slug}/{batch}', 'as' => 'batch.', 'controller
 
 Route::get('/test',function(){
     $users = User::doesntHave('information')->get();
-    dd($users);
+    
     foreach($users as $user){
         $user->ownThisPackage(Package::find(env('FREE_PACKAGE')));
     }
