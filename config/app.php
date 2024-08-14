@@ -177,7 +177,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\SmsServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
         Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
 
     ],
