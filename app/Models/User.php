@@ -200,4 +200,6 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->favourites()->find($question->id);
     }
+
+    
 }

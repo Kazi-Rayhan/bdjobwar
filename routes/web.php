@@ -15,6 +15,7 @@ use App\Http\Controllers\SuccessController;
 use App\Models\Batch;
 use App\Models\Course;
 use App\Models\Exam;
+use App\Models\Package;
 use App\Models\Question;
 use App\Models\User;
 use App\Models\UserExam;
@@ -187,4 +188,11 @@ Route::group(['prefix' => '/batch/{slug}/{batch}', 'as' => 'batch.', 'controller
 
 Route::get('/nav', function () {
     return view('nav');
+});
+
+Route::get('/test',function(){
+    
+    foreach(User::doesntHave('information')->get() as $user){
+        $user->ownThisPackage(Package::find(env('FREE_PACKAGE')));
+    }
 });
