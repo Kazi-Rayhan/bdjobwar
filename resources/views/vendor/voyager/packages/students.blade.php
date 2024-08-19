@@ -96,7 +96,7 @@
                                         {{ $user->phone }}
                                     </td>
                                     <td>
-                                        {{ @$user?->information->id }}
+                                        {{ @$user->information->id ?? 'N/A' }}
                                     </td>
                                     @if ($package->id != env('FREE_PACKAGE'))
                                         <td>
