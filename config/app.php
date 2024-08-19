@@ -1,5 +1,7 @@
 <?php
 
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
+
 return [
 
     /*
@@ -235,7 +237,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'SMS' => App\Facades\SMS\SmsFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'MPDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class,
+        'MPDF' => LaravelMpdf::class,
 
     ],
 
