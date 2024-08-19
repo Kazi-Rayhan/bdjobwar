@@ -100,8 +100,8 @@
                                     </td>
                                     @if ($package->id != env('FREE_PACKAGE'))
                                         <td>
-                                            {{ @$user?->information->expired_at->format('d M, Y') }} -
-                                            {{ @$user?->information->expired_at->diffForHumans() }} - @if (@$user?->information->expired_at->isPast())
+                                            {{ @$user->information->expired_at->format('d M, Y') }} -
+                                            {{ @$user->information->expired_at->diffForHumans() }} - @if (@$user->information->expired_at->isPast())
                                                 <strong class="text-danger">
                                                     EXPIRED
                                                 </strong>
