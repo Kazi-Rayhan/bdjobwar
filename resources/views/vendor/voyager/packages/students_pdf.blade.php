@@ -96,7 +96,7 @@
                     {!! 'রোল' !!}
                 </td>
                 <td  style="text-align:center">
-                    {{!!'মেয়াদ শেষ'!!}}
+                    {!!'মেয়াদ শেষ'!!}
                 </td>
                 <td style="text-align:center">
                     {!! 'স্ট্যাটাস' !!}
