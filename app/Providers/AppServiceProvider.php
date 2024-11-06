@@ -13,7 +13,7 @@ use App\Actions\SubjectAction;
 use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Facades\Voyager;
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+    
     }
 
     /**
@@ -34,6 +34,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        URL::forceScheme('https');
+        $this->app['request']->server->set('HTTPS', 'on');
+        
         Voyager::addAction(CreateQuestionAction::class);
         Voyager::addAction(DuplicateBatchAction::class);
         Voyager::addAction(AcceptOrderAction::class);
