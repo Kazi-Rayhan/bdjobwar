@@ -2,7 +2,7 @@
 @section('css')
     <meta property="og:url" content="{{ request()->url() }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ $batch?->title ?: '' }} | BD Job War" />
+    <meta property="og:title" content="{{ @$batch->title ?: '' }} | BD Job War" />
     <meta property="og:description" content="{{ $batch->description }}" />
     <meta property="og:image" content="{{ Voyager::image($batch->thumbnail) }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
