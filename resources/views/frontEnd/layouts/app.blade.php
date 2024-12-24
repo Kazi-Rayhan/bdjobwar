@@ -7,10 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Koho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+        content="BDJobWar is an innovative online platform designed to help job seekers prepare for competitive exams with ease. Access mock tests, practice questions, and expert insights to enhance your preparation.">
     <meta name="keywords"
-        content="admin template, Koho admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="pixelstrap">
+        content="BDJobWar, job exam preparation, online exams, mock tests, competitive exams, job preparation platform, practice questions, exam tips, career preparation">
+    <meta name="author" content="BDJobWar Team">
+    <meta property="og:title" content="BDJobWar - Online Exam Preparation Platform">
+<meta property="og:description" content="Prepare for competitive job exams with BDJobWar. Take mock tests, practice questions, and get expert insights to enhance your career opportunities.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request()->url() }}">
+
+<meta property="og:image" content="{{asset('logo-light.png')}}">
+<meta property="og:site_name" content="BDJobWar">
+<meta property="og:locale" content="en_US">
     <title>BD Job War</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
