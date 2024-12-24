@@ -21,6 +21,7 @@ class ExamController extends Controller
 {
     public function answerSheet($uuid)
     {
+        $uuid =  trim($uuid, "\u{2069}");
         $exam = Exam::where('uuid', $uuid)->with('questions')->first();
 
         if (!Auth::user()->exams()->find($exam->id)->pivot->answers) {
@@ -32,6 +33,7 @@ class ExamController extends Controller
 
     public function practiceAnswerSheet($uuid)
     {
+        $uuid =  trim($uuid, "\u{2069}");
         $exam = Exam::where('uuid', $uuid)->with('questions')->first();
 
         if (!Auth::user()->exams()->find($exam->id)->pivot->practice_answers) {
@@ -43,6 +45,7 @@ class ExamController extends Controller
 
     public function read($uuid)
     {
+        $uuid =  trim($uuid, "\u{2069}");
 
         $exam = Exam::where('uuid', $uuid)->with('questions')->first();
 
@@ -51,6 +54,7 @@ class ExamController extends Controller
 
     public function exam_start($uuid)
     {
+        $uuid =  trim($uuid, "\u{2069}");
         $exam = Exam::where('uuid', $uuid)->first();
         
         if (auth()->check() && @is_numeric(Auth::user()->exams()->find($exam->id)->pivot->total)) {
@@ -63,6 +67,7 @@ class ExamController extends Controller
 
     public function exam_result($uuid)
     {
+        $uuid =  trim($uuid, "\u{2069}");
         $exam = Exam::where('uuid', $uuid)->first();
         $count = UserExam::where('exam_id', $exam->id)->whereNotNull('total')->orderBy('total', 'desc')->count();
         $result = Auth::user()->exams()->find($exam->id);
@@ -71,6 +76,7 @@ class ExamController extends Controller
 
     public function exam_all_results($uuid)
     {
+        $uuid =  trim($uuid, "\u{2069}");
         // dd(UserExam::filter(request(['search'])));
 
         $exam = Exam::where('uuid', $uuid)->first();
@@ -90,6 +96,7 @@ class ExamController extends Controller
 
     public function start($uuid)
     {
+        $uuid =  trim($uuid, "\u{2069}");
         $retry = false;
         $exam = Exam::where('uuid', $uuid)->first();
         if (request()->practice) {
@@ -118,6 +125,7 @@ class ExamController extends Controller
     public function exam($uuid)
     {
 
+        $uuid =  trim($uuid, "\u{2069}");
         $exam = Exam::where('uuid', $uuid)->first();
         $extraTime = UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->lastTenMin();
         $timeLeft = UserExam::where('user_id', auth()->id())->where('exam_id', $exam->id)->first()->timeLeft();
@@ -136,6 +144,7 @@ class ExamController extends Controller
     }
     public function store($uuid, Request $request)
     {
+        $uuid =  trim($uuid, "\u{2069}");
 
         $exam = Exam::where('uuid', $uuid)->first();
 
@@ -176,6 +185,7 @@ class ExamController extends Controller
     }
     public function answerSheetPdf($uuid)
     {
+        $uuid =  trim($uuid, "\u{2069}");
         $exam = Exam::where('uuid', $uuid)->first();
 
 
@@ -198,6 +208,7 @@ class ExamController extends Controller
     }
     public function answerSheetPdfWithOutMarking($uuid)
     {
+        $uuid =  trim($uuid, "\u{2069}");
         $exam = Exam::where('uuid', $uuid)->first();
 
 
