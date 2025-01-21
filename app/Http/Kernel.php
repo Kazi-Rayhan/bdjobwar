@@ -72,6 +72,8 @@ class Kernel extends HttpKernel
         'canAttendThisExam' => CanAttendThisExam::class,
         'exam' => Exam::class,
         'pin' => PinCheck::class,
-        'IsBanFromBatch' => IsBanFromBatch::class
+        'IsBanFromBatch' => IsBanFromBatch::class,
+        'api.passcode' => \App\Http\Middleware\CheckApiPasscode::class,
+
     ];
 }
