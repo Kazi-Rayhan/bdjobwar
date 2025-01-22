@@ -128,5 +128,10 @@ class Exam extends Model
             $query->where('active', 1);
         });
     }
+
+    public function scopeFilter($query)
+    {
+        return $query->when(request()->filled('batch'), fn($query) => $query->where('batch_id', request()->batch));
+    }
   
 }

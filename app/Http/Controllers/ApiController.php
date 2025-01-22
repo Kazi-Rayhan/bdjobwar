@@ -27,7 +27,7 @@ class ApiController extends Controller
      */
     public function batches()
     {
-        $batches = Batch::with('course')->latest()->where('active', 1)->paginate(50);
+        $batches = Batch::with('course')->latest()->paginate(50);
         return BatchResource::collection($batches);
     }
 
@@ -49,7 +49,7 @@ class ApiController extends Controller
      */
     public function exams()
     {
-        $exams = Exam::where('active', 1)->paginate(10);
+        $exams = Exam::filter()->paginate(10);
         return ExamResource::collection($exams);
     }
 
