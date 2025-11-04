@@ -179,11 +179,50 @@ class ExamController extends Controller
         $exam = Exam::where('uuid', $uuid)->first();
         $results = UserExam::where('exam_id', $exam->id)->whereNotNull('answers')->orderBy('total', 'desc')->orderBy('created_at', 'DESC')->get();
 
-        $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], [
+        // Find font directory - check multiple locations (server-friendly)
+        $possibleDirs = [
+            base_path('resources/fonts'),
+            public_path(),
+            storage_path('fonts'),
+        ];
+
+        $fontDir = null;
+        $fontData = [];
+        
+        // Try to find Nikosh.ttf in any of the possible directories
+        foreach ($possibleDirs as $dir) {
+            $nikoshPath = rtrim($dir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'Nikosh.ttf';
+            if (file_exists($nikoshPath) && is_readable($nikoshPath)) {
+                $fontDir = rtrim($dir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+                break;
+            }
+        }
+
+        // If font directory found, build font data
+        if ($fontDir) {
+            $fontFiles = [
+                'R' => 'Nikosh.ttf',
+                'B' => 'Nikosh.ttf',
+                'I' => 'Nikoshc.ttf', // fallback to Nikosh.ttf if not found
+                'BI' => 'Nikosh.ttf'
+            ];
+
+            foreach ($fontFiles as $variant => $filename) {
+                $fontPath = $fontDir . $filename;
+                if (file_exists($fontPath) && is_readable($fontPath)) {
+                    $fontData[$variant] = $filename;
+                } elseif ($variant === 'I' && !file_exists($fontPath)) {
+                    // Fallback italic to regular font if italic variant doesn't exist
+                    $fontData[$variant] = 'Nikosh.ttf';
+                }
+            }
+        }
+
+        // Build PDF configuration
+        $pdfConfig = [
             'mode' => 'utf-8',
             'format' => 'A4',
             'orientation' => 'P',
-            'default_font' => 'Nikosh',
             'default_font_size' => 12,
             'margin_left' => 10,
             'margin_right' => 10,
@@ -192,17 +231,22 @@ class ExamController extends Controller
             'margin_header' => 0,
             'margin_footer' => 0,
             'show_watermark' => false,
-            'custom_font_dir' => base_path('resources/fonts/'),
-            'custom_font_data' => [
-                'Nikosh' => [
-                    'R' => 'Nikosh.ttf',
-                    'B' => 'Nikosh.ttf',
-                    'I' => 'Nikoshc.ttf',
-                    'BI' => 'Nikosh.ttf'
-                ]
-            ],
             'tempDir' => rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR),
-        ]);
+        ];
+
+        // Add font configuration if fonts are available
+        if ($fontDir && !empty($fontData)) {
+            $pdfConfig['default_font'] = 'Nikosh';
+            $pdfConfig['custom_font_dir'] = $fontDir;
+            $pdfConfig['custom_font_data'] = [
+                'Nikosh' => $fontData
+            ];
+        } else {
+            // Use dejavusans as fallback (built-in mPDF font)
+            $pdfConfig['default_font'] = 'dejavusans';
+        }
+
+        $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], $pdfConfig);
 
         return $pdf->download('results.pdf');
     }
