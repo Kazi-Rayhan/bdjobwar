@@ -179,127 +179,17 @@ class ExamController extends Controller
         $exam = Exam::where('uuid', $uuid)->first();
         $results = UserExam::where('exam_id', $exam->id)->whereNotNull('answers')->orderBy('total', 'desc')->orderBy('created_at', 'DESC')->get();
 
-        // Find font directory - check multiple locations (server-friendly)
-        $possibleDirs = [
-            base_path('resources/fonts'),
-            public_path(),
-            storage_path('fonts'),
-        ];
-
-        $fontDir = null;
-        $fontData = [];
+        // Use DomPDF instead of MPDF - more reliable and doesn't have font issues
+        $pdf = PDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam]);
         
-        // Try to find Nikosh.ttf in any of the possible directories
-        foreach ($possibleDirs as $dir) {
-            $nikoshPath = rtrim($dir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'Nikosh.ttf';
-            if (file_exists($nikoshPath) && is_readable($nikoshPath)) {
-                $fontDir = rtrim($dir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
-                break;
-            }
-        }
-
-        // If font directory found, build font data
-        if ($fontDir) {
-            $fontFiles = [
-                'R' => 'Nikosh.ttf',
-                'B' => 'Nikosh.ttf',
-                'I' => 'Nikoshc.ttf', // fallback to Nikosh.ttf if not found
-                'BI' => 'Nikosh.ttf'
-            ];
-
-            foreach ($fontFiles as $variant => $filename) {
-                $fontPath = $fontDir . $filename;
-                if (file_exists($fontPath) && is_readable($fontPath)) {
-                    $fontData[$variant] = $filename;
-                } elseif ($variant === 'I' && !file_exists($fontPath)) {
-                    // Fallback italic to regular font if italic variant doesn't exist
-                    $fontData[$variant] = 'Nikosh.ttf';
-                }
-            }
-        }
-
-        // Build PDF configuration - completely bypass config file to avoid font issues
-        $pdfConfig = [
-            'mode' => 'utf-8',
-            'format' => 'A4',
-            'orientation' => 'P',
-            'default_font_size' => 12,
-            'margin_left' => 10,
-            'margin_right' => 10,
-            'margin_top' => 10,
-            'margin_bottom' => 10,
-            'margin_header' => 0,
-            'margin_footer' => 0,
-            'show_watermark' => false,
-            'tempDir' => rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR),
-            'useSubstitutions' => false, // Disable font substitutions
-            'simpleTables' => true, // Use simple tables to avoid font issues
-            'use_kwt' => false, // Disable kerning to avoid font issues
-        ];
-
-        // Add font configuration if fonts are available
-        if ($fontDir && !empty($fontData)) {
-            $pdfConfig['default_font'] = 'Nikosh';
-            $pdfConfig['custom_font_dir'] = $fontDir;
-            $pdfConfig['custom_font_data'] = [
-                'Nikosh' => $fontData
-            ];
-        } else {
-            // Use helvetica as fallback (base font that always works)
-            $pdfConfig['default_font'] = 'helvetica';
-        }
-
-        // Generate PDF with error handling
-        try {
-            $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], $pdfConfig);
-        } catch (\ErrorException $e) {
-            // Catch font-related errors specifically
-            if (strpos($e->getMessage(), 'dejavusanscondensed') !== false || 
-                strpos($e->getMessage(), 'Undefined index') !== false) {
-                // If font error occurs, retry with helvetica (most reliable base font)
-                $pdfConfig = [
-                    'mode' => 'utf-8',
-                    'format' => 'A4',
-                    'orientation' => 'P',
-                    'default_font' => 'helvetica',
-                    'default_font_size' => 12,
-                    'margin_left' => 10,
-                    'margin_right' => 10,
-                    'margin_top' => 10,
-                    'margin_bottom' => 10,
-                    'margin_header' => 0,
-                    'margin_footer' => 0,
-                    'show_watermark' => false,
-                    'tempDir' => rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR),
-                    'useSubstitutions' => false,
-                    'simpleTables' => true,
-                ];
-                $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], $pdfConfig);
-            } else {
-                // Re-throw if it's not a font error
-                throw $e;
-            }
-        } catch (\Exception $e) {
-            // Catch any other exceptions and retry with helvetica
-            $pdfConfig = [
-                'mode' => 'utf-8',
-                'format' => 'A4',
-                'orientation' => 'P',
-                'default_font' => 'helvetica',
-                'default_font_size' => 12,
-                'margin_left' => 10,
-                'margin_right' => 10,
-                'margin_top' => 10,
-                'margin_bottom' => 10,
-                'margin_header' => 0,
-                'margin_footer' => 0,
-                'show_watermark' => false,
-                'tempDir' => rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR),
-                'useSubstitutions' => false,
-                'simpleTables' => true,
-            ];
-            $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], $pdfConfig);
-        }
+        // Set paper size and orientation
+        $pdf->setPaper('a4', 'portrait');
+        
+        // Set margins
+        $pdf->setOption('margin-top', '10');
+        $pdf->setOption('margin-bottom', '10');
+        $pdf->setOption('margin-left', '10');
+        $pdf->setOption('margin-right', '10');
 
         return $pdf->download('results.pdf');
     }

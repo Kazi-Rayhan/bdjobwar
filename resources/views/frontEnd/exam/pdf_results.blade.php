@@ -13,12 +13,9 @@
         }
 
         body {
-            /* margin-top: 3.5cm;
-            margin-bottom: 1cm;
-            margin-left: 1cm;
-            margin-right: 1cm; */
-            font-family: "Nikosh", sans-serif;
-
+            font-family: "DejaVu Sans", sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         .cus-info {
