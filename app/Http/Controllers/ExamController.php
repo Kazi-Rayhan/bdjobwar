@@ -180,8 +180,28 @@ class ExamController extends Controller
         $results = UserExam::where('exam_id', $exam->id)->whereNotNull('answers')->orderBy('total', 'desc')->orderBy('created_at', 'DESC')->get();
 
         $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], [
+            'mode' => 'utf-8',
+            'format' => 'A4',
+            'orientation' => 'P',
             'default_font' => 'Nikosh',
             'default_font_size' => 12,
+            'margin_left' => 10,
+            'margin_right' => 10,
+            'margin_top' => 10,
+            'margin_bottom' => 10,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+            'show_watermark' => false,
+            'custom_font_dir' => base_path('resources/fonts/'),
+            'custom_font_data' => [
+                'Nikosh' => [
+                    'R' => 'Nikosh.ttf',
+                    'B' => 'Nikosh.ttf',
+                    'I' => 'Nikoshc.ttf',
+                    'BI' => 'Nikosh.ttf'
+                ]
+            ],
+            'tempDir' => rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR),
         ]);
 
         return $pdf->download('results.pdf');

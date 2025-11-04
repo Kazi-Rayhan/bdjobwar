@@ -18,7 +18,7 @@ return [
   'watermark'                => 'BD Job War',
   'show_watermark'           => true,
   'show_watermark_image'     => true,
-  'watermark_font'           => 'serif',
+  'watermark_font'           => 'Nikosh',
   'display_mode'             => 'fullpage',
   'watermark_text_alpha'     => 0.1,
   'watermark_image_path'     => '',
