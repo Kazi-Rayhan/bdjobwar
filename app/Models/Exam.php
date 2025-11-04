@@ -129,9 +129,15 @@ class Exam extends Model
         });
     }
 
+    public function course()
+    {
+        return $this->hasOneThrough(Course::class, Batch::class, 'id', 'id', 'batch_id', 'course_id');
+    }
+
     public function scopeFilter($query)
     {
-        return $query->when(request()->filled('batch'), fn($query) => $query->where('batch_id', request()->batch));
+        return $query->when(request()->filled('batch'), fn($query) => $query->where('batch_id', request()->batch))->when(request()->filled('course'), function ($query) {
+            return $query->whereHas('course', fn($q) => $q->where('id', request()->course));
+        });
     }
-  
 }

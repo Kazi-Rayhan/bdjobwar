@@ -179,7 +179,10 @@ class ExamController extends Controller
         $exam = Exam::where('uuid', $uuid)->first();
         $results = UserExam::where('exam_id', $exam->id)->whereNotNull('answers')->orderBy('total', 'desc')->orderBy('created_at', 'DESC')->get();
 
-        $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam]);
+        $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], [
+            'default_font' => 'Nikosh',
+            'default_font_size' => 12,
+        ]);
 
         return $pdf->download('results.pdf');
     }
