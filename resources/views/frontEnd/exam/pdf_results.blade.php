@@ -69,11 +69,11 @@
             <tr>
 
                 <td colspan="6" style="text-align:center">
-                    <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:20px">
+                    <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;font-size:20px">
                         {!! 'মেধাতালিকা' !!}</p>
-                    <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:30px">
+                    <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;font-size:30px">
                         {!! $exam->title !!}</p>
-                    <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;display:flex;font-size:15px">
+                    <p style="font-weight: 700; margin:10px 0 5px 0; padding:0;font-size:15px">
                         {!! $exam->sub_title !!}</p>
                 </td>
             </tr>
