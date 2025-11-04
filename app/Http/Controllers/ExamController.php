@@ -218,7 +218,7 @@ class ExamController extends Controller
             }
         }
 
-        // Build PDF configuration
+        // Build PDF configuration - completely bypass config file to avoid font issues
         $pdfConfig = [
             'mode' => 'utf-8',
             'format' => 'A4',
@@ -232,6 +232,9 @@ class ExamController extends Controller
             'margin_footer' => 0,
             'show_watermark' => false,
             'tempDir' => rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR),
+            'useSubstitutions' => false, // Disable font substitutions
+            'simpleTables' => true, // Use simple tables to avoid font issues
+            'use_kwt' => false, // Disable kerning to avoid font issues
         ];
 
         // Add font configuration if fonts are available
@@ -242,22 +245,47 @@ class ExamController extends Controller
                 'Nikosh' => $fontData
             ];
         } else {
-            // Use dejavusans as fallback (built-in mPDF font with all variants)
-            // This ensures we don't try to use dejavusanscondensed which may not have all variants
-            $pdfConfig['default_font'] = 'dejavusans';
-            // Explicitly disable font subsetting to avoid font variant issues
-            $pdfConfig['useSubstitutions'] = false;
+            // Use helvetica as fallback (base font that always works)
+            $pdfConfig['default_font'] = 'helvetica';
         }
 
+        // Generate PDF with error handling
         try {
             $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], $pdfConfig);
+        } catch (\ErrorException $e) {
+            // Catch font-related errors specifically
+            if (strpos($e->getMessage(), 'dejavusanscondensed') !== false || 
+                strpos($e->getMessage(), 'Undefined index') !== false) {
+                // If font error occurs, retry with helvetica (most reliable base font)
+                $pdfConfig = [
+                    'mode' => 'utf-8',
+                    'format' => 'A4',
+                    'orientation' => 'P',
+                    'default_font' => 'helvetica',
+                    'default_font_size' => 12,
+                    'margin_left' => 10,
+                    'margin_right' => 10,
+                    'margin_top' => 10,
+                    'margin_bottom' => 10,
+                    'margin_header' => 0,
+                    'margin_footer' => 0,
+                    'show_watermark' => false,
+                    'tempDir' => rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR),
+                    'useSubstitutions' => false,
+                    'simpleTables' => true,
+                ];
+                $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], $pdfConfig);
+            } else {
+                // Re-throw if it's not a font error
+                throw $e;
+            }
         } catch (\Exception $e) {
-            // If font error occurs, retry with minimal config using dejavusans
+            // Catch any other exceptions and retry with helvetica
             $pdfConfig = [
                 'mode' => 'utf-8',
                 'format' => 'A4',
                 'orientation' => 'P',
-                'default_font' => 'dejavusans',
+                'default_font' => 'helvetica',
                 'default_font_size' => 12,
                 'margin_left' => 10,
                 'margin_right' => 10,
@@ -268,6 +296,7 @@ class ExamController extends Controller
                 'show_watermark' => false,
                 'tempDir' => rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR),
                 'useSubstitutions' => false,
+                'simpleTables' => true,
             ];
             $pdf = MPDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam], $pdfConfig);
         }

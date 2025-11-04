@@ -12,17 +12,12 @@
             margin-right: 1cm;
         }
 
-        @font-face {
-            font-family: "Nikosh";
-            src: url({{ asset('Nikosh.ttf') }});
-        }
-
         body {
             /* margin-top: 3.5cm;
             margin-bottom: 1cm;
             margin-left: 1cm;
             margin-right: 1cm; */
-            font-family: "Nikosh";
+            font-family: "Nikosh", sans-serif;
 
         }
 

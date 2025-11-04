@@ -4,7 +4,7 @@ return [
   'mode'                     => '',
   'format'                   => 'A4',
   'default_font_size'        => '12',
-  'default_font'             => 'Nikosh',
+  'default_font'             => 'helvetica',
   'margin_left'              => 10,
   'margin_right'             => 10,
   'margin_top'               => 10,
@@ -18,7 +18,7 @@ return [
   'watermark'                => 'BD Job War',
   'show_watermark'           => true,
   'show_watermark_image'     => true,
-  'watermark_font'           => 'Nikosh',
+  'watermark_font'           => 'helvetica',
   'display_mode'             => 'fullpage',
   'watermark_text_alpha'     => 0.1,
   'watermark_image_path'     => '',
@@ -38,5 +38,7 @@ return [
   'pdfaauto'                 => false,
   'use_active_forms'         => false,
   'repackageTTF' => false,
+  'useSubstitutions' => false,
+  'simpleTables' => true,
 
 ];
