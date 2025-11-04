@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use MPDF;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Font;
 
 class ExamController extends Controller
 {
@@ -179,14 +185,118 @@ class ExamController extends Controller
         $exam = Exam::where('uuid', $uuid)->first();
         $results = UserExam::where('exam_id', $exam->id)->whereNotNull('answers')->orderBy('total', 'desc')->orderBy('created_at', 'DESC')->get();
 
-        // Use DomPDF - configuration is done via config/dompdf.php
-        // DejaVu Sans is set as default font which supports Bengali/Unicode
-        $pdf = PDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam]);
-        
-        // Set paper size
-        $pdf->setPaper('a4', 'portrait');
+        // Create Excel export - better Bengali text support than PDF
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
 
-        return $pdf->download('results.pdf');
+        // Main title - formatted nicely
+        $sheet->setCellValue('C1', 'মেধাতালিকা');
+        $sheet->mergeCells('C1:F1');
+        $sheet->getStyle('C1')->getFont()->setBold(true)->setSize(18);
+        $sheet->getStyle('C1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('C1')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+
+        // Exam title
+        $sheet->setCellValue('C2', $exam->title);
+        $sheet->mergeCells('C2:F2');
+        $sheet->getStyle('C2')->getFont()->setBold(true)->setSize(14);
+        $sheet->getStyle('C2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('C2')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+
+        // Exam subtitle
+        if ($exam->sub_title) {
+            $sheet->setCellValue('C3', $exam->sub_title);
+            $sheet->mergeCells('C3:F3');
+            $sheet->getStyle('C3')->getFont()->setSize(12);
+            $sheet->getStyle('C3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+        }
+
+        // Summary section
+        $passedCount = $results->filter(function ($result) use ($exam) {
+            return $result->total >= $exam->minimum_to_pass;
+        })->count();
+        $failedCount = $results->filter(function ($result) use ($exam) {
+            return $result->total < $exam->minimum_to_pass;
+        })->count();
+
+        $sheet->setCellValue('B5', 'মোট উত্তীর্ণ: ' . $passedCount);
+        $sheet->setCellValue('D5', 'মোট অনুত্তীর্ণ: ' . $failedCount);
+        $sheet->getStyle('B5')->getFont()->setSize(11);
+        $sheet->getStyle('D5')->getFont()->setSize(11);
+
+        // Table headers
+        $headers = ['স্থান', 'নাম', 'রোল', 'সঠিক উত্তর', 'ভুল উত্তর', 'মোট'];
+        $col = 'A';
+        $row = 7;
+        
+        foreach ($headers as $header) {
+            $sheet->setCellValue($col . $row, $header);
+            $sheet->getStyle($col . $row)->getFont()->setBold(true)->setSize(11);
+            $sheet->getStyle($col . $row)->getFill()
+                ->setFillType(Fill::FILL_SOLID)
+                ->getStartColor()->setARGB('FF4e73df');
+            $sheet->getStyle($col . $row)->getFont()->getColor()->setARGB('FFFFFFFF');
+            $sheet->getStyle($col . $row)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+            $sheet->getStyle($col . $row)->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+            $col++;
+        }
+
+        // Set header row height
+        $sheet->getRowDimension($row)->setRowHeight(25);
+
+        // Data rows
+        $row = 8;
+        foreach ($results as $result) {
+            $correctAnswers = count((array) json_decode($result->answers)) - $result->wrong_answers;
+            $status = ($result->total >= $exam->minimum_to_pass) ? ' (P)' : ' (F)';
+            
+            $sheet->setCellValue('A' . $row, $result->exam->getRanking($result->user));
+            $sheet->setCellValue('B' . $row, $result->user->name);
+            $sheet->setCellValue('C' . $row, @$result->user->information->id);
+            $sheet->setCellValue('D' . $row, $correctAnswers);
+            $sheet->setCellValue('E' . $row, $result->wrong_answers);
+            $sheet->setCellValue('F' . $row, $result->total . $status);
+            
+            // Center align all cells
+            foreach (['A', 'B', 'C', 'D', 'E', 'F'] as $col) {
+                $sheet->getStyle($col . $row)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+                $sheet->getStyle($col . $row)->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+            }
+            
+            // Add borders to data row
+            $sheet->getStyle('A' . $row . ':F' . $row)->getBorders()->getAllBorders()
+                ->setBorderStyle(Border::BORDER_THIN);
+            
+            $row++;
+        }
+
+        // Add borders to header row
+        $sheet->getStyle('A7:F7')->getBorders()->getAllBorders()
+            ->setBorderStyle(Border::BORDER_THIN);
+
+        // Auto-size columns
+        foreach (['A', 'B', 'C', 'D', 'E', 'F'] as $col) {
+            $sheet->getColumnDimension($col)->setAutoSize(true);
+        }
+
+        // Set minimum column widths
+        $sheet->getColumnDimension('A')->setWidth(10);
+        $sheet->getColumnDimension('B')->setWidth(25);
+        $sheet->getColumnDimension('C')->setWidth(12);
+        $sheet->getColumnDimension('D')->setWidth(15);
+        $sheet->getColumnDimension('E')->setWidth(15);
+        $sheet->getColumnDimension('F')->setWidth(15);
+
+        // Create writer and download
+        $writer = new Xlsx($spreadsheet);
+        $filename = 'results_' . $exam->uuid . '.xlsx';
+        
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+        exit;
     }
     public function answerSheetPdf($uuid)
     {

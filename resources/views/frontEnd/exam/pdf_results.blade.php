@@ -12,8 +12,22 @@
             margin-right: 1cm;
         }
 
+        @font-face {
+            font-family: 'Nikosh';
+            font-style: normal;
+            font-weight: normal;
+            src: url('{{ storage_path('fonts/Nikosh.ttf') }}') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Nikosh';
+            font-style: normal;
+            font-weight: bold;
+            src: url('{{ storage_path('fonts/Nikosh.ttf') }}') format('truetype');
+        }
+
         body {
-            font-family: 'DejaVu Sans', sans-serif;
+            font-family: 'Nikosh', 'DejaVu Sans', sans-serif;
             margin: 0;
             padding: 0;
         }
