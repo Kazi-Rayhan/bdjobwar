@@ -180,16 +180,8 @@ class ExamController extends Controller
         $results = UserExam::where('exam_id', $exam->id)->whereNotNull('answers')->orderBy('total', 'desc')->orderBy('created_at', 'DESC')->get();
 
         // Use DomPDF instead of MPDF - more reliable and doesn't have font issues
+        // Using PDF facade which is aliased to DomPDF in config/app.php
         $pdf = PDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam]);
-        
-        // Set paper size and orientation
-        $pdf->setPaper('a4', 'portrait');
-        
-        // Set margins
-        $pdf->setOption('margin-top', '10');
-        $pdf->setOption('margin-bottom', '10');
-        $pdf->setOption('margin-left', '10');
-        $pdf->setOption('margin-right', '10');
 
         return $pdf->download('results.pdf');
     }
