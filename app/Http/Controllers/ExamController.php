@@ -190,25 +190,25 @@ class ExamController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
 
         // Main title - formatted nicely
-        $sheet->setCellValue('C1', 'মেধাতালিকা');
-        $sheet->mergeCells('C1:F1');
-        $sheet->getStyle('C1')->getFont()->setBold(true)->setSize(18);
-        $sheet->getStyle('C1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-        $sheet->getStyle('C1')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->setCellValue('B1', 'মেধাতালিকা');
+        $sheet->mergeCells('B1:E1');
+        $sheet->getStyle('B1')->getFont()->setBold(true)->setSize(18);
+        $sheet->getStyle('B1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('B1')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
 
         // Exam title
-        $sheet->setCellValue('C2', $exam->title);
-        $sheet->mergeCells('C2:F2');
+        $sheet->setCellValue('B2', $exam->title);
+        $sheet->mergeCells('B2:E2');
         $sheet->getStyle('C2')->getFont()->setBold(true)->setSize(14);
-        $sheet->getStyle('C2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-        $sheet->getStyle('C2')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
+        $sheet->getStyle('B2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('B2')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
 
         // Exam subtitle
         if ($exam->sub_title) {
-            $sheet->setCellValue('C3', $exam->sub_title);
-            $sheet->mergeCells('C3:F3');
-            $sheet->getStyle('C3')->getFont()->setSize(12);
-            $sheet->getStyle('C3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+            $sheet->setCellValue('B3', $exam->sub_title);
+            $sheet->mergeCells('B3:E3');
+            $sheet->getStyle('B3')->getFont()->setSize(12);
+            $sheet->getStyle('B3')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
         }
 
         // Summary section
@@ -219,10 +219,10 @@ class ExamController extends Controller
             return $result->total < $exam->minimum_to_pass;
         })->count();
 
-        $sheet->setCellValue('B5', 'মোট উত্তীর্ণ: ' . $passedCount);
-        $sheet->setCellValue('D5', 'মোট অনুত্তীর্ণ: ' . $failedCount);
-        $sheet->getStyle('B5')->getFont()->setSize(11);
-        $sheet->getStyle('D5')->getFont()->setSize(11);
+        $sheet->setCellValue('A5', 'মোট উত্তীর্ণ: ' . $passedCount);
+        $sheet->setCellValue('F5', 'মোট অনুত্তীর্ণ: ' . $failedCount);
+        $sheet->getStyle('A5')->getFont()->setSize(11);
+        $sheet->getStyle('F5')->getFont()->setSize(11);
 
         // Table headers
         $headers = ['স্থান', 'নাম', 'রোল', 'সঠিক উত্তর', 'ভুল উত্তর', 'মোট'];
@@ -279,13 +279,59 @@ class ExamController extends Controller
             $sheet->getColumnDimension($col)->setAutoSize(true);
         }
 
-        // Set minimum column widths
-        $sheet->getColumnDimension('A')->setWidth(10);
-        $sheet->getColumnDimension('B')->setWidth(25);
-        $sheet->getColumnDimension('C')->setWidth(12);
-        $sheet->getColumnDimension('D')->setWidth(15);
-        $sheet->getColumnDimension('E')->setWidth(15);
-        $sheet->getColumnDimension('F')->setWidth(15);
+        // Set optimized column widths for print (adjusted to fit A4 portrait)
+        $sheet->getColumnDimension('A')->setWidth(8);   // Rank
+        $sheet->getColumnDimension('B')->setWidth(25);  // Name
+        $sheet->getColumnDimension('C')->setWidth(10);  // Roll
+        $sheet->getColumnDimension('D')->setWidth(12);  // Correct
+        $sheet->getColumnDimension('E')->setWidth(12);  // Wrong
+        $sheet->getColumnDimension('F')->setWidth(12);  // Total
+
+        // Configure print settings for better print preview
+        $lastRow = $row - 1;
+        
+        // Set page orientation and size
+        $sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_PORTRAIT);
+        $sheet->getPageSetup()->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4);
+        
+        // Scale to fit page - fit to width (1 page wide)
+        $sheet->getPageSetup()->setFitToWidth(1);
+        $sheet->getPageSetup()->setFitToHeight(0);
+        
+        // Center content horizontally
+        $sheet->getPageSetup()->setHorizontalCentered(true);
+        $sheet->getPageSetup()->setVerticalCentered(false);
+        
+        // Set print margins (in inches) - smaller margins for more space
+        $sheet->getPageMargins()->setTop(0.3);
+        $sheet->getPageMargins()->setRight(0.3);
+        $sheet->getPageMargins()->setLeft(0.3);
+        $sheet->getPageMargins()->setBottom(0.3);
+        $sheet->getPageMargins()->setHeader(0.2);
+        $sheet->getPageMargins()->setFooter(0.2);
+        
+        // Set print area - include all data
+        $sheet->getPageSetup()->setPrintArea('A1:F' . $lastRow);
+        
+        // Repeat header row on each page (row 7 is the table header)
+        $sheet->getPageSetup()->setRowsToRepeatAtTopByStartAndEnd(7, 7);
+        
+        // Enable gridlines for print
+        $sheet->setShowGridlines(true);
+        
+        // Set row heights for better spacing and print
+        $sheet->getRowDimension(1)->setRowHeight(22);
+        $sheet->getRowDimension(2)->setRowHeight(18);
+        if ($exam->sub_title) {
+            $sheet->getRowDimension(3)->setRowHeight(16);
+        }
+        $sheet->getRowDimension(5)->setRowHeight(16);
+        $sheet->getRowDimension(7)->setRowHeight(22); // Header row
+        
+        // Set data row heights - smaller for print
+        for ($i = 8; $i <= $lastRow; $i++) {
+            $sheet->getRowDimension($i)->setRowHeight(16);
+        }
 
         // Create writer and download
         $writer = new Xlsx($spreadsheet);
