@@ -146,9 +146,9 @@
 
                     <td>
                         {{ $result->total }} @if ($result->total >= $exam->minimum_to_pass)
-                            <b>(P)</b>
+                            <span style="font-weight: bold;">(P)</span>
                         @else
-                            <b>(F)</b>
+                            <span style="font-weight: bold;">(F)</span>
                         @endif
                     </td>
 
