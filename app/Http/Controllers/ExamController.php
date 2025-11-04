@@ -179,9 +179,18 @@ class ExamController extends Controller
         $exam = Exam::where('uuid', $uuid)->first();
         $results = UserExam::where('exam_id', $exam->id)->whereNotNull('answers')->orderBy('total', 'desc')->orderBy('created_at', 'DESC')->get();
 
-        // Use DomPDF instead of MPDF - more reliable and doesn't have font issues
-        // Using PDF facade which is aliased to DomPDF in config/app.php
+        // Use DomPDF - configure for Bengali text support
         $pdf = PDF::loadView('frontEnd.exam.pdf_results', ['results' => $results, 'exam' => $exam]);
+        
+        // Set paper size
+        $pdf->setPaper('a4', 'portrait');
+        
+        // Configure DomPDF to use DejaVu Sans which supports Unicode/Bengali
+        $pdf->setOption('enable-font-subsetting', false);
+        $pdf->setOption('defaultFont', 'DejaVu Sans');
+        $pdf->setOption('isRemoteEnabled', false);
+        $pdf->setOption('isHtml5ParserEnabled', true);
+        $pdf->setOption('isPhpEnabled', true);
 
         return $pdf->download('results.pdf');
     }
