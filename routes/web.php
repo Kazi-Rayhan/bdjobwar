@@ -186,9 +186,12 @@ Route::group(['prefix' => '/batch/{slug}/{batch}', 'as' => 'batch.', 'controller
 
 
 
-Route::get('/test',function(){
-    $exam = Exam::first();
-    
-    dd($exam->course);
-});
+Route::get('/privacy-policy', function(){
+    return view('frontEnd.privacy-policy');
+})->name('privacy-policy');
+Route::get('/terms-and-conditions', function(){
+    return view('frontEnd.terms-and-conditions');
+})->name('terms-and-conditions');
+Route::get('delete-account', [PageController::class, 'deleteAccount'])->name('delete-account-and-information');
+Route::post('delete-account', [PageController::class, 'submitDeleteAccount'])->name('delete-account-and-information');
 

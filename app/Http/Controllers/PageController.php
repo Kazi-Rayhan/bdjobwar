@@ -16,6 +16,7 @@ use App\Post;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Mpdf\Mpdf;
 
 class PageController extends Controller
@@ -186,5 +187,40 @@ class PageController extends Controller
         }
         $notices = Notice::paginate(10);
         return view('notices', compact('notices', 'notice'));
+    }
+
+    public function deleteAccount()
+    {
+        return view('frontEnd.delete-account');
+    }
+
+    public function submitDeleteAccount(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'reason' => 'required|string|min:10',
+            'confirm' => 'required|accepted',
+        ]);
+
+        try {
+            $userId = auth()->check() ? auth()->user()->id : null;
+            
+            Mail::send(new \App\Mail\AccountDeletionRequest(
+                $request->name,
+                $request->email,
+                $request->phone,
+                $request->reason,
+                $userId
+            ));
+
+            return redirect()->route('delete-account-and-information')
+                ->with('success', 'আপনার অ্যাকাউন্ট মুছে ফেলার অনুরোধ সফলভাবে পাঠানো হয়েছে। আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'দুঃখিত, একটি ত্রুটি হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
+        }
     }
 }
